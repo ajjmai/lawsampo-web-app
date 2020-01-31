@@ -11,23 +11,10 @@ import {
   manuscriptPropertiesFacetResults,
   manuscriptPropertiesInstancePage,
   productionPlacesQuery,
-  lastKnownLocationsQuery,
-  migrationsQuery,
-  networkLinksQuery,
   networkNodesQuery
 } from './SparqlQueriesManuscripts'
 import { workProperties } from './SparqlQueriesWorks'
-import { eventProperties, eventPlacesQuery } from './SparqlQueriesEvents'
-import { generateEventsByPeriodQuery } from './FacetResultsEvents'
-import { placesActorsQuery } from './SparqlQueriesActors'
-import {
-  placePropertiesInfoWindow,
-  manuscriptsProducedAt,
-  lastKnownLocationsAt,
-  actorsAt,
-  allPlacesQuery
-} from './SparqlQueriesPlaces'
-import { facetConfigs } from './FacetConfigsSampo'
+import { facetConfigs } from './FacetConfigsLawSampo'
 import { mapCount, mapPlaces } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
@@ -73,40 +60,10 @@ export const getAllResults = ({
   let filterTarget = ''
   let mapper = makeObjectList
   switch (resultClass) {
-    case 'placesAll':
-      q = allPlacesQuery
-      filterTarget = 'id'
-      break
     case 'placesMsProduced':
       q = productionPlacesQuery
       filterTarget = 'manuscripts'
       mapper = mapPlaces
-      break
-    case 'lastKnownLocations':
-      q = lastKnownLocationsQuery
-      filterTarget = 'manuscripts'
-      mapper = mapPlaces
-      break
-    case 'placesActors':
-      q = placesActorsQuery
-      filterTarget = 'actor__id'
-      mapper = mapPlaces
-      break
-    case 'placesMsMigrations':
-      q = migrationsQuery
-      filterTarget = 'manuscript__id'
-      break
-    case 'placesEvents':
-      q = eventPlacesQuery
-      filterTarget = 'event'
-      break
-    case 'eventsByTimePeriod':
-      q = generateEventsByPeriodQuery({ startYear: 1600, endYear: 1620, periodLength: 10 })
-      filterTarget = 'event'
-      break
-    case 'manuscriptsNetwork':
-      q = networkLinksQuery
-      filterTarget = 'source'
       break
   }
   if (constraints == null) {
@@ -212,14 +169,11 @@ const getPaginatedData = ({
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`)
   let resultSetProperties
   switch (resultClass) {
-    case 'perspective1':
+    case 'statutes':
       resultSetProperties = manuscriptPropertiesFacetResults
       break
-    case 'perspective2':
+    case 'caselaw':
       resultSetProperties = workProperties
-      break
-    case 'perspective3':
-      resultSetProperties = eventProperties
       break
     default:
       resultSetProperties = ''
@@ -243,44 +197,14 @@ export const getByURI = ({
 }) => {
   let q
   switch (resultClass) {
-    case 'perspective1':
+    case 'statutes':
       q = instanceQuery
       q = q.replace('<PROPERTIES>', manuscriptPropertiesInstancePage)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
-    case 'perspective2':
+    case 'caselaw':
       q = instanceQuery
       q = q.replace('<PROPERTIES>', workProperties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'perspective3':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', eventProperties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'placesAll':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'placesActors':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', actorsAt)
-      break
-    case 'placesMsProduced':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', manuscriptsProducedAt)
-      break
-    case 'lastKnownLocations':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', lastKnownLocationsAt)
-      break
-    case 'placesEvents':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
   }

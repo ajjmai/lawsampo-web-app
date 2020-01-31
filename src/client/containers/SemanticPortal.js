@@ -13,10 +13,8 @@ import Main from '../components/main_layout/Main'
 import Footer from '../components/main_layout/Footer'
 import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'
-import Perspective1 from '../components/perspectives/sampo/Perspective1'
-import Perspective2 from '../components/perspectives/sampo/Perspective2'
-import Perspective3 from '../components/perspectives/sampo/Perspective3'
-import All from '../components/perspectives/mmm/All'
+import Statutes from '../components/perspectives/lawsampo/Statutes'
+import Caselaw from '../components/perspectives/lawsampo/Caselaw'
 import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import TextPage from '../components/main_layout/TextPage'
 import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
@@ -174,12 +172,11 @@ const SemanticPortal = props => {
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
     switch (perspective.id) {
-      case 'perspective1':
+      case 'statutes':
         perspectiveElement =
-          <Perspective1
-            perspective1={props.perspective1}
-            places={props.places}
-            facetData={props.perspective1Facets}
+          <Statutes
+            statutes={props.statutes}
+            facetData={props.statutesFacets}
             fetchPaginatedResults={props.fetchPaginatedResults}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
@@ -193,34 +190,16 @@ const SemanticPortal = props => {
             animateMap={props.animateMap}
           />
         break
-      case 'perspective2':
+      case 'caselaw':
         perspectiveElement =
-          <Perspective2
-            perspective2={props.perspective2}
-            places={props.places}
-            facetData={props.perspective2Facets}
+          <Caselaw
+            caselaw={props.caselaw}
+            facetData={props.caselawFacets}
             fetchPaginatedResults={props.fetchPaginatedResults}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
-            sortResults={props.sortResults}
-            routeProps={routeProps}
-            perspective={perspective}
-          />
-        break
-      case 'perspective3':
-        perspectiveElement =
-          <Perspective3
-            perspective3={props.perspective3}
-            places={props.places}
-            facetData={props.perspective3Facets}
-            fetchPaginatedResults={props.fetchPaginatedResults}
-            fetchResults={props.fetchResults}
-            fetchByURI={props.fetchByURI}
-            updatePage={props.updatePage}
-            updateRowsPerPage={props.updateRowsPerPage}
-            updateFacetOption={props.updateFacetOption}
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={perspective}
@@ -253,19 +232,6 @@ const SemanticPortal = props => {
               <Grid container spacing={1} className={classes.mainContainer}>
                 <Main perspectives={perspectiveConfig} />
                 <Footer />
-              </Grid>}
-          />
-          {/* route for full text search results */}
-          <Route
-            path='/all'
-            render={routeProps =>
-              <Grid container spacing={1} className={classes.mainContainer}>
-                <Grid item xs={12} className={classes.resultsContainer}>
-                  <All
-                    clientSideFacetedSearch={props.clientSideFacetedSearch}
-                    routeProps={routeProps}
-                  />
-                </Grid>
               </Grid>}
           />
           {/* routes for perspectives that don't have an external url */}

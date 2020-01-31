@@ -7,7 +7,7 @@ import {
   facetValuesRange
 } from './SparqlQueriesGeneral'
 import { prefixes } from './SparqlQueriesPrefixes'
-import { facetConfigs } from './FacetConfigsSampo'
+import { facetConfigs } from './FacetConfigsLawSampo'
 import {
   hasPreviousSelections,
   hasPreviousSelectionsFromOtherFacets,
