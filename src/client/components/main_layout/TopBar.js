@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Button from '@material-ui/core/Button'
 import { Link, NavLink } from 'react-router-dom'
-import TopBarSearchField from './TopBarSearchField'
+// import TopBarSearchField from './TopBarSearchField'
 import TopBarInfoButton from './TopBarInfoButton'
 import TopBarLanguageButton from './TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
@@ -208,11 +208,11 @@ class TopBar extends React.Component {
             <Button component={this.AdapterLink} to='/'>
               <Typography variant='h6'>{intl.get('appTitle.short')}</Typography>
             </Button>
-            <TopBarSearchField
+            {/* <TopBarSearchField
               fetchResultsClientSide={this.props.fetchResultsClientSide}
               clearResults={this.props.clearResults}
               xsScreen={this.props.xsScreen}
-            />
+            /> */}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               {perspectives.map((perspective, index) => this.renderDesktopTopMenuItem(perspective, index))}
