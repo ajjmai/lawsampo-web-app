@@ -1,13 +1,12 @@
 import { runSelectQuery } from './SparqlApi'
 import { has } from 'lodash'
 import {
-  endpoint,
   facetValuesQuery,
   facetValuesQueryTimespan,
   facetValuesRange
 } from './SparqlQueriesGeneral'
 import { prefixes } from './SparqlQueriesPrefixes'
-import { facetConfigs } from './FacetConfigsLawSampo'
+import { facetConfigs, endpoint } from './FacetConfigsLawSampo'
 import {
   hasPreviousSelections,
   hasPreviousSelectionsFromOtherFacets,

@@ -2,7 +2,6 @@ import { runSelectQuery } from './SparqlApi'
 import { runNetworkQuery } from './NetworkApi'
 import { prefixes } from './SparqlQueriesPrefixes'
 import {
-  endpoint,
   countQuery,
   facetResultSetQuery,
   instanceQuery
@@ -14,7 +13,7 @@ import {
   networkNodesQuery
 } from './SparqlQueriesManuscripts'
 import { workProperties } from './SparqlQueriesWorks'
-import { facetConfigs } from './FacetConfigsLawSampo'
+import { facetConfigs, endpoint } from './FacetConfigsLawSampo'
 import { mapCount, mapPlaces } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
