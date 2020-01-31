@@ -19,8 +19,8 @@ import Perspective3 from '../components/perspectives/sampo/Perspective3'
 import All from '../components/perspectives/mmm/All'
 import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import TextPage from '../components/main_layout/TextPage'
-import { perspectiveConfig } from '../configs/sampo/PerspectiveConfig'
-import { perspectiveConfigOnlyInfoPages } from '../configs/sampo/PerspectiveConfigOnlyInfoPages'
+import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
+import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
 import InfoHeader from '../components/main_layout/InfoHeader'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { has } from 'lodash'
@@ -423,14 +423,10 @@ const SemanticPortal = props => {
 
 const mapStateToProps = state => {
   return {
-    perspective1: state.perspective1,
-    perspective1Facets: state.perspective1Facets,
-    perspective2: state.perspective2,
-    perspective2Facets: state.perspective2Facets,
-    perspective3: state.perspective3,
-    perspective3Facets: state.perspective3Facets,
-    places: state.places,
-    clientSideFacetedSearch: state.clientSideFacetedSearch,
+    statutes: state.statutes,
+    statutesFacets: state.statutesFacets,
+    caselaw: state.caselaw,
+    caselawFacets: state.caselawFacets,
     animationValue: state.animation.value,
     options: state.options,
     error: state.error
@@ -461,13 +457,10 @@ SemanticPortal.propTypes = {
   theme: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  perspective1: PropTypes.object.isRequired,
-  perspective1Facets: PropTypes.object.isRequired,
-  perspective2: PropTypes.object.isRequired,
-  perspective2Facets: PropTypes.object.isRequired,
-  perspective3: PropTypes.object.isRequired,
-  perspective3Facets: PropTypes.object.isRequired,
-  places: PropTypes.object.isRequired,
+  statutes: PropTypes.object.isRequired,
+  statutesFacets: PropTypes.object.isRequired,
+  caselaw: PropTypes.object.isRequired,
+  caselawFacets: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,
@@ -484,7 +477,7 @@ SemanticPortal.propTypes = {
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
   animateMap: PropTypes.func.isRequired,
-  clientSideFacetedSearch: PropTypes.object.isRequired
+  clientSideFacetedSearch: PropTypes.object
 }
 
 export default compose(
