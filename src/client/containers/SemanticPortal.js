@@ -186,8 +186,6 @@ const SemanticPortal = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={perspective}
-            animationValue={props.animationValue}
-            animateMap={props.animateMap}
           />
         break
       case 'caselaw':
@@ -200,6 +198,7 @@ const SemanticPortal = props => {
             fetchByURI={props.fetchByURI}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
+            updateFacetOption={props.updateFacetOption}
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={perspective}

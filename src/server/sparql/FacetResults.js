@@ -1,18 +1,12 @@
 import { runSelectQuery } from './SparqlApi'
-import { runNetworkQuery } from './NetworkApi'
 import { prefixes } from './SparqlQueriesPrefixes'
 import {
   countQuery,
   facetResultSetQuery,
   instanceQuery
 } from './SparqlQueriesGeneral'
-import {
-  manuscriptPropertiesFacetResults,
-  manuscriptPropertiesInstancePage,
-  productionPlacesQuery,
-  networkNodesQuery
-} from './SparqlQueriesManuscripts'
-import { workProperties } from './SparqlQueriesWorks'
+import { statutesProperties } from './SparqlQueriesStatutes'
+import { caselawProperties } from './SparqlQueriesCaselaw'
 import { facetConfigs, endpoint } from './FacetConfigsLawSampo'
 import { mapCount, mapPlaces } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
@@ -75,15 +69,6 @@ export const getAllResults = ({
       filterTarget: filterTarget,
       facetID: null
     }))
-  }
-  if (resultClass === 'manuscriptsNetwork') {
-    // console.log(prefixes + q)
-    return runNetworkQuery({
-      endpoint,
-      prefixes,
-      links: q,
-      nodes: networkNodesQuery
-    })
   }
   // console.log(prefixes + q)
   return runSelectQuery({
@@ -169,10 +154,10 @@ const getPaginatedData = ({
   let resultSetProperties
   switch (resultClass) {
     case 'statutes':
-      resultSetProperties = manuscriptPropertiesFacetResults
+      resultSetProperties = statutesProperties
       break
     case 'caselaw':
-      resultSetProperties = workProperties
+      resultSetProperties = caselawProperties
       break
     default:
       resultSetProperties = ''
@@ -198,12 +183,12 @@ export const getByURI = ({
   switch (resultClass) {
     case 'statutes':
       q = instanceQuery
-      q = q.replace('<PROPERTIES>', manuscriptPropertiesInstancePage)
+      q = q.replace('<PROPERTIES>', statutesProperties)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
     case 'caselaw':
       q = instanceQuery
-      q = q.replace('<PROPERTIES>', workProperties)
+      q = q.replace('<PROPERTIES>', caselawProperties)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
   }

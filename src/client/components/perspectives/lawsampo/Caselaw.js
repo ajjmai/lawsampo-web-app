@@ -45,7 +45,6 @@ const Caselaw = props => {
 
 Caselaw.propTypes = {
   caselaw: PropTypes.object.isRequired,
-  places: PropTypes.object,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
