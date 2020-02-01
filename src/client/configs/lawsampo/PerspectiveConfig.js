@@ -4,13 +4,15 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 // import LocationOnIcon from '@material-ui/icons/LocationOn'
 // import RedoIcon from '@material-ui/icons/Redo'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
-import manuscriptsImage from '../../img/manuscripts-452x262.jpg'
-import worksImage from '../../img/works-452x262_2.jpg'
+import sdfImage from '../../img/lawsampo/sdf-tumb.png'
+import legislationImage from '../../img/lawsampo/legislation.png'
+import caselawImage from '../../img/lawsampo/caselaw.png'
 
 export const perspectiveConfig = [
   {
     id: 'statutes',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: legislationImage,
+    frontPageElement: 'card',
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
@@ -41,7 +43,8 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselaw',
-    frontPageImage: worksImage,
+    frontPageImage: caselawImage,
+    frontPageElement: 'card',
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
@@ -72,7 +75,8 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselawfinder',
-    frontPageImage: worksImage,
+    frontPageImage: sdfImage,
+    frontPageElement: 'card',
     externalUrl: 'https://data.finlex.fi/document-finder'
   }
 ]

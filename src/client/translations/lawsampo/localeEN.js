@@ -13,7 +13,7 @@ export default {
     voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo.
   `,
   selectPerspective: 'Select a perspective to search and browse the data:',
-  mainPageImageLicence: 'Image licene text',
+  mainPageImageLicence: 'Image license text',
   topBar: {
     feedback: 'feedback',
     info: {
