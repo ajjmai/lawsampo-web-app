@@ -43,41 +43,41 @@ export const getPaginatedResults = async ({
   }
 }
 
-export const getAllResults = ({
-  resultClass,
-  facetClass,
-  constraints,
-  resultFormat
-}) => {
-  let q = ''
-  let filterTarget = ''
-  let mapper = makeObjectList
-  switch (resultClass) {
-    case 'placesMsProduced':
-      q = productionPlacesQuery
-      filterTarget = 'manuscripts'
-      mapper = mapPlaces
-      break
-  }
-  if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters')
-  } else {
-    q = q.replace('<FILTER>', generateConstraintsBlock({
-      resultClass: resultClass,
-      facetClass: facetClass,
-      constraints: constraints,
-      filterTarget: filterTarget,
-      facetID: null
-    }))
-  }
-  // console.log(prefixes + q)
-  return runSelectQuery({
-    query: prefixes + q,
-    endpoint,
-    resultMapper: mapper,
-    resultFormat
-  })
-}
+// export const getAllResults = ({
+//   resultClass,
+//   facetClass,
+//   constraints,
+//   resultFormat
+// }) => {
+//   let q = ''
+//   let filterTarget = ''
+//   let mapper = makeObjectList
+//   switch (resultClass) {
+//     case 'placesMsProduced':
+//       q = productionPlacesQuery
+//       filterTarget = 'manuscripts'
+//       mapper = mapPlaces
+//       break
+//   }
+//   if (constraints == null) {
+//     q = q.replace('<FILTER>', '# no filters')
+//   } else {
+//     q = q.replace('<FILTER>', generateConstraintsBlock({
+//       resultClass: resultClass,
+//       facetClass: facetClass,
+//       constraints: constraints,
+//       filterTarget: filterTarget,
+//       facetID: null
+//     }))
+//   }
+//   // console.log(prefixes + q)
+//   return runSelectQuery({
+//     query: prefixes + q,
+//     endpoint,
+//     resultMapper: mapper,
+//     resultFormat
+//   })
+// }
 
 export const getResultCount = async ({
   resultClass,

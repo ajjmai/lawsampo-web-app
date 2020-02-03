@@ -15,7 +15,7 @@ import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'
 import Statutes from '../components/perspectives/lawsampo/Statutes'
 import Caselaw from '../components/perspectives/lawsampo/Caselaw'
-import InstanceHomePage from '../components/main_layout/InstanceHomePage'
+import InstanceHomePage from '../components/main_layout/InstanceHomePageLawSampo'
 import TextPage from '../components/main_layout/TextPage'
 import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
@@ -38,7 +38,8 @@ import {
   showError,
   updatePerspectiveHeaderExpanded,
   loadLocales,
-  animateMap
+  animateMap,
+  fetchSimilarDocumentsById
 } from '../actions'
 
 const styles = theme => ({
@@ -301,10 +302,12 @@ const SemanticPortal = props => {
                             <Grid item xs={12} className={classes.instancePageContent}>
                               <InstanceHomePage
                                 fetchByURI={props.fetchByURI}
+                                fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
                                 resultClass={perspective.id}
                                 properties={props[perspective.id].properties}
                                 tabs={perspective.instancePageTabs}
                                 data={props[perspective.id].instance}
+                                relatedData={props[perspective.id].instanceRelatedData}
                                 sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                 isLoading={props[perspective.id].fetching}
                                 routeProps={routeProps}
@@ -343,10 +346,12 @@ const SemanticPortal = props => {
                       <Grid item xs={12} className={classes.instancePageContent}>
                         <InstanceHomePage
                           fetchByURI={props.fetchByURI}
+                          fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
                           resultClass={perspective.id}
                           properties={props[perspective.id].properties}
                           tabs={perspective.instancePageTabs}
                           data={props[perspective.id].instance}
+                          relatedData={props[perspective.id].instanceRelatedData}
                           sparqlQuery={props[perspective.id].instanceSparqlQuery}
                           isLoading={props[perspective.id].fetching}
                           routeProps={routeProps}
@@ -414,7 +419,8 @@ const mapDispatchToProps = ({
   showError,
   updatePerspectiveHeaderExpanded,
   loadLocales,
-  animateMap
+  animateMap,
+  fetchSimilarDocumentsById
 })
 
 SemanticPortal.propTypes = {

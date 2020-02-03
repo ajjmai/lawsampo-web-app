@@ -75,7 +75,7 @@ class CaselawPageTable extends React.Component {
             <ResultTableCell
               columnId='decisionDate'
               data={data.decisionDate}
-              valueType='object'
+              valueType='string'
               makeLink={false}
               externalLink={false}
               sortValues
