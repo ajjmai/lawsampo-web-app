@@ -11,6 +11,7 @@ const Caselaw = props => {
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={props.perspective.tabs}
+        screenSize={props.screenSize}
       />
       <Route
         exact path='/caselaw/faceted-search'
@@ -54,7 +55,8 @@ Caselaw.propTypes = {
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
-  perspective: PropTypes.object.isRequired
+  perspective: PropTypes.object.isRequired,
+  screenSize: PropTypes.string.isRequired
 }
 
 export default Caselaw
