@@ -2,15 +2,14 @@ export default {
   languageLabel: 'English',
   appTitle: {
     short: 'lawsampo',
-    long: 'LawSampo Semantic Portal',
+    long: 'LawSampo',
     subheading: `
       Finnish legislation and case law as Linked Open Data
     `
   },
   appDescription: `
     Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, 
-    nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea 
-    voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo.
+    nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure.
   `,
   selectPerspective: 'Select a perspective to search and browse the data:',
   mainPageImageLicence: 'Image license text',

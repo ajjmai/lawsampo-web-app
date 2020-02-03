@@ -6,25 +6,25 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import MainCard from './MainCard'
-import bannerImage from '../../img/mmm-banner.jpg'
+import bannerImage from '../../img/lawsampo/lawsampo-banner-3000px.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginBottom: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 150px)',
-      overflow: 'auto'
-    }
+    marginBottom: theme.spacing(1)
+    // [theme.breakpoints.up('md')]: {
+    //   height: 'calc(100% - 150px)',
+    //   overflow: 'auto'
+    // }
   },
   banner: {
     background: `linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(${bannerImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: 220,
+    // backgroundPosition: 'center',
+    height: 225,
     [theme.breakpoints.up('xl')]: {
-      height: 300
+      height: 400
     },
     width: '100%',
     boxShadow: '0 -15px 15px 0px #bdbdbd inset',
@@ -36,13 +36,17 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     color: '#fff'
   },
+  bannerHeading: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   bannerSubheading: {
     marginTop: theme.spacing(1.5),
-    display: 'flex',
-    '& div': {
-      flexGrow: 1,
-      width: 0
-    }
+    display: 'flex'
+    // '& div': {
+    //   flexGrow: 1,
+    //   width: 0
+    // }
   },
   layout: {
     width: 'auto',
