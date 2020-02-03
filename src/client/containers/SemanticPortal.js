@@ -169,6 +169,16 @@ const styles = theme => ({
 const SemanticPortal = props => {
   const { classes, /* browser */ error } = props
   const xsScreen = useMediaQuery(theme => theme.breakpoints.down('xs'))
+  const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
+  const mdScreen = useMediaQuery(theme => theme.breakpoints.between('md', 'lg'))
+  const lgScreen = useMediaQuery(theme => theme.breakpoints.between('lg', 'xl'))
+  const xlScreen = useMediaQuery(theme => theme.breakpoints.up('xl'))
+  let screenSize = ''
+  if (xsScreen) { screenSize = 'xs' }
+  if (smScreen) { screenSize = 'sm' }
+  if (mdScreen) { screenSize = 'md' }
+  if (lgScreen) { screenSize = 'lg' }
+  if (xlScreen) { screenSize = 'xl' }
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
@@ -187,6 +197,7 @@ const SemanticPortal = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={perspective}
+            screenSize={screenSize}
           />
         break
       case 'caselaw':
@@ -203,6 +214,7 @@ const SemanticPortal = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={perspective}
+            screenSize={screenSize}
           />
         break
       default:
@@ -311,6 +323,7 @@ const SemanticPortal = props => {
                                 sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                 isLoading={props[perspective.id].fetching}
                                 routeProps={routeProps}
+                                screenSize={screenSize}
                               />
                             </Grid>
                           </Grid>
@@ -355,6 +368,7 @@ const SemanticPortal = props => {
                           sparqlQuery={props[perspective.id].instanceSparqlQuery}
                           isLoading={props[perspective.id].fetching}
                           routeProps={routeProps}
+                          screenSize={screenSize}
                         />
                       </Grid>
                     </Grid>
