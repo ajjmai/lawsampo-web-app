@@ -1,14 +1,14 @@
 import { runSelectQuery } from './SparqlApi'
-import { prefixes } from './SparqlQueriesPrefixes'
+import { prefixes } from './lawsampo/SparqlQueriesPrefixes'
 import {
   countQuery,
   facetResultSetQuery,
   instanceQuery
 } from './SparqlQueriesGeneral'
-import { statutesProperties } from './SparqlQueriesStatutes'
-import { caselawProperties } from './SparqlQueriesCaselaw'
+import { statutesProperties } from './lawsampo/SparqlQueriesStatutes'
+import { caselawProperties } from './lawsampo/SparqlQueriesCaselaw'
 import { facetConfigs, endpoint } from './FacetConfigsLawSampo'
-import { mapCount, mapPlaces } from './Mappers'
+import { mapCount } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
 
