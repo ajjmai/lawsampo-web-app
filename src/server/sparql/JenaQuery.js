@@ -1,5 +1,5 @@
 import { runSelectQuery } from './SparqlApi'
-import { prefixes } from './sampo/SparqlQueriesPrefixes'
+import { prefixes } from './lawsampo/SparqlQueriesPrefixes'
 import { endpoint, jenaQuery } from './SparqlQueriesGeneral'
 import { makeObjectList } from './SparqlObjectMapper'
 

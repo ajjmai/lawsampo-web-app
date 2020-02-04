@@ -41,4 +41,4 @@ export const caselawProperties = `
   {
     ?id dcterms:isVersionOf ?ecli .
   }
-`;
+`
