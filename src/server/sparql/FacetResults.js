@@ -7,7 +7,7 @@ import {
 } from './SparqlQueriesGeneral'
 import { statutesProperties } from './lawsampo/SparqlQueriesStatutes'
 import { caselawProperties } from './lawsampo/SparqlQueriesCaselaw'
-import { facetConfigs, endpoint } from './FacetConfigsLawSampo'
+import { facetConfigs, endpoint } from './lawsampo/FacetConfigsLawSampo'
 import { mapCount } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
