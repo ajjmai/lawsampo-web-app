@@ -2,6 +2,8 @@
 
 Based on https://github.com/SemanticComputing/sampo-web-app
 
+master branch visible at http://test.lakisampo.fi (password protected)
+
 ## Requirements
 
 Node.js https://nodejs.org/en/ (tested with 10.15.3 LTS)
@@ -29,6 +31,9 @@ Run client and server concurrently:
 
 ### Run
  `docker run -d -p 3006:3001 --name sampo-web-app sampo-web-app-image`
+
+ ### Run with password protected endpoint
+ `docker run -d -p 3006:3001 -e SPARQL_ENDPOINT_BASIC_AUTH=your_password --name sampo-web-app sampo-web-app-image`
 
 ### Upgrade
 ```
