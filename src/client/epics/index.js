@@ -44,7 +44,7 @@ import {
   publishedPort,
   documentFinderAPIUrl,
   backendErrorText
-} from '../configs/sampo/GeneralConfig'
+} from '../configs/lawsampo/GeneralConfig'
 
 // set port if running on localhost with NODE_ENV = 'production'
 const port = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'

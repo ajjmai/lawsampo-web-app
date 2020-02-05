@@ -1,6 +1,8 @@
 export const endpoint = 'http://data.finlex.fi/sparql'
 // export const endpoint = 'http://localhost:3040/semantic-finlex/sparql'
 
+export const endpointUseAuth = false
+
 export const facetConfigs = {
   statutes: {
     facetClass: 'sfl:Statute',

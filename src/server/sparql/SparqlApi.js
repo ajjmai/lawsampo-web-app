@@ -1,6 +1,6 @@
 import axios from 'axios'
 import querystring from 'querystring'
-import { endpointUseAuth } from './sampo/FacetConfigsSampo'
+import { endpointUseAuth } from './lawsampo/FacetConfigsLawSampo'
 
 export const runSelectQuery = async ({
   query,
