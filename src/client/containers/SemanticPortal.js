@@ -253,6 +253,7 @@ const SemanticPortal = props => {
                   <Main
                     perspectives={perspectiveConfig}
                     screenSize={screenSize}
+                    rootUrl={rootUrl}
                   />
                   <Footer />
                 </Grid>}
