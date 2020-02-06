@@ -6,6 +6,7 @@ import ResultTable from '../../facet_results/ResultTable'
 import Export from '../../facet_results/Export'
 
 const Caselaw = props => {
+  const { rootUrl, perspective } = props
   return (
     <>
       <PerspectiveTabs
@@ -14,11 +15,11 @@ const Caselaw = props => {
         screenSize={props.screenSize}
       />
       <Route
-        exact path='/caselaw/faceted-search'
-        render={() => <Redirect to='/caselaw/faceted-search/table' />}
+        exact path={`${rootUrl}/${perspective.id}/faceted-search`}
+        render={() => <Redirect to={`${rootUrl}/${perspective.id}/faceted-search/table`} />}
       />
       <Route
-        path='/caselaw/faceted-search/table'
+        path={`${rootUrl}/${perspective.id}/faceted-search/table`}
         render={routeProps =>
           <ResultTable
             data={props.caselaw}
@@ -33,7 +34,7 @@ const Caselaw = props => {
           />}
       />
       <Route
-        path='/caselaw/faceted-search/export'
+        path={`${rootUrl}/${perspective.id}/faceted-search/export`}
         render={() =>
           <Export
             sparqlQuery={props.caselaw.paginatedResultsSparqlQuery}
@@ -56,7 +57,8 @@ Caselaw.propTypes = {
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   perspective: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired
+  screenSize: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
 
 export default Caselaw
