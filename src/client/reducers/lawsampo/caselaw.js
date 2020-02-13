@@ -114,7 +114,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 150
+      minWidth: 160
     },
     {
       id: 'expression',

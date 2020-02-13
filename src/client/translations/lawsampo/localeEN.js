@@ -12,7 +12,7 @@ export default {
     nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure.
   `,
   selectPerspective: 'Select a perspective to search and browse the data:',
-  mainPageImageLicence: 'Image license text',
+  mainPageImageLicence: 'Image used under license from Shutterstock.com',
   topBar: {
     feedback: 'feedback',
     info: {
