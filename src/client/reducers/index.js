@@ -7,7 +7,7 @@ import caselaw from './lawsampo/caselaw'
 import statutesFacets from './lawsampo/statutesFacets'
 import caselawFacets from './lawsampo/caselawFacets'
 import animation from './mmm/animation'
-import clientSideFacetedSearch from './mmm/clientSideFacetedSearch'
+import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
 
 const reducer = combineReducers({
   statutes,

@@ -47,16 +47,47 @@ export const getPaginatedResults = async ({
 //   resultClass,
 //   facetClass,
 //   constraints,
-//   resultFormat
+//   resultFormat,
+//   groupBy
 // }) => {
 //   let q = ''
 //   let filterTarget = ''
 //   let mapper = makeObjectList
 //   switch (resultClass) {
+//     case 'placesAll':
+//       q = allPlacesQuery
+//       filterTarget = 'id'
+//       break
 //     case 'placesMsProduced':
-//       q = productionPlacesQuery
+//       q = groupBy ? productionPlacesQuery : productionCoordinatesQuery
+//       filterTarget = 'manuscripts'
+//       mapper = groupBy ? mapPlaces : mapCoordinates
+//       break
+//     case 'lastKnownLocations':
+//       q = lastKnownLocationsQuery
 //       filterTarget = 'manuscripts'
 //       mapper = mapPlaces
+//       break
+//     case 'placesActors':
+//       q = placesActorsQuery
+//       filterTarget = 'actor__id'
+//       mapper = mapPlaces
+//       break
+//     case 'placesMsMigrations':
+//       q = migrationsQuery
+//       filterTarget = 'manuscript__id'
+//       break
+//     case 'placesEvents':
+//       q = eventPlacesQuery
+//       filterTarget = 'event'
+//       break
+//     case 'eventsByTimePeriod':
+//       q = generateEventsByPeriodQuery({ startYear: 1600, endYear: 1620, periodLength: 10 })
+//       filterTarget = 'event'
+//       break
+//     case 'manuscriptsNetwork':
+//       q = networkLinksQuery
+//       filterTarget = 'source'
 //       break
 //   }
 //   if (constraints == null) {
@@ -69,6 +100,15 @@ export const getPaginatedResults = async ({
 //       filterTarget: filterTarget,
 //       facetID: null
 //     }))
+//   }
+//   if (resultClass === 'manuscriptsNetwork') {
+//     // console.log(prefixes + q)
+//     return runNetworkQuery({
+//       endpoint,
+//       prefixes,
+//       links: q,
+//       nodes: networkNodesQuery
+//     })
 //   }
 //   // console.log(prefixes + q)
 //   return runSelectQuery({

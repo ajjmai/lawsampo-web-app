@@ -8,7 +8,9 @@ export const stateToUrl = ({
   pagesize = null,
   sortBy = null,
   sortDirection = null,
-  resultFormat = null
+  resultFormat = null,
+  constrainSelf = null,
+  groupBy = null
 }) => {
   const params = {}
   if (facetClass !== null) { params.facetClass = facetClass }
@@ -17,6 +19,8 @@ export const stateToUrl = ({
   if (sortBy !== null) { params.sortBy = sortBy }
   if (sortDirection !== null) { params.sortDirection = sortDirection }
   if (resultFormat !== null) { params.resultFormat = resultFormat }
+  if (constrainSelf !== null) { params.constrainSelf = constrainSelf }
+  if (groupBy !== null) { params.groupBy = groupBy }
   if (facets !== null) {
     const constraints = {}
     for (const [key, value] of Object.entries(facets)) {
@@ -75,4 +79,23 @@ const boundsToValues = bounds => {
     latMax: latMax,
     longMax: longMax
   }
+}
+
+export const handleAxiosError = error => {
+  if (error.response) {
+  // The request was made and the server responded with a status code
+  // that falls out of the range of 2xx
+    console.log(error.response.data)
+  // console.log(error.response.status);
+  // console.log(error.response.headers);
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    console.log(error.request)
+  } else {
+  // Something happened in setting up the request that triggered an Error
+    console.log('Error', error.message)
+  }
+  console.log(error.config)
 }
