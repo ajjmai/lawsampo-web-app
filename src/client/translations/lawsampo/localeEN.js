@@ -8,8 +8,7 @@ export default {
     `
   },
   appDescription: `
-    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, 
-    nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure.
+   
   `,
   selectPerspective: 'Select a perspective to search and browse the data:',
   mainPageImageLicence: 'Image used under license from Shutterstock.com',

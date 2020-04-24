@@ -18,7 +18,7 @@ import InstanceHomePage from '../components/main_layout/InstanceHomePageLawSampo
 import InfoHeader from '../components/main_layout/InfoHeader'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
-import Main from '../components/main_layout/Main'
+import Main from '../components/perspectives/lawsampo/Main'
 import FacetBar from '../components/facet_bar/FacetBar'
 import Footer from '../components/perspectives/lawsampo/Footer'
 import Statutes from '../components/perspectives/lawsampo/Statutes'
@@ -385,11 +385,11 @@ const SemanticPortal = props => {
                     />
                     <Switch>
                       <Redirect
-                        from={`/${perspective.id}/page/:id`}
-                        to={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                        from={`/${perspective.id}/page/:court?/:year/:id`}
+                        to={`${rootUrlWithLang}/${perspective.id}/page/:court?/:year/:id`}
                       />
                       <Route
-                        path={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                        path={`${rootUrlWithLang}/${perspective.id}/page/:court?/:year/:id`}
                         render={routeProps => {
                           return (
                             <>
@@ -414,10 +414,12 @@ const SemanticPortal = props => {
                                     properties={props[perspective.id].properties}
                                     tabs={perspective.instancePageTabs}
                                     data={props[perspective.id].instance}
+                                    relatedData={props[perspective.id].instanceRelatedData}
                                     sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                     isLoading={props[perspective.id].fetching}
                                     routeProps={routeProps}
                                     screenSize={screenSize}
+                                    fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
                                   />
                                 </Grid>
                               </Grid>
@@ -618,7 +620,7 @@ SemanticPortal.propTypes = {
   updateMapBounds: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
   animateMap: PropTypes.func.isRequired,
-  clientFS: PropTypes.object.isRequired,
+  clientFS: PropTypes.object,
   clientFSToggleDataset: PropTypes.func.isRequired,
   clientFSFetchResults: PropTypes.func.isRequired,
   clientFSClearResults: PropTypes.func.isRequired,

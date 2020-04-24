@@ -47,7 +47,7 @@ class InstanceHomePage extends React.Component {
   }
 
   componentDidMount = () => {
-    const localID = this.props.routeProps.location.pathname.replace(`/${this.props.resultClass}/page/`, '')
+    const localID = this.props.routeProps.location.pathname.replace(`${this.props.rootUrl}/${this.props.resultClass}/page/`, '')
     this.setState({ localID })
     let base = ''
     switch (this.props.resultClass) {
@@ -136,7 +136,8 @@ InstanceHomePage.propTypes = {
   data: PropTypes.object,
   relatedData: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
-  routeProps: PropTypes.object.isRequired
+  routeProps: PropTypes.object.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(InstanceHomePage)

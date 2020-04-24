@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
   }),
   cardMedia: {
     height: 100
+  },
+  cardContent: {
+    height: 90
   }
 }))
 
@@ -60,7 +63,7 @@ const MainCard = props => {
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={6} // optimized for four perspectives
+      item xs={12} sm={4} // optimized for four perspectives
       component={externalPerspective ? 'a' : Link}
       to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
       container={xsScreen}
