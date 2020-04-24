@@ -5,7 +5,7 @@ import DeckGL from '@deck.gl/react'
 import { ArcLayer } from '@deck.gl/layers'
 import { HeatmapLayer, HexagonLayer } from '@deck.gl/aggregation-layers'
 import ReactMapGL, { NavigationControl, FullscreenControl, HTMLOverlay } from 'react-map-gl'
-import MigrationsMapDialog from '../perspectives/mmm/MigrationsMapDialog'
+import MigrationsMapDialog from '../perspectives/sampo/MigrationsMapDialog'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
 
@@ -152,8 +152,9 @@ class Deck extends React.Component {
     })
 
   render () {
-    const { classes, mapBoxAccessToken, layerType, results } = this.props
-    const hasData = results.length > 0
+    const { classes, mapBoxAccessToken, mapBoxStyle, layerType, fetching, results } = this.props
+    const hasData = !fetching && results && results.length > 0 &&
+      ((results[0].lat && results[0].long) || (results[0].from && results[0].to))
 
     /* It's OK to create a new Layer instance on every render
        https://github.com/uber/deck.gl/blob/master/docs/developer-guide/using-layers.md#should-i-be-creating-new-layers-on-every-render
@@ -182,7 +183,7 @@ class Deck extends React.Component {
           width='100%'
           height='100%'
           reuseMaps
-          mapStyle='mapbox://styles/mapbox/light-v9'
+          mapStyle={`mapbox://styles/mapbox/${mapBoxStyle}`}
           preventStyleDiffing
           mapboxApiAccessToken={mapBoxAccessToken}
           onViewportChange={this.handleOnViewportChange}
@@ -216,6 +217,7 @@ Deck.propTypes = {
   classes: PropTypes.object.isRequired,
   results: PropTypes.array.isRequired,
   mapBoxAccessToken: PropTypes.string.isRequired,
+  mapBoxStyle: PropTypes.string.isRequired,
   facetUpdateID: PropTypes.number,
   fetchResults: PropTypes.func,
   resultClass: PropTypes.string,

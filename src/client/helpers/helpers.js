@@ -68,7 +68,7 @@ export const urlToState = ({ initialState, queryString }) => {
   return params
 }
 
-const boundsToValues = bounds => {
+export const boundsToValues = bounds => {
   const latMin = bounds._southWest.lat
   const longMin = bounds._southWest.lng
   const latMax = bounds._northEast.lat
@@ -98,4 +98,26 @@ export const handleAxiosError = error => {
     console.log('Error', error.message)
   }
   console.log(error.config)
+}
+
+export const pickSelectedDatasets = datasets => {
+  const selected = []
+  Object.keys(datasets).map(key => {
+    if (datasets[key].selected) {
+      selected.push(key)
+    }
+  })
+  return selected
+}
+
+export const updateLocaleToPathname = ({ pathname, locale, replaceOld }) => {
+  const numberOfSlashes = pathname.split('/').length - 1
+  let newPathname
+  if (replaceOld) {
+    const pathnameLangRemoved = numberOfSlashes === 1 ? '' : pathname.substring(pathname.indexOf('/', 1))
+    newPathname = `/${locale}${pathnameLangRemoved}` // TODO: handle rootUrl from generalConfig
+  } else {
+    newPathname = `/${locale}${pathname}`
+  }
+  return newPathname
 }

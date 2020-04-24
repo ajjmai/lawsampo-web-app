@@ -3,7 +3,7 @@ import { endpoint } from './lawsampo/FacetConfigsLawSampo'
 import { prefixes } from './lawsampo/SparqlQueriesPrefixes'
 import { jenaQuery } from './SparqlQueriesGeneral'
 import { makeObjectList } from './SparqlObjectMapper'
-import { fullTextSearchProperties } from './mmm/SparqlQueriesFullText'
+import { fullTextSearchProperties } from './sampo/SparqlQueriesFullText'
 
 export const queryJenaIndex = async ({
   queryTerm,

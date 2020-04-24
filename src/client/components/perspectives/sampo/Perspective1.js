@@ -5,10 +5,10 @@ import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
-import Network from '../../facet_results/Network'
+// import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
-import MigrationsMapLegend from '../mmm/MigrationsMapLegend'
-import { MAPBOX_ACCESS_TOKEN } from '../../../configs/sampo/GeneralConfig'
+import MigrationsMapLegend from './MigrationsMapLegend'
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/sampo/GeneralConfig'
 
 const Perspective1 = props => {
   const { rootUrl, perspective } = props
@@ -36,12 +36,15 @@ const Perspective1 = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+            rootUrl={rootUrl}
           />}
       />
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/production_places`}
         render={() =>
           <LeafletMap
+            center={[22.43, 10.37]}
+            zoom={2}
             results={props.places.results}
             layers={props.leafletMapLayers}
             pageType='facetResults'
@@ -75,20 +78,25 @@ const Perspective1 = props => {
             legendComponent={<MigrationsMapLegend />}
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+            mapBoxStyle={MAPBOX_STYLE}
           />}
       />
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/last_known_locations`}
         render={() =>
           <LeafletMap
+            center={[22.43, 10.37]}
+            zoom={2}
             results={props.places.results}
+            layers={props.leafletMapLayers}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
-            facet={props.facetData.facets.lastKnownLocation}
+            facet={props.facetData.facets.productionPlace}
             facetID='lastKnownLocation'
             resultClass='lastKnownLocations'
             facetClass='perspective1'
             mapMode='cluster'
+            showMapModeControl={false}
             instance={props.places.instance}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
@@ -96,9 +104,10 @@ const Perspective1 = props => {
             fetching={props.places.fetching}
             showInstanceCountInClusters
             updateFacetOption={props.updateFacetOption}
+            showExternalLayers
           />}
       />
-      <Route
+      {/* <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/network`}
         render={() =>
           <Network
@@ -109,7 +118,7 @@ const Perspective1 = props => {
             facetClass='perspective1'
             facetUpdateID={props.facetData.facetUpdateID}
           />}
-      />
+      /> */}
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/migrations`}
         render={() =>
@@ -123,6 +132,7 @@ const Perspective1 = props => {
             legendComponent={<MigrationsMapLegend />}
             layerType='arcLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+            mapBoxStyle={MAPBOX_STYLE}
           />}
       />
       <Route
