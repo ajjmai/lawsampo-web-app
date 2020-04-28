@@ -41,4 +41,14 @@ export const caselawProperties = `
   {
     ?id dcterms:isVersionOf ?ecli .
   }
+  UNION
+  {
+    ?id sfcl:referenceToCaseLaw ?rcl__id .
+    BIND(?rcl__id AS ?rcl__prefLabel)
+  }
+  UNION
+  {
+    ?id sfcl:referenceToLegislation ?rl__id .
+    BIND(?rl__id AS ?rl__prefLabel)
+  }
 `

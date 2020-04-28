@@ -130,6 +130,36 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
+           <TableRow key='rcl'>
+            <TableCell className={classes.labelCell}>Referenced caselaws</TableCell>
+            <ResultTableCell
+              columnId='rcl'
+              data={data.rcl}
+              valueType='object'
+              makeLink
+              externalLink
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
+          <TableRow key='rl'>
+            <TableCell className={classes.labelCell}>Referenced legislation</TableCell>
+            <ResultTableCell
+              columnId='rl'
+              data={data.rl}
+              valueType='object'
+              makeLink
+              externalLink
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
           {relatedData !== null &&
             <TableRow key='related'>
               <TableCell className={classes.labelCell}>Similar court decisions</TableCell>
