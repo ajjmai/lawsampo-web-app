@@ -29,7 +29,9 @@ class CaselawPageTable extends React.Component {
   mapDocuments = documents => {
     return documents.map(doc => {
       doc.prefLabel = doc.ecli.replace('ECLI:FI:', '')
-      doc.dataProviderUrl = doc.sf_link
+      var caselaw_url = '/caselaw/page/' + doc.sf_link.replace('https://data.finlex.fi/ecli/', '')
+      caselaw_url = caselaw_url.replace('.html', '')
+      doc.dataProviderUrl = caselaw_url //Link to semantic finlex: doc.sf_link
       return doc
     })
   }
@@ -131,13 +133,13 @@ class CaselawPageTable extends React.Component {
             />
           </TableRow>
            <TableRow key='rcl'>
-            <TableCell className={classes.labelCell}>Referenced caselaws</TableCell>
+            <TableCell className={classes.labelCell}>Referenced court decisions</TableCell>
             <ResultTableCell
               columnId='rcl'
               data={data.rcl}
               valueType='object'
               makeLink
-              externalLink
+              externalLink={false}
               sortValues
               numberedList={false}
               minWidth={150}
@@ -168,7 +170,7 @@ class CaselawPageTable extends React.Component {
                 data={this.mapDocuments(relatedData)}
                 valueType='object'
                 makeLink
-                externalLink
+                externalLink={false}
                 sortValues={false}
                 numberedList={false}
                 minWidth={150}

@@ -45,10 +45,12 @@ export const caselawProperties = `
   {
     ?id sfcl:referenceToCaseLaw ?rcl__id .
     BIND(?rcl__id AS ?rcl__prefLabel)
+    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?rcl__id), "http://data.finlex.fi/ecli/", "")) AS ?rcl__dataProviderUrl)
   }
   UNION
   {
     ?id sfcl:referenceToLegislation ?rl__id .
     BIND(?rl__id AS ?rl__prefLabel)
+    BIND(?rl__id AS ?rl__dataProviderUrl)
   }
 `
