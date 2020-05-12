@@ -81,7 +81,6 @@ new OpenApiValidator({
         })
         res.json(data)
       } catch (error) {
-        console.log(error)
         next(error)
       }
     })
