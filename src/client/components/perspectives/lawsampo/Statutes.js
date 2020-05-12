@@ -22,7 +22,7 @@ const Statutes = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/table`}
         render={routeProps =>
           <ResultTable
-            data={props.statutes}
+            data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='statutes'
             facetClass='statutes'
@@ -38,7 +38,7 @@ const Statutes = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/export`}
         render={() =>
           <Export
-            sparqlQuery={props.statutes.paginatedResultsSparqlQuery}
+            sparqlQuery={props.facetResults.paginatedResultsSparqlQuery}
             pageType='facetResults'
           />}
       />
@@ -47,10 +47,12 @@ const Statutes = props => {
 }
 
 Statutes.propTypes = {
-  statutes: PropTypes.object.isRequired,
-  places: PropTypes.object,
+  facetResults: PropTypes.object.isRequired,
+  placesResults: PropTypes.object,
+  leafletMapLayers: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
@@ -59,6 +61,8 @@ Statutes.propTypes = {
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   perspective: PropTypes.object.isRequired,
+  animationValue: PropTypes.array.isRequired,
+  animateMap: PropTypes.func.isRequired,
   screenSize: PropTypes.string.isRequired,
   rootUrl: PropTypes.string.isRequired
 }

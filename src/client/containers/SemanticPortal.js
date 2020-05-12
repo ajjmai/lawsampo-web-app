@@ -25,7 +25,7 @@ import FacetBar from '../components/facet_bar/FacetBar'
 // ** Portal specific components and configs **
 import Main from '../components/perspectives/lawsampo/Main'
 import FacetedSearchPerspective from '../components/perspectives/lawsampo/FacetedSearchPerspective'
-import InstanceHomePage from '../components/main_layout/InstanceHomePageLawSampo'
+import InstanceHomePage from '../components/perspectives/lawsampo/InstanceHomePageLawSampo'
 import Footer from '../components/perspectives/lawsampo/Footer'
 import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
@@ -557,6 +557,11 @@ const mapStateToProps = state => {
     statutesFacets: state.statutesFacets,
     caselaw: state.caselaw,
     caselawFacets: state.caselawFacets,
+    leafletMap: state.leafletMap,
+    fullTextSearch: state.fullTextSearch,
+    clientFS: state.clientSideFacetedSearch,
+    // clientFSResults,
+    // clientFSFacetValues,
     animationValue: state.animation.value,
     options: state.options,
     error: state.error

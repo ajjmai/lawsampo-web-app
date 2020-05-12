@@ -1,4 +1,4 @@
-export const statutesProperties = `
+export const statuteProperties = `
   {
     # one statute may have multiple versions
     ?id eli:has_member ?version__id .

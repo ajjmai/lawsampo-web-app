@@ -7,8 +7,8 @@ import Divider from '@material-ui/core/Divider'
 // import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
-import StatutesPageTable from '../perspectives/lawsampo/StatutesPageTable'
-import CaselawPageTable from '../perspectives/lawsampo/CaselawPageTable'
+import StatutesPageTable from './StatutesPageTable'
+import CaselawPageTable from './CaselawPageTable'
 
 const styles = theme => ({
   root: {

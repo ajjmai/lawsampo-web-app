@@ -1,4 +1,4 @@
-export const caselawProperties = `
+export const judgementProperties = `
   {
     ?id sfcl:isRealizedBy ?expression__id . # expression = language version
     ?expression__id dcterms:title ?expression__prefLabel .
