@@ -31,6 +31,9 @@ const styles = () => ({
   }
 })
 
+/**
+ * A component for generating a landing page for a single entity.
+ */
 class InstanceHomePage extends React.Component {
   constructor (props) {
     super(props)
@@ -118,9 +121,8 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, data, isLoading, resultClass } = this.props
+    const { classes, data, isLoading, resultClass, rootUrl } = this.props
     const hasData = data !== null && Object.values(data).length >= 1
-    // console.log(data)
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -142,11 +144,11 @@ class InstanceHomePage extends React.Component {
           {hasData &&
             <>
               <Route
-                exact path={`/${resultClass}/page/${this.state.localID}`}
-                render={() => <Redirect to={`/${resultClass}/page/${this.state.localID}/table`} />}
+                exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
+                render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
               />
               <Route
-                path={`/${resultClass}/page/${this.state.localID}/table`}
+                path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
                   <InstanceHomePageTable
                     resultClass={resultClass}
@@ -155,7 +157,7 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
-                path={`/${resultClass}/page/${this.state.localID}/map`}
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/map`}
                 render={() =>
                   <LeafletMap
                     results={this.createPlaceArray(data.event)}
@@ -169,7 +171,7 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
-                path={`/${resultClass}/page/${this.state.localID}/export`}
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/export`}
                 render={() =>
                   <Export
                     sparqlQuery={this.props.sparqlQuery}
@@ -194,7 +196,10 @@ InstanceHomePage.propTypes = {
   tabs: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired
+  screenSize: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
+
+export const InstanceHomePageComponent = InstanceHomePage
 
 export default withStyles(styles)(InstanceHomePage)

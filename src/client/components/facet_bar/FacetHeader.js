@@ -35,6 +35,9 @@ const styles = theme => ({
   }
 })
 
+/**
+ * A component for rendering a header and optional settings dropdown for a facet component.
+ */
 class FacetHeader extends React.Component {
   state = {
     anchorEl: null
@@ -95,7 +98,7 @@ class FacetHeader extends React.Component {
         option: 'filterType',
         value: 'spatialFilter'
       })
-      history.push({ pathname: `/${this.props.resultClass}/faceted-search/${this.props.facet.spatialFilterTab}` })
+      history.push({ pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/${this.props.facet.spatialFilterTab}` })
     }
   }
 
@@ -209,7 +212,10 @@ FacetHeader.propTypes = {
   fetchFacet: PropTypes.func,
   fetchFacetConstrainSelf: PropTypes.func,
   updateFacetOption: PropTypes.func,
-  facetDescription: PropTypes.string.isRequired
+  facetDescription: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
+
+export const FacetHeaderComponent = FacetHeader
 
 export default withStyles(styles)(FacetHeader)

@@ -84,6 +84,10 @@ const ColorIcon = L.Icon.extend({
   }
 })
 
+/**
+ * A component for a Leaflet map with optional functionalities for clustering of markers,
+ * switchable basemaps and overlay layers.
+ */
 class LeafletMap extends React.Component {
   constructor (props) {
     super(props)
@@ -114,7 +118,9 @@ class LeafletMap extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.leafletMap.remove()
+    if (!this.leafletMap == null) {
+      this.leafletMap.remove()
+    }
   }
 
   clientFScomponentDidUpdate = prevProps => {
@@ -771,7 +777,7 @@ class LeafletMap extends React.Component {
         <p><b>${intl.get(`perspectives.${perspectiveID}.properties.collectionYear.label`)}</b>: ${data.collectionYear}</p>`
     }
     if (has(data, 'source')) {
-      if (has(data, 'namesArchiveLink')) {
+      if (data.namesArchiveLink !== '-') {
         popUpTemplate += `
         <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>: 
           <a href="${data.namesArchiveLink}" target="_blank">${data.source}</a></p>`
@@ -878,5 +884,7 @@ LeafletMap.propTypes = {
   facetedSearchMode: PropTypes.string,
   container: PropTypes.string
 }
+
+export const LeafletMapComponent = LeafletMap
 
 export default withStyles(styles)(LeafletMap)
