@@ -1,5 +1,5 @@
 {
-  "name": "sampo-ui",
+  "name": "lawsampo-web-app",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build-client && npm run build-server",
@@ -17,7 +17,8 @@
   "author": "Esko Ikkala <esko.ikkala@aalto.fi>",
   "contributors": [
     "Erkki Heino",
-    "Heikki Rantala"
+    "Heikki Rantala",
+    "Claire Tamper"
   ],
   "license": "MIT",
   "devDependencies": {
