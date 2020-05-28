@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import ApexCharts from 'apexcharts'
-import Paper from '@material-ui/core/Paper'
+// import Paper from '@material-ui/core/Paper'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -64,8 +64,10 @@ class ApexChart extends React.Component {
     let otherCount = 0
     const totalLength = this.props.data.length
     const threshold = 0.15
+    let sum = 0
     this.props.data.map(item => {
       const portion = parseInt(item.instanceCount) / totalLength
+      sum += item.instanceCount
       if (portion < threshold) {
         otherCount += parseInt(item.instanceCount)
       } else {
@@ -91,7 +93,8 @@ class ApexChart extends React.Component {
       ...this.props.options,
       series,
       labels,
-      colors: chartColors
+      colors: chartColors,
+      sum
     }
     // Destroy the previous chart
     if (!this.chart == null) {
@@ -107,14 +110,14 @@ class ApexChart extends React.Component {
   render () {
     const { classes, fetching } = this.props
     return (
-      <Paper square className={classes.root}>
+      <div className={classes.root}>
         {fetching &&
           <div className={this.props.classes.spinnerContainer}>
             <CircularProgress style={{ color: purple[500] }} thickness={5} />
           </div>}
         {!fetching &&
           <div className={classes.chart} ref={this.chartRef} />}
-      </Paper>
+      </div>
     )
   }
 }

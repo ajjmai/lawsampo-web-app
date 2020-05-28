@@ -22,6 +22,7 @@ export const FETCH_FACET = 'FETCH_FACET'
 export const FETCH_FACET_CONSTRAIN_SELF = 'FETCH_FACET_CONSTRAIN_SELF'
 export const FETCH_FACET_FAILED = 'FETCH_FACET_FAILED'
 export const FETCH_FACET_CONSTRAIN_SELF_FAILED = 'FETCH_FACET_CONSTRAIN_SELF_FAILED'
+export const CLEAR_FACET = 'CLEAR_FACET'
 export const UPDATE_FACET_VALUES = 'UPDATE_FACET_VALUES'
 export const UPDATE_FACET_VALUES_CONSTRAIN_SELF = 'UPDATE_FACET_VALUES_CONSTRAIN_SELF'
 export const UPDATE_FACET_OPTION = 'UPDATE_FACET_OPTION'
@@ -29,6 +30,7 @@ export const UPDATE_CLIENT_SIDE_FILTER = 'UPDATE_CLIENT_SIDE_FILTER'
 export const UPDATE_MAP_BOUNDS = 'UPDATE_MAP_BOUNDS'
 export const FETCH_GEOJSON_LAYERS = 'FETCH_GEOJSON_LAYERS'
 export const FETCH_GEOJSON_LAYERS_BACKEND = 'FETCH_GEOJSON_LAYERS_BACKEND'
+export const CLEAR_GEOJSON_LAYERS = 'CLEAR_GEOJSON_LAYERS'
 export const UPDATE_GEOJSON_LAYERS = 'UPDATE_GEOJSON_LAYERS'
 export const OPEN_MARKER_POPUP = 'OPEN_MARKER_POPUP'
 export const SHOW_ERROR = 'SHOW_ERROR'
@@ -169,6 +171,11 @@ export const fetchFacet = ({ facetClass, facetID }) => ({
   facetClass,
   facetID
 })
+export const clearFacet = ({ facetClass, facetID }) => ({
+  type: CLEAR_FACET,
+  facetClass,
+  facetID
+})
 export const fetchFacetFailed = (facetClass, id, error, message) => ({
   type: FETCH_FACET_FAILED,
   facetClass,
@@ -266,6 +273,9 @@ export const fetchGeoJSONLayers = ({ layerIDs, bounds }) => ({
   type: FETCH_GEOJSON_LAYERS,
   layerIDs,
   bounds
+})
+export const clearGeoJSONLayers = () => ({
+  type: CLEAR_GEOJSON_LAYERS
 })
 export const fetchGeoJSONLayersBackend = ({ layerIDs, bounds }) => ({
   type: FETCH_GEOJSON_LAYERS_BACKEND,
