@@ -13,7 +13,8 @@ import {
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED,
-  UPDATE_URL
+  UPDATE_INSTANCE_NETWORK_DATA,
+  UPDATE_INSTANCE_RELATED_DATA
 } from '../../actions'
 import {
   fetchResults,
@@ -24,6 +25,8 @@ import {
   updateResults,
   updatePaginatedResults,
   updateInstance,
+  updateInstanceNetworkData,
+  updateInstanceRelatedData,
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
@@ -126,14 +129,16 @@ const statutes = (state = INITIAL_STATE, action) => {
         return updatePaginatedResults(state, action)
       case UPDATE_INSTANCE:
         return updateInstance(state, action)
+      case UPDATE_INSTANCE_NETWORK_DATA:
+        return updateInstanceNetworkData(state, action)
+      case UPDATE_INSTANCE_RELATED_DATA:
+        return updateInstanceRelatedData(state, action)
       case UPDATE_PAGE:
         return updatePage(state, action)
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action)
       case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
         return updateHeaderExpanded(state, action)
-      case UPDATE_URL:
-        return (state)
       default:
         return state
     }
