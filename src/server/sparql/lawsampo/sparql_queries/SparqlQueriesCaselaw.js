@@ -54,3 +54,15 @@ export const judgementProperties = `
     BIND(?rl__id AS ?rl__dataProviderUrl)
   }
 `
+export const judgementsByYearQuery = `
+  SELECT ?category (count(distinct ?judgement) as ?count) WHERE {
+    <FILTER>
+    ?judgement a sfcl:Judgment .
+    ?judgement dcterms:date ?decisionDate .
+    BIND(year(xsd:dateTime(?decisionDate)) as ?year)
+    FILTER (?year <= year(NOW()))
+    BIND(STR(?year) as ?category)
+  } 
+  GROUP BY ?category 
+  ORDER BY ?category
+`

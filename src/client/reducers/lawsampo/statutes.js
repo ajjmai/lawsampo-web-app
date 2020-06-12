@@ -34,6 +34,7 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultUpdateID: 0,
   resultsSparqlQuery: null,
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,

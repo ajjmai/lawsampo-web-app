@@ -40,6 +40,7 @@ export default {
   tabs: {
     table: 'table',
     map: 'map',
+    by_year: 'by year',
     export: 'export'
   },
   table: {

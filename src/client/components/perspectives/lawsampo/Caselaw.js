@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
+import ApexChart from '../../facet_results/ApexChart'
 import Export from '../../facet_results/Export'
+import { createApexLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 
 const Caselaw = props => {
   const { rootUrl, perspective } = props
@@ -32,6 +34,21 @@ const Caselaw = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             rootUrl={rootUrl}
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/by_year`}
+        render={routeProps =>
+          <ApexChart
+            pageType='facetResults'
+            rawData={props.facetResults.results}
+            rawDataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetching={props.facetResults.fetching}
+            fetchData={props.fetchResults}
+            createChartData={createApexLineChartData}
+            resultClass='caselawByYear'
+            facetClass='caselaw'
           />}
       />
       <Route

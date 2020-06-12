@@ -34,6 +34,7 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultUpdateID: 0,
   resultsSparqlQuery: null,
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,
@@ -132,8 +133,13 @@ export const INITIAL_STATE = {
   ]
 }
 
+const resultClasses = new Set([
+  'caselaw',
+  'caselawByYear'
+])
+
 const caselaw = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'caselaw') {
+  if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:

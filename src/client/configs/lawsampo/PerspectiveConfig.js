@@ -3,6 +3,7 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 // import AddLocationIcon from '@material-ui/icons/AddLocation'
 // import LocationOnIcon from '@material-ui/icons/LocationOn'
 // import RedoIcon from '@material-ui/icons/Redo'
+import LineChartIcon from '@material-ui/icons/ShowChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import sdfImage from '../../img/lawsampo/sdf-tumb.png'
 import legislationImage from '../../img/lawsampo/legislation.png'
@@ -54,8 +55,13 @@ export const perspectiveConfig = [
         icon: <CalendarViewDayIcon />
       },
       {
-        id: 'export',
+        id: 'by_year',
         value: 1,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'export',
+        value: 2,
         icon: <CloudDownloadIcon />
       }
     ],
