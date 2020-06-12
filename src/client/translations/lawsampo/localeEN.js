@@ -41,6 +41,7 @@ export default {
     table: 'table',
     map: 'map',
     by_year: 'by year',
+    network: 'network',
     export: 'export'
   },
   table: {

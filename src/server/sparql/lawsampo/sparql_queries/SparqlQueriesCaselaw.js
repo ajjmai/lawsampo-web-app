@@ -66,3 +66,22 @@ export const judgementsByYearQuery = `
   GROUP BY ?category 
   ORDER BY ?category
 `
+
+export const judgementNetworkLinksQuery = `
+  SELECT DISTINCT (?id as ?source) ?target
+  WHERE {
+    VALUES ?id { <ID> }
+    ?id sfcl:referenceToCaseLaw ?target .
+  } 
+`
+
+export const judgementNetworkNodesQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?class ?href
+  WHERE {
+    VALUES ?class { sfcl:Judgment }
+    VALUES ?id { <ID_SET> }
+    ?id a ?class .
+    ?id sfcl:isRealizedBy/dcterms:title ?prefLabel .
+    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?rcl__id), "http://data.finlex.fi/ecli/", "")) AS ?href)
+  }
+`

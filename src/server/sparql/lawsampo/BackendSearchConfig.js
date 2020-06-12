@@ -1,6 +1,10 @@
 import { statutesPerspectiveConfig } from './perspective_configs/StatutesPerspectiveConfig'
 import { caselawPerspectiveConfig } from './perspective_configs/CaselawPerspectiveConfig'
-import { judgementsByYearQuery } from './sparql_queries/SparqlQueriesCaselaw'
+import {
+  judgementsByYearQuery,
+  judgementNetworkLinksQuery,
+  judgementNetworkNodesQuery
+} from './sparql_queries/SparqlQueriesCaselaw'
 import { mapLineChart } from '../Mappers'
 
 export const backendSearchConfig = {
@@ -11,5 +15,11 @@ export const backendSearchConfig = {
     q: judgementsByYearQuery,
     filterTarget: 'judgement',
     resultMapper: mapLineChart
+  },
+  caselawInstancePageNetwork: {
+    perspectiveID: 'caselaw',
+    links: judgementNetworkLinksQuery,
+    nodes: judgementNetworkNodesQuery,
+    useNetworkAPI: true
   }
 }
