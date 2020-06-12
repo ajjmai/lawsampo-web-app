@@ -11,7 +11,7 @@ import StatutesPageTable from './StatutesPageTable'
 import CaselawPageTable from './CaselawPageTable'
 import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
-import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
+import { coseLayout, cytoscapeStyle } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 
 const styles = theme => ({
