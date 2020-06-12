@@ -9,13 +9,17 @@ import leafletMap from './leafletMap'
 import statutes from './lawsampo/statutes'
 import caselaw from './lawsampo/caselaw'
 import statutesFacets from './lawsampo/statutesFacets'
+import statutesFacetsConstrainSelf from './lawsampo/statutesFacetsConstrainSelf'
 import caselawFacets from './lawsampo/caselawFacets'
+import caselawFacetsConstrainSelf from './lawsampo/caselawFacetsConstrainSelf'
 
 const reducer = combineReducers({
   statutes,
   caselaw,
   statutesFacets,
+  statutesFacetsConstrainSelf,
   caselawFacets,
+  caselawFacetsConstrainSelf,
   leafletMap,
   animation,
   options,

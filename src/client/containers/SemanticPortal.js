@@ -577,7 +577,9 @@ const mapStateToProps = state => {
   return {
     statutes: state.statutes,
     statutesFacets: state.statutesFacets,
+    statutesFacetsConstrainSelf: state.statutesFacetsConstrainSelf,
     caselaw: state.caselaw,
+    caselawFacetsConstrainSelf: state.caselawFacetsConstrainSelf,
     caselawFacets: state.caselawFacets,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,

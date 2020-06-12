@@ -1,21 +1,19 @@
 import {
-  FETCH_FACET,
-  FETCH_FACET_FAILED,
-  UPDATE_FACET_VALUES,
-  UPDATE_FACET_OPTION,
-  CLEAR_FACET
+  FETCH_FACET_CONSTRAIN_SELF,
+  FETCH_FACET_CONSTRAIN_SELF_FAILED,
+  UPDATE_FACET_VALUES_CONSTRAIN_SELF
 } from '../../actions'
 import {
   fetchFacet,
   fetchFacetFailed,
-  updateFacetValues,
-  updateFacetOption,
-  clearFacet
+  updateFacetValues
+  // updateFacetOption,
 } from '../helpers'
 
 export const INITIAL_STATE = {
   updatedFacet: null,
   facetUpdateID: 0,
+  updatedFilter: null,
   facets: {
     court: {
       id: 'court',
@@ -26,9 +24,8 @@ export const INITIAL_STATE = {
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: false,
+      sortButton: true,
       spatialFilterButton: false,
-      pieChartButton: true,
       isFetching: false,
       searchField: false,
       containerClass: 'five',
@@ -46,7 +43,6 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
-      pieChartButton: true,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
@@ -64,7 +60,6 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
-      pieChartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
@@ -92,23 +87,19 @@ export const INITIAL_STATE = {
   }
 }
 
-const caselawFacets = (state = INITIAL_STATE, action) => {
+const caselawFacetsConstrainSelf = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'caselaw') {
     switch (action.type) {
-      case FETCH_FACET:
+      case FETCH_FACET_CONSTRAIN_SELF:
         return fetchFacet(state, action)
-      case FETCH_FACET_FAILED:
+      case FETCH_FACET_CONSTRAIN_SELF_FAILED:
         return fetchFacetFailed(state, action)
-      case UPDATE_FACET_VALUES:
+      case UPDATE_FACET_VALUES_CONSTRAIN_SELF:
         return updateFacetValues(state, action)
-      case UPDATE_FACET_OPTION:
-        return updateFacetOption(state, action)
-      case CLEAR_FACET:
-        return clearFacet(state, action)
       default:
         return state
     }
   } else return state
 }
 
-export default caselawFacets
+export default caselawFacetsConstrainSelf
