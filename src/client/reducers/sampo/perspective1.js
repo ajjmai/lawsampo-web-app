@@ -13,7 +13,7 @@ import {
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED,
-  UPDATE_URL
+  UPDATE_INSTANCE_NETWORK_DATA
 } from '../../actions'
 import {
   fetchResults,
@@ -24,6 +24,7 @@ import {
   updateResults,
   updatePaginatedResults,
   updateInstance,
+  updateInstanceNetworkData,
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
@@ -36,6 +37,7 @@ export const INITIAL_STATE = {
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceNetworkData: null,
   instanceSparqlQuery: null,
   resultCount: 0,
   page: -1,
@@ -284,7 +286,8 @@ export const INITIAL_STATE = {
 }
 
 const resultClasses = new Set([
-  'perspective1'
+  'perspective1',
+  'productionTimespanLineChart'
 ])
 
 const perspective1 = (state = INITIAL_STATE, action) => {
@@ -309,14 +312,14 @@ const perspective1 = (state = INITIAL_STATE, action) => {
         return updatePaginatedResults(state, action)
       case UPDATE_INSTANCE:
         return updateInstance(state, action)
+      case UPDATE_INSTANCE_NETWORK_DATA:
+        return updateInstanceNetworkData(state, action)
       case UPDATE_PAGE:
         return updatePage(state, action)
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action)
       case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
         return updateHeaderExpanded(state, action)
-      case UPDATE_URL:
-        return (state)
       default:
         return state
     }
