@@ -47,6 +47,10 @@ const Caselaw = props => {
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
             createChartData={createApexLineChartData}
+            title='Court decisions by year'
+            xaxisTitle='Year'
+            yaxisTitle='Number of decisions'
+            seriesTitle='Number of decisions'
             resultClass='caselawByYear'
             facetClass='caselaw'
           />}
