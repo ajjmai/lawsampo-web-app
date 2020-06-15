@@ -64,6 +64,7 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: false,
       spatialFilterButton: false,
+      lineChartButton: true,
       isFetching: false,
       searchField: false,
       containerClass: 'three',

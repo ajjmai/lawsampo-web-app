@@ -108,8 +108,13 @@ export const INITIAL_STATE = {
   ]
 }
 
+const resultClasses = new Set([
+  'statutes',
+  'statuteYearLineChart'
+])
+
 const statutes = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'statutes') {
+  if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:

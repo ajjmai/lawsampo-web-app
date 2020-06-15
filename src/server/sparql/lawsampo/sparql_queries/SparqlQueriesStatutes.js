@@ -49,3 +49,13 @@ export const statuteProperties = `
     BIND(?euDirective__id AS ?euDirective__prefLabel)
   }
 `
+
+export const statutesByYearQuery = `
+  SELECT ?category (count(?instance) as ?count) WHERE {
+    <FILTER>
+    ?instance sfl:year ?category ;
+       a sfl:Statute .
+  }
+  GROUP BY ?category
+  ORDER BY ?category
+`
