@@ -5,7 +5,7 @@ import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import ApexChart from '../../facet_results/ApexChart'
 import Export from '../../facet_results/Export'
-import { createApexLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
+import { createSingleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 
 const Caselaw = props => {
   const { rootUrl, perspective } = props
@@ -46,7 +46,7 @@ const Caselaw = props => {
             facetUpdateID={props.facetData.facetUpdateID}
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
-            createChartData={createApexLineChartData}
+            createChartData={createSingleLineChartData}
             title='Court decisions by year'
             xaxisTitle='Year'
             yaxisTitle='Number of decisions'
