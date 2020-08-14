@@ -118,7 +118,7 @@ new OpenApiValidator({
           backendSearchConfig,
           resultClass: req.params.resultClass,
           facetClass: req.query.facetClass || null,
-          constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
+          constraints: req.query.constraints == null ? null : req.query.constraints,
           resultFormat: resultFormat
         })
         if (resultFormat === 'csv') {
@@ -259,6 +259,16 @@ new OpenApiValidator({
         next(error)
       }
     })
+
+    /* Some example paths for serving individual files: */
+
+    // app.get('/robots.txt', (request, response) => {
+    //   response.sendFile(path.join(publicPath, 'robots.txt'))
+    // })
+
+    // app.get('/sitemap.xml', (request, response) => {
+    //   response.sendFile(path.join(publicPath, 'sitemap.xml'))
+    // })
 
     // Express server is used to serve the React app only in production
     if (!isDevelopment) {
