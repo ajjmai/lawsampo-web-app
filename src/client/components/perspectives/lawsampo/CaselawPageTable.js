@@ -29,16 +29,15 @@ class CaselawPageTable extends React.Component {
   mapDocuments = documents => {
     return documents.map(doc => {
       doc.prefLabel = doc.ecli.replace('ECLI:FI:', '')
-      var caselaw_url = '/caselaw/page/' + doc.sf_link.replace('https://data.finlex.fi/ecli/', '')
-      caselaw_url = caselaw_url.replace('.html', '')
-      doc.dataProviderUrl = caselaw_url //Link to semantic finlex: doc.sf_link
+      let caselawUrl = '/caselaw/page/' + doc.sf_link.replace('https://data.finlex.fi/ecli/', '')
+      caselawUrl = caselawUrl.replace('.html', '')
+      doc.dataProviderUrl = caselawUrl // Link to semantic finlex: doc.sf_link
       return doc
     })
   }
 
   render = () => {
-    const { classes, data, relatedData } = this.props
-    // console.log(relatedData)
+    const { classes, data, externalData } = this.props
     return (
       <Table className={classes.table}>
         <TableBody>
@@ -132,7 +131,7 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
-           <TableRow key='rcl'>
+          <TableRow key='rcl'>
             <TableCell className={classes.labelCell}>Referenced court decisions</TableCell>
             <ResultTableCell
               columnId='rcl'
@@ -162,12 +161,12 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
-          {relatedData !== null &&
+          {externalData !== null &&
             <TableRow key='related'>
               <TableCell className={classes.labelCell}>Similar court decisions</TableCell>
               <ResultTableCell
                 columnId='related'
-                data={this.mapDocuments(relatedData)}
+                data={this.mapDocuments(externalData)}
                 valueType='object'
                 makeLink
                 externalLink={false}
@@ -187,7 +186,7 @@ class CaselawPageTable extends React.Component {
 CaselawPageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  relatedData: PropTypes.array
+  externalData: PropTypes.array
 }
 
 export default withStyles(styles)(CaselawPageTable)

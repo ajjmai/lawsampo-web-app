@@ -12,6 +12,7 @@ import CaselawPageTable from './CaselawPageTable'
 import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
 import { coseLayout, cytoscapeStyle } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
+// import { createMultipleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 import { Route, Redirect } from 'react-router-dom'
 
 const styles = theme => ({
@@ -47,13 +48,16 @@ class InstanceHomePage extends React.Component {
 
   componentDidMount = () => this.fetchData()
 
-  componentDidUpdate = () => {
+  componentDidUpdate = prevProps => {
+    if (prevProps.routeProps.location !== this.props.routeProps.location) {
+      this.fetchData()
+    }
     if (this.props.resultClass === 'caselaw') {
-      const hasData = this.props.data !== null && Object.values(this.props.data).length >= 1
-      if (hasData && this.props.relatedData == null) {
+      const hasData = this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
+      if (hasData && this.props.tableExternalData == null) {
         this.props.fetchSimilarDocumentsById({
           resultClass: this.props.resultClass,
-          id: this.props.data.ecli,
+          id: this.props.tableData.ecli,
           modelName: 'ensemble',
           resultSize: 10
         })
@@ -95,14 +99,14 @@ class InstanceHomePage extends React.Component {
       case 'statutes':
         tableEl =
           <StatutesPageTable
-            data={this.props.data}
+            data={this.props.tableData}
           />
         break
       case 'caselaw':
         tableEl =
           <CaselawPageTable
-            data={this.props.data}
-            relatedData={this.props.relatedData}
+            data={this.props.tableData}
+            externalData={this.props.tableExternalData}
           />
         break
       default:
@@ -112,8 +116,8 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, data, isLoading, resultClass, rootUrl } = this.props
-    const hasData = data !== null && Object.values(data).length >= 1
+    const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
+    const hasData = tableData !== null && Object.values(tableData).length >= 1
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -147,11 +151,11 @@ class InstanceHomePage extends React.Component {
                 render={() =>
                   <Network
                     pageType='instancePage'
-                    results={this.props.networkData}
+                    results={this.props.results}
                     resultUpdateID={this.props.resultUpdateID}
-                    fetchNetworkById={this.props.fetchNetworkById}
+                    fetchResults={this.props.fetchResults}
                     resultClass='caselawInstancePageNetwork'
-                    id={data.id}
+                    uri={tableData.id}
                     limit={200}
                     optimize={1.2}
                     style={cytoscapeStyle}
@@ -164,7 +168,7 @@ class InstanceHomePage extends React.Component {
                   <Export
                     sparqlQuery={this.props.sparqlQuery}
                     pageType='instancePage'
-                    id={data.id}
+                    id={tableData.id}
                   />}
               />
             </>}
@@ -177,17 +181,25 @@ class InstanceHomePage extends React.Component {
 InstanceHomePage.propTypes = {
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
-  fetchSimilarDocumentsById: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
   resultClass: PropTypes.string.isRequired,
-  data: PropTypes.object,
-  networkData: PropTypes.object,
-  relatedData: PropTypes.array,
+  tableData: PropTypes.object,
+  tableExternalData: PropTypes.array,
+  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  resultUpdateID: PropTypes.number.isRequired,
   sparqlQuery: PropTypes.string,
+  properties: PropTypes.array.isRequired,
   tabs: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired,
   screenSize: PropTypes.string.isRequired,
-  rootUrl: PropTypes.string.isRequired
+  rootUrl: PropTypes.string.isRequired,
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  clearGeoJSONLayers: PropTypes.func.isRequired,
+  leafletMap: PropTypes.object.isRequired,
+  showError: PropTypes.func.isRequired,
+  fetchSimilarDocumentsById: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(InstanceHomePage)

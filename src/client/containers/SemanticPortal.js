@@ -25,7 +25,7 @@ import FacetBar from '../components/facet_bar/FacetBar'
 import TopBar from '../components/perspectives/lawsampo/TopBar'
 import Main from '../components/perspectives/lawsampo/Main'
 import FacetedSearchPerspective from '../components/perspectives/lawsampo/FacetedSearchPerspective'
-import InstanceHomePage from '../components/perspectives/lawsampo/InstanceHomePageLawSampo'
+import InstanceHomePage from '../components/perspectives/lawsampo/InstanceHomePage'
 import Footer from '../components/perspectives/lawsampo/Footer'
 import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
@@ -430,7 +430,7 @@ const SemanticPortal = props => {
                                     fetchResults={props.fetchResults}
                                     resultClass={perspective.id}
                                     tableData={props[perspective.id].instanceTableData}
-                                    tableExternalData={props[perspective.id].instancePageTableExternalData}
+                                    tableExternalData={props[perspective.id].instanceTableExternalData}
                                     properties={props[perspective.id].properties}
                                     results={props[perspective.id].results}
                                     resultUpdateID={props[perspective.id].resultUpdateID}
@@ -445,6 +445,7 @@ const SemanticPortal = props => {
                                     clearGeoJSONLayers={props.clearGeoJSONLayers}
                                     leafletMap={props.leafletMap}
                                     showError={props.showError}
+                                    fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
                                   />
                                 </Grid>
                               </Grid>
@@ -489,7 +490,7 @@ const SemanticPortal = props => {
                               fetchResults={props.fetchResults}
                               resultClass={perspective.id}
                               tableData={props[perspective.id].instanceTableData}
-                              tableExternalData={props[perspective.id].instancePageTableExternalData}
+                              tableExternalData={props[perspective.id].instanceTableExternalData}
                               properties={props[perspective.id].properties}
                               results={props[perspective.id].results}
                               resultUpdateID={props[perspective.id].resultUpdateID}
@@ -504,6 +505,7 @@ const SemanticPortal = props => {
                               clearGeoJSONLayers={props.clearGeoJSONLayers}
                               leafletMap={props.leafletMap}
                               showError={props.showError}
+                              fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
                             />
                           </Grid>
                         </Grid>

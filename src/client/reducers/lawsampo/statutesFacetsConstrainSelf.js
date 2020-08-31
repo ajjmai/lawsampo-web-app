@@ -1,14 +1,4 @@
-import {
-  FETCH_FACET_CONSTRAIN_SELF,
-  FETCH_FACET_CONSTRAIN_SELF_FAILED,
-  UPDATE_FACET_VALUES_CONSTRAIN_SELF
-} from '../../actions'
-import {
-  fetchFacet,
-  fetchFacetFailed,
-  updateFacetValues
-  // updateFacetOption,
-} from '../helpers'
+import { handleFacetConstrainSelfAction } from '../general/facetsConstrainSelf'
 
 export const INITIAL_STATE = {
   updatedFacet: null,
@@ -87,19 +77,10 @@ export const INITIAL_STATE = {
   }
 }
 
-const statutesFacets = (state = INITIAL_STATE, action) => {
+const statutesFacetsConstrainself = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'statutes') {
-    switch (action.type) {
-      case FETCH_FACET_CONSTRAIN_SELF:
-        return fetchFacet(state, action)
-      case FETCH_FACET_CONSTRAIN_SELF_FAILED:
-        return fetchFacetFailed(state, action)
-      case UPDATE_FACET_VALUES_CONSTRAIN_SELF:
-        return updateFacetValues(state, action)
-      default:
-        return state
-    }
+    return handleFacetConstrainSelfAction(state, action)
   } else return state
 }
 
-export default statutesFacets
+export default statutesFacetsConstrainself

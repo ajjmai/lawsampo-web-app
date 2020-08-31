@@ -27,7 +27,7 @@ export const backendSearchConfig = {
   },
   caselawInstancePageNetwork: {
     perspectiveID: 'caselaw',
-    links: judgementNetworkLinksQuery,
+    q: judgementNetworkLinksQuery,
     nodes: judgementNetworkNodesQuery,
     useNetworkAPI: true
   }
