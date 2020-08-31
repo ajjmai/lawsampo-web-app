@@ -15,7 +15,6 @@ import 'moment/locale/fi'
 import Grid from '@material-ui/core/Grid'
 
 // ** General components **
-import TopBar from '../components/main_layout/TopBar'
 import InfoHeader from '../components/main_layout/InfoHeader'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
@@ -23,6 +22,7 @@ import FacetBar from '../components/facet_bar/FacetBar'
 // ** General components end **
 
 // ** Portal specific components and configs **
+import TopBar from '../components/perspectives/lawsampo/TopBar'
 import Main from '../components/perspectives/lawsampo/Main'
 import FacetedSearchPerspective from '../components/perspectives/lawsampo/FacetedSearchPerspective'
 import InstanceHomePage from '../components/perspectives/lawsampo/InstanceHomePageLawSampo'
@@ -39,7 +39,6 @@ import {
   fetchFullTextResults,
   clearResults,
   fetchByURI,
-  fetchNetworkById,
   fetchFacet,
   fetchFacetConstrainSelf,
   clearFacet,
@@ -109,7 +108,7 @@ const useStyles = makeStyles(theme => ({
       height: 'calc(100% - 144px)' // 100% - app bar - padding * 2
     },
     [theme.breakpoints.down('sm')]: {
-      marginTop: 56 // app bar
+      marginTop: 64 // app bar
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 72 // app bar + padding
@@ -137,7 +136,7 @@ const useStyles = makeStyles(theme => ({
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginTop: 133 // app bar + header
+      marginTop: 126 // app bar + header
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 130 // app bar + header
@@ -168,14 +167,16 @@ const useStyles = makeStyles(theme => ({
   },
   facetBarContainerClientFS: {
     height: 'auto',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
-      height: '100%'
+      height: '100%',
+      overflow: 'auto'
     },
-    overflow: 'auto',
-    // paddingTop: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(0.5),
-    paddingBottom: theme.spacing(1)
+    [theme.breakpoints.down('md')]: {
+      marginBottom: theme.spacing(1)
+    },
+    paddingLeft: theme.spacing(0.5),
+    paddingRight: theme.spacing(0.5)
   },
   resultsContainer: {
     height: 'auto',
@@ -189,17 +190,21 @@ const useStyles = makeStyles(theme => ({
     }
   },
   resultsContainerClientFS: {
-    height: 'auto',
+    height: 800,
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 8,
+      width: 'calc(100% - 2px)'
+    },
     [theme.breakpoints.up('md')]: {
       height: '100%'
     },
     paddingTop: '0px !important',
     paddingBottom: '0px !important',
-    paddingRight: theme.spacing(1),
-    paddingLeft: theme.spacing(0.5),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: theme.spacing(1)
-    }
+    paddingRight: theme.spacing(0.5),
+    paddingLeft: theme.spacing(0.5)
+    // [theme.breakpoints.down('sm')]: {
+    //   marginTop: theme.spacing(1)
+    // }
   },
   instancePageContainer: {
     height: 'auto',
@@ -408,7 +413,7 @@ const SemanticPortal = props => {
                               <InfoHeader
                                 resultClass={perspective.id}
                                 pageType='instancePage'
-                                instanceData={props[perspective.id].instance}
+                                instanceData={props[perspective.id].instanceTableData}
                                 expanded={props[perspective.id].instancePageHeaderExpanded}
                                 updateExpanded={props.updatePerspectiveHeaderExpanded}
                                 descriptionHeight={perspective.perspectiveDescHeight}
@@ -422,19 +427,24 @@ const SemanticPortal = props => {
                                   <InstanceHomePage
                                     rootUrl={rootUrlWithLang}
                                     fetchByURI={props.fetchByURI}
-                                    fetchNetworkById={props.fetchNetworkById}
+                                    fetchResults={props.fetchResults}
                                     resultClass={perspective.id}
-                                    resultUpdateID={props[perspective.id].resultUpdateID}
+                                    tableData={props[perspective.id].instanceTableData}
+                                    tableExternalData={props[perspective.id].instancePageTableExternalData}
                                     properties={props[perspective.id].properties}
+                                    results={props[perspective.id].results}
+                                    resultUpdateID={props[perspective.id].resultUpdateID}
                                     tabs={perspective.instancePageTabs}
-                                    data={props[perspective.id].instance}
-                                    relatedData={props[perspective.id].instanceRelatedData}
-                                    networkData={props[perspective.id].instanceNetworkData}
                                     sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                     isLoading={props[perspective.id].fetching}
                                     routeProps={routeProps}
                                     screenSize={screenSize}
-                                    fetchSimilarDocumentsById={props.fetchSimilarDocumentsById}
+                                    fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
+                                    fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                                    fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                                    clearGeoJSONLayers={props.clearGeoJSONLayers}
+                                    leafletMap={props.leafletMap}
+                                    showError={props.showError}
                                   />
                                 </Grid>
                               </Grid>
@@ -462,7 +472,7 @@ const SemanticPortal = props => {
                         <InfoHeader
                           resultClass={perspective.id}
                           pageType='instancePage'
-                          instanceData={props[perspective.id].instance}
+                          instanceData={props[perspective.id].instanceTableData}
                           expanded={props[perspective.id].instancePageHeaderExpanded}
                           updateExpanded={props.updatePerspectiveHeaderExpanded}
                           descriptionHeight={perspective.perspectiveDescHeight}
@@ -476,17 +486,24 @@ const SemanticPortal = props => {
                             <InstanceHomePage
                               rootUrl={rootUrlWithLang}
                               fetchByURI={props.fetchByURI}
-                              fetchNetworkById={props.fetchNetworkById}
+                              fetchResults={props.fetchResults}
                               resultClass={perspective.id}
-                              resultUpdateID={props[perspective.id].resultUpdateID}
+                              tableData={props[perspective.id].instanceTableData}
+                              tableExternalData={props[perspective.id].instancePageTableExternalData}
                               properties={props[perspective.id].properties}
+                              results={props[perspective.id].results}
+                              resultUpdateID={props[perspective.id].resultUpdateID}
                               tabs={perspective.instancePageTabs}
-                              data={props[perspective.id].instance}
-                              networkData={props[perspective.id].instanceNetworkData}
                               sparqlQuery={props[perspective.id].instanceSparqlQuery}
                               isLoading={props[perspective.id].fetching}
                               routeProps={routeProps}
                               screenSize={screenSize}
+                              fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
+                              fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                              fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                              clearGeoJSONLayers={props.clearGeoJSONLayers}
+                              leafletMap={props.leafletMap}
+                              showError={props.showError}
                             />
                           </Grid>
                         </Grid>
@@ -515,7 +532,7 @@ const SemanticPortal = props => {
                       clientFSClearResults={props.clientFSClearResults}
                       clientFSUpdateQuery={props.clientFSUpdateQuery}
                       clientFSUpdateFacet={props.clientFSUpdateFacet}
-                      defaultActiveFacets={perspectiveConfig[3].defaultActiveFacets}
+                      defaultActiveFacets={perspectiveConfig[4].defaultActiveFacets}
                       leafletMap={props.leafletMap}
                       updateMapBounds={props.updateMapBounds}
                       screenSize={screenSize}
@@ -528,7 +545,7 @@ const SemanticPortal = props => {
                     {!noResults &&
                       <ClientFSPerspective
                         routeProps={routeProps}
-                        perspective={perspectiveConfig[3]}
+                        perspective={perspectiveConfig[4]}
                         screenSize={screenSize}
                         clientFS={props.clientFS}
                         clientFSResults={props.clientFSResults}
@@ -602,7 +619,6 @@ const mapDispatchToProps = ({
   fetchFacetConstrainSelf,
   clearFacet,
   fetchGeoJSONLayers,
-  fetchNetworkById,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
   sortResults,
@@ -662,10 +678,6 @@ SemanticPortal.propTypes = {
    * Redux action for fetching information about a single entity.
    */
   fetchByURI: PropTypes.func.isRequired,
-  /**
-   * Redux action for fetching network of a single entity.
-   */
-  fetchNetworkById: PropTypes.func.isRequired,
   /**
    * Redux action for loading external GeoJSON layers.
    */
