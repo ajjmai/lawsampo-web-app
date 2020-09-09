@@ -11,7 +11,7 @@ import StatutesPageTable from './StatutesPageTable'
 import CaselawPageTable from './CaselawPageTable'
 import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
-import { coseLayout, cytoscapeStyle } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
+import { coseLayout, cytoscapeStyle, preprocess } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
 // import { createMultipleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 import { Route, Redirect } from 'react-router-dom'
 
@@ -160,6 +160,7 @@ class InstanceHomePage extends React.Component {
                     optimize={1.2}
                     style={cytoscapeStyle}
                     layout={coseLayout}
+                    preprocess={preprocess}
                   />}
               />
               <Route
