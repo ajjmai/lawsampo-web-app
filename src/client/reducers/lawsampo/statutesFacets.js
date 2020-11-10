@@ -54,7 +54,7 @@ export const INITIAL_STATE = {
       lineChartButton: true,
       isFetching: false,
       searchField: false,
-      containerClass: 'three',
+      containerClass: 'four',
       type: 'integer',
       filterType: 'integerFilter',
       integerFilter: null
@@ -82,7 +82,7 @@ export const INITIAL_STATE = {
 
 const statutesFacets = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'statutes') {
-    return handleFacetAction(state, action)
+    return handleFacetAction(state, action, INITIAL_STATE)
   } else return state
 }
 
