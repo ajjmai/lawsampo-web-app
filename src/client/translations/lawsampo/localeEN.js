@@ -26,6 +26,8 @@ export default {
   },
   facetBar: {
     results: 'Results',
+    activeFilters: 'Active filters:',
+    removeAllFilters: 'Remove all',
     narrowDownBy: 'Narrow down by',
     filterOptions: 'Filter options',
     filterByName: 'Filter by name',
@@ -38,6 +40,11 @@ export default {
     sortByNumberOfSearchResults: 'Sort by number of search results',
     useDisjunction: 'Use logical OR between selections',
     useConjuction: 'Use logical AND between selections',
+    minYear: 'Min year',
+    maxYear: 'Max year',
+    min: 'Min',
+    max: 'Max',
+    applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
     },
@@ -70,6 +77,66 @@ export default {
   table: {
     rowsPerPage: 'Rows per page',
     of: 'of'
+  },
+  exportToYasgui: 'open the result table query in yasgui sparql editor',
+  openInLinkedDataBrowser: 'open in linked data browser',
+  resultsAsCSV: 'download the search results as a CSV table',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Epäkelpo päivämäärä.',
+      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
+      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
+      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
+      cancel: 'Peruuta',
+      fromLabel: 'Alku',
+      toLabel: 'Loppu'
+    },
+    textFacet: {
+      inputLabel: 'Etsi nimellä'
+    },
+    sliderFacet: {
+      invalidStartOrEnd: 'Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}.'
+    }
+  },
+  leafletMap: {
+    basemaps: {
+      mapbox: {
+        'light-v10': 'Mapbox Light'
+      },
+      googleRoadmap: 'Google Maps',
+      topographicalMapNLS: 'Topographical map (National Land Survey of Finland)',
+      backgroundMapNLS: 'Background map (National Land Survey of Finland)'
+    },
+    externalLayers: {
+      arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas',
+      arkeologiset_kohteet_piste: 'Register of Archaeological Sites, points',
+      karelianMaps: 'Karelian maps, 1:100 000 topographic (SeCo)',
+      senateAtlas: 'Senate atlas, 1:21 000 topographic (SeCo)',
+      'kotus:pitajat': 'Finnish parishes in 1938 (Institute for the Languages of Finland)',
+      'kotus:rajat-sms-alueet': 'Dialectical regions in Finland (Institute for the Languages of Finland)',
+      'kotus:rajat-sms-alueosat': 'Dialectical subregions in Finland (Institute for the Languages of Finland)',
+      'kotus:rajat-lansi-ita': 'Border between western and eastern dialects in Finland (Institute for the Languages of Finland)'
+    },
+    mapModeButtons: {
+      markers: 'Markers',
+      heatmap: 'Heatmap'
+    },
+    wrongZoomLevel: 'The map zoom level has to at least 11',
+    wrongZoomLevelFHA: 'The map zoom level has to be at least 13 in order to show this layer',
+    tooManyResults: 'More than 3000 results, please use clustered map or heatmap'
+  },
+  deckGlMap: {
+    arcColouring: 'Arc colouring:',
+    showMoreInformation: 'Click to show more information.',
+    manuscriptMigrations: {
+      legendTitle: 'Arc colouring',
+      legendFrom: 'Manuscript production place',
+      legendTo: 'Last known location',
+      from: 'Production place:',
+      to: 'Last known location:',
+      listHeadingSingleInstance: 'Manuscript:',
+      listHeadingMultipleInstances: 'Manuscripts:'
+    }
   },
   instancePageGeneral: {
     introduction: `
