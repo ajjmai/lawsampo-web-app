@@ -1,21 +1,20 @@
 export const judgementProperties = `
   {
-    ?id sfcl:isRealizedBy ?expression__id . # expression = language version
-    ?expression__id dcterms:title ?expression__prefLabel .
-    ?expression__id dcterms:language ?lang .
-    BIND(?expression__id as ?expression__dataProviderUrl)
-    BIND(?expression__id as ?prefLabel__id)
-    FILTER(?lang = 'fi')
+    # This first block must not constrain the results.
+    # Each judgement has an ECLI identifier, so it should be
+    # safe to use it here. 
+    ?id dcterms:isVersionOf ?ecli .
+    BIND(REPLACE(STR(?ecli), "ECLI:FI:", "") AS ?prefLabel__prefLabel)
+    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://data.finlex.fi/ecli/", "")) AS ?prefLabel__dataProviderUrl)
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
-    BIND(?expression__prefLabel as ?prefLabel__prefLabel)
-    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://data.finlex.fi/ecli/", "")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
-    ?id dcterms:creator ?court__id .
-    ?court__id rdfs:label|skos:prefLabel ?court__prefLabel .
-    FILTER(LANG(?court__prefLabel) = 'fi')
+    ?id sfcl:isRealizedBy ?expression__id . # expression = language version
+    ?expression__id dcterms:title ?expression__prefLabel .
+    ?expression__id dcterms:language ?lang .
+    FILTER(?lang = 'fi')
   }
   UNION
   {
@@ -39,7 +38,9 @@ export const judgementProperties = `
   }
   UNION
   {
-    ?id dcterms:isVersionOf ?ecli .
+    ?id dcterms:creator ?court__id .
+    ?court__id rdfs:label|skos:prefLabel ?court__prefLabel .
+    FILTER(LANG(?court__prefLabel) = 'fi')
   }
   UNION
   {
