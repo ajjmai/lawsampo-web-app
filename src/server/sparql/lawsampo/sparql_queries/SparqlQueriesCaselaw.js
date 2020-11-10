@@ -13,8 +13,13 @@ export const judgementProperties = `
   {
     ?id sfcl:isRealizedBy ?expression__id . # expression = language version
     ?expression__id dcterms:title ?expression__prefLabel .
-    ?expression__id dcterms:language ?lang .
-    FILTER(?lang = 'fi')
+    ?expression__id dcterms:language ?expression_lang .
+    ?expression__id sfcl:isEmbodiedBy ?format .
+    ?format dcterms:format <http://www.iana.org/assignments/media-types/text/html> ;
+            sfcl:html ?html_ .
+    BIND(STR(?html_) as ?judgementTextHTML)
+    BIND(?expression__id as ?expression__dataProviderUrl)
+    FILTER(?expression_lang = 'fi')
   }
   UNION
   {

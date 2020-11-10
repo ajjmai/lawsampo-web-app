@@ -177,6 +177,22 @@ class CaselawPageTable extends React.Component {
                 expanded
               />
             </TableRow>}
+          <TableRow key='judgementTextHTML'>
+            <TableCell className={classes.labelCell}>Text</TableCell>
+            <ResultTableCell
+              columnId='court'
+              data={data.judgementTextHTML}
+              valueType='string'
+              renderAsHTML
+              makeLink={false}
+              externalLink={false}
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
         </TableBody>
       </Table>
     )
