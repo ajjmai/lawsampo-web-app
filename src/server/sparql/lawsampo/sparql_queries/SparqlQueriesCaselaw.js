@@ -1,3 +1,5 @@
+import { annotatedHTMLTest } from './annotatedHTMLtest'
+
 export const judgementProperties = `
   {
     # This first block must not constrain the results.
@@ -18,6 +20,7 @@ export const judgementProperties = `
     ?format dcterms:format <http://www.iana.org/assignments/media-types/text/html> ;
             sfcl:html ?html_ .
     BIND(STR(?html_) as ?judgementTextHTML)
+    BIND("""${annotatedHTMLTest}""" as ?judgementTextHTMLAnnotated)
     BIND(?expression__id as ?expression__dataProviderUrl)
     FILTER(?expression_lang = 'fi')
   }

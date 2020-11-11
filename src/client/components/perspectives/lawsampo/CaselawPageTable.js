@@ -193,6 +193,22 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
+          <TableRow key='judgementTextHTMLAnnotated'>
+            <TableCell className={classes.labelCell}>Annotated text</TableCell>
+            <ResultTableCell
+              columnId='court'
+              data={data.judgementTextHTMLAnnotated}
+              valueType='string'
+              renderAsHTML
+              makeLink={false}
+              externalLink={false}
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
         </TableBody>
       </Table>
     )
