@@ -48,7 +48,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'statuteYear',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: false,

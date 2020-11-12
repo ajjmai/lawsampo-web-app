@@ -17,8 +17,10 @@ export const prefixes = `
   PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX text: <http://jena.apache.org/text#>
-  PREFIX sfl: <http://data.finlex.fi/schema/sfl/>                                                               
-  PREFIX eli: <http://data.europa.eu/eli/ontology#>                                                             
-  PREFIX sfcl: <http://data.finlex.fi/schema/sfcl/>                                                             
-  PREFIX dcterms: <http://purl.org/dc/terms/> 
+  PREFIX sfl: <http://data.finlex.fi/schema/sfl/>
+  PREFIX eli: <http://data.europa.eu/eli/ontology#>
+  PREFIX sfcl: <http://data.finlex.fi/schema/sfcl/>
+  PREFIX dcterms: <http://purl.org/dc/terms/>
+  PREFIX lss: <http://ldf.fi/schema/lawsampo/>
+  PREFIX ls: <http://ldf.fi/lawsampo/>
   `

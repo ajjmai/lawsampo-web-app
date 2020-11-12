@@ -66,7 +66,7 @@ class StatutesPageTable extends React.Component {
             <ResultTableCell
               columnId='statuteYear'
               data={data.statuteYear}
-              valueType='string'
+              valueType='object'
               makeLink={false}
               externalLink={false}
               sortValues

@@ -5,11 +5,11 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
 export const statutesPerspectiveConfig = {
   endpoint: {
-    url: 'http://data.finlex.fi/sparql',
+    url: 'http://ldf.fi/lawsampo/sparql',
     prefixes,
     useAuth: false
   },
-  facetClass: 'sfl:Statute',
+  facetClass: 'lss:Statute',
   paginatedResults: {
     properties: statuteProperties
   },
@@ -23,7 +23,7 @@ export const statutesPerspectiveConfig = {
       facetValueFilter: `
       FILTER(lang(?prefLabel_) = 'fi')
       `,
-      labelPath: 'eli:type_document/rdfs:label',
+      labelPath: 'eli:type_document/skos:prefLabel',
       predicate: 'eli:type_document',
       type: 'list'
     },
@@ -40,19 +40,19 @@ export const statutesPerspectiveConfig = {
       id: 'statuteYear',
       facetValueFilter: `
       `,
-      labelPath: 'sfl:year',
-      predicate: 'sfl:year',
-      type: 'integer'
+      labelPath: 'lss:timespan/skos:prefLabel',
+      predicate: 'lss:timespan',
+      type: 'list'
     },
     prefLabel: {
       id: 'prefLabel',
-      labelPath: 'eli:title'
+      labelPath: 'skos:prefLabel'
     },
     euDirective: {
       id: 'euDirective',
       facetValueFilter: '',
-      labelPath: 'eli:has_member/eli:transposes',
-      predicate: 'eli:has_member/eli:transposes',
+      labelPath: 'eli:transposes/skos:prefLabel',
+      predicate: 'eli:transposes',
       type: 'list'
     }
   }
