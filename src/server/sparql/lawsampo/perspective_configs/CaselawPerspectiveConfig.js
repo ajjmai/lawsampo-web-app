@@ -5,11 +5,11 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
 export const caselawPerspectiveConfig = {
   endpoint: {
-    url: 'http://data.finlex.fi/sparql',
+    url: 'https://ldf.fi/lawsampo/sparql',
     prefixes,
     useAuth: false
   },
-  facetClass: 'sfcl:Judgment',
+  facetClass: 'lss:Judgment',
   paginatedResults: {
     properties: judgementProperties
   },
@@ -20,9 +20,7 @@ export const caselawPerspectiveConfig = {
   facets: {
     court: {
       id: 'court',
-      facetValueFilter: `
-      FILTER(lang(?prefLabel_) = 'fi')
-      `,
+      facetValueFilter: '',
       labelPath: 'dcterms:creator/skos:prefLabel',
       predicate: 'dcterms:creator',
       type: 'list'
@@ -37,9 +35,7 @@ export const caselawPerspectiveConfig = {
     },
     keywords: {
       id: 'keywords',
-      facetValueFilter: `
-      FILTER(lang(?prefLabel_) = 'fi')
-      `,
+      facetValueFilter: '',
       labelPath: 'dcterms:description/skos:prefLabel',
       predicate: 'dcterms:description',
       type: 'list'

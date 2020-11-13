@@ -131,11 +131,11 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
-          <TableRow key='rcl'>
+          <TableRow key='referenceToCourtDecision'>
             <TableCell className={classes.labelCell}>Referenced court decisions</TableCell>
             <ResultTableCell
-              columnId='rcl'
-              data={data.rcl}
+              columnId='referenceToCourtDecision'
+              data={data.referenceToCourtDecision}
               valueType='object'
               makeLink
               externalLink={false}
@@ -146,11 +146,11 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
-          <TableRow key='rl'>
+          <TableRow key='referencedStatute'>
             <TableCell className={classes.labelCell}>Referenced legislation</TableCell>
             <ResultTableCell
-              columnId='rl'
-              data={data.rl}
+              columnId='referencedStatute'
+              data={data.referencedStatute}
               valueType='object'
               makeLink
               externalLink

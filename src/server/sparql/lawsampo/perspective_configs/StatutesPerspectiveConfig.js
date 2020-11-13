@@ -5,7 +5,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
 export const statutesPerspectiveConfig = {
   endpoint: {
-    url: 'http://ldf.fi/lawsampo/sparql',
+    url: 'https://ldf.fi/lawsampo/sparql',
     prefixes,
     useAuth: false
   },

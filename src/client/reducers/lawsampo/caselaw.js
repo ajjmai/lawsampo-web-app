@@ -40,7 +40,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 400
+      minWidth: 250
     },
     {
       id: 'court',
@@ -85,19 +85,19 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 160
-    },
-    {
-      id: 'expression',
-      label: 'Read',
-      desc: 'Open court decision for reading',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      linkAsButton: true,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 150
     }
+    // {
+    //   id: 'expression',
+    //   label: 'Read',
+    //   desc: 'Open court decision for reading',
+    //   valueType: 'object',
+    //   makeLink: true,
+    //   externalLink: true,
+    //   linkAsButton: true,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 150
+    // }
   ]
 }
 

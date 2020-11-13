@@ -86,15 +86,7 @@ class InstanceHomePage extends React.Component {
       }
     })
     this.setState({ localID })
-    let base = ''
-    switch (this.props.resultClass) {
-      case 'statutes':
-        base = 'http://ldf.fi/lawsampo'
-        break
-      case 'caselaw':
-        base = 'http://data.finlex.fi/ecli'
-        break
-    }
+    const base = 'http://ldf.fi/lawsampo'
     const uri = `${base}/${localID}`
     this.props.fetchByURI({
       resultClass: this.props.resultClass,
