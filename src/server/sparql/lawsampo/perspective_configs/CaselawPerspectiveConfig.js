@@ -36,17 +36,12 @@ export const caselawPerspectiveConfig = {
     keyword: {
       id: 'keyword',
       facetValueFilter: '',
-      labelPath: 'dcterms:description/skos:prefLabel',
       predicate: 'dcterms:description',
       type: 'list'
     },
     decisionDate: {
       id: 'decisionDate',
-      facetValueFilter: `
-      `,
-      labelPath: '',
-      predicate: 'dcterms:date',
-      type: 'list'
+      labelPath: 'dcterms:issued'
     },
     prefLabel: {
       id: 'prefLabel',
