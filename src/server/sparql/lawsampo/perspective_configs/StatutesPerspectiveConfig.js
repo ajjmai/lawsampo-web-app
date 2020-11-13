@@ -31,9 +31,11 @@ export const statutesPerspectiveConfig = {
       id: 'statuteYear',
       facetValueFilter: `
       `,
-      labelPath: 'lss:timespan/skos:prefLabel',
       predicate: 'lss:timespan',
-      type: 'list'
+      labelPath: 'lss:timespan/skos:prefLabel',
+      type: 'hierarchical',
+      parentPredicate: 'lss:timespan/skos:broader+',
+      parentProperty: 'skos:broader'
     },
     prefLabel: {
       id: 'prefLabel',

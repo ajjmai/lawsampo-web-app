@@ -1,18 +1,26 @@
 export const statuteProperties = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
-    OPTIONAL { ?id lss:statute_date ?statute_date }
 
     # create link for React Router:
-    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://data.finlex.fi/eli/sd/", "")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
-    # create URI link for result table
+    # create link to SAHA
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION 
+  {
+    ?id lss:statute_date ?statuteDate .
   }
   UNION
   {
     ?id lss:timespan/skos:prefLabel ?statuteYear .
+  }
+  UNION
+  {
+    ?id eli:type_document/skos:prefLabel ?documentType .
+    FILTER(lang(?documentType) = 'fi')
   }
   UNION
   {

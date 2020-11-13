@@ -65,20 +65,31 @@ class InstanceHomePage extends React.Component {
     }
   }
 
+  // getLocalIDFromSemanticFinlexURI = () => {
+  //   // Special treatment, because there are slashes in the localID of Semantic Finlex URI
+  //   let localID = this.props.routeProps.location.pathname.replace(`${this.props.rootUrl}/${this.props.resultClass}/page/`, '')
+  //   var lastSlash = localID.lastIndexOf('/')
+  //   // remove tab id from localID
+  //   this.props.tabs.map(tab => {
+  //     if (localID.substring(lastSlash + 1) === tab.id) {
+  //       localID = localID.substring(0, lastSlash)
+  //     }
+  //   })
+  // }
+
   fetchData = () => {
-    let localID = this.props.routeProps.location.pathname.replace(`${this.props.rootUrl}/${this.props.resultClass}/page/`, '')
-    var lastSlash = localID.lastIndexOf('/')
-    // remove tab id from localID
+    const locationArr = this.props.routeProps.location.pathname.split('/')
+    let localID = locationArr.pop()
     this.props.tabs.map(tab => {
-      if (localID.substring(lastSlash + 1) === tab.id) {
-        localID = localID.substring(0, lastSlash)
+      if (localID === tab.id) {
+        localID = locationArr.pop() // pop again if tab id
       }
     })
     this.setState({ localID })
     let base = ''
     switch (this.props.resultClass) {
       case 'statutes':
-        base = 'http://data.finlex.fi/eli/sd'
+        base = 'http://ldf.fi/lawsampo'
         break
       case 'caselaw':
         base = 'http://data.finlex.fi/ecli'

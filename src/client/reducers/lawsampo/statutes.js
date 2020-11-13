@@ -30,7 +30,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'documentType',
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: false,
@@ -54,17 +54,17 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 150
-    },
-    {
-      id: 'version',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      linkAsButton: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 250
     }
+    // {
+    //   id: 'version',
+    //   valueType: 'object',
+    //   makeLink: true,
+    //   externalLink: true,
+    //   linkAsButton: true,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 250
+    // }
   ]
 }
 

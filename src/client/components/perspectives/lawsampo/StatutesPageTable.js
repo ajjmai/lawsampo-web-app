@@ -36,22 +36,7 @@ class StatutesPageTable extends React.Component {
             <ResultTableCell
               columnId='documentType'
               data={data.documentType}
-              valueType='object'
-              makeLink={false}
-              externalLink={false}
-              sortValues
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded
-            />
-          </TableRow>
-          <TableRow key='statuteType'>
-            <TableCell className={classes.labelCell}>Statute type</TableCell>
-            <ResultTableCell
-              columnId='statuteType'
-              data={data.statuteType}
-              valueType='object'
+              valueType='string'
               makeLink={false}
               externalLink={false}
               sortValues
@@ -66,7 +51,7 @@ class StatutesPageTable extends React.Component {
             <ResultTableCell
               columnId='statuteYear'
               data={data.statuteYear}
-              valueType='object'
+              valueType='string'
               makeLink={false}
               externalLink={false}
               sortValues

@@ -33,13 +33,13 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: false,
       spatialFilterButton: false,
-      lineChartButton: true,
+      pieChartButton: false,
       isFetching: false,
-      searchField: false,
-      containerClass: 'four',
-      type: 'integer',
-      filterType: 'integerFilter',
-      integerFilter: null
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      type: 'hierarchical'
     },
     euDirective: {
       id: 'euDirective',
