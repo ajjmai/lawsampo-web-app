@@ -74,6 +74,7 @@ const StringList = props => {
     // }
     if (node.type === 'tag' && node.name === 'span' && node.attribs.name === 'namedentity') {
       const linkStr = node.attribs['data-link']
+      const occurrenceID = node.attribs['data-occurrence-id']
       let tooltipJSX
       if (linkStr.includes(',')) {
         const links = linkStr.split(',')
@@ -93,11 +94,16 @@ const StringList = props => {
           </div>
         )
       }
-      const a = node.children[1]
-      const text = a.children[0].data
+      let text
+      if (node.children.length > 1 && node.children[1].name === 'a') {
+        const a = node.children[1]
+        text = a.children[0].data
+      } else {
+        text = node.children[0].data
+      }
       return (
         <Tooltip
-          key={a.attribs.id}
+          key={occurrenceID}
           title={tooltipJSX}
           interactive
           placement='top'

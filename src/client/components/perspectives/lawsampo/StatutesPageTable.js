@@ -91,6 +91,38 @@ class StatutesPageTable extends React.Component {
               expanded
             />
           </TableRow>
+          {/* <TableRow key='statuteTextHTML'>
+            <TableCell className={classes.labelCell}>Text</TableCell>
+            <ResultTableCell
+              columnId='statuteTextHTML'
+              data={data.statuteTextHTML}
+              valueType='string'
+              renderAsHTML
+              makeLink={false}
+              externalLink={false}
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow> */}
+          <TableRow key='statuteTextHTMLAnnotated'>
+            <TableCell className={classes.labelCell}>Annotated text</TableCell>
+            <ResultTableCell
+              columnId='statuteTextHTMLAnnotated'
+              data={data.statuteTextHTMLAnnotated}
+              valueType='string'
+              renderAsHTML
+              makeLink={false}
+              externalLink={false}
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
         </TableBody>
       </Table>
     )

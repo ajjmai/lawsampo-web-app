@@ -1,4 +1,4 @@
-import { annotatedHTMLTest } from './annotatedHTMLtest'
+import { judgementTextHTMLAnnotatedTest } from './annotatedHTMLtest'
 
 export const judgementProperties = `
   {
@@ -20,7 +20,7 @@ export const judgementProperties = `
     ?format dcterms:format <http://www.iana.org/assignments/media-types/text/html> ;
             lss:html ?html_ .
     BIND(STR(?html_) as ?judgementTextHTML)
-    BIND("""${annotatedHTMLTest}""" as ?judgementTextHTMLAnnotated)
+    BIND("""${judgementTextHTMLAnnotatedTest}""" as ?judgementTextHTMLAnnotated)
     BIND(?expression__id as ?expression__dataProviderUrl)
   }
   UNION

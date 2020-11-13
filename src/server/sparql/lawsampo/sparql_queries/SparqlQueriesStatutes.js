@@ -1,3 +1,5 @@
+import { statuteTextHTMLAnnotatedTest } from './annotatedHTMLtest'
+
 export const statuteProperties = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
@@ -8,8 +10,10 @@ export const statuteProperties = `
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+
+    BIND("""${statuteTextHTMLAnnotatedTest}""" as ?statuteTextHTMLAnnotated)
   }
-  UNION 
+  UNION
   {
     ?id lss:statute_date ?statuteDate .
   }
