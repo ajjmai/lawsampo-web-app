@@ -30,9 +30,10 @@ export const judgementProperties = `
   }
   UNION
   {
-    ?id dcterms:description ?keywords__id .
-    ?keywords__id skos:prefLabel ?keywords__prefLabel .
-    FILTER(LANG(?keywords__prefLabel) = 'fi')
+    ?id dcterms:description ?keyword__id .
+    BIND(?keyword__id as ?keyword__prefLabel)
+    # ?keyword__id skos:prefLabel ?keyword__prefLabel .
+    # FILTER(LANG(?keywords__prefLabel) = 'fi')
   }
   UNION
   {

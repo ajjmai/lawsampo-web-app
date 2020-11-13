@@ -33,8 +33,8 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:contributor',
       type: 'list'
     },
-    keywords: {
-      id: 'keywords',
+    keyword: {
+      id: 'keyword',
       facetValueFilter: '',
       labelPath: 'dcterms:description/skos:prefLabel',
       predicate: 'dcterms:description',

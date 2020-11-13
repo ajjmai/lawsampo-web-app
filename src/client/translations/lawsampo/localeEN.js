@@ -288,7 +288,7 @@ export default {
             Name(s) of the judge(s)
           `
         },
-        keywords: {
+        keyword: {
           label: 'Keyword',
           description: `
             Keyword

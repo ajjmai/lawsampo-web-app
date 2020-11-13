@@ -65,7 +65,7 @@ export const INITIAL_STATE = {
       minWidth: 150
     },
     {
-      id: 'keywords',
+      id: 'keyword',
       label: 'Keyword',
       desc: 'Keyword',
       valueType: 'object',
