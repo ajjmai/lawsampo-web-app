@@ -21,19 +21,10 @@ export const statutesPerspectiveConfig = {
     documentType: {
       id: 'documentType',
       facetValueFilter: `
-      FILTER(lang(?prefLabel_) = 'fi')
+        FILTER(lang(?prefLabel_) = 'fi')
       `,
       labelPath: 'eli:type_document/skos:prefLabel',
       predicate: 'eli:type_document',
-      type: 'list'
-    },
-    statuteType: {
-      id: 'statuteType',
-      facetValueFilter: `
-      FILTER(lang(?prefLabel_) = 'fi')
-      `,
-      labelPath: 'sfl:statuteType/rdfs:label',
-      predicate: 'sfl:statuteType',
       type: 'list'
     },
     statuteYear: {

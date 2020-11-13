@@ -12,8 +12,7 @@ export const statuteProperties = `
   }
   UNION
   {
-    ?id lss:timespan ?statuteYear__id .
-    ?statuteYear__id skos:prefLabel ?statuteYear__prefLabel .
+    ?id lss:timespan/skos:prefLabel ?statuteYear .
   }
   UNION
   {

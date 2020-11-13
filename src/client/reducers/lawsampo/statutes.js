@@ -38,17 +38,8 @@ export const INITIAL_STATE = {
       minWidth: 160
     },
     {
-      id: 'statuteType',
-      valueType: 'object',
-      makeLink: false,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 140
-    },
-    {
       id: 'statuteYear',
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: false,

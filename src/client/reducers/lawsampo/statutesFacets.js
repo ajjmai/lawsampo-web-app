@@ -22,24 +22,6 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    statuteType: {
-      id: 'statuteType',
-      label: 'Statute type',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: false,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'four',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
     statuteYear: {
       id: 'statuteYear',
       label: 'Statute year',
