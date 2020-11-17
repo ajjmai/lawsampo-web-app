@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
-import ReactHtmlParser from 'react-html-parser'
-// import { Link } from 'react-router-dom'
-import Tooltip from '@material-ui/core/Tooltip'
+import HTMLParser from '../../helpers/HTMLParser'
 
 const styles = theme => ({
   valueList: {
@@ -20,8 +18,8 @@ const styles = theme => ({
     maxHeight: 200,
     overflow: 'auto'
   },
-  noMaxWidth: {
-    maxWidth: 'none'
+  tooltip: {
+    maxWidth: 500
   },
   tooltipContent: {
     padding: theme.spacing(1)
@@ -66,58 +64,6 @@ const StringList = props => {
     }
   }
 
-  const transform = (node, index) => {
-    // if (node.type === 'tag' && node.name === 'a') {
-    //   const href = node.attribs.href
-    //   const text = node.children[0].data
-    //   return <Link key={index} to={href}>{text}</Link>
-    // }
-    if (node.type === 'tag' && node.name === 'span' && node.attribs.name === 'namedentity') {
-      const linkStr = node.attribs['data-link']
-      const occurrenceID = node.attribs['data-occurrence-id']
-      let tooltipJSX
-      if (linkStr.includes(',')) {
-        const links = linkStr.split(',')
-        const listItemsJSX = []
-        links.map((link, index) => {
-          listItemsJSX.push(<li key={index}><a href={link} target='_blank' rel='noopener noreferrer'>{link}</a></li>)
-        })
-        tooltipJSX = (
-          <div className={props.classes.tooltipContent}>
-            <ul className={props.classes.tooltipList}>{listItemsJSX}</ul>
-          </div>
-        )
-      } else {
-        tooltipJSX = (
-          <div className={props.classes.tooltipContent}>
-            <a href={linkStr} target='_blank' rel='noopener noreferrer'>{linkStr}</a>
-          </div>
-        )
-      }
-      let text
-      if (node.children.length > 1 && node.children[1].name === 'a') {
-        const a = node.children[1]
-        text = a.children[0].data
-      } else {
-        text = node.children[0].data
-      }
-      return (
-        <Tooltip
-          key={occurrenceID}
-          title={tooltipJSX}
-          interactive
-          placement='top'
-          arrow
-          classes={{
-            tooltip: props.classes.noMaxWidth
-          }}
-        >
-          <span style={{ color: 'red', cursor: 'pointer' }}>{text}</span>
-        </Tooltip>
-      )
-    }
-  }
-
   const { renderAsHTML } = props
   let { data } = props
   if (data == null || data === '-') {
@@ -125,7 +71,8 @@ const StringList = props => {
   }
   const isArray = Array.isArray(data)
   if (renderAsHTML) {
-    data = ReactHtmlParser(data, { transform })
+    const parser = new HTMLParser(props)
+    data = parser.parseHTML(data)
   }
   return (
     <>
