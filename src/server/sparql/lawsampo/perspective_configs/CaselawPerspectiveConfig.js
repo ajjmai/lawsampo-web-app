@@ -6,6 +6,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const caselawPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/lawsampo/sparql',
+    // url: 'http://localhost:3030/ds/sparql',
     prefixes,
     useAuth: false
   },

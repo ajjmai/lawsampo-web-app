@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { has } from 'lodash'
+import { arrayToObject } from '../../../helpers/helpers'
 import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -38,6 +40,10 @@ class CaselawPageTable extends React.Component {
 
   render = () => {
     const { classes, data, externalData } = this.props
+    let referencedTerm = null
+    if (has(data, 'referencedTerm') && Array.isArray(data.referencedTerm)) {
+      referencedTerm = arrayToObject({ array: data.referencedTerm, keyField: 'id' })
+    }
     return (
       <Table className={classes.table}>
         <TableBody>
@@ -86,14 +92,14 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
-          <TableRow key='keywords'>
-            <TableCell className={classes.labelCell}>Keywords</TableCell>
+          <TableRow key='keyword'>
+            <TableCell className={classes.labelCell}>Finlex keyword</TableCell>
             <ResultTableCell
-              columnId='keywords'
-              data={data.keywords}
+              columnId='keyword'
+              data={data.keyword}
               valueType='object'
               makeLink={false}
-              externalLink={false}
+              externalLink
               sortValues
               numberedList={false}
               minWidth={150}
@@ -193,6 +199,21 @@ class CaselawPageTable extends React.Component {
               expanded
             />
           </TableRow>
+          <TableRow key='referencedTerm'>
+            <TableCell className={classes.labelCell}>Annotation terms</TableCell>
+            <ResultTableCell
+              columnId='referencedTerm'
+              data={data.referencedTerm}
+              valueType='object'
+              makeLink
+              externalLink
+              sortValues
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded
+            />
+          </TableRow>
           <TableRow key='judgementTextHTMLAnnotated'>
             <TableCell className={classes.labelCell}>Annotated text</TableCell>
             <ResultTableCell
@@ -200,6 +221,8 @@ class CaselawPageTable extends React.Component {
               data={data.judgementTextHTMLAnnotated}
               valueType='string'
               renderAsHTML
+              HTMLParserTask='addAnnotationTooltips'
+              annotationData={referencedTerm}
               makeLink={false}
               externalLink={false}
               sortValues

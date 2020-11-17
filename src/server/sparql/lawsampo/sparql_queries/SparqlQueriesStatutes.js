@@ -1,4 +1,5 @@
-import { statuteTextHTMLAnnotatedTest } from './annotatedHTMLtest'
+// import { statuteTextHTMLAnnotatedTest } from './annotatedHTMLtest'
+// BIND("""${statuteTextHTMLAnnotatedTest}""" as ?statuteTextHTMLAnnotated)
 
 export const statuteProperties = `
   {
@@ -11,11 +12,20 @@ export const statuteProperties = `
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
 
-    BIND("""${statuteTextHTMLAnnotatedTest}""" as ?statuteTextHTMLAnnotated)
   }
   UNION
   {
-    ?id lss:statute_date ?statuteDate .
+    ?id lss:annotatedHtml ?annotatedHtml_ .
+    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?statuteTextHTMLAnnotated)
+  }
+  UNION 
+  {
+    ?id lss:referencedTerm ?referencedTerm__id .
+    ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
+    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
+    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }
+    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
+    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
   }
   UNION
   {

@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { has } from 'lodash'
 import { withStyles } from '@material-ui/core/styles'
+import { arrayToObject } from '../../../helpers/helpers'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -28,6 +30,10 @@ const styles = theme => ({
 class StatutesPageTable extends React.Component {
   render = () => {
     const { classes, data } = this.props
+    let referencedTerm = null
+    if (has(data, 'referencedTerm') && Array.isArray(data.referencedTerm)) {
+      referencedTerm = arrayToObject({ array: data.referencedTerm, keyField: 'id' })
+    }
     return (
       <Table className={classes.table}>
         <TableBody>
@@ -114,6 +120,8 @@ class StatutesPageTable extends React.Component {
               data={data.statuteTextHTMLAnnotated}
               valueType='string'
               renderAsHTML
+              HTMLParserTask='addAnnotationTooltips'
+              annotationData={referencedTerm}
               makeLink={false}
               externalLink={false}
               sortValues
