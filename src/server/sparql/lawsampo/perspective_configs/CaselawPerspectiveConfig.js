@@ -19,6 +19,12 @@ export const caselawPerspectiveConfig = {
     relatedInstances: ''
   },
   facets: {
+    jenaText: {
+      id: 'jenaText',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: '',
+      type: 'text'
+    },
     court: {
       id: 'court',
       facetValueFilter: '',
@@ -34,16 +40,16 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:contributor',
       type: 'list'
     },
-    keyword: {
-      id: 'keyword',
-      facetValueFilter: '',
-      predicate: 'dcterms:description',
-      type: 'list'
-    },
-    decisionDate: {
-      id: 'decisionDate',
-      labelPath: 'dcterms:issued'
-    },
+    // keyword: {
+    //   id: 'keyword',
+    //   facetValueFilter: '',
+    //   predicate: 'dcterms:description',
+    //   type: 'list'
+    // },
+    // decisionDate: {
+    //   id: 'decisionDate',
+    //   labelPath: 'dcterms:issued'
+    // },
     prefLabel: {
       id: 'prefLabel',
       labelPath: 'dcterms:title'

@@ -20,15 +20,12 @@ export const legislationPerspectiveConfig = {
     relatedInstances: ''
   },
   facets: {
-    // documentType: {
-    //   id: 'documentType',
-    //   facetValueFilter: `
-    //     FILTER(lang(?prefLabel_) = 'fi')
-    //   `,
-    //   labelPath: 'eli:type_document/skos:prefLabel',
-    //   predicate: 'eli:type_document',
-    //   type: 'list'
-    // },
+    jenaText: {
+      id: 'jenaText',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: '',
+      type: 'text'
+    },
     enforcementDate: {
       id: 'statuteYear',
       facetValueFilter: `
@@ -39,13 +36,16 @@ export const legislationPerspectiveConfig = {
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
-    prefLabel: {
-      id: 'prefLabel',
-      labelPath: 'skos:prefLabel',
-      textQueryPredicate: '', // empty for querying the facetClass
-      textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
-      type: 'text'
-    },
+    // documentType: {
+    //   id: 'documentType',
+    //   facetValueFilter: `
+    //     FILTER(lang(?prefLabel_) = 'fi')
+    //   `,
+    //   labelPath: 'eli:type_document/skos:prefLabel',
+    //   predicate: 'eli:type_document',
+    //   type: 'list'
+    // },
+
     // euDirective: {
     //   id: 'euDirective',
     //   facetValueFilter: '',

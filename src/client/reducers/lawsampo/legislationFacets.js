@@ -4,8 +4,8 @@ export const INITIAL_STATE = {
   updatedFacet: null,
   facetUpdateID: 0,
   facets: {
-    prefLabel: {
-      id: 'prefLabel',
+    jenaText: {
+      id: 'jenaText',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],

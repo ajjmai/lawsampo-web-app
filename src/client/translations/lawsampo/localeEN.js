@@ -195,6 +195,12 @@ export default {
             Statute label
           `
         },
+        jenaText: {
+          label: 'Free text search',
+          description: `
+            Free text search
+          `
+        },
         text: {
           label: 'Text',
           description: `
@@ -299,6 +305,12 @@ export default {
           label: 'Label',
           description: `
             Label
+          `
+        },
+        jenaText: {
+          label: 'Free text search',
+          description: `
+            Free text search
           `
         },
         abstract: {
