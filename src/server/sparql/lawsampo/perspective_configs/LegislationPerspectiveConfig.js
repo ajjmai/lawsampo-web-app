@@ -57,13 +57,15 @@ export const legislationPerspectiveConfig = {
       predicate: 'lss:subject_category',
       type: 'list'
     },
-    // euDirective: {
-    //   id: 'euDirective',
-    //   facetValueFilter: '',
-    //   labelPath: 'eli:transposes/skos:prefLabel',
-    //   predicate: 'eli:transposes',
-    //   type: 'list'
-    // },
+    situationCategory: {
+      id: 'situationCategory',
+      facetValueFilter: `
+       
+      `,
+      labelPath: 'lss:situation_category/skos:prefLabel',
+      predicate: 'lss:situation_category',
+      type: 'list'
+    },
     text: {
       id: 'text',
       labelPath: 'lss:text'
