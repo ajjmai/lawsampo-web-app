@@ -21,6 +21,24 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
+    statute: {
+      id: 'statute',
+      label: 'EU directive',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
     // documentType: {
     //   id: 'documentType',
     //   label: 'Document type',

@@ -26,6 +26,18 @@ export const legislationPerspectiveConfig = {
       textQueryProperty: '',
       type: 'text'
     },
+    statute: {
+      id: 'statute',
+      facetValueFilter: '',
+      labelPath: 'lss:statute/skos:prefLabel',
+      predicate: 'lss:statute',
+      type: 'hierarchical',
+      parentPredicate: 'eli:type_document',
+      parentProperty: 'eli:type_document',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = 'fi')
+      `
+    },
     enforcementDate: {
       id: 'statuteYear',
       facetValueFilter: `

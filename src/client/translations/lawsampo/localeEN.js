@@ -195,6 +195,12 @@ export default {
             Statute label
           `
         },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
         jenaText: {
           label: 'Free text search',
           description: `
