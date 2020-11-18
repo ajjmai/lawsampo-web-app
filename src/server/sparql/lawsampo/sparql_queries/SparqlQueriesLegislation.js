@@ -47,14 +47,18 @@ export const sectionProperties = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
     ?id lss:statute ?statute .
-    BIND(REPLACE(STR(?statute), "http://ldf.fi/lawsampo/", "") as ?identifier)
+    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?identifier)
 
     # create link for React Router:
-    BIND(CONCAT("/legislation/page/", REPLACE(STR(?statute), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/legislation/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id lss:timespan/skos:prefLabel ?enforcementDate .
   }
   UNION
   {

@@ -96,6 +96,15 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 250
     },
+    {
+      id: 'enforcementDate',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 250
+    },
     // {
     //   id: 'section',
     //   valueType: 'string',
