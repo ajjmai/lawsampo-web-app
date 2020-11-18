@@ -1,8 +1,8 @@
-import { statutesPerspectiveConfig } from './perspective_configs/StatutesPerspectiveConfig'
+import { legislationPerspectiveConfig } from './perspective_configs/LegislationPerspectiveConfig'
 import { caselawPerspectiveConfig } from './perspective_configs/CaselawPerspectiveConfig'
 import {
   statutesByYearQuery
-} from './sparql_queries/SparqlQueriesStatutes'
+} from './sparql_queries/SparqlQueriesLegislation'
 import {
   judgementsByYearQuery,
   judgementNetworkLinksQuery,
@@ -11,10 +11,10 @@ import {
 import { mapLineChart } from '../Mappers'
 
 export const backendSearchConfig = {
-  statutes: statutesPerspectiveConfig,
+  legislation: legislationPerspectiveConfig,
   caselaw: caselawPerspectiveConfig,
   statuteYearLineChart: {
-    perspectiveID: 'statutes',
+    perspectiveID: 'legislation',
     q: statutesByYearQuery,
     filterTarget: 'instance',
     resultMapper: mapLineChart

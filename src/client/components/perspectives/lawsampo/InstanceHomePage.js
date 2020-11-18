@@ -99,7 +99,7 @@ class InstanceHomePage extends React.Component {
   renderTable = () => {
     let tableEl = null
     switch (this.props.resultClass) {
-      case 'statutes':
+      case 'legislation':
         tableEl =
           <StatutesPageTable
             data={this.props.tableData}

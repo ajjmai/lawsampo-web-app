@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Statutes from './Statutes'
+import Legislation from './Legislation'
 import Caselaw from './Caselaw'
 
 /**
@@ -10,9 +10,9 @@ const FacetedSearchPerspective = props => {
   const renderPerspective = () => {
     let perspectiveElement = null
     switch (props.perspective.id) {
-      case 'statutes':
+      case 'legislation':
         perspectiveElement =
-          <Statutes
+          <Legislation
             facetResults={props.facetResults}
             placesResults={props.placesResults}
             leafletMapLayers={props.leafletMap}

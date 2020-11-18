@@ -5,7 +5,7 @@ import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import Export from '../../facet_results/Export'
 
-const Statutes = props => {
+const Legislation = props => {
   const { rootUrl, perspective } = props
   return (
     <>
@@ -24,8 +24,8 @@ const Statutes = props => {
           <ResultTable
             data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='statutes'
-            facetClass='statutes'
+            resultClass='legislation'
+            facetClass='legislation'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
@@ -46,7 +46,7 @@ const Statutes = props => {
   )
 }
 
-Statutes.propTypes = {
+Legislation.propTypes = {
   facetResults: PropTypes.object.isRequired,
   placesResults: PropTypes.object,
   leafletMapLayers: PropTypes.object.isRequired,
@@ -67,4 +67,4 @@ Statutes.propTypes = {
   rootUrl: PropTypes.string.isRequired
 }
 
-export default Statutes
+export default Legislation

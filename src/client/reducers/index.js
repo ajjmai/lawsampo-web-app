@@ -6,18 +6,18 @@ import options from './general/options'
 import animation from './general/animation'
 import leafletMap from './general/leafletMap'
 // portal spefic reducers:
-import statutes from './lawsampo/statutes'
+import legislation from './lawsampo/legislation'
 import caselaw from './lawsampo/caselaw'
-import statutesFacets from './lawsampo/statutesFacets'
-import statutesFacetsConstrainSelf from './lawsampo/statutesFacetsConstrainSelf'
+import legislationFacets from './lawsampo/legislationFacets'
+import legislationFacetsConstrainSelf from './lawsampo/legislationFacetsConstrainSelf'
 import caselawFacets from './lawsampo/caselawFacets'
 import caselawFacetsConstrainSelf from './lawsampo/caselawFacetsConstrainSelf'
 
 const reducer = combineReducers({
-  statutes,
+  legislation,
   caselaw,
-  statutesFacets,
-  statutesFacetsConstrainSelf,
+  legislationFacets,
+  legislationFacetsConstrainSelf,
   caselawFacets,
   caselawFacetsConstrainSelf,
   leafletMap,

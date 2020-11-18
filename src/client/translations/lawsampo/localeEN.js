@@ -163,10 +163,11 @@ export default {
     `
   },
   perspectives: {
-    statutes: {
-      label: 'Statutes',
-      facetResultsType: 'statutes',
-      shortDescription: 'Faceted search for statutes',
+    legislation: {
+      label: 'Legislation',
+      // facetResultsType: 'statutes',
+      facetResultsType: 'sections',
+      shortDescription: 'Faceted search for consolidated legislation',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Use this perspective to...
@@ -176,7 +177,7 @@ export default {
         </p>
       `,
       instancePage: {
-        label: 'Statute',
+        label: 'Legislation',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
             This landing page provides a...
@@ -194,6 +195,36 @@ export default {
             Label
           `
         },
+        text: {
+          label: 'Text',
+          description: `
+            Text
+          `
+        },
+        identifier: {
+          label: 'Identifier',
+          description: `
+            Identifier
+          `
+        },
+        section: {
+          label: 'Section',
+          description: `
+            Section
+          `
+        },
+        subjectCategory: {
+          label: 'Subject category',
+          description: `
+            Subject category
+          `
+        },
+        situationCategory: {
+          label: 'Situation category',
+          description: `
+            Situation category
+          `
+        },
         documentType: {
           label: 'Document type',
           description: `
@@ -206,10 +237,10 @@ export default {
             Statute type
           `
         },
-        statuteYear: {
-          label: 'Statute year',
+        enforcementDate: {
+          label: 'Enforcement date',
           description: `
-            Statute year
+            Enforcement date
           `
         },
         euDirective: {

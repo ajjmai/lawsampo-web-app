@@ -12,7 +12,7 @@ import caselawImage from '../../img/lawsampo/caselaw.png'
 
 export const perspectiveConfig = [
   {
-    id: 'statutes',
+    id: 'legislation',
     frontPageImage: legislationImage,
     frontPageElement: 'card',
     perspectiveDescHeight: 160,
