@@ -226,15 +226,15 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Subject category',
+          label: 'Subject',
           description: `
-            Subject category
+            Subject
           `
         },
         situationCategory: {
-          label: 'Situation category',
+          label: 'Life situation',
           description: `
-            Situation category
+            Life situation
           `
         },
         documentType: {

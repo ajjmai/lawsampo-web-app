@@ -48,16 +48,15 @@ export const legislationPerspectiveConfig = {
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
-    // documentType: {
-    //   id: 'documentType',
-    //   facetValueFilter: `
-    //     FILTER(lang(?prefLabel_) = 'fi')
-    //   `,
-    //   labelPath: 'eli:type_document/skos:prefLabel',
-    //   predicate: 'eli:type_document',
-    //   type: 'list'
-    // },
-
+    subjectCategory: {
+      id: 'subjectCategory',
+      facetValueFilter: `
+       
+      `,
+      labelPath: 'lss:subject_category/skos:prefLabel',
+      predicate: 'lss:subject_category',
+      type: 'list'
+    },
     // euDirective: {
     //   id: 'euDirective',
     //   facetValueFilter: '',

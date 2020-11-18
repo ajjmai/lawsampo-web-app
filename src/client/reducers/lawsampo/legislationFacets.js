@@ -34,29 +34,11 @@ export const INITIAL_STATE = {
       spatialFilterButton: false,
       pieChartButton: false,
       isFetching: false,
-      searchField: false,
+      searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null
     },
-    // documentType: {
-    //   id: 'documentType',
-    //   label: 'Document type',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   pieChartButton: true,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'ten',
-    //   filterType: 'uriFilter',
-    //   uriFilter: null
-    // },
     enforcementDate: {
       id: 'enforcementDate',
       // predicate: defined in backend
@@ -74,25 +56,24 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
       type: 'hierarchical'
+    },
+    subjectCategory: {
+      id: 'subjectCategory',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
     }
-    // euDirective: {
-    //   id: 'euDirective',
-    //   label: 'EU directive',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   pieChartButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'ten',
-    //   filterType: 'uriFilter',
-    //   uriFilter: null
-    // }
   }
 }
 
