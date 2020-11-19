@@ -1,54 +1,5 @@
 import { handleDataFetchingAction } from '../general/results'
 
-// const statuteProperties = [
-//   {
-//     id: 'prefLabel',
-//     valueType: 'object',
-//     makeLink: true,
-//     externalLink: false,
-//     sortValues: false,
-//     numberedList: false,
-//     minWidth: 230
-//   },
-//   {
-//     id: 'documentType',
-//     valueType: 'string',
-//     makeLink: false,
-//     externalLink: false,
-//     sortValues: false,
-//     numberedList: false,
-//     minWidth: 160
-//   },
-//   {
-//     id: 'statuteYear',
-//     valueType: 'string',
-//     makeLink: false,
-//     externalLink: false,
-//     sortValues: false,
-//     numberedList: false,
-//     minWidth: 140
-//   },
-//   {
-//     id: 'euDirective',
-//     valueType: 'object',
-//     makeLink: true,
-//     externalLink: true,
-//     sortValues: false,
-//     numberedList: false,
-//     minWidth: 150
-//   }
-//   // {
-//   //   id: 'version',
-//   //   valueType: 'object',
-//   //   makeLink: true,
-//   //   externalLink: true,
-//   //   linkAsButton: true,
-//   //   sortValues: true,
-//   //   numberedList: false,
-//   //   minWidth: 250
-//   // }
-// ]
-
 export const INITIAL_STATE = {
   results: null,
   resultUpdateID: 0,
@@ -73,6 +24,16 @@ export const INITIAL_STATE = {
       valueType: 'object',
       makeLink: true,
       externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 230
+    },
+    {
+      id: 'uri',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
       sortValues: false,
       numberedList: false,
       minWidth: 230
@@ -103,17 +64,8 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 250
+      minWidth: 170
     },
-    // {
-    //   id: 'section',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 160
-    // },
     {
       id: 'subjectCategory',
       valueType: 'object',
@@ -125,6 +77,15 @@ export const INITIAL_STATE = {
     },
     {
       id: 'situationCategory',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 150
+    },
+    {
+      id: 'euDirective',
       valueType: 'object',
       makeLink: true,
       externalLink: true,

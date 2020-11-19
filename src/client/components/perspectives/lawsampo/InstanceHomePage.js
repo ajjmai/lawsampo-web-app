@@ -6,14 +6,14 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
-// import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
-import StatutesPageTable from './StatutesPageTable'
-import CaselawPageTable from './CaselawPageTable'
-import Network from '../../facet_results/Network'
+import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
+// import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
-import { coseLayout, cytoscapeStyle, preprocess } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
+// import { coseLayout, cytoscapeStyle, preprocess } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
 // import { createMultipleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 import { Route, Redirect } from 'react-router-dom'
+import { has } from 'lodash'
+// import { arrayToObject } from '../../../helpers/helpers'
 
 const styles = theme => ({
   root: {
@@ -77,6 +77,20 @@ class InstanceHomePage extends React.Component {
   //   })
   // }
 
+  // mapDocuments = documents => {
+  //   return documents.map(doc => {
+  //     doc.prefLabel = doc.ecli.replace('ECLI:FI:', '')
+  //     let caselawUrl = '/caselaw/page/' + doc.sf_link.replace('https://data.finlex.fi/ecli/', '')
+  //     caselawUrl = caselawUrl.replace('.html', '')
+  //     doc.dataProviderUrl = caselawUrl // Link to semantic finlex: doc.sf_link
+  //     return doc
+  //   })
+  // }
+
+  // if (has(data, 'referencedTerm') && Array.isArray(data.referencedTerm)) {
+  //   referencedTerm = arrayToObject({ array: data.referencedTerm, keyField: 'id' })
+  // }
+
   fetchData = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
@@ -96,31 +110,21 @@ class InstanceHomePage extends React.Component {
     })
   }
 
-  renderTable = () => {
-    let tableEl = null
-    switch (this.props.resultClass) {
-      case 'legislation':
-        tableEl =
-          <StatutesPageTable
-            data={this.props.tableData}
-          />
-        break
-      case 'caselaw':
-        tableEl =
-          <CaselawPageTable
-            data={this.props.tableData}
-            externalData={this.props.tableExternalData}
-          />
-        break
-      default:
-        tableEl = <div />
-    }
-    return tableEl
+  getVisibleRows = rows => {
+    const visibleRows = []
+    const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
+    rows.map(row => {
+      if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
+       !has(row, 'onlyForClass')) {
+        visibleRows.push(row)
+      }
+    })
+    return visibleRows
   }
 
   render = () => {
     const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
-    const hasData = tableData !== null && Object.values(tableData).length >= 1
+    const hasTableData = tableData !== null && Object.values(tableData).length >= 1
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -133,37 +137,26 @@ class InstanceHomePage extends React.Component {
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
-          {!hasData &&
+          {!hasTableData &&
             <>
               <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
               </Typography>
             </>}
-          {hasData &&
+          {/* make sure that tableData exists before rendering any components */}
+          {hasTableData &&
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
                 render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
               />
               <Route
-                path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`]}
-                render={() => this.renderTable()}
-              />
-              <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/network`}
+                path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
-                  <Network
-                    pageType='instancePage'
-                    results={this.props.results}
-                    resultUpdateID={this.props.resultUpdateID}
-                    fetchResults={this.props.fetchResults}
-                    resultClass='caselawInstancePageNetwork'
-                    uri={tableData.id}
-                    limit={200}
-                    optimize={1.2}
-                    style={cytoscapeStyle}
-                    layout={coseLayout}
-                    preprocess={preprocess}
+                  <InstanceHomePageTable
+                    resultClass={resultClass}
+                    data={tableData}
+                    properties={this.getVisibleRows(this.props.properties)}
                   />}
               />
               <Route

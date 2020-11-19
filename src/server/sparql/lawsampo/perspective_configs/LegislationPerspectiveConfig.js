@@ -1,5 +1,5 @@
 import {
-  statuteProperties,
+  // statuteProperties,
   sectionProperties
 } from '../sparql_queries/SparqlQueriesLegislation'
 import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
@@ -16,7 +16,7 @@ export const legislationPerspectiveConfig = {
     properties: sectionProperties
   },
   instance: {
-    properties: statuteProperties,
+    properties: sectionProperties,
     relatedInstances: ''
   },
   facets: {

@@ -31,6 +31,16 @@ export const INITIAL_STATE = {
       minWidth: 120
     },
     {
+      id: 'uri',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 230
+    },
+    {
       id: 'abstract',
       label: 'Abstract',
       desc: 'Abstract',

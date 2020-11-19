@@ -74,6 +74,12 @@ export const sectionProperties = `
     ?id lss:subject_category ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
   }
+  UNION
+  {
+    ?id eli:transposes ?euDirective__id .
+    ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
+    BIND(?euDirective__id as ?euDirective__dataProviderUrl)
+  }
 `
 
 export const statutesByYearQuery = `
