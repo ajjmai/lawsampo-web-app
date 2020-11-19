@@ -40,16 +40,18 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:contributor',
       type: 'list'
     },
-    // keyword: {
-    //   id: 'keyword',
-    //   facetValueFilter: '',
-    //   predicate: 'dcterms:description',
-    //   type: 'list'
-    // },
-    // decisionDate: {
-    //   id: 'decisionDate',
-    //   labelPath: 'dcterms:issued'
-    // },
+    referencedLegislation: {
+      id: 'referencedLegislation',
+      facetValueFilter: '',
+      labelPath: 'lss:referenceToLegislation/skos:prefLabel',
+      predicate: 'lss:referenceToLegislation',
+      type: 'hierarchical',
+      parentPredicate: 'eli:type_document',
+      parentProperty: 'eli:type_document',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = 'fi')
+      `
+    },
     prefLabel: {
       id: 'prefLabel',
       labelPath: 'dcterms:title'

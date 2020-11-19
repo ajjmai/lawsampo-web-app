@@ -55,8 +55,8 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     }
-    // keyword: {
-    //   id: 'keyword',
+    // referencedLegislation: {
+    //   id: 'referencedLegislation',
     //   // predicate: defined in backend
     //   distinctValueCount: 0,
     //   values: [],
@@ -72,23 +72,6 @@ export const INITIAL_STATE = {
     //   filterType: 'uriFilter',
     //   uriFilter: null
     // }
-    // decisionDate: {
-    //   id: 'decisionDate',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'three',
-    //   type: 'integer',
-    //   filterType: 'integerFilter',
-    //   integerFilter: null,
-    // },
   }
 }
 
