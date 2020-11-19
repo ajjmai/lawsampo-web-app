@@ -609,6 +609,7 @@ const mapStateToProps = state => {
     legislation: state.legislation,
     legislationFacets: state.legislationFacets,
     legislationFacetsConstrainSelf: state.legislationFacetsConstrainSelf,
+    statutes: state.statutes,
     caselaw: state.caselaw,
     caselawFacetsConstrainSelf: state.caselawFacetsConstrainSelf,
     caselawFacets: state.caselawFacets,

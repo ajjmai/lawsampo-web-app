@@ -4,6 +4,7 @@
 export const statuteProperties = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
+    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/statute_", "") as ?identifier)
 
     # create link for React Router:
     BIND(CONCAT("/legislation/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
@@ -11,36 +12,56 @@ export const statuteProperties = `
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id lss:timespan/skos:prefLabel ?enforcementDate .
+  }
+  UNION 
+  {
+    ?id lss:section ?section__id .
+    # ?section__id skos:prefLabel ?section__prefLabel .
+    BIND(REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "") as ?section__prefLabel)
+    BIND(CONCAT("/legislation/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
+  }
+  UNION 
+  {
+    ?id lss:cites ?legislationCited__id .
+    # ?legislationCited__id skos:prefLabel ?legislationCited__prefLabel .
+    BIND(?legislationCited__id as ?legislationCited__prefLabel)
+    BIND(?legislationCited__id as ?legislationCited__dataProviderUrl)
 
   }
   UNION
   {
-    ?id lss:annotatedHtml ?annotatedHtml_ .
-    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?statuteTextHTMLAnnotated)
+     ?id eli:transposes ?euDirective__id .
+     ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
+     BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
-  UNION 
-  {
-    ?id lss:referencedTerm ?referencedTerm__id .
-    ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
-    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
-    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }
-    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
-    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id lss:timespan/skos:prefLabel ?statuteYear .
-  }
-  UNION
-  {
-    ?id eli:type_document/skos:prefLabel ?documentType .
-    FILTER(lang(?documentType) = 'fi')
-  }
-  UNION
-  {
-    ?id eli:transposes ?euDirective__id .
-    ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
-  }
+  # UNION
+  # {
+  #   ?id lss:annotatedHtml ?annotatedHtml_ .
+  #   BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?statuteTextHTMLAnnotated)
+  # }
+  # UNION 
+  # {
+  #   ?id lss:referencedTerm ?referencedTerm__id .
+  #   ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
+  #   OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
+  #   OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }
+  #   OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
+  #   BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
+  # }
+  # UNION
+  # {
+  #   ?id lss:timespan/skos:prefLabel ?statuteYear .
+  # }
+  # UNION
+  # {
+  #   ?id eli:type_document/skos:prefLabel ?documentType .
+  #   FILTER(lang(?documentType) = 'fi')
+  # }
+  # 
 `
 
 export const sectionProperties = `
@@ -49,8 +70,8 @@ export const sectionProperties = `
     ?id lss:statute ?statute .
     BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?identifier)
 
-    # create link for React Router:
-    BIND(CONCAT("/legislation/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    # create link to statute instance page:
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)

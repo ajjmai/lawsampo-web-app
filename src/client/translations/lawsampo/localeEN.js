@@ -269,6 +269,65 @@ export default {
         }
       }
     },
+    statutes: {
+      label: 'Legislation',
+      instancePage: {
+        label: 'Legislation',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            This landing page provides a...
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Label',
+          description: `
+            Preferred label
+          `
+        },
+        identifier: {
+          label: 'Identifier',
+          description: `
+            Identifier
+          `
+        },
+        enforcementDate: {
+          label: 'Enforcement date',
+          description: `
+            Enforcement date
+          `
+        },
+        section: {
+          label: 'Section',
+          description: `
+            Section
+          `
+        },
+        legislationCited: {
+          label: 'Legislation cited',
+          description: `
+            Legislation cited
+          `
+        },
+        euDirective: {
+          label: 'EU directive',
+          description: `
+            EU directive
+          `
+        },
+        text: {
+          label: 'Text',
+          description: `
+            Text
+          `
+        }
+      }
+    },
     caselaw: {
       label: 'Case Law',
       facetResultsType: 'court decisions',
