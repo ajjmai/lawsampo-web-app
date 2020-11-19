@@ -21,8 +21,6 @@ export const INITIAL_STATE = {
   properties: [
     {
       id: 'prefLabel',
-      label: 'Label',
-      desc: 'Label',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
@@ -42,8 +40,6 @@ export const INITIAL_STATE = {
     },
     {
       id: 'abstract',
-      label: 'Abstract',
-      desc: 'Abstract',
       valueType: 'string',
       collapsedMaxWords: 6,
       makeLink: false,
@@ -54,8 +50,6 @@ export const INITIAL_STATE = {
     },
     {
       id: 'court',
-      label: 'Court',
-      desc: 'Name of the court',
       valueType: 'object',
       makeLink: false,
       externalLink: false,
@@ -65,8 +59,6 @@ export const INITIAL_STATE = {
     },
     {
       id: 'judge',
-      label: 'Judge',
-      desc: 'Name(s) of the judge(s)',
       valueType: 'object',
       makeLink: false,
       externalLink: false,
@@ -76,8 +68,6 @@ export const INITIAL_STATE = {
     },
     {
       id: 'keyword',
-      label: 'Keyword',
-      desc: 'Keyword',
       valueType: 'object',
       makeLink: false,
       externalLink: false,
@@ -87,27 +77,35 @@ export const INITIAL_STATE = {
     },
     {
       id: 'decisionDate',
-      label: 'Judgement date',
-      desc: 'Judgement date',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: false,
       numberedList: false,
       minWidth: 160
+    },
+    {
+      id: 'contentHTML',
+      valueType: 'string',
+      onlyOnInstancePage: true,
+      renderAsHTML: true,
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 160
+    },
+    {
+      id: 'contentHTMLAnnotated',
+      valueType: 'string',
+      onlyOnInstancePage: true,
+      renderAsHTML: true,
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 160
     }
-    // {
-    //   id: 'expression',
-    //   label: 'Read',
-    //   desc: 'Open court decision for reading',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   linkAsButton: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // }
   ]
 }
 

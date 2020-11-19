@@ -14,18 +14,15 @@ export const judgementProperties = `
   }
   UNION
   {
-    ?id lss:isRealizedBy ?expression__id . # expression = language version
-    ?expression__id dcterms:title ?expression__prefLabel .
-    ?expression__id dcterms:language "fi" .
-    ?expression__id lss:isEmbodiedBy ?format .
-    ?format dcterms:format <http://www.iana.org/assignments/media-types/text/html> ;
-            lss:html ?html_ .
-    BIND(STR(?html_) as ?judgementTextHTML)
+    ?id lss:isRealizedBy ?expression . # expression = language version
+    ?expression dcterms:language "fi" .
+    OPTIONAL { ?expression dcterms:abstract ?abstract }
+    ?expression lss:html ?html_ .
+    BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
     OPTIONAL { 
-      ?format lss:annotatedHtml ?annotatedHtml_ .
-      BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?judgementTextHTMLAnnotated)
+       ?expression lss:annotatedHtml ?annotatedHtml_ .
+       BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
     }
-    BIND(?expression__id as ?expression__dataProviderUrl)
   }
   UNION 
   {
@@ -51,10 +48,6 @@ export const judgementProperties = `
   UNION
   {
     ?id dcterms:issued ?decisionDate .
-  }
-  UNION
-  {
-    ?id lss:isRealizedBy/dcterms:abstract ?abstract .
   }
   UNION
   {

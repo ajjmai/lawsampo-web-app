@@ -408,10 +408,16 @@ export default {
             Judgement date
           `
         },
-        expression: {
-          label: 'Read',
+        contentHTML: {
+          label: 'Content (HTML)',
           description: `
-            Open court decision for reading
+            Content (HTML)
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Annotated content (HTML)',
+          description: `
+            Annotated content (HTML)
           `
         }
       }
