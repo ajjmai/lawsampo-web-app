@@ -40,6 +40,14 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:contributor',
       type: 'list'
     },
+    typeOftheMatter: {
+      id: 'typeOftheMatter',
+      facetValueFilter: `
+      `,
+      labelPath: 'dcterms:subject/skos:prefLabel',
+      predicate: 'dcterms:subject',
+      type: 'list'
+    },
     referencedLegislation: {
       id: 'referencedLegislation',
       facetValueFilter: '',

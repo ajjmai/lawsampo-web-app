@@ -7,7 +7,6 @@ export const INITIAL_STATE = {
   facets: {
     court: {
       id: 'court',
-      label: 'Court',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -24,7 +23,6 @@ export const INITIAL_STATE = {
     },
     judge: {
       id: 'judge',
-      label: 'Judge',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -39,9 +37,25 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    keywords: {
-      id: 'keywords',
-      label: 'Keywords',
+    typeOftheMatter: {
+      id: 'typeOftheMatter',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    keyword: {
+      id: 'keyword',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],

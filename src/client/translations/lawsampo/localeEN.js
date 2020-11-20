@@ -396,6 +396,12 @@ export default {
             Name(s) of the judge(s)
           `
         },
+        typeOftheMatter: {
+          label: 'Type',
+          description: `
+            Type of the matter
+          `
+        },
         keyword: {
           label: 'Keyword',
           description: `
