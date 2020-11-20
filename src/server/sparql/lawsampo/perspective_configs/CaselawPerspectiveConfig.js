@@ -21,7 +21,7 @@ export const caselawPerspectiveConfig = {
   facets: {
     jenaText: {
       id: 'jenaText',
-      textQueryPredicate: 'lss:isRealizedBy/lss:isEmbodiedBy',
+      textQueryPredicate: 'lss:isRealizedBy',
       textQueryProperty: '',
       type: 'text'
     },
