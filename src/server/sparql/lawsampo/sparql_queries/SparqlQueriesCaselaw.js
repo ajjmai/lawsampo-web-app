@@ -52,9 +52,8 @@ export const judgementProperties = `
   UNION
   {
     ?id dcterms:creator ?court__id .
-    BIND(?court__id as ?court__prefLabel)
-    # ?court__id rdfs:label|skos:prefLabel ?court__prefLabel .
-    # FILTER(LANG(?court__prefLabel) = 'fi')
+    ?court__id skos:prefLabel ?court__prefLabel .
+    FILTER(LANG(?court__prefLabel) = 'fi')
   }
   UNION
   {

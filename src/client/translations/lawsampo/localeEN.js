@@ -535,9 +535,9 @@ export default {
           `
         },
         keyword: {
-          label: 'Keyword',
+          label: 'Original Finlex keyword',
           description: `
-            Keyword
+            Original Finlex keyword
           `
         },
         decisionDate: {
