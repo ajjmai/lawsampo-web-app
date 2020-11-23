@@ -20,9 +20,8 @@ export const statuteProperties = `
   UNION 
   {
     ?id lss:section ?section__id .
-    # ?section__id skos:prefLabel ?section__prefLabel .
-    BIND(REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "") as ?section__prefLabel)
-    BIND(CONCAT("/legislation/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
+    ?section__id skos:prefLabel ?section__prefLabel .
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
   }
   UNION 
   {
@@ -72,12 +71,9 @@ export const sectionProperties = `
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", "")) AS ?statute__dataProviderUrl)
     
     
-    # ?id skos:prefLabel ?prefLabel__prefLabel .
-    BIND(?id as ?prefLabel__id)
-    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?prefLabel__prefLabel)
-    # BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?identifier)
-
-    # create link to instance page:
+    ?id skos:prefLabel ?prefLabel__id .
+    BIND(?prefLabel__id as ?prefLabel__prefLabel)
+    # create link to section instance page:
     BIND(CONCAT("/sections/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
     # create link to SAHA

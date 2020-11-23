@@ -78,6 +78,10 @@ export const sectionsPerspectiveConfig = {
     text: {
       id: 'text',
       labelPath: 'lss:text'
+    },
+    prefLabel: {
+      id: 'prefLabel',
+      labelPath: 'skos:prefLabel'
     }
   }
 }
