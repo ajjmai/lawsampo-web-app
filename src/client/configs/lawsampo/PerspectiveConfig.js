@@ -12,7 +12,7 @@ import caselawImage from '../../img/lawsampo/caselaw.png'
 
 export const perspectiveConfig = [
   {
-    id: 'legislation',
+    id: 'statutes',
     frontPageImage: legislationImage,
     frontPageElement: 'card',
     perspectiveDescHeight: 160,
@@ -43,6 +43,70 @@ export const perspectiveConfig = [
       }
     ]
   },
+  {
+    id: 'sections',
+    frontPageImage: legislationImage,
+    frontPageElement: 'card',
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['prefLabel']),
+    tabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
+  },
+  // {
+  //   id: 'legislation',
+  //   frontPageImage: legislationImage,
+  //   frontPageElement: 'card',
+  //   perspectiveDescHeight: 160,
+  //   defaultActiveFacets: new Set(['prefLabel']),
+  //   tabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ],
+  //   instancePageTabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ]
+  // },
   {
     id: 'caselaw',
     frontPageImage: caselawImage,
@@ -84,5 +148,41 @@ export const perspectiveConfig = [
     frontPageImage: sdfImage,
     frontPageElement: 'card',
     externalUrl: 'https://data.finlex.fi/document-finder'
+  },
+  {
+    id: 'situations',
+    frontPageImage: caselawImage,
+    frontPageElement: 'card',
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['prefLabel']),
+    tabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'by_year',
+        value: 1,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'export',
+        value: 2,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
   }
 ]

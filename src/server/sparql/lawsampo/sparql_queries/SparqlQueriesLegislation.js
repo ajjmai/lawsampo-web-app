@@ -7,7 +7,7 @@ export const statuteProperties = `
     BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/statute_", "") as ?identifier)
 
     # create link for React Router:
-    BIND(CONCAT("/legislation/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)
@@ -66,12 +66,14 @@ export const statuteProperties = `
 
 export const sectionProperties = `
   {
-    ?id skos:prefLabel ?prefLabel__prefLabel .
-    ?id lss:statute ?statute .
-    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?identifier)
+    ?id eli:type_document/skos:prefLabel ?type .  
+    # ?id skos:prefLabel ?prefLabel__prefLabel .
+    BIND(?id as ?prefLabel__id)
+    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?prefLabel__prefLabel)
+    # BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?identifier)
 
-    # create link to statute instance page:
-    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    # create link to instance page:
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)

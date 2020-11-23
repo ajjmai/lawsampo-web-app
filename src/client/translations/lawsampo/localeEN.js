@@ -163,9 +163,206 @@ export default {
     `
   },
   perspectives: {
+    statutes: {
+      label: 'Statutes',
+      facetResultsType: 'statutes',
+      shortDescription: 'Faceted search for statutes',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Use this perspective to...
+        </p>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          And...
+        </p>
+      `,
+      instancePage: {
+        label: 'Statute',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            This landing page provides a...
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Label',
+          description: `
+            Preferred label
+          `
+        },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
+        jenaText: {
+          label: 'Free text search',
+          description: `
+            Free text search
+          `
+        },
+        text: {
+          label: 'Text',
+          description: `
+            Text
+          `
+        },
+        identifier: {
+          label: 'Identifier',
+          description: `
+            Identifier
+          `
+        },
+        section: {
+          label: 'Section',
+          description: `
+            Section
+          `
+        },
+        subjectCategory: {
+          label: 'Subject',
+          description: `
+            Subject
+          `
+        },
+        situationCategory: {
+          label: 'Life situation',
+          description: `
+            Life situation
+          `
+        },
+        documentType: {
+          label: 'Document type',
+          description: `
+            Document type
+          `
+        },
+        statuteType: {
+          label: 'Statute type',
+          description: `
+            Statute type
+          `
+        },
+        enforcementDate: {
+          label: 'Enforcement date',
+          description: `
+            Enforcement date
+          `
+        },
+        euDirective: {
+          label: 'EU directive',
+          description: `
+            EU directive
+          `
+        }
+      }
+    },
+    sections: {
+      label: 'Sections',
+      facetResultsType: 'sections',
+      shortDescription: 'Faceted search for sections',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Use this perspective to...
+        </p>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          And...
+        </p>
+      `,
+      instancePage: {
+        label: 'Section',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            This landing page provides a...
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Label',
+          description: `
+            Preferred label
+          `
+        },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
+        jenaText: {
+          label: 'Free text search',
+          description: `
+            Free text search
+          `
+        },
+        text: {
+          label: 'Text',
+          description: `
+            Text
+          `
+        },
+        identifier: {
+          label: 'Identifier',
+          description: `
+            Identifier
+          `
+        },
+        section: {
+          label: 'Section',
+          description: `
+            Section
+          `
+        },
+        subjectCategory: {
+          label: 'Subject',
+          description: `
+            Subject
+          `
+        },
+        situationCategory: {
+          label: 'Life situation',
+          description: `
+            Life situation
+          `
+        },
+        documentType: {
+          label: 'Document type',
+          description: `
+            Document type
+          `
+        },
+        statuteType: {
+          label: 'Statute type',
+          description: `
+            Statute type
+          `
+        },
+        enforcementDate: {
+          label: 'Enforcement date',
+          description: `
+            Enforcement date
+          `
+        },
+        euDirective: {
+          label: 'EU directive',
+          description: `
+            EU directive
+          `
+        }
+      }
+    },
     legislation: {
       label: 'Legislation',
-      // facetResultsType: 'statutes',
       facetResultsType: 'sections',
       shortDescription: 'Faceted search for consolidated legislation',
       longDescription: `
@@ -259,71 +456,6 @@ export default {
           label: 'EU directive',
           description: `
             EU directive
-          `
-        },
-        version: {
-          label: 'Read',
-          description: `
-            Open statute for reading
-          `
-        }
-      }
-    },
-    statutes: {
-      label: 'Legislation',
-      instancePage: {
-        label: 'Legislation',
-        description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a...
-          </p>
-        `
-      },
-      properties: {
-        uri: {
-          label: 'URI',
-          description: 'Uniform Resource Identifier'
-        },
-        prefLabel: {
-          label: 'Label',
-          description: `
-            Preferred label
-          `
-        },
-        identifier: {
-          label: 'Identifier',
-          description: `
-            Identifier
-          `
-        },
-        enforcementDate: {
-          label: 'Enforcement date',
-          description: `
-            Enforcement date
-          `
-        },
-        section: {
-          label: 'Section',
-          description: `
-            Section
-          `
-        },
-        legislationCited: {
-          label: 'Legislation cited',
-          description: `
-            Legislation cited
-          `
-        },
-        euDirective: {
-          label: 'EU directive',
-          description: `
-            EU directive
-          `
-        },
-        text: {
-          label: 'Text',
-          description: `
-            Text
           `
         }
       }
@@ -431,6 +563,10 @@ export default {
     caselawfinder: {
       label: 'Case Law Finder',
       shortDescription: 'Document based search for court decisions'
+    },
+    situations: {
+      label: 'Life Situations',
+      shortDescription: 'Legislation and case law related to life situations'
     }
   },
   aboutThePortal: `

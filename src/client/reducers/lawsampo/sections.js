@@ -25,7 +25,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 230
     },
     {
       id: 'uri',
@@ -34,15 +35,27 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 230
     },
+    // {
+    //   id: 'identifier',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 160
+    // },
     {
-      id: 'identifier',
+      id: 'text',
       valueType: 'string',
+      collapsedMaxWords: 6,
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 250
     },
     {
       id: 'enforcementDate',
@@ -50,61 +63,47 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 170
     },
     {
-      id: 'section',
+      id: 'subjectCategory',
       valueType: 'object',
       makeLink: true,
-      externalLink: false,
+      externalLink: true,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 150
     },
-    // {
-    //   id: 'legislationCited',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false
-    // },
+    {
+      id: 'situationCategory',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 150
+    },
     {
       id: 'euDirective',
       valueType: 'object',
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 150
     }
-    // {
-    //   id: 'subjectCategory',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // },
-    // {
-    //   id: 'situationCategory',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // },
   ]
 }
 
 const resultClasses = new Set([
-  'statutes'
+  'sections'
 ])
 
-const statutes = (state = INITIAL_STATE, action) => {
+const sections = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     return handleDataFetchingAction(state, action)
   } else return state
 }
 
-export default statutes
+export default sections

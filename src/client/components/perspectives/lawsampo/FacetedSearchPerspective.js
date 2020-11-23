@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Legislation from './Legislation'
+import Sections from './Sections'
+import Statutes from './Statutes'
+// import Legislation from './Legislation'
 import Caselaw from './Caselaw'
 
 /**
@@ -10,9 +12,9 @@ const FacetedSearchPerspective = props => {
   const renderPerspective = () => {
     let perspectiveElement = null
     switch (props.perspective.id) {
-      case 'legislation':
+      case 'statutes':
         perspectiveElement =
-          <Legislation
+          <Statutes
             facetResults={props.facetResults}
             placesResults={props.placesResults}
             leafletMapLayers={props.leafletMap}
@@ -33,6 +35,52 @@ const FacetedSearchPerspective = props => {
             rootUrl={props.rootUrl}
           />
         break
+      case 'sections':
+        perspectiveElement =
+          <Sections
+            facetResults={props.facetResults}
+            placesResults={props.placesResults}
+            leafletMapLayers={props.leafletMap}
+            facetData={props.facetData}
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            fetchResults={props.fetchResults}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+            fetchByURI={props.fetchByURI}
+            updatePage={props.updatePage}
+            updateRowsPerPage={props.updateRowsPerPage}
+            updateFacetOption={props.updateFacetOption}
+            sortResults={props.sortResults}
+            routeProps={props.routeProps}
+            perspective={props.perspective}
+            animationValue={props.animationValue}
+            animateMap={props.animateMap}
+            screenSize={props.screenSize}
+            rootUrl={props.rootUrl}
+          />
+        break
+      // case 'legislation':
+      //   perspectiveElement =
+      //     <Legislation
+      //       facetResults={props.facetResults}
+      //       placesResults={props.placesResults}
+      //       leafletMapLayers={props.leafletMap}
+      //       facetData={props.facetData}
+      //       fetchPaginatedResults={props.fetchPaginatedResults}
+      //       fetchResults={props.fetchResults}
+      //       fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+      //       fetchByURI={props.fetchByURI}
+      //       updatePage={props.updatePage}
+      //       updateRowsPerPage={props.updateRowsPerPage}
+      //       updateFacetOption={props.updateFacetOption}
+      //       sortResults={props.sortResults}
+      //       routeProps={props.routeProps}
+      //       perspective={props.perspective}
+      //       animationValue={props.animationValue}
+      //       animateMap={props.animateMap}
+      //       screenSize={props.screenSize}
+      //       rootUrl={props.rootUrl}
+      //     />
+      //   break
       case 'caselaw':
         perspectiveElement =
           <Caselaw

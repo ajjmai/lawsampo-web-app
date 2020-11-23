@@ -606,10 +606,15 @@ const SemanticPortal = props => {
 const mapStateToProps = state => {
   // const { clientFSResults, clientFSFacetValues } = filterResults(state.clientSideFacetedSearch)
   return {
-    legislation: state.legislation,
-    legislationFacets: state.legislationFacets,
-    legislationFacetsConstrainSelf: state.legislationFacetsConstrainSelf,
+    sections: state.sections,
+    sectionsFacets: state.sectionsFacets,
+    sectionsFacetsConstrainSelf: state.sectionsFacetsConstrainSelf,
     statutes: state.statutes,
+    statutesFacets: state.statutesFacets,
+    statutesFacetsConstrainSelf: state.statutesFacetsConstrainSelf,
+    // legislation: state.legislation,
+    // legislationFacets: state.legislationFacets,
+    // legislationFacetsConstrainSelf: state.legislationFacetsConstrainSelf,
     caselaw: state.caselaw,
     caselawFacetsConstrainSelf: state.caselawFacetsConstrainSelf,
     caselawFacets: state.caselawFacets,
@@ -666,10 +671,6 @@ SemanticPortal.propTypes = {
    * Errors shown with react-redux-toastr.
    */
   error: PropTypes.object.isRequired,
-  legislation: PropTypes.object.isRequired,
-  legislationFacets: PropTypes.object.isRequired,
-  caselaw: PropTypes.object.isRequired,
-  caselawFacets: PropTypes.object.isRequired,
   leafletMap: PropTypes.object.isRequired,
   /**
    * State of the animation, used by TemporalMap.
