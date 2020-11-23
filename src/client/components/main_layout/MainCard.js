@@ -94,7 +94,7 @@ const MainCard = props => {
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant='h5' component='h2'>
-                {intl.get(`perspectives.${perspective.id}.label`)}
+                {intl.get(`perspectives.${perspective.id}.mainPageLabel`)}
               </Typography>
               <Typography component='p'>
                 {intl.get(`perspectives.${perspective.id}.shortDescription`)}

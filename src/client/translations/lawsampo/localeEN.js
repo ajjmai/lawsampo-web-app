@@ -164,7 +164,8 @@ export default {
   },
   perspectives: {
     statutes: {
-      label: 'Statutes',
+      label: 'statutes',
+      mainPageLabel: 'Legislation: statutes',
       facetResultsType: 'statutes',
       shortDescription: 'Faceted search for statutes',
       longDescription: `
@@ -263,7 +264,8 @@ export default {
       }
     },
     sections: {
-      label: 'Sections',
+      label: 'sections',
+      mainPageLabel: 'Legislation: sections',
       facetResultsType: 'sections',
       shortDescription: 'Faceted search for sections',
       longDescription: `
@@ -462,6 +464,7 @@ export default {
     },
     caselaw: {
       label: 'Case Law',
+      mainPageLabel: 'Case Law',
       facetResultsType: 'court decisions',
       shortDescription: 'Faceted search for court decisions',
       longDescription: `
@@ -562,10 +565,12 @@ export default {
     },
     caselawfinder: {
       label: 'Case Law Finder',
+      mainPageLabel: 'Case Law Finder',
       shortDescription: 'Document based search for court decisions'
     },
     situations: {
       label: '?Life Situations?',
+      mainPageLabel: '?Life Situations?',
       shortDescription: 'Legislation and case law related to life situations'
     }
   },
