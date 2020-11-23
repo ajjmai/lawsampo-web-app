@@ -189,7 +189,7 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Statute label',
+          label: 'Statute',
           description: `
             Preferred label
           `
@@ -348,7 +348,7 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Date',
+          label: 'Enforcement date',
           description: `
             Enforcement date
           `

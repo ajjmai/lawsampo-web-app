@@ -50,7 +50,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 170
     },
     {
       id: 'section',
@@ -74,7 +75,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 150
     }
     // {
     //   id: 'subjectCategory',

@@ -66,7 +66,12 @@ export const statuteProperties = `
 
 export const sectionProperties = `
   {
-    ?id eli:type_document/skos:prefLabel ?type .  
+    ?id lss:statute ?statute__id .
+    ?statute__id skos:prefLabel ?statute__prefLabel .  
+    # create link to statute instance page:
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", "")) AS ?statute__dataProviderUrl)
+    
+    
     # ?id skos:prefLabel ?prefLabel__prefLabel .
     BIND(?id as ?prefLabel__id)
     BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/section_", "") as ?prefLabel__prefLabel)
@@ -81,7 +86,7 @@ export const sectionProperties = `
   }
   UNION
   {
-    ?id lss:timespan/skos:prefLabel ?enforcementDate .
+    ?id lss:statute_date ?enforcementDate .
   }
   UNION
   {
