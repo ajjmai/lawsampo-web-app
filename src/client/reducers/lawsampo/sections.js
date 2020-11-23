@@ -20,6 +20,15 @@ export const INITIAL_STATE = {
   instanceSparqlQuery: null,
   properties: [
     {
+      id: 'statute',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 230
+    },
+    {
       id: 'prefLabel',
       valueType: 'object',
       makeLink: true,
@@ -83,16 +92,16 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 150
-    },
-    {
-      id: 'euDirective',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 150
     }
+    // {
+    //   id: 'euDirective',
+    //   valueType: 'object',
+    //   makeLink: true,
+    //   externalLink: true,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 150
+    // }
   ]
 }
 

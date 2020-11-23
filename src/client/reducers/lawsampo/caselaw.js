@@ -66,15 +66,15 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 150
     },
-    {
-      id: 'keyword',
-      valueType: 'object',
-      makeLink: false,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 150
-    },
+    // {
+    //   id: 'keyword',
+    //   valueType: 'object',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 150
+    // },
     {
       id: 'decisionDate',
       valueType: 'string',

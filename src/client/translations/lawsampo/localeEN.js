@@ -288,13 +288,13 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Section label',
+          label: 'Section',
           description: `
             Preferred label
           `
         },
         statute: {
-          label: 'Laws and acts',
+          label: 'Statute',
           description: `
             Laws and acts
           `
@@ -348,7 +348,7 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Enforcement date',
+          label: 'Date',
           description: `
             Enforcement date
           `
@@ -447,7 +447,7 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Enforcement date',
+          label: 'Enforcemnt date',
           description: `
             Enforcement date
           `
@@ -541,7 +541,7 @@ export default {
           `
         },
         decisionDate: {
-          label: 'Judgement date',
+          label: 'Decision date',
           description: `
             Judgement date
           `
@@ -565,7 +565,7 @@ export default {
       shortDescription: 'Document based search for court decisions'
     },
     situations: {
-      label: 'Life Situations',
+      label: '?Life Situations?',
       shortDescription: 'Legislation and case law related to life situations'
     }
   },
