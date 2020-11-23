@@ -189,7 +189,7 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Label',
+          label: 'Statute label',
           description: `
             Preferred label
           `
@@ -288,7 +288,7 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Label',
+          label: 'Section label',
           description: `
             Preferred label
           `
