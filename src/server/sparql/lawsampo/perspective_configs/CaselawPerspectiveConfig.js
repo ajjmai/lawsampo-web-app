@@ -30,6 +30,9 @@ export const caselawPerspectiveConfig = {
       facetValueFilter: '',
       labelPath: 'dcterms:creator/skos:prefLabel',
       predicate: 'dcterms:creator',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = 'fi')
+      `,
       type: 'list'
     },
     judge: {
