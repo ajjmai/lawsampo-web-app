@@ -46,11 +46,14 @@ class InstanceHomePage extends React.Component {
     }
   }
 
-  componentDidMount = () => this.fetchData()
+  componentDidMount = () => this.fetchTableData()
 
   componentDidUpdate = prevProps => {
-    if (prevProps.routeProps.location !== this.props.routeProps.location) {
-      this.fetchData()
+    // handle the case when the TABLE tab was not originally active
+    const prevPathname = prevProps.routeProps.location.pathname
+    const currentPathname = this.props.routeProps.location.pathname
+    if (prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+      this.fetchTableData()
     }
     if (this.props.resultClass === 'caselaw') {
       const hasData = this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
@@ -87,7 +90,7 @@ class InstanceHomePage extends React.Component {
   //   })
   // }
 
-  fetchData = () => {
+  fetchTableData = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
     this.props.tabs.map(tab => {
