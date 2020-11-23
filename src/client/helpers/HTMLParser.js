@@ -3,6 +3,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { Link } from 'react-router-dom'
 import Tooltip from '@material-ui/core/Tooltip'
 import { arrayToObject } from './helpers'
+import { Typography } from '@material-ui/core'
 
 export default class HTMLParser {
   constructor (props) {
@@ -61,7 +62,8 @@ export default class HTMLParser {
         })
         tooltipJSX = (
           <div className={props.classes.tooltipContent}>
-            <ol className={props.classes.tooltipList}>{listItemsJSX}</ol>
+            <Typography>Concepts in random order:</Typography>
+            <ul className={props.classes.tooltipList}>{listItemsJSX}</ul>
           </div>
         )
       } else {
