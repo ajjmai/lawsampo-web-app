@@ -87,10 +87,6 @@ class InstanceHomePage extends React.Component {
   //   })
   // }
 
-  // if (has(data, 'referencedTerm') && Array.isArray(data.referencedTerm)) {
-  //   referencedTerm = arrayToObject({ array: data.referencedTerm, keyField: 'id' })
-  // }
-
   fetchData = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()

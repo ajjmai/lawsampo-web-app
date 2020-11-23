@@ -100,6 +100,7 @@ export const INITIAL_STATE = {
       valueType: 'string',
       onlyOnInstancePage: true,
       renderAsHTML: true,
+      HTMLParserTask: 'addAnnotationTooltips',
       makeLink: false,
       externalLink: false,
       sortValues: false,
