@@ -4,13 +4,13 @@ export default {
     short: 'lawsampo',
     long: 'LawSampo',
     subheading: `
-      Finnish legislation and case law as Linked Open Data
+      Finnish Legislation and Case Law on the Semantic Web
     `
   },
   appDescription: `
    
   `,
-  selectPerspective: 'Select a perspective to search and browse the data:',
+  selectPerspective: 'Select an application perspective to search and browse the data:',
   mainPageImageLicence: 'Image used under license from Shutterstock.com',
   topBar: {
     feedback: 'feedback',
@@ -566,7 +566,7 @@ export default {
     caselawfinder: {
       label: 'Case Law Finder',
       mainPageLabel: 'Case Law Finder',
-      shortDescription: 'Document based search for court decisions'
+      shortDescription: 'Document-based search for court decisions'
     },
     situations: {
       label: '?Life Situations?',
