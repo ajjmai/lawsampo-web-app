@@ -63,9 +63,9 @@ import {
 const apiUrl = process.env.API_URL
 
 export const availableLocales = {
-  en: localeEN,
-  fi: localeFI,
-  sv: localeSV
+  en: localeEN
+  // fi: localeFI,
+  // sv: localeSV
 }
 
 const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
