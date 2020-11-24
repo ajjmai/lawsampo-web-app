@@ -164,8 +164,8 @@ export default {
   },
   perspectives: {
     statutes: {
-      label: 'statutes',
-      mainPageLabel: 'Legislation: statutes',
+      label: 'Statutes',
+      mainPageLabel: 'Legislation: Statutes',
       facetResultsType: 'statutes',
       shortDescription: 'Faceted search for statutes',
       longDescription: `
@@ -264,8 +264,8 @@ export default {
       }
     },
     sections: {
-      label: 'sections',
-      mainPageLabel: 'Legislation: sections',
+      label: 'Sections',
+      mainPageLabel: 'Legislation: Sections',
       facetResultsType: 'sections',
       shortDescription: 'Faceted search for sections',
       longDescription: `
