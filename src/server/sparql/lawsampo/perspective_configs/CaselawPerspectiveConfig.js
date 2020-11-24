@@ -51,6 +51,16 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:subject',
       type: 'list'
     },
+    decisionDate: {
+      id: 'decisionDate',
+      facetValueFilter: `
+      `,
+      predicate: 'lss:timespan',
+      labelPath: 'lss:timespan/skos:prefLabel',
+      type: 'hierarchical',
+      parentPredicate: 'lss:timespan/skos:broader+',
+      parentProperty: 'skos:broader'
+    },
     referencedLegislation: {
       id: 'referencedLegislation',
       facetValueFilter: '',

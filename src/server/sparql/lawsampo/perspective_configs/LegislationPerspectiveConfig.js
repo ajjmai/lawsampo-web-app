@@ -39,7 +39,7 @@ export const legislationPerspectiveConfig = {
       `
     },
     enforcementDate: {
-      id: 'statuteYear',
+      id: 'enforcementDate',
       facetValueFilter: `
       `,
       predicate: 'lss:timespan',
