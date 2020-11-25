@@ -502,9 +502,9 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Label',
+          label: 'Court decision',
           description: `
-            Label
+            Court decision
           `
         },
         jenaText: {

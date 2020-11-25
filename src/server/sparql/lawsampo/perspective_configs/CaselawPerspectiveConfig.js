@@ -26,6 +26,14 @@ export const caselawPerspectiveConfig = {
       textQueryProperty: '',
       type: 'text'
     },
+    prefLabel: {
+      id: 'prefLabel',
+      labelPath: 'lss:isRealizedBy/skos:prefLabel'
+    },
+    abstract: {
+      id: 'abstract',
+      labelPath: 'lss:isRealizedBy/dcterms:abstract'
+    },
     court: {
       id: 'court',
       facetValueFilter: '',
@@ -73,10 +81,6 @@ export const caselawPerspectiveConfig = {
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')
       `
-    },
-    prefLabel: {
-      id: 'prefLabel',
-      labelPath: 'dcterms:title'
     }
   }
 }

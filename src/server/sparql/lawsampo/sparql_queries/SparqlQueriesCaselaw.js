@@ -7,18 +7,37 @@ export const judgementProperties = `
     # Each judgement has an ECLI identifier, so it should be
     # safe to use it here. 
     ?id dcterms:isVersionOf ?ecli .
-    BIND(REPLACE(STR(?ecli), "ECLI:FI:", "") AS ?prefLabel__prefLabel)
-    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    # BIND(REPLACE(STR(?ecli), "ECLI:FI:", "") AS ?prefLabel__prefLabel)
+    
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+
+    # prefLabel is only available on expression level.
+    # Use Swedish as fallback.
+    OPTIONAL {
+      ?id lss:isRealizedBy ?expression . 
+      ?expression dcterms:language '<LANG>' .
+      ?expression skos:prefLabel ?prefLabelFi .
+    }
+    OPTIONAL {
+      ?id lss:isRealizedBy ?expression . 
+      ?expression dcterms:language 'sv' .
+      ?expression skos:prefLabel ?prefLabelSv .
+    }
+    BIND(COALESCE(?prefLabelFi, ?prefLabelSv) as ?prefLabel__id)
+    BIND(?prefLabel__id as ?prefLabel__prefLabel)
+    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    
   }
   UNION
   {
     ?id lss:isRealizedBy ?expression . # expression = language version
     ?expression dcterms:language '<LANG>' .
+    
     OPTIONAL { ?expression dcterms:abstract ?abstract }
     ?expression lss:html ?html_ .
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
+    
     OPTIONAL { 
        ?expression lss:annotatedHtml ?annotatedHtml_ .
        BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
