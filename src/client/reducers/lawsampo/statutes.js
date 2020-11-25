@@ -85,7 +85,7 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: false,
       numberedList: false,
-      minWidth: 150
+      minWidth: 160
     }
     // {
     //   id: 'subjectCategory',

@@ -27,6 +27,10 @@ export const statutesPerspectiveConfig = {
       textQueryProperty: '',
       type: 'text'
     },
+    prefLabel: {
+      id: 'prefLabel',
+      labelPath: 'skos:prefLabel'
+    },
     statuteType: {
       id: 'statuteType',
       facetValueFilter: '',
@@ -64,6 +68,10 @@ export const statutesPerspectiveConfig = {
     //   predicate: 'lss:situation_category',
     //   type: 'list'
     // },
+    section: {
+      id: 'section',
+      labelPath: 'lss:section/skos:prefLabel'
+    },
     euDirective: {
       id: 'euDirective',
       facetValueFilter: `
@@ -72,10 +80,6 @@ export const statutesPerspectiveConfig = {
       labelPath: 'eli:transposes/skos:prefLabel',
       predicate: 'eli:transposes',
       type: 'list'
-    },
-    text: {
-      id: 'text',
-      labelPath: 'lss:text'
     }
   }
 }
