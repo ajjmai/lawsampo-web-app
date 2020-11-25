@@ -18,8 +18,24 @@ export const INITIAL_STATE = {
       searchField: false,
       containerClass: 'one',
       filterType: 'textFilter',
-      textFilter: null,
-      priority: 1
+      textFilter: null
+    },
+    statuteType: {
+      id: 'statuteType',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
     },
     enforcementDate: {
       id: 'enforcementDate',

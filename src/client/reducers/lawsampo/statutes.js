@@ -28,6 +28,15 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
+      id: 'statuteType',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 170
+    },
+    {
       id: 'uri',
       valueType: 'object',
       onlyOnInstancePage: true,

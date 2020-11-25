@@ -27,10 +27,19 @@ export const statutesPerspectiveConfig = {
       textQueryProperty: '',
       type: 'text'
     },
+    statuteType: {
+      id: 'statuteType',
+      facetValueFilter: '',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = '<LANG>')
+      `,
+      labelPath: 'eli:type_document/skos:prefLabel',
+      predicate: 'eli:type_document',
+      type: 'list'
+    },
     enforcementDate: {
       id: 'statuteYear',
-      facetValueFilter: `
-      `,
+      facetValueFilter: '',
       predicate: 'lss:timespan',
       labelPath: 'lss:timespan/skos:prefLabel',
       type: 'hierarchical',

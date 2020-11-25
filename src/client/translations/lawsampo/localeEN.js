@@ -244,9 +244,9 @@ export default {
           `
         },
         statuteType: {
-          label: 'Statute type',
+          label: 'Type',
           description: `
-            Statute type
+            Type
           `
         },
         enforcementDate: {
@@ -532,7 +532,7 @@ export default {
           `
         },
         typeOftheMatter: {
-          label: 'Type',
+          label: 'Type of the matter',
           description: `
             Type of the matter
           `
