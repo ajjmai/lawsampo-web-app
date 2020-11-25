@@ -12,6 +12,7 @@ export const statutesPerspectiveConfig = {
     useAuth: false
   },
   facetClass: 'lss:Statute',
+  langTag: 'fi',
   paginatedResults: {
     properties: statuteProperties
   },

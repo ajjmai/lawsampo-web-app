@@ -15,7 +15,7 @@ export const judgementProperties = `
   UNION
   {
     ?id lss:isRealizedBy ?expression . # expression = language version
-    ?expression dcterms:language "fi" .
+    ?expression dcterms:language '<LANG>' .
     OPTIONAL { ?expression dcterms:abstract ?abstract }
     ?expression lss:html ?html_ .
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
@@ -40,20 +40,13 @@ export const judgementProperties = `
   }
   UNION
   {
-    ?id dcterms:description ?keyword__id .
-    BIND(?keyword__id as ?keyword__prefLabel)
-    # ?keyword__id skos:prefLabel ?keyword__prefLabel .
-    # FILTER(LANG(?keywords__prefLabel) = 'fi')
-  }
-  UNION
-  {
     ?id dcterms:issued ?decisionDate .
   }
   UNION
   {
     ?id dcterms:creator ?court__id .
     ?court__id skos:prefLabel ?court__prefLabel .
-    FILTER(LANG(?court__prefLabel) = 'fi')
+    FILTER(LANG(?court__prefLabel) = '<LANG>')
   }
   UNION
   {

@@ -33,6 +33,11 @@ export const statuteProperties = `
   }
   UNION
   {
+    ?id eli:type_document/skos:prefLabel ?documentType .
+    FILTER(lang(?documentType) = '<LANG>')
+  }
+  UNION
+  {
      ?id eli:transposes ?euDirective__id .
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
@@ -51,16 +56,6 @@ export const statuteProperties = `
   #   OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
   #   BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
   # }
-  # UNION
-  # {
-  #   ?id lss:timespan/skos:prefLabel ?statuteYear .
-  # }
-  # UNION
-  # {
-  #   ?id eli:type_document/skos:prefLabel ?documentType .
-  #   FILTER(lang(?documentType) = 'fi')
-  # }
-  # 
 `
 
 export const sectionProperties = `

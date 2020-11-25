@@ -12,6 +12,7 @@ export const sectionsPerspectiveConfig = {
     useAuth: false
   },
   facetClass: 'lss:Section',
+  langTag: 'fi',
   paginatedResults: {
     properties: sectionProperties
   },
@@ -35,7 +36,7 @@ export const sectionsPerspectiveConfig = {
       parentPredicate: 'eli:type_document',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
-        FILTER(LANG(?prefLabel_) = 'fi')
+        FILTER(LANG(?prefLabel_) = '<LANG>')
       `
     },
     enforcementDate: {

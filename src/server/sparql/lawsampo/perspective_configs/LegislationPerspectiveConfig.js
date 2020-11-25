@@ -12,6 +12,7 @@ export const legislationPerspectiveConfig = {
     useAuth: false
   },
   facetClass: 'lss:Section',
+  langTag: 'fi',
   paginatedResults: {
     properties: sectionProperties
   },

@@ -11,6 +11,7 @@ export const caselawPerspectiveConfig = {
     useAuth: false
   },
   facetClass: 'lss:Judgment',
+  langTag: 'fi',
   paginatedResults: {
     properties: judgementProperties
   },
@@ -31,7 +32,7 @@ export const caselawPerspectiveConfig = {
       labelPath: 'dcterms:creator/skos:prefLabel',
       predicate: 'dcterms:creator',
       facetLabelFilter: `
-        FILTER(LANG(?prefLabel_) = 'fi')
+        FILTER(LANG(?prefLabel_) = '<LANG>')
       `,
       type: 'list'
     },
@@ -70,7 +71,7 @@ export const caselawPerspectiveConfig = {
       parentPredicate: 'eli:type_document',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
-        FILTER(LANG(?prefLabel_) = 'fi')
+        FILTER(LANG(?prefLabel_) = '<LANG>')
       `
     },
     prefLabel: {
