@@ -4,7 +4,6 @@
 export const statuteProperties = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
-    BIND(REPLACE(STR(?id), "http://ldf.fi/lawsampo/statute_", "") as ?identifier)
 
     # create link for React Router:
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
@@ -12,6 +11,10 @@ export const statuteProperties = `
     # create link to SAHA
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION 
+  {
+    ?id lss:sf_identifier ?identifier .
   }
   UNION
   {

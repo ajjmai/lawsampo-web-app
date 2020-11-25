@@ -51,7 +51,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 160
     },
     {
       id: 'enforcementDate',

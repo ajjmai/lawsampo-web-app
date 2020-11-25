@@ -31,6 +31,10 @@ export const statutesPerspectiveConfig = {
       id: 'prefLabel',
       labelPath: 'skos:prefLabel'
     },
+    identifier: {
+      id: 'identifier',
+      labelPath: 'lss:sf_identifier'
+    },
     statuteType: {
       id: 'statuteType',
       facetValueFilter: '',
