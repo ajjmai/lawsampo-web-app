@@ -70,17 +70,18 @@ export const caselawPerspectiveConfig = {
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
-    referencedLegislation: {
-      id: 'referencedLegislation',
+    referencedStatute: {
+      id: 'referencedStatute',
       facetValueFilter: '',
-      labelPath: 'lss:referenceToLegislation/skos:prefLabel',
-      predicate: 'lss:referenceToLegislation',
-      type: 'hierarchical',
-      parentPredicate: 'eli:type_document',
-      parentProperty: 'eli:type_document',
-      facetLabelFilter: `
-        FILTER(LANG(?prefLabel_) = '<LANG>')
-      `
+      labelPath: 'lss:referenceToStatute/skos:prefLabel',
+      predicate: 'lss:referenceToStatute',
+      type: 'list'
+      // parentPredicate: 'eli:type_document',
+      // parentProperty: 'eli:type_document',
+      // facetLabelFilter: '',
+      // facetLabelFilter: `
+      //   FILTER(LANG(?prefLabel_) = '<LANG>')
+      // `
     }
   }
 }

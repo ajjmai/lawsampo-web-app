@@ -573,6 +573,12 @@ export default {
             Judgement date
           `
         },
+        referencedStatute: {
+          label: 'Referenced statute',
+          description: `
+            Referenced statute
+          `
+        },
         contentHTML: {
           label: 'Content (HTML)',
           description: `

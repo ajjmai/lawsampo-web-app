@@ -52,8 +52,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
-      type: 'hierarchical'
+      uriFilter: null
     },
     // subjectCategory: {
     //   id: 'subjectCategory',

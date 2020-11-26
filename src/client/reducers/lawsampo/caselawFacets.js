@@ -87,26 +87,25 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
-      type: 'hierarchical'
+      uriFilter: null
+    },
+    referencedStatute: {
+      id: 'referencedStatute',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
     }
-    // referencedLegislation: {
-    //   id: 'referencedLegislation',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   pieChartButton: false,
-    //   isFetching: false,
-    //   searchField: true,
-    //   containerClass: 'ten',
-    //   filterType: 'uriFilter',
-    //   uriFilter: null
-    // }
   }
 }
 
