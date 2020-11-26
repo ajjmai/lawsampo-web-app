@@ -33,7 +33,7 @@ export const sectionsPerspectiveConfig = {
       labelPath: 'lss:statute/skos:prefLabel',
       predicate: 'lss:statute',
       type: 'hierarchical',
-      parentPredicate: 'eli:type_document',
+      parentPredicate: 'lss:statute/eli:type_document',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')

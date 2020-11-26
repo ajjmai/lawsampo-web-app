@@ -84,13 +84,12 @@ export const caselawPerspectiveConfig = {
       facetValueFilter: '',
       labelPath: 'lss:referenceToStatute/skos:prefLabel',
       predicate: 'lss:referenceToStatute',
-      type: 'list'
-      // parentPredicate: 'eli:type_document',
-      // parentProperty: 'eli:type_document',
-      // facetLabelFilter: '',
-      // facetLabelFilter: `
-      //   FILTER(LANG(?prefLabel_) = '<LANG>')
-      // `
+      type: 'hierarchical',
+      parentPredicate: 'lss:referenceToStatute/eli:type_document',
+      parentProperty: 'eli:type_document',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = '<LANG>')
+      `
     }
   }
 }
