@@ -87,7 +87,7 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 160
-    }
+    },
     // {
     //   id: 'subjectCategory',
     //   valueType: 'object',
@@ -106,6 +106,29 @@ export const INITIAL_STATE = {
     //   numberedList: false,
     //   minWidth: 150
     // },
+    // {
+    //   id: 'contentHTML',
+    //   valueType: 'string',
+    //   onlyOnInstancePage: true,
+    //   renderAsHTML: true,
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 160
+    // },
+    // {
+    //   id: 'contentHTMLAnnotated',
+    //   valueType: 'string',
+    //   onlyOnInstancePage: true,
+    //   renderAsHTML: true,
+    //   HTMLParserTask: 'addAnnotationTooltips',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: false,
+    //   numberedList: false,
+    //   minWidth: 160
+    // }
   ]
 }
 

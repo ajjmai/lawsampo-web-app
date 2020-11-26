@@ -1,7 +1,7 @@
 // import { statuteTextHTMLAnnotatedTest } from './annotatedHTMLtest'
 // BIND("""${statuteTextHTMLAnnotatedTest}""" as ?statuteTextHTMLAnnotated)
 
-export const statuteProperties = `
+export const statutePropertiesFacetResults = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
 
@@ -12,13 +12,56 @@ export const statuteProperties = `
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
   }
+  UNION
+  {
+    ?id eli:type_document/skos:prefLabel ?statuteType .
+    FILTER(lang(?statuteType) = '<LANG>')
+  }
   UNION 
   {
     ?id lss:sf_identifier ?identifier .
   }
   UNION
   {
-    ?id lss:timespan/skos:prefLabel ?enforcementDate .
+    ?id lss:statute_date ?enforcementDate .
+  }
+  UNION 
+  {
+    ?id lss:section ?section__id .
+    ?section__id skos:prefLabel ?section__prefLabel .
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
+  }
+  UNION
+  {
+     ?id eli:transposes ?euDirective__id .
+     ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
+     BIND(?euDirective__id as ?euDirective__dataProviderUrl)
+  }
+`
+
+export const statutePropertiesInstancePage = `
+  {
+    ?id skos:prefLabel ?prefLabel__prefLabel .
+
+    # create link for React Router:
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+
+    # create link to SAHA
+    BIND(?id as ?uri__prefLabel)
+    BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id eli:type_document/skos:prefLabel ?statuteType .
+    FILTER(lang(?statuteType) = '<LANG>')
+  }
+  UNION
+  {
+    ?id lss:statute_date ?enforcementDate .
+  }
+  UNION 
+  {
+    ?id lss:sf_identifier ?identifier .
   }
   UNION 
   {
@@ -36,19 +79,19 @@ export const statuteProperties = `
   }
   UNION
   {
-    ?id eli:type_document/skos:prefLabel ?statuteType .
-    FILTER(lang(?statuteType) = '<LANG>')
-  }
-  UNION
-  {
      ?id eli:transposes ?euDirective__id .
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
   # UNION
   # {
+  #   ?id lss:html ?html_ .
+  #   BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
+  # }
+  # UNION
+  # {
   #   ?id lss:annotatedHtml ?annotatedHtml_ .
-  #   BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?statuteTextHTMLAnnotated)
+  #   BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   # }
   # UNION 
   # {

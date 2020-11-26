@@ -1,5 +1,6 @@
 import {
-  statuteProperties
+  statutePropertiesFacetResults,
+  statutePropertiesInstancePage
   // sectionProperties
 } from '../sparql_queries/SparqlQueriesLegislation'
 import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
@@ -14,10 +15,10 @@ export const statutesPerspectiveConfig = {
   facetClass: 'lss:Statute',
   langTag: 'fi',
   paginatedResults: {
-    properties: statuteProperties
+    properties: statutePropertiesFacetResults
   },
   instance: {
-    properties: statuteProperties,
+    properties: statutePropertiesInstancePage,
     relatedInstances: ''
   },
   facets: {

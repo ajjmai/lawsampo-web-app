@@ -260,6 +260,18 @@ export default {
           description: `
             EU directive
           `
+        },
+        contentHTML: {
+          label: 'Content (HTML)',
+          description: `
+            Content (HTML)
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Annotated content (HTML)',
+          description: `
+            Annotated content (HTML)
+          `
         }
       }
     },
@@ -359,6 +371,18 @@ export default {
           label: 'EU directive',
           description: `
             EU directive
+          `
+        },
+        contentHTML: {
+          label: 'Content (HTML)',
+          description: `
+            Content (HTML)
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Annotated content (HTML)',
+          description: `
+            Annotated content (HTML)
           `
         }
       }
