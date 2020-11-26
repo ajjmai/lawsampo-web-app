@@ -561,10 +561,16 @@ export default {
             Type of the matter
           `
         },
-        keyword: {
-          label: 'Original Finlex keyword',
+        subjectCategory: {
+          label: 'Subject',
           description: `
-            Original Finlex keyword
+            Subject
+          `
+        },
+        situationCategory: {
+          label: 'Life situation',
+          description: `
+            Life situation
           `
         },
         decisionDate: {

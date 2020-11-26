@@ -52,14 +52,6 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:contributor',
       type: 'list'
     },
-    typeOftheMatter: {
-      id: 'typeOftheMatter',
-      facetValueFilter: `
-      `,
-      labelPath: 'dcterms:subject/skos:prefLabel',
-      predicate: 'dcterms:subject',
-      type: 'list'
-    },
     decisionDate: {
       id: 'decisionDate',
       facetValueFilter: `
@@ -69,6 +61,23 @@ export const caselawPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
+    },
+    typeOftheMatter: {
+      id: 'typeOftheMatter',
+      facetValueFilter: `
+      `,
+      labelPath: 'dcterms:subject/skos:prefLabel',
+      predicate: 'dcterms:subject',
+      type: 'list'
+    },
+    situationCategory: {
+      id: 'situationCategory',
+      facetValueFilter: `
+       
+      `,
+      labelPath: 'lss:situation_category/skos:prefLabel',
+      predicate: 'lss:situation_category',
+      type: 'list'
     },
     referencedStatute: {
       id: 'referencedStatute',
