@@ -4,30 +4,15 @@
 export const judgementProperties = `
   {
     # This first block must not constrain the results.
-    # Each judgement has an ECLI identifier, so it should be
-    # safe to use it here. 
-    ?id dcterms:isVersionOf ?ecli .
-    # BIND(REPLACE(STR(?ecli), "ECLI:FI:", "") AS ?prefLabel__prefLabel)
-    
-    BIND(?id as ?uri__prefLabel)
-    BIND(?id as ?uri__dataProviderUrl)
-
-    # prefLabel is only available on expression level.
-    # Use Swedish as fallback.
-    OPTIONAL {
-      ?id lss:isRealizedBy ?expression . 
-      ?expression dcterms:language '<LANG>' .
-      ?expression skos:prefLabel ?prefLabelFi .
-    }
-    OPTIONAL {
-      ?id lss:isRealizedBy ?expression . 
-      ?expression dcterms:language 'sv' .
-      ?expression skos:prefLabel ?prefLabelSv .
-    }
-    BIND(COALESCE(?prefLabelFi, ?prefLabelSv) as ?prefLabel__id)
+  
+    ?id skos:prefLabel ?prefLabel__id
     BIND(?prefLabel__id as ?prefLabel__prefLabel)
     BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
-    
+
+    ?id dcterms:isVersionOf ?ecli .
+ 
+    BIND(?id as ?uri__prefLabel)
+    BIND(?id as ?uri__dataProviderUrl)
   }
   UNION
   {
