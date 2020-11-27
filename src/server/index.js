@@ -15,6 +15,8 @@ import { getFacet } from './sparql/FacetValues'
 import { queryJenaIndex } from './sparql/JenaQuery'
 import { getFederatedResults } from './sparql/FederatedSearch'
 import { fetchGeoJSONLayer } from './wfs/WFSApi'
+import { fetchClassifierResults, fetchClassifierCategories } from './classifier/lawsampo/DocumentClassifier'
+
 import swaggerUi from 'swagger-ui-express'
 import { OpenApiValidator } from 'express-openapi-validator'
 import yaml from 'js-yaml'
@@ -66,6 +68,30 @@ new OpenApiValidator({
 })
   .install(app)
   .then(() => {
+    app.get(`${apiPath}/classifier/categories`, async (req, res, next) => {
+      try {
+        const data = await fetchClassifierCategories()
+        res.json(data)
+      } catch (error) {
+        console.log(error)
+        next(error)
+      }
+    })
+    app.post(`${apiPath}/classifier`, async (req, res, next) => {
+      const { body } = req
+      try {
+        let cat = null
+        if ('category' in body) {
+          cat = body.category
+        }
+        const data = await fetchClassifierResults(body.resultType, body.query, body.selected_keywords, cat)
+        res.json(data)
+      } catch (error) {
+        console.log(error)
+        next(error)
+      }
+    })
+
     // https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016
     app.post(`${apiPath}/faceted-search/:resultClass/paginated`, async (req, res, next) => {
       const { params, body } = req

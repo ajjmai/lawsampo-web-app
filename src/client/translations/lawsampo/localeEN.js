@@ -72,7 +72,9 @@ export default {
     map: 'map',
     by_year: 'by year',
     network: 'network',
-    export: 'export'
+    export: 'export',
+    statutes: 'Lait ja säädökset',
+    cases: 'Oikeustapaukset'
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -163,6 +165,49 @@ export default {
     `
   },
   perspectives: {
+    situations: {
+      label: 'Elämäntilanteet',
+      facetResultsType: 'situations',
+      shortDescription: 'Data provided by...',
+      longDescription: 'Data provided by...',
+      inputPlaceHolder: '',
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Label',
+          description: `
+            Preferred label
+          `
+        },
+        abstract: {
+          label: 'Abstract',
+          description: `
+            Abstract
+          `
+        },
+        court: {
+          label: 'Court',
+          description: `
+            Name of the court
+          `
+        },
+        decisionDate: {
+          label: 'Decision date',
+          description: `
+            Judgement date
+          `
+        },
+        enforcementDate: {
+          label: 'Enforcement date',
+          description: `
+            Enforcement date
+          `
+        }
+      }
+    },
     statutes: {
       label: 'Statutes',
       mainPageLabel: 'Legislation: Statutes',

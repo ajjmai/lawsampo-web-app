@@ -21,6 +21,9 @@ import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'
 // ** General components end **
 
+import SituationsFacetBar from '../components/perspectives/lawsampo/lifesituations/SituationsFacetBar'
+import Situations from '../components/perspectives/lawsampo/lifesituations/Situations'
+
 // ** Portal specific components and configs **
 import TopBar from '../components/perspectives/lawsampo/TopBar'
 import Main from '../components/perspectives/lawsampo/Main'
@@ -64,6 +67,16 @@ import {
   clientFSUpdateFacet,
   fetchKnowledgeGraphMetadata
 } from '../actions'
+
+import {
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType
+} from '../reducers/lawsampo/situationsFacets'
 // import { filterResults } from '../selectors'
 
 const useStyles = makeStyles(theme => ({
@@ -329,6 +342,51 @@ const SemanticPortal = props => {
               if (!has(perspective, 'externalUrl') && perspective.id !== 'placesClientFS') {
                 return (
                   <React.Fragment key={perspective.id}>
+                    <Route
+                      path={`${rootUrlWithLang}/${perspective.id}/iterative-search`}
+                      render={routeProps => {
+                        return (
+                          <>
+                            <InfoHeader
+                              resultClass={perspective.id}
+                              pageType='facetResults'
+                              expanded={props[perspective.id].facetedSearchHeaderExpanded}
+                              updateExpanded={props.updatePerspectiveHeaderExpanded}
+                              descriptionHeight={perspective.perspectiveDescHeight}
+                            />
+                            <Grid
+                              container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
+                                ? classes.perspectiveContainerHeaderExpanded
+                                : classes.perspectiveContainer}
+                            >
+                              <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                                <SituationsFacetBar
+                                  facetData={props[`${perspective.id}Facets`]}
+                                  updateSituationQuery={props.updateSituationQuery}
+                                  updateSituationSelected={props.updateSituationSelected}
+                                  addSituationKeyword={props.addSituationKeyword}
+                                  removeSituationKeyword={props.removeSituationKeyword}
+                                  clearAllSituations={props.clearAllSituations}
+                                  fetchSituationResults={props.fetchSituationResults}
+                                />
+                              </Grid>
+                              <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                                <Situations
+                                  updateResultType={props.updateResultType}
+                                  fetchSituationResults={props.fetchSituationResults}
+                                  facetResults={props[`${perspective.id}`]}
+                                  facetData={props[`${perspective.id}Facets`]}
+                                  perspective={perspective}
+                                  routeProps={routeProps}
+                                  screenSize={screenSize}
+                                  rootUrl={rootUrlWithLang}
+                                />
+                              </Grid>
+                            </Grid>
+                          </>
+                        )
+                      }}
+                    />
                     <Route
                       path={`${rootUrlWithLang}/${perspective.id}/faceted-search`}
                       render={routeProps => {
@@ -609,6 +667,8 @@ const mapStateToProps = state => {
     sections: state.sections,
     sectionsFacets: state.sectionsFacets,
     sectionsFacetsConstrainSelf: state.sectionsFacetsConstrainSelf,
+    situations: state.situations,
+    situationsFacets: state.situationsFacets,
     statutes: state.statutes,
     statutesFacets: state.statutesFacets,
     statutesFacetsConstrainSelf: state.statutesFacetsConstrainSelf,
@@ -628,8 +688,14 @@ const mapStateToProps = state => {
     error: state.error
   }
 }
-
 const mapDispatchToProps = ({
+  updateResultType,
+  clearAllSituations,
+  addSituationKeyword,
+  removeSituationKeyword,
+  updateSituationQuery,
+  updateSituationSelected,
+  fetchSituationResults,
   fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
