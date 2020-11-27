@@ -10,9 +10,9 @@ import bannerImage from '../../../img/lawsampo/lawsampo-banner-3000px.jpg'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginBottom: theme.spacing(1),
+    // marginBottom: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 60px)',
+      height: 'calc(100% - 64px)',
       overflow: 'auto'
     }
   },
@@ -70,6 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
   licenceTextContainer: {
     marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     display: 'flex',
     justifyContent: 'center'
   }
