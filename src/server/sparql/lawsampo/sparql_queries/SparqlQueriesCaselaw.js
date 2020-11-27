@@ -30,7 +30,7 @@ export const judgementProperties = `
   }
   UNION 
   {
-    ?id lss:referencedTerm ?referencedTerm__id .
+    ?id lss:referencedTerms ?referencedTerm__id .
     ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
     OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
     OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }

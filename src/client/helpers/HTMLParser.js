@@ -44,7 +44,8 @@ export default class HTMLParser {
 
   addAnnotationTooltips = (node, index) => {
     const props = this.props
-    if (node.type === 'tag' && node.name === 'span' && node.attribs.name === 'namedentity' && node.attribs['data-link'] !== '') {
+    if (this.referencedTermsObj && node.type === 'tag' && node.name === 'span' &&
+    node.attribs.name === 'namedentity' && node.attribs['data-link'] !== '') {
       const linkStr = node.attribs['data-link']
       const occurrenceID = node.attribs['data-occurrence-id']
       let tooltipJSX
