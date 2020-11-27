@@ -78,6 +78,9 @@ export const caselawPerspectiveConfig = {
       labelPath: 'lss:subject_category/skos:prefLabel',
       predicate: 'lss:subject_category',
       type: 'list'
+      // type: 'hierarchical',
+      // parentPredicate: 'lss:subject_category/skos:broader',
+      // parentProperty: 'skos:broader'
     },
     situationCategory: {
       id: 'situationCategory',
