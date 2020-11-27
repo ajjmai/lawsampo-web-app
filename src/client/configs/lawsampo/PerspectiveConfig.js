@@ -12,37 +12,6 @@ import caselawImage from '../../img/lawsampo/caselaw.png'
 
 export const perspectiveConfig = [
   {
-    id: 'situations',
-    frontPageElement: 'card',
-    perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['situationFilters']),
-    tabs: [
-      {
-        id: 'statutes',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'cases',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ],
-    instancePageTabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ]
-  },
-  {
     id: 'statutes',
     frontPageImage: legislationImage,
     frontPageElement: 'card',
@@ -106,38 +75,6 @@ export const perspectiveConfig = [
       }
     ]
   },
-  // {
-  //   id: 'legislation',
-  //   frontPageImage: legislationImage,
-  //   frontPageElement: 'card',
-  //   perspectiveDescHeight: 160,
-  //   defaultActiveFacets: new Set(['prefLabel']),
-  //   tabs: [
-  //     {
-  //       id: 'table',
-  //       value: 0,
-  //       icon: <CalendarViewDayIcon />
-  //     },
-  //     {
-  //       id: 'export',
-  //       value: 1,
-  //       icon: <CloudDownloadIcon />
-  //     }
-  //   ],
-  //   instancePageTabs: [
-  //     {
-  //       id: 'table',
-  //       value: 0,
-  //       icon: <CalendarViewDayIcon />
-  //     },
-
-  //     {
-  //       id: 'export',
-  //       value: 1,
-  //       icon: <CloudDownloadIcon />
-  //     }
-  //   ]
-  // },
   {
     id: 'caselaw',
     frontPageImage: caselawImage,
@@ -179,5 +116,37 @@ export const perspectiveConfig = [
     frontPageImage: sdfImage,
     frontPageElement: 'card',
     externalUrl: 'https://data.finlex.fi/document-finder'
+  },
+  {
+    id: 'situations',
+    searchMode: 'iterative-search',
+    frontPageElement: 'card',
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['situationFilters']),
+    tabs: [
+      {
+        id: 'statutes',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'cases',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
   }
 ]
