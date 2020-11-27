@@ -69,8 +69,13 @@ const StringList = props => {
   if (data == null || data === '-') {
     return '-'
   }
-  const isArray = Array.isArray(data)
+  let isArray = Array.isArray(data)
   if (renderAsHTML) {
+    // Fuseki splits long HTML texts, combine them here
+    if (isArray) {
+      data = data.join('')
+      isArray = false
+    }
     const parser = new HTMLParser(props)
     data = parser.parseHTML(data)
   }
