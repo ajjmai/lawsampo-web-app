@@ -70,6 +70,15 @@ export const caselawPerspectiveConfig = {
       predicate: 'dcterms:subject',
       type: 'list'
     },
+    subjectCategory: {
+      id: 'subjectCategory',
+      facetValueFilter: `
+       
+      `,
+      labelPath: 'lss:subject_category/skos:prefLabel',
+      predicate: 'lss:subject_category',
+      type: 'list'
+    },
     situationCategory: {
       id: 'situationCategory',
       facetValueFilter: `

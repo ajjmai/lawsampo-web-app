@@ -21,6 +21,23 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
+    referencedStatute: {
+      id: 'referencedStatute',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
     court: {
       id: 'court',
       // predicate: defined in backend
@@ -89,32 +106,32 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    // situationCategory: {
-    //   id: 'situationCategory',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   pieChartButton: false,
-    //   isFetching: false,
-    //   searchField: true,
-    //   containerClass: 'ten',
-    //   filterType: 'uriFilter',
-    //   uriFilter: null
-    // },
-    referencedStatute: {
-      id: 'referencedStatute',
+    subjectCategory: {
+      id: 'subjectCategory',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: false,
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    situationCategory: {
+      id: 'situationCategory',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
       spatialFilterButton: false,
       pieChartButton: false,
       isFetching: false,
