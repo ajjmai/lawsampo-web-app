@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/'
+const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
 
 export const fetchClassifierCategories = async () => {
   const response = await axios.post(baseUrl + 'categories')
