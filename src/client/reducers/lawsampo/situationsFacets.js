@@ -142,7 +142,7 @@ export const INITIAL_STATE = {
 }
 
 const situationsFacets = (state = INITIAL_STATE, action) => {
-  console.log(action)
+  // console.log(action)
   const k = state.selectedKeywords
   switch (action.type) {
     case 'UPDATE_RESULT_TYPE':

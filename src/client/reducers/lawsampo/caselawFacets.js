@@ -114,7 +114,7 @@ export const INITIAL_STATE = {
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: true,
+      sortButton: false,
       spatialFilterButton: false,
       pieChartButton: false,
       isFetching: false,
