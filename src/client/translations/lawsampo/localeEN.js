@@ -212,7 +212,7 @@ export default {
       label: 'Statutes',
       mainPageLabel: 'Legislation: Statutes',
       facetResultsType: 'statutes',
-      shortDescription: 'Faceted search for statutes',
+      shortDescription: 'Faceted search for consolidated statutes',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Use this perspective to...
@@ -289,9 +289,9 @@ export default {
           `
         },
         statuteType: {
-          label: 'Type',
+          label: 'Statute type',
           description: `
-            Type
+            Statute type
           `
         },
         enforcementDate: {
@@ -324,7 +324,7 @@ export default {
       label: 'Sections',
       mainPageLabel: 'Legislation: Sections',
       facetResultsType: 'sections',
-      shortDescription: 'Faceted search for sections',
+      shortDescription: 'Faceted search for sections of consolidated statutes',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Use this perspective to...
@@ -383,15 +383,15 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Subject',
+          label: 'Subject keyword',
           description: `
-            Subject
+            Subject keyword
           `
         },
         situationCategory: {
-          label: 'Life situation',
+          label: 'Life situation / topic',
           description: `
-            Life situation
+            Life situation / topic
           `
         },
         documentType: {
@@ -607,15 +607,15 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Subject',
+          label: 'Subject keyword',
           description: `
-            Subject
+            Subject keyword
           `
         },
         situationCategory: {
-          label: 'Life situation',
+          label: 'Life situation / topic',
           description: `
-            Life situation
+            Life situation / topic
           `
         },
         decisionDate: {
@@ -625,7 +625,7 @@ export default {
           `
         },
         referencedStatute: {
-          label: 'Referenced statute',
+          label: 'Referenced consolidated statute',
           description: `
             Referenced statute
           `
@@ -652,7 +652,7 @@ export default {
     situations: {
       label: 'Contextual search',
       mainPageLabel: 'Contextual Search',
-      shortDescription: 'Contextual search for legislation and court decisions'
+      shortDescription: 'For legal documents based on life events and topics'
     }
   },
   aboutThePortalPartOne: `
