@@ -660,60 +660,60 @@ export default {
       About the Portal
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      LawSampo system consists of two components. 1) The LawSampo portal with its different application perspectives 
-      is targeted for human end-users for searching and exploring Finnish legislation and case law. 
-      2) The portal is based on the Linked Open  Data service Semantic Finlex that publishes data of the national 
-      Finlex service of the Ministry of Justice in Finland. The data service can be used freely for 
+      LawSampo system consists of two components. 1) The LawSampo portal with its different application perspectives
+      is targeted for human end-users for searching and exploring Finnish legislation and case law.
+      2) The portal is based on the Linked Open  Data service Semantic Finlex that publishes data of the national
+      Finlex service of the Ministry of Justice in Finland. The data service can be used freely for
       application development and is available at the Finnish Linked Data service LDF.fi.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      LawSampo is a living laboratory prototype on the Web. It has been developed by the Semantic Computing Research 
-      Group (SeCo) at various research projects with the Ministry of Justice and Edita Publishing Ltd in Aalto University 
+      LawSampo is a living laboratory prototype on the Web. It has been developed by the Semantic Computing Research
+      Group (SeCo) at various research projects with the Ministry of Justice and Edita Publishing Ltd in Aalto University
       and Helsinki Centre for Digital Humanities (HELDIG) at the University of Helsinki in collaboration.
     </p>
   `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Using the MMM Portal
+      Using the LawSampo Portal
     </h1>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       General Idea
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The MMM Portal enables you to search and browse through most of the data assembled by 
-      the MMM project from the three source databases. In addition, the portal is equipped 
-      with ready-to-use tools for Digital Humanities research using the 
+      The LawSampo Portal enables you to search and explore the legislative data originating from Semantic Finlex.
+      In addition, the portal is equipped with ready-to-use tools for Digital Humanities research using the
       <a href="https://seco.cs.aalto.fi/publications/2020/hyvonen-sampos-dhn-2020.pdf" target='_blank' rel='noopener noreferrer'>
       "Sampo" model</a> where the portal is used as follows:
     </p>
     <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
     <li class="MuiTypography-gutterBottom">
-        On the front page of the portal different perspectives to the data are given as a selection, here Manuscripts, 
-        Works, Events, Actors, and Places. The idea is to provide access to the underlying data (knowledge graph) 
-        through multiple use cases while the underlying data remains the same.
+        On the front page of the portal different perspectives to the data are given as a selection: the statutes of
+        consolidated legislation, the sections of consolidated legislation, case law, case law finder (external service), and
+        contextual legislation search.
+        The idea is to provide access to the underlying data (knowledge graph)
+        through multiple use cases while the data remains the same.
       </li>
       <li class="MuiTypography-gutterBottom">
-        After selecting a perspective, faceted search  can be used for filtering out a subset of objects of the view, 
-        the “target group” of interest. For example, manuscripts by a given author in a time period can be selected. 
-        By default each perspective displays all results from the corresponding class (Manuscripts, Works, Events, Actors, 
-        or Places). This default result set can be narrowed down by using the filters.
+        In the perspectives regarding consolidated legislation and caselaw, faceted search can be used for filtering out a subset
+        of objects of the view, the “target group” of interest. For example, statutes of a given time period can be selected.
+        By default the perspectives display all results from the corresponding class (Statute, Section, Case Law).
+        This default result set can be narrowed down by using the filters.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Finally, data analysis and visualization tools can be applied to study the target group. For example, it is possible 
-        to see on maps how the manuscripts have moved from the place of production to their last known location ("Migrations" 
-        tab on the Manuscripts perspective). Map-based visualizations are available also in the Actors and Places perspectives.
+        Finally, visualization tools can be applied to study the target group. For example, it is possible
+        to see on the temporal distribution of the court decisions of the case law.
       </li>
     </ol>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Using the "Export" tab in a perspective and then the button "Open SPARQL query in YASGUI" the SPARQL query corresponding to 
-      the facet selections made is shown in the 
+      Using the "Export" tab in a perspective and then the button "Open SPARQL query in YASGUI" the SPARQL query corresponding to
+      the facet selections made is shown in the
       <a href="https://yasgui.triply.cc" target='_blank' rel='noopener noreferrer'>
-      YASGUI</a> SPARQL querying interface with the results. Additional YASGUI tools for studying the results and downloading 
-      the data are available there. For example, the results of the query can be downloaded in CSV format for additional 
-      spreadsheet computing. 
+      YASGUI</a> SPARQL querying interface with the results. Additional YASGUI tools for studying the results and downloading
+      the data are available there. For example, the results of the query can be downloaded in CSV format for additional
+      spreadsheet computing.
   </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      If you want to inspect the full raw data for any individual manuscript or other entity, click on the link of the entity.
+      If you want to inspect the full raw data for any individual statute or other entity, click on the link of the entity.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Using a Single Filter in Faceted Search
@@ -722,17 +722,17 @@ export default {
       Selecting values within a filter
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      All possible values for a filter are displayed either as a list or as a hierarchical 
-      tree (if available). The number of results is shown in brackets for each value. 
-      Once a value is selected, the results are automatically updated. To prevent further 
-      selections that do not return any results, also the possible values for all other 
+      All possible values for a filter are displayed either as a list or as a hierarchical
+      tree (if available). The number of results is shown in brackets for each value.
+      Once a value is selected, the results are automatically updated. To prevent further
+      selections that do not return any results, also the possible values for all other
       filters are updated at the same time.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Multiple values can be selected within a single filter. Selecting multiple values
       generates results that contain <strong>any</strong> of the selected values. For example, selecting
-      both <i>Saint Augustine</i> and <i>Saint Jerome</i> as an Author returns results that
-      include either <i>Saint Augustine</i> <strong>OR</strong> <i>Saint Jerome</i> as an Author.
+      two different directives in the EU directive facet returns results that
+      make references to either of them.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Selected values of a filter appear in the Active filters section at the top of the list
@@ -745,9 +745,9 @@ export default {
       Searching categories within a filter
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Category selections within a filter can be searched by using the search field at the 
-      top of each filter. All possible values of a filter remain visible at all times. 
-      The values of the filter that match the search term are indicated by a purple underline. 
+      Category selections within a filter can be searched by using the search field at the
+      top of each filter. All possible values of a filter remain visible at all times.
+      The values of the filter that match the search term are indicated by a purple underline.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Steps for searching within filters:
@@ -759,42 +759,28 @@ export default {
         of filter values that match the search term.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Click the arrows " <  > " to the right of the search field to cycle through 
-        the results. As you click the arrow, a different filter value will appear 
+        Click the arrows " <  > " to the right of the search field to cycle through
+        the results. As you click the arrow, a different filter value will appear
         at the top of the list. Matched filters are underlined in purple.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Click the checkmark next to a filter value to activate it. 
-        The results (and also other filters) are automatically updated. 
+        Click the checkmark next to a filter value to activate it.
+        The results (and also other filters) are automatically updated.
       </li>
     </ol>
-    <p></p>      
+    <p></p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Using Multiple Filters Simultaneously
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       The effectiveness of faceted search is realized when multiple filters are
       applied at the same time. As in many e-commerce sites, a logical AND is
-      always used between the filters. 
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      For example selecting <i>Saint Augustine </i>
-      and <i>Saint Jerome</i> as an Author and <i>Sir Thomas Phillipps</i> and
-      <i> Thomas Thorpe</i> as an Owner, the results are narrowed down as follows:
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-      (Author: <i>Saint Augustine</i> <strong>OR</strong> Author: <i>Saint Jerome</i>)
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-        <strong>AND</strong>
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-      (Owner: <i>Sir Thomas Phillipps</i> <strong>OR</strong> Owner: <i>Thomas Thorpe</i>)
+      always used between the filters.
     </p>
     <p></p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      In faceted search you can make selections in filters in any order, and the hit 
-      counts in the other filters are automatically updated. In this way you never end 
+      In faceted search you can make selections in filters in any order, and the hit
+      counts in the other filters are automatically updated. In this way you never end
       up in "no hits" dead ends.
     </p>
   `,
