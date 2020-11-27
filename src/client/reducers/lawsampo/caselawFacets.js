@@ -55,23 +55,23 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    judge: {
-      id: 'judge',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
+    // judge: {
+    //   id: 'judge',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null
+    // },
     decisionDate: {
       id: 'decisionDate',
       // predicate: defined in backend

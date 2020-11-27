@@ -55,24 +55,24 @@ export const statutesPerspectiveConfig = {
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
-    // subjectCategory: {
-    //   id: 'subjectCategory',
-    //   facetValueFilter: `
+    subjectCategory: {
+      id: 'subjectCategory',
+      facetValueFilter: `
 
-    //   `,
-    //   labelPath: 'lss:subject_category/skos:prefLabel',
-    //   predicate: 'lss:subject_category',
-    //   type: 'list'
-    // },
-    // situationCategory: {
-    //   id: 'situationCategory',
-    //   facetValueFilter: `
+      `,
+      labelPath: 'lss:subject_category/skos:prefLabel',
+      predicate: 'lss:subject_category',
+      type: 'list'
+    },
+    situationCategory: {
+      id: 'situationCategory',
+      facetValueFilter: `
 
-    //   `,
-    //   labelPath: 'lss:situation_category/skos:prefLabel',
-    //   predicate: 'lss:situation_category',
-    //   type: 'list'
-    // },
+      `,
+      labelPath: 'lss:situation_category/skos:prefLabel',
+      predicate: 'lss:situation_category',
+      type: 'list'
+    },
     section: {
       id: 'section',
       labelPath: 'lss:section/skos:prefLabel'

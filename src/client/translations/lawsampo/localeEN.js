@@ -166,9 +166,10 @@ export default {
   },
   perspectives: {
     situations: {
-      label: 'Elämäntilanteet',
+      label: 'contextual search',
+      mainPageLabel: 'Contextual Search',
       facetResultsType: 'situations',
-      shortDescription: 'Data provided by...',
+      shortDescription: 'For legal documents based on life events and topics',
       longDescription: 'Data provided by...',
       inputPlaceHolder: '',
       properties: {
@@ -271,15 +272,15 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Subject',
+          label: 'Subject keyword',
           description: `
-            Subject
+            Subject keyword
           `
         },
         situationCategory: {
-          label: 'Life situation',
+          label: 'Life situation / topic',
           description: `
-            Life situation
+            Life situation / topic
           `
         },
         documentType: {
@@ -648,11 +649,6 @@ export default {
       label: 'Case Law Finder',
       mainPageLabel: 'Case Law Finder',
       shortDescription: 'Document-based search for court decisions'
-    },
-    situations: {
-      label: 'Contextual search',
-      mainPageLabel: 'Contextual Search',
-      shortDescription: 'For legal documents based on life events and topics'
     }
   },
   aboutThePortalPartOne: `
