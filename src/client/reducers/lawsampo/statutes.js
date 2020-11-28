@@ -116,7 +116,7 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 160
-    },
+    }
     // {
     //   id: 'contentHTMLAnnotated',
     //   valueType: 'string',

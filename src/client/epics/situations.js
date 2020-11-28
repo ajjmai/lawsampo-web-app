@@ -21,8 +21,8 @@ export const fetchSituations = (action$, state$) => action$.pipe(
   ofType('FETCH_SITUATION_RESULTS'),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    console.log('fetchSituations - EPIC')
-    console.log(state)
+    // console.log('fetchSituations - EPIC')
+    // console.log(state)
     const { query, selectedKeywords, selectedSituation, resultType } = state.situationsFacets
     const { facetClass, facetID } = action
     // const facets = state[`${facetClass}Facets`].facets
@@ -52,7 +52,7 @@ export const fetchSituations = (action$, state$) => action$.pipe(
       body: body
     }).pipe(
       map(ajaxResponse => {
-        const { results, suggested_keywords, suggested_categories } = ajaxResponse.response        
+        const { results, suggested_keywords, suggested_categories } = ajaxResponse.response
         return updateSituationResults({
           resultClass: 'situations',
           suggestedKeywords: suggested_keywords,

@@ -166,21 +166,33 @@ export default {
   },
   perspectives: {
     situations: {
-      label: 'contextual search',
+      label: 'Contextual search',
       mainPageLabel: 'Contextual Search',
-      facetResultsType: 'situations',
+      facetResultsType: '',
       shortDescription: 'For legal documents based on life events and topics',
-      longDescription: 'Data provided by...',
+      longDescription: '',
       inputPlaceHolder: '',
       properties: {
         uri: {
           label: 'URI',
           description: 'Uniform Resource Identifier'
         },
-        prefLabel: {
-          label: 'Label',
+        statute: {
+          label: 'Statute',
           description: `
-            Preferred label
+            Statute
+          `
+        },
+        prefLabel: {
+          label: 'Section',
+          description: `
+            Section
+          `
+        },
+        text: {
+          label: 'Text',
+          description: `
+            Text
           `
         },
         abstract: {

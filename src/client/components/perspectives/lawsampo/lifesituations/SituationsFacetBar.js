@@ -51,7 +51,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing(1),
     cursor: 'default !important'
   },
-  accordionSummaryContent: {    
+  accordionSummaryContent: {
     flexDirection: 'column'
   },
   chip: {
@@ -70,58 +70,53 @@ class SituationFacetBar extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    
-    console.log(this.props.facetData)
+    // console.log(this.props.facetData)
     if (prevProps.facetData.query !== this.props.facetData.query ||
       prevProps.facetData.selectedSituation !== this.props.facetData.selectedSituation) {
       let initialActive = true
-      if(this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null )
-        initialActive = false
-      console.log(this.props.facetData)
-      console.log((this.props.facetData.categories.length === 0))
+      if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
+      // console.log(this.props.facetData)
+      // console.log((this.props.facetData.categories.length === 0))
       this.setState({
         initialActive: initialActive,
         keywordsDisabled: initialActive,
         categoriesDisabled: (this.props.facetData.query === '' && this.props.facetData.categories.length === 0)
       })
     }
-    
-  } 
-  handleInitialDelete = () => {    
+  }
+
+  handleInitialDelete = () => {
     this.props.clearAllSituations()
   }
 
-
   getActiveInitialData = () => {
     const { classes } = this.props
-    if(!this.state.initialActive) {
+    if (!this.state.initialActive) {
       let label = ''
       if (this.props.facetData.query !== '') {
         label = this.props.facetData.query
-      }
-      else if (this.props.facetData.selectedSituation !== null) {
+      } else if (this.props.facetData.selectedSituation !== null) {
         label = this.props.facetData.selectedSituation.name
       }
       return (
-        <Tooltip key={'tooltip-key-initial'} title={'test'}>
-        <Chip
-        key='initial-chip'
-        icon={null}
-        label={label}
-        className={classes.chip}
-        onDelete={this.handleInitialDelete}
-        color='primary'
-      />          
+        <Tooltip key='tooltip-key-initial' title='test'>
+          <Chip
+            key='initial-chip'
+            icon={null}
+            label={label}
+            className={classes.chip}
+            onDelete={this.handleInitialDelete}
+            color='primary'
+          />
         </Tooltip>
-)  
+      )
     }
   }
 
   render () {
     const { classes } = this.props
     let initialActive = true
-    if(this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null )
-      initialActive = false
+    if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
     const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0)
 
@@ -203,7 +198,7 @@ class SituationFacetBar extends React.Component {
           >
             <div>
               <div className={classes.facetInfoContainer}>
-              <SituationsCategory
+                <SituationsCategory
                   isFetching={this.props.facetData.isFetching}
                   fetchSituationResults={this.props.fetchSituationResults}
                   selectedSituation={this.props.facetData.selectedSituation}

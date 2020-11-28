@@ -33,7 +33,7 @@ const styles = theme => ({
     alignItems: 'center',
     // justifyContent: 'space-between',
     width: '100%'
-  },  
+  },
   textSearch: {
     margin: theme.spacing(0)
   },
@@ -70,126 +70,121 @@ const styles = theme => ({
   },
   facetLink: {
     textDecoration: 'inherit'
-  }  
+  }
 })
 
 class SituationsSearch extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-          query: props.query,
-          selectedSituation: props.selectedSituation,
-          treeData: props.situations 
-      }
-  
+  constructor (props) {
+    super(props)
+    this.state = {
+      query: props.query,
+      selectedSituation: props.selectedSituation,
+      treeData: props.situations
     }
+  }
 
     handleSituationChange = treeObj => event => {
-        this.props.updateSituationSelected({selectedSituation: treeObj.node})
-        this.props.fetchSituationResults()
-         
-    }    
+      this.props.updateSituationSelected({ selectedSituation: treeObj.node })
+      this.props.fetchSituationResults()
+    }
 
     generateLabel = node => {
-        return (
-          <>
-            <Typography variant='body2'>
-              {node.name}          
-            </Typography>
-          </>
-        )
-      }    
+      return (
+        <>
+          <Typography variant='body2'>
+            {node.name}
+          </Typography>
+        </>
+      )
+    }
 
     generateNodeProps = treeObj => {
-        const { node } = treeObj
-    
-        return {
-          title: (
-            <FormControlLabel
-            control={
-              <Radio 
-              onChange={this.handleSituationChange(treeObj)}
-              />
-            }    
-              value={treeObj.node.id}
-              label={this.generateLabel(treeObj.node)}
-            />
-          )      
-        }
-      }
+      const { node } = treeObj
 
+      return {
+        title: (
+          <FormControlLabel
+            control={
+              <Radio
+                onChange={this.handleSituationChange(treeObj)}
+              />
+            }
+            value={treeObj.node.id}
+            label={this.generateLabel(treeObj.node)}
+          />
+        )
+      }
+    }
 
       handleQueryChange = (event) => {
         this.setState({ query: event.target.value })
       };
-    
+
       handleMouseDown = (event) => {
         event.preventDefault()
       };
-    
+
       handleOnKeyDown = (event) => {
         if (event.key === 'Enter' && this.hasValidQuery()) {
-          this.props.updateSituationQuery({query: this.state.query})
+          this.props.updateSituationQuery({ query: this.state.query })
           this.props.fetchSituationResults()
-          this.setState({query: ''})
+          this.setState({ query: '' })
         }
       };
-    
+
       handleSearchClick = () => {
         if (this.hasValidQuery()) {
-          
-          this.props.updateSituationQuery({query: this.state.query})
+          this.props.updateSituationQuery({ query: this.state.query })
           this.props.fetchSituationResults()
-          this.setState({query: ''})
+          this.setState({ query: '' })
         }
       };
-    
+
       hasValidQuery = () => {
         return this.state.query.length > 2
       }
-    
-    render () {
+
+      render () {
         const { classes, selectedSituation } = this.props
-        let searchButton = (
-            <IconButton
-                aria-label='Search'
-                onClick={this.handleSearchClick}
-                onMouseDown={this.handleMouseDown}
-            >
-                <SearchIcon />
-            </IconButton>
+        const searchButton = (
+          <IconButton
+            aria-label='Search'
+            onClick={this.handleSearchClick}
+            onMouseDown={this.handleMouseDown}
+          >
+            <SearchIcon />
+          </IconButton>
         )
-        
-    
+
         return (
-        <div>
-          <div className={classes.root}>
-          <div className={classes.headingContainer}>
-            <Typography variant='body1'>Tekstihaku</Typography>
-          </div>
-            <FormControl className={classes.textSearch}>
-            
-              <Input
-                id='adornment-search'
-                type='text'
-                value={this.state.query}
-                onChange={this.handleQueryChange}
-                onKeyDown={this.handleOnKeyDown}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    {searchButton}
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
+          <div>
+            <div className={classes.root}>
+              <div className={classes.headingContainer}>
+                <Typography variant='body1'>Tekstihaku</Typography>
+              </div>
+              <FormControl className={classes.textSearch}>
+
+                <Input
+                  id='adornment-search'
+                  type='text'
+                  value={this.state.query}
+                  onChange={this.handleQueryChange}
+                  onKeyDown={this.handleOnKeyDown}
+                  endAdornment={
+                    <InputAdornment position='end'>
+                      {searchButton}
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
             </div>
             <div className={classes.root}>
-            <div className={classes.headingContainer}>
-            <Typography variant='body1'>tai valitse pääkategoria:</Typography>
-          </div>
+              <div className={classes.headingContainer}>
+                <Typography variant='body1'>tai valitse pääkategoria:</Typography>
+              </div>
 
-            <FormControl>
-                <RadioGroup value={selectedSituation === null ? null : selectedSituation.id} >
+              <FormControl>
+                <RadioGroup value={selectedSituation === null ? null : selectedSituation.id}>
                   <SortableTree
                     treeData={this.state.treeData}
                     onChange={treeData => this.setState({ treeData })}
@@ -200,14 +195,14 @@ class SituationsSearch extends React.Component {
                     generateNodeProps={this.generateNodeProps}
                     isVirtualized={false}
                   />
-                </RadioGroup>            
-            </FormControl>
+                </RadioGroup>
+              </FormControl>
             </div>
 
-        </div>
-          
+          </div>
+
         )
-      }    
+      }
 }
 
 export default withStyles(styles)(SituationsSearch)

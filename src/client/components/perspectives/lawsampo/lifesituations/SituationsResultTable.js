@@ -80,33 +80,25 @@ class SituationsResultTable extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log('component did mount')
+    // console.log('component did mount')
     const currentPathname = this.props.routeProps.location.pathname
-    console.log(currentPathname)
-    
+    // console.log(currentPathname)
   }
 
   componentDidUpdate = prevProps => {
-    
     // handle the case when the TABLE tab was not originally active
     const prevPathname = prevProps.routeProps.location.pathname
     const currentPathname = this.props.routeProps.location.pathname
-
-
   }
 
   handleChangePage = (event, page) => {
     console.log('page change')
     const currentPathname = this.props.routeProps.location.pathname
-    if(currentPathname.endsWith('statutes'))
-      this.updateResultType({resultType:'statutes'})
-    else
-      this.updateResultType({resultType:'cases'})
+    if (currentPathname.endsWith('statutes')) { this.updateResultType({ resultType: 'statutes' }) } else { this.updateResultType({ resultType: 'cases' }) }
     if (event != null && !this.props.data.fetching) {
       this.props.updatePage(this.props.resultClass, page)
     }
   }
-
 
   handleExpandRow = rowId => () => {
     const expandedRows = this.state.expandedRows
@@ -124,16 +116,20 @@ class SituationsResultTable extends React.Component {
     }
   }
 
-  rowRenderer = row => {
+  rowRenderer = (row, index) => {
     const { classes } = this.props
-    const expanded = this.state.expandedRows.has(row.id)
+    const expanded = this.state.expandedRows.has(index)
     let hasExpandableContent = false
     const dataCells = this.props.columns.map(column => {
       if (column.onlyOnInstancePage) { return null }
-      const columnData = row[column.id] == null ? '-' : row[column.id]
-      const isArray = Array.isArray(columnData)
+      let columnData = row[column.id] == null ? '-' : row[column.id]
+      let isArray = Array.isArray(columnData)
       if (isArray) {
         hasExpandableContent = true
+      }
+      if (isArray && column.id === 'text') {
+        columnData = columnData[0]
+        isArray = false
       }
       if (!isArray &&
         columnData !== '-' &&
@@ -171,14 +167,14 @@ class SituationsResultTable extends React.Component {
       )
     })
     return (
-      <TableRow key={row.id}>
+      <TableRow key={index}>
         <TableCell className={classes.expandCell}>
           {hasExpandableContent &&
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: expanded
               })}
-              onClick={this.handleExpandRow(row.id)}
+              onClick={this.handleExpandRow(index)}
               aria-expanded={expanded}
               aria-label='Show more'
             >
@@ -191,7 +187,7 @@ class SituationsResultTable extends React.Component {
   }
 
   render () {
-    const { classes, isFetching} = this.props
+    const { classes, isFetching } = this.props
     const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection } = this.props.data
 
     return (
@@ -213,7 +209,7 @@ class SituationsResultTable extends React.Component {
                   routeProps={this.props.routeProps}
                 />
                 <TableBody>
-                  {paginatedResults.map(row => this.rowRenderer(row))}
+                  {paginatedResults.map((row, index) => this.rowRenderer(row, index))}
                 </TableBody>
               </Table>
             )}
@@ -222,6 +218,5 @@ class SituationsResultTable extends React.Component {
     )
   }
 }
-
 
 export default withStyles(styles)(SituationsResultTable)

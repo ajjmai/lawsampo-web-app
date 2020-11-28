@@ -12,8 +12,8 @@ import {
 import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
 import localeEN from '../translations/lawsampo/localeEN'
-import localeFI from '../translations/lawsampo/localeFI'
-import localeSV from '../translations/lawsampo/localeSV'
+// import localeFI from '../translations/lawsampo/localeFI'
+// import localeSV from '../translations/lawsampo/localeSV'
 import { stateToUrl, handleAxiosError, pickSelectedDatasets /* boundsToValues */ } from '../helpers/helpers'
 import querystring from 'querystring'
 import {
@@ -55,6 +55,8 @@ import {
   documentFinderAPIUrl,
   backendErrorText
 } from '../configs/lawsampo/GeneralConfig'
+
+import { fetchSituations } from './situations'
 
 /*
 * Note that all code inside the 'client' folder runs on the browser, so there is no 'process' object as in Node.js.
@@ -157,8 +159,7 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
     const { resultClass, facetClass } = action
-    if(resultClass === 'situations')
-      return []
+    if (resultClass === 'situations') { return [] }
     const params = stateToUrl({
       facets: state[`${facetClass}Facets`].facets
     })
@@ -503,8 +504,6 @@ const fetchKnowledgeGraphMetadataEpic = (action$, state$) => action$.pipe(
   })
 )
 
-import { fetchSituations } from './situations'
-
 const rootEpic = combineEpics(
   fetchPaginatedResultsEpic,
   fetchResultsEpic,
@@ -519,7 +518,7 @@ const rootEpic = combineEpics(
   fetchGeoJSONLayersEpic,
   fetchGeoJSONLayersBackendEpic,
   fetchKnowledgeGraphMetadataEpic,
-  fetchSituations,
+  fetchSituations
 )
 
 export default rootEpic
