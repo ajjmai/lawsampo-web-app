@@ -20,20 +20,33 @@ const styles = () => ({
  */
 class SituationsPerspectiveTabs extends React.Component {
   constructor (props) {
-    super(props)
-    const value = this.pathnameToValue(this.props.routeProps.location.pathname)
+    super(props)        
+    const value = this.pathnameToValue(this.props.routeProps.location.pathname)    
     this.state = { value }
   }
 
-  componentDidUpdate = prevProps => {
+  componentDidMount = () => {
     const newPath = this.props.routeProps.location.pathname
-    const oldPath = prevProps.routeProps.location.pathname
+    let page = 'statutes'
+    if(newPath.endsWith('cases'))
+      page ='cases'
+    this.props.updateResultType({resultType: page})
+
+
+  }
+
+  componentDidUpdate = prevProps => {    
+    const newPath = this.props.routeProps.location.pathname
+    const oldPath = prevProps.routeProps.location.pathname    
     if (newPath !== oldPath) {
       let page = 'statutes'
       if(newPath.endsWith('cases'))
         page ='cases'
       this.props.updateResultType({resultType: page})
-      this.props.fetchSituationResults()
+      
+      if(this.props.facetData.query !== '' || this.props.facetData.selectedSituation != null) {        
+        this.props.fetchSituationResults()
+      }      
       this.setState({ value: this.pathnameToValue(newPath) })
     }
   }

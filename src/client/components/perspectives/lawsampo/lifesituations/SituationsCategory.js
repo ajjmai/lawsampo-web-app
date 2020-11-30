@@ -79,10 +79,12 @@ class SituationsCategory extends React.Component {
     }
 
     componentDidUpdate = prevProps => {    
-      if(prevProps.isFetching !== this.props.isFetching) {
+      if(prevProps.isFetching !== this.props.isFetching ||
+        prevProps.selectedSituation !== this.props.selectedSituation) {
       
         this.setState({
-          treeData: this.props.categories
+          treeData: this.props.categories,
+          selectedCategory: this.props.selectedSituation
         })
       }  
     }

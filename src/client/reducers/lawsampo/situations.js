@@ -2,13 +2,12 @@ export const INITIAL_STATE = {
   facetedSearchHeaderExpanded: false,
   facetUpdateID: 0,
   fetchingResultCount: false,
-
-  paginatedResults: [],
+  resultType: 'statutes',
   caseProperties: [
 
     {
       id: 'prefLabel',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: false,
@@ -58,7 +57,7 @@ export const INITIAL_STATE = {
   statutesProperties: [
     {
       id: 'statute',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: false,
@@ -105,28 +104,46 @@ export const INITIAL_STATE = {
     }
   ],
   isFetching: false,
-  statutesResults: []
+  statutesResults: [],
+  casesResults: []
 
 }
 
 const situations = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'UPDATE_RESULT_TYPE':
+      return {
+        ...state,
+        resultType: action.resultType
+      }
     case 'FETCH_SITUATION_RESULTS':
       return {
         ...state,
         isFetching: true
       }
     case 'UPDATE_SITUATION_RESULTS':
-      return {
-        ...state,
-        statutesResults: action.statutesResults,
-        paginatedResults: action.statutesResults,
-        isFetching: false
+      if (state.resultType === 'cases') {
+        return {
+          ...state,
+          casesResults: action.results,
+          statutesResults: [],
+          isFetching: false
+        }
       }
+      if (state.resultType === 'statutes') {
+        return {
+          ...state,
+          statutesResults: action.results,
+          casesResults: [],
+          isFetching: false
+        }
+      }
+      return state
     case 'CLEAR_ALL':
       return {
         ...state,
-        paginatedResults: []
+        casesResults: [],
+        statutesResults: []
 
       }
     default:

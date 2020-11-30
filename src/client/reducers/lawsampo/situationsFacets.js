@@ -1,5 +1,3 @@
-import { findIndex } from 'lodash'
-
 export const updateSituationQuery = ({ query }) => (
   {
     type: 'UPDATE_SITUATION_QUERY',
@@ -57,17 +55,16 @@ export const clearAllSituations = () => (
 
 export const fetchSituationResults = () => (
   {
-    type: 'FETCH_SITUATION_RESULTS',
-    resultType: 'statutes'
+    type: 'FETCH_SITUATION_RESULTS'
   }
 )
 
-export const updateSituationResults = ({ suggestedKeywords, suggestedCategories, statutesResults }) => (
+export const updateSituationResults = ({ suggestedKeywords, suggestedCategories, results }) => (
   {
     type: 'UPDATE_SITUATION_RESULTS',
     suggestedKeywords,
     suggestedCategories,
-    statutesResults
+    results
   }
 )
 

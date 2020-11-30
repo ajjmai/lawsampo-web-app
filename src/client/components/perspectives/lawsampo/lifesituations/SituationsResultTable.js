@@ -79,27 +79,6 @@ class SituationsResultTable extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    // console.log('component did mount')
-    const currentPathname = this.props.routeProps.location.pathname
-    // console.log(currentPathname)
-  }
-
-  componentDidUpdate = prevProps => {
-    // handle the case when the TABLE tab was not originally active
-    const prevPathname = prevProps.routeProps.location.pathname
-    const currentPathname = this.props.routeProps.location.pathname
-  }
-
-  handleChangePage = (event, page) => {
-    console.log('page change')
-    const currentPathname = this.props.routeProps.location.pathname
-    if (currentPathname.endsWith('statutes')) { this.updateResultType({ resultType: 'statutes' }) } else { this.updateResultType({ resultType: 'cases' }) }
-    if (event != null && !this.props.data.fetching) {
-      this.props.updatePage(this.props.resultClass, page)
-    }
-  }
-
   handleExpandRow = rowId => () => {
     const expandedRows = this.state.expandedRows
     if (expandedRows.has(rowId)) {
@@ -187,9 +166,8 @@ class SituationsResultTable extends React.Component {
   }
 
   render () {
-    const { classes, isFetching } = this.props
+    const { classes, isFetching, results, resultClass } = this.props
     const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection } = this.props.data
-
     return (
       <>
         <div className={classes.tableContainer}>
@@ -209,7 +187,7 @@ class SituationsResultTable extends React.Component {
                   routeProps={this.props.routeProps}
                 />
                 <TableBody>
-                  {paginatedResults.map((row, index) => this.rowRenderer(row, index))}
+                  {results.map((row, index) => this.rowRenderer(row, index))}
                 </TableBody>
               </Table>
             )}

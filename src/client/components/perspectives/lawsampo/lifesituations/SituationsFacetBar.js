@@ -70,7 +70,6 @@ class SituationFacetBar extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    // console.log(this.props.facetData)
     if (prevProps.facetData.query !== this.props.facetData.query ||
       prevProps.facetData.selectedSituation !== this.props.facetData.selectedSituation) {
       let initialActive = true
@@ -89,9 +88,9 @@ class SituationFacetBar extends React.Component {
     this.props.clearAllSituations()
   }
 
-  getActiveInitialData = () => {
+  getActiveInitialData = (initialActive) => {
     const { classes } = this.props
-    if (!this.state.initialActive) {
+    if (!initialActive) {
       let label = ''
       if (this.props.facetData.query !== '') {
         label = this.props.facetData.query
@@ -119,7 +118,6 @@ class SituationFacetBar extends React.Component {
     if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
     const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0)
-
     return (
       <>
         <Accordion
@@ -146,7 +144,7 @@ class SituationFacetBar extends React.Component {
               </Tooltip>
             </div>
             <div>
-              {this.getActiveInitialData()}
+              {this.getActiveInitialData(initialActive)}
             </div>
 
           </AccordionSummary>

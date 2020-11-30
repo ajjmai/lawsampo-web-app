@@ -4,7 +4,6 @@ import Sections from './Sections'
 import Statutes from './Statutes'
 // import Legislation from './Legislation'
 import Caselaw from './Caselaw'
-import Situations from './lifesituations/Situations'
 
 /**
  * A component for creating a faceted search perspective for a semantic portal.
@@ -12,7 +11,7 @@ import Situations from './lifesituations/Situations'
 const FacetedSearchPerspective = props => {
   const renderPerspective = () => {
     let perspectiveElement = null
-    switch (props.perspective.id) {    
+    switch (props.perspective.id) {
       case 'statutes':
         perspectiveElement =
           <Statutes

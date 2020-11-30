@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
-// const baseUrl = 'http://localhost:5000/'
+//const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
+const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
   const response = await axios.post(baseUrl + 'categories')
@@ -15,13 +15,40 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
         selected_keywords: keywords,
         category: category
       })
-      return response.data
+      // handle statutes field for results tables
+      const responseData = response.data
+      const results = responseData.results
+      const formattedResults = results.map(obj => {
+        return {
+          ...obj,
+          statute: {
+            id: obj.prefLabel,
+            prefLabel: obj.statute,
+            dataProviderUrl: '/statutes/page/' + obj.id
+          }
+        }
+      })
+      responseData.results = formattedResults
+      return responseData
     } else {
       const response = await axios.post(baseUrl + 'cases', {
         query: query,
         selected_keywords: keywords,
         category: category
       })
+      const responseData = response.data
+      const results = responseData.results
+      const formattedResults = results.map(obj => {
+        return {
+          ...obj,
+          prefLabel: {
+            id: obj.prefLabel,
+            prefLabel: obj.prefLabel,
+            dataProviderUrl: '/caselaw/page/' + obj.id
+          }
+        }
+      })
+      responseData.results = formattedResults
       return response.data
     }
   } catch (error) {

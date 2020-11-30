@@ -14,6 +14,7 @@ const Situations = props => {
         screenSize={props.screenSize}
         updateResultType={props.updateResultType}
         fetchSituationResults={props.fetchSituationResults}
+        facetData={props.facetData}
       />
       <Route
         exact path={`${rootUrl}/${perspective.id}/iterative-search`}
@@ -26,6 +27,7 @@ const Situations = props => {
             isFetching={props.facetData.isFetching}
             data={props.facetResults}
             columns={props.facetResults.statutesProperties}
+            results={props.facetResults.statutesResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='situations'
             facetClass='situations'
@@ -44,6 +46,7 @@ const Situations = props => {
             isFetching={props.facetData.isFetching}
             data={props.facetResults}
             columns={props.facetResults.caseProperties}
+            results={props.facetResults.casesResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='situations'
             facetClass='situations'
