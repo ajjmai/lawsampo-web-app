@@ -69,39 +69,31 @@ export const statutePropertiesInstancePage = `
     ?section__id skos:prefLabel ?section__prefLabel .
     BIND(CONCAT("/sections/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
   }
-  UNION 
-  {
-    ?id lss:cites ?legislationCited__id .
-    # ?legislationCited__id skos:prefLabel ?legislationCited__prefLabel .
-    BIND(?legislationCited__id as ?legislationCited__prefLabel)
-    BIND(?legislationCited__id as ?legislationCited__dataProviderUrl)
-
-  }
   UNION
   {
      ?id eli:transposes ?euDirective__id .
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
-  UNION
-  {
-    ?id lss:html ?html_ .
-    BIND(REPLACE(?html_, '\\\\<\\\\?xml|version="1.0"|encoding="UTF-8"|\\\\?\\\\>|<html>|</html>|<head />|<body>|</body>', '') as ?contentHTML)
-  }
   # UNION
   # {
-  #   ?id lss:annotatedHtml ?annotatedHtml_ .
-  #   BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+  #   ?id lss:html ?html_ .
+  #   BIND(REPLACE(?html_, '\\\\<\\\\?xml|version="1.0"|encoding="UTF-8"|\\\\?\\\\>|<html>|</html>|<head />|<body>|</body>', '') as ?contentHTML)
   # }
-  # UNION 
-  # {
-  #   ?id lss:referencedTerm ?referencedTerm__id .
-  #   ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
-  #   OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
-  #   OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }
-  #   OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
-  #   BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
-  # }
+  UNION
+  {
+    ?id lss:annotatedHtml ?annotatedHtml_ .
+    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+  }
+  UNION 
+  {
+    ?id lss:referencedTerms ?referencedTerm__id .
+    ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
+    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
+    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
+    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
+    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
+  }
 `
 
 export const sectionProperties = `
