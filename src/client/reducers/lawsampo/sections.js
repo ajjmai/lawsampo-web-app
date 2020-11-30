@@ -26,7 +26,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 230
+      minWidth: 150
     },
     {
       id: 'prefLabel',
@@ -35,7 +35,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 230
+      minWidth: 150
     },
     {
       id: 'uri',
@@ -44,8 +44,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 230
+      numberedList: false
     },
     // {
     //   id: 'identifier',
@@ -82,7 +81,7 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: false,
       numberedList: false,
-      minWidth: 150
+      minWidth: 170
     },
     {
       id: 'situationCategory',
@@ -91,17 +90,8 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: false,
       numberedList: false,
-      minWidth: 150
+      minWidth: 170
     }
-    // {
-    //   id: 'euDirective',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // }
   ]
 }
 
