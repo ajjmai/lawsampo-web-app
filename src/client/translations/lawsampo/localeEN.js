@@ -31,7 +31,6 @@ export default {
     narrowDownBy: 'Narrow down by',
     filterOptions: 'Filter options',
     filterByName: 'Filter by name',
-    filterByBoundingBox: 'Filter by bounding box',
     selectionOptions: 'Selection options',
     selectAlsoSubconcepts: 'Automatically select all subconcepts',
     doNotSelectSubconcepts: 'Do not select subconcepts',
@@ -401,105 +400,6 @@ export default {
           label: 'Annotated content (HTML)',
           description: `
             Annotated content (HTML)
-          `
-        }
-      }
-    },
-    legislation: {
-      label: 'Legislation',
-      facetResultsType: 'sections',
-      shortDescription: 'Faceted search for consolidated legislation',
-      longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to...
-        </p>
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          And...
-        </p>
-      `,
-      instancePage: {
-        label: 'Legislation',
-        description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a...
-          </p>
-        `
-      },
-      properties: {
-        uri: {
-          label: 'URI',
-          description: 'Uniform Resource Identifier'
-        },
-        prefLabel: {
-          label: 'Label',
-          description: `
-            Preferred label
-          `
-        },
-        statute: {
-          label: 'Laws and acts',
-          description: `
-            Laws and acts
-          `
-        },
-        jenaText: {
-          label: 'Free text search',
-          description: `
-            Free text search
-          `
-        },
-        text: {
-          label: 'Text',
-          description: `
-            Text
-          `
-        },
-        identifier: {
-          label: 'Identifier',
-          description: `
-            Identifier
-          `
-        },
-        section: {
-          label: 'Section',
-          description: `
-            Section
-          `
-        },
-        subjectCategory: {
-          label: 'Subject',
-          description: `
-            Subject
-          `
-        },
-        situationCategory: {
-          label: 'Life situation',
-          description: `
-            Life situation
-          `
-        },
-        documentType: {
-          label: 'Document type',
-          description: `
-            Document type
-          `
-        },
-        statuteType: {
-          label: 'Statute type',
-          description: `
-            Statute type
-          `
-        },
-        enforcementDate: {
-          label: 'Enforcement date',
-          description: `
-            Enforcement date
-          `
-        },
-        euDirective: {
-          label: 'EU directive',
-          description: `
-            EU directive
           `
         }
       }

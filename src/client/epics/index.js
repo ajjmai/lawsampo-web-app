@@ -12,7 +12,7 @@ import {
 import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
 import localeEN from '../translations/lawsampo/localeEN'
-// import localeFI from '../translations/lawsampo/localeFI'
+import localeFI from '../translations/lawsampo/localeFI'
 // import localeSV from '../translations/lawsampo/localeSV'
 import { stateToUrl, handleAxiosError, pickSelectedDatasets /* boundsToValues */ } from '../helpers/helpers'
 import querystring from 'querystring'
@@ -65,8 +65,8 @@ import { fetchSituations } from './situations'
 const apiUrl = process.env.API_URL
 
 export const availableLocales = {
-  en: localeEN
-  // fi: localeFI,
+  en: localeEN,
+  fi: localeFI
   // sv: localeSV
 }
 
