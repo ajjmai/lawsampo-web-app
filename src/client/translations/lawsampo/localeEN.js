@@ -8,7 +8,7 @@ export default {
     `
   },
   appDescription: `
-   
+
   `,
   selectPerspective: 'Select an application perspective to search and browse the data:',
   mainPageImageLicence: 'Image used under license from Shutterstock.com',
@@ -73,8 +73,8 @@ export default {
     by_year: 'by year',
     network: 'network',
     export: 'export',
-    statutes: 'Lait ja säädökset',
-    cases: 'Oikeustapaukset'
+    statutes: 'Statutes',
+    cases: 'Case Law'
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -98,46 +98,6 @@ export default {
     },
     sliderFacet: {
       invalidStartOrEnd: 'Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}.'
-    }
-  },
-  leafletMap: {
-    basemaps: {
-      mapbox: {
-        'light-v10': 'Mapbox Light'
-      },
-      googleRoadmap: 'Google Maps',
-      topographicalMapNLS: 'Topographical map (National Land Survey of Finland)',
-      backgroundMapNLS: 'Background map (National Land Survey of Finland)'
-    },
-    externalLayers: {
-      arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas',
-      arkeologiset_kohteet_piste: 'Register of Archaeological Sites, points',
-      karelianMaps: 'Karelian maps, 1:100 000 topographic (SeCo)',
-      senateAtlas: 'Senate atlas, 1:21 000 topographic (SeCo)',
-      'kotus:pitajat': 'Finnish parishes in 1938 (Institute for the Languages of Finland)',
-      'kotus:rajat-sms-alueet': 'Dialectical regions in Finland (Institute for the Languages of Finland)',
-      'kotus:rajat-sms-alueosat': 'Dialectical subregions in Finland (Institute for the Languages of Finland)',
-      'kotus:rajat-lansi-ita': 'Border between western and eastern dialects in Finland (Institute for the Languages of Finland)'
-    },
-    mapModeButtons: {
-      markers: 'Markers',
-      heatmap: 'Heatmap'
-    },
-    wrongZoomLevel: 'The map zoom level has to at least 11',
-    wrongZoomLevelFHA: 'The map zoom level has to be at least 13 in order to show this layer',
-    tooManyResults: 'More than 3000 results, please use clustered map or heatmap'
-  },
-  deckGlMap: {
-    arcColouring: 'Arc colouring:',
-    showMoreInformation: 'Click to show more information.',
-    manuscriptMigrations: {
-      legendTitle: 'Arc colouring',
-      legendFrom: 'Manuscript production place',
-      legendTo: 'Last known location',
-      from: 'Production place:',
-      to: 'Last known location:',
-      listHeadingSingleInstance: 'Manuscript:',
-      listHeadingMultipleInstances: 'Manuscripts:'
     }
   },
   instancePageGeneral: {
@@ -531,7 +491,7 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Enforcemnt date',
+          label: 'Enforcement date',
           description: `
             Enforcement date
           `
