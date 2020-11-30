@@ -27,10 +27,11 @@ export const addSituationKeyword = ({ keyword }) => (
   }
 )
 
-export const removeSituationKeyword = (keyword) => (
+export const removeSituationKeyword = ({ keyword, keywordIndex }) => (
   {
     type: 'REMOVE_SITUATION_KEYWORD',
-    keyword
+    keyword,
+    keywordIndex
   }
 )
 
@@ -173,7 +174,7 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
       }
     case 'REMOVE_SITUATION_KEYWORD':
       if (Array.isArray(k)) {
-        k.splice(action.keyword_index, 1)
+        k.splice(action.keywordIndex, 1)
       }
       return {
         ...state,

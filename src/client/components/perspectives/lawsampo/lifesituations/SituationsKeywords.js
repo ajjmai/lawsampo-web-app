@@ -133,7 +133,7 @@ class SituationsKeywords extends React.Component {
   }
 
   handleDelete(item, index) {
-    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item, keyword_index: index})
+    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item, keywordIndex: index})
     this.props.fetchSituationResults()    
   }
 
