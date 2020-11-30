@@ -33,8 +33,8 @@ export const judgementProperties = `
     ?id lss:referencedTerms ?referencedTerm__id .
     ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
     OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
-    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__comment }
-    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__format }
+    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
+    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
     BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
   }
   UNION

@@ -3,7 +3,6 @@ import ReactHtmlParser from 'react-html-parser'
 import { Link } from 'react-router-dom'
 import Tooltip from '@material-ui/core/Tooltip'
 import { arrayToObject } from './helpers'
-import { Typography } from '@material-ui/core'
 
 export default class HTMLParser {
   constructor (props) {
@@ -50,30 +49,23 @@ export default class HTMLParser {
       const occurrenceID = node.attribs['data-occurrence-id']
       let tooltipJSX
       if (linkStr.includes(',')) {
-        const uris = linkStr.split(',')
-        const listItemsJSX = []
+        const urisJSX = []
+        let uris = linkStr.split(',')
+        uris = uris.filter(uri => !uri.startsWith('http://www.yso.fi/'))
         uris.map((uri, index) => {
-          listItemsJSX.push(
-            <li key={index}>
-              <ul>
-                {this.renderAnnotation(uri)}
-              </ul>
-            </li>
-          )
+          urisJSX.push(this.renderAnnotation(uri))
         })
         tooltipJSX = (
           <div className={props.classes.tooltipContent}>
-            <Typography>Concepts in random order:</Typography>
-            <ul className={props.classes.tooltipList}>{listItemsJSX}</ul>
+            {urisJSX}
           </div>
         )
       } else {
         const uri = linkStr
+        if (uri.startsWith('http://www.yso.fi/')) { return }
         tooltipJSX = (
           <div className={props.classes.tooltipContent}>
-            <ul className={props.classes.tooltipList}>
-              {this.renderAnnotation(uri)}
-            </ul>
+            {this.renderAnnotation(uri)}
           </div>
         )
       }
@@ -106,13 +98,47 @@ export default class HTMLParser {
       const localID = uri.replace('http://ldf.fi/ttp/', '')
       uri = `http://ldf.fi/ttp/${encodeURIComponent(localID)}`
     }
-    return (
-      <>
-        <li><i><small>URI:</small></i> <a href={uri} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].id}</a></li>
-        <li><i><small>dctems:hasFormat:</small></i> <a href={this.referencedTermsObj[uri].format} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].format}</a></li>
-        <li><i><small>skos:prefLabel:</small></i> {this.referencedTermsObj[uri].prefLabel}</li>
-        <li><i><small>rdfs:comment:</small></i> {this.referencedTermsObj[uri].comment}</li>
-      </>
-    )
+    const { prefLabel, description, externalLink } = this.referencedTermsObj[uri]
+    let source
+    if (uri.startsWith('http://ldf.fi/ttp/')) {
+      source = 'Tieteen termipankki'
+    }
+    if (uri.startsWith('http://fi.dbpedia.org/')) {
+      source = 'Wikipedia'
+    }
+    if (source === 'Wikipedia') {
+      return (
+        <React.Fragment key={uri}>
+          <p><a href={externalLink} target='_blank' rel='noopener noreferrer'>{prefLabel} ({source})</a></p>
+          <p>{description}</p>
+        </React.Fragment>
+      )
+    }
+    if (source === 'Tieteen termipankki') {
+      return (
+        <React.Fragment key={uri}>
+          <p>
+            <a href={externalLink} target='_blank' rel='noopener noreferrer'>
+              {prefLabel.charAt(0).toUpperCase() + prefLabel.slice(1)} ({source})
+            </a>
+          </p>
+        </React.Fragment>
+      )
+    }
   }
+
+  // renderAnnotation = uri => {
+  //   if (uri.startsWith('http://ldf.fi/ttp/')) {
+  //     const localID = uri.replace('http://ldf.fi/ttp/', '')
+  //     uri = `http://ldf.fi/ttp/${encodeURIComponent(localID)}`
+  //   }
+  //   return (
+  //     <>
+  //       <li><i><small>URI:</small></i> <a href={uri} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].id}</a></li>
+  //       <li><i><small>dctems:hasFormat:</small></i> <a href={this.referencedTermsObj[uri].format} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].format}</a></li>
+  //       <li><i><small>skos:prefLabel:</small></i> {this.referencedTermsObj[uri].prefLabel}</li>
+  //       <li><i><small>rdfs:comment:</small></i> {this.referencedTermsObj[uri].comment}</li>
+  //     </>
+  //   )
+  // }
 }
