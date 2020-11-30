@@ -64,6 +64,16 @@ export const judgementProperties = `
     BIND(?referencedStatute__id AS ?referencedStatute__prefLabel)
     BIND(?referencedStatute__id AS ?referencedStatute__dataProviderUrl)
   }
+  UNION 
+  {
+    ?id lss:situation_category ?situationCategory__id .
+    ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
+  }
+   UNION 
+  {
+    ?id lss:subject_category ?subjectCategory__id .
+    ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
+  }
 `
 export const judgementsByYearQuery = `
   SELECT ?category (count(distinct ?judgement) as ?count) WHERE {

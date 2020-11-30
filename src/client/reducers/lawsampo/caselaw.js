@@ -85,6 +85,26 @@ export const INITIAL_STATE = {
       minWidth: 160
     },
     {
+      id: 'subjectCategory',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 170
+    },
+    {
+      id: 'situationCategory',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 170
+    },
+    {
       id: 'contentHTML',
       valueType: 'string',
       onlyOnInstancePage: true,
