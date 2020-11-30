@@ -106,16 +106,6 @@ export const INITIAL_STATE = {
     //   numberedList: false,
     //   minWidth: 150
     // },
-    // {
-    //   id: 'contentHTML',
-    //   valueType: 'string',
-    //   onlyOnInstancePage: true,
-    //   renderAsHTML: true,
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: false,
-    //   numberedList: false,
-    // }
     {
       id: 'contentHTMLAnnotated',
       valueType: 'string',
@@ -125,8 +115,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 160
+      numberedList: false
     }
   ]
 }

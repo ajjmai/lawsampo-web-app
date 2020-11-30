@@ -137,6 +137,20 @@ export const sectionProperties = `
     ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
     BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
+  UNION
+  {
+    ?id lss:annotatedHtml ?annotatedHtml_ .
+    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+  }
+  UNION 
+  {
+    ?id lss:referencedTerms ?referencedTerm__id .
+    ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
+    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
+    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
+    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
+    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
+  }
 `
 
 export const statutesByYearQuery = `

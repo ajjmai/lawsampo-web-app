@@ -46,15 +46,6 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false
     },
-    // {
-    //   id: 'identifier',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 160
-    // },
     {
       id: 'text',
       valueType: 'string',
@@ -91,6 +82,17 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 170
+    },
+    {
+      id: 'contentHTMLAnnotated',
+      valueType: 'string',
+      onlyOnInstancePage: true,
+      renderAsHTML: true,
+      HTMLParserTask: 'addAnnotationTooltips',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false
     }
   ]
 }
