@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
+// const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
+const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
   const response = await axios.post(baseUrl + 'categories')
@@ -11,7 +12,7 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
     if (resultType === 'statutes') {
       const response = await axios.post(baseUrl + 'statutes', {
         query: query,
-        selected_keywords: keywords,
+        selected_keywords: [5],
         category: category
       })
       return response.data

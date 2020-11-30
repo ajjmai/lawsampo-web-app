@@ -75,11 +75,16 @@ export const statutePropertiesInstancePage = `
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
-  # UNION
-  # {
-  #   ?id lss:html ?html_ .
-  #   BIND(REPLACE(?html_, '\\\\<\\\\?xml|version="1.0"|encoding="UTF-8"|\\\\?\\\\>|<html>|</html>|<head />|<body>|</body>', '') as ?contentHTML)
-  # }
+  UNION 
+  {
+    ?id lss:situation_category ?situationCategory__id .
+    ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
+  }
+  UNION 
+  {
+    ?id lss:subject_category ?subjectCategory__id .
+    ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
+  }
   UNION
   {
     ?id lss:annotatedHtml ?annotatedHtml_ .

@@ -66,15 +66,6 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 150
     },
-    // {
-    //   id: 'keyword',
-    //   valueType: 'object',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // },
     {
       id: 'decisionDate',
       valueType: 'string',
@@ -91,8 +82,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
     },
     {
       id: 'situationCategory',
@@ -101,8 +91,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
     },
     {
       id: 'contentHTML',

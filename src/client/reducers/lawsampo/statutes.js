@@ -71,14 +71,6 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false
     },
-    // {
-    //   id: 'legislationCited',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false
-    // },
     {
       id: 'euDirective',
       valueType: 'object',
@@ -88,24 +80,24 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 160
     },
-    // {
-    //   id: 'subjectCategory',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // },
-    // {
-    //   id: 'situationCategory',
-    //   valueType: 'object',
-    //   makeLink: true,
-    //   externalLink: true,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 150
-    // },
+    {
+      id: 'subjectCategory',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false
+    },
+    {
+      id: 'situationCategory',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false
+    },
     {
       id: 'contentHTMLAnnotated',
       valueType: 'string',
