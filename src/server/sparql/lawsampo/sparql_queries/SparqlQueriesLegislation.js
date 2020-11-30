@@ -115,7 +115,7 @@ export const sectionProperties = `
   }
   UNION
   {
-    ?id lss:statute_date ?enforcementDate .
+    ?id lss:section_date ?enforcementDate .
   }
   UNION
   {
