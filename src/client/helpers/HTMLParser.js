@@ -46,13 +46,13 @@ export default class HTMLParser {
     if (this.referencedTermsObj && node.type === 'tag' && node.name === 'span' &&
     node.attribs.name === 'namedentity' && node.attribs['data-link'] !== '') {
       const linkStr = node.attribs['data-link']
-      const occurrenceID = node.attribs['data-occurrence-id']
+      // const occurrenceID = node.attribs['data-occurrence-id']
       let tooltipJSX
       if (linkStr.includes(',')) {
         const urisJSX = []
         let uris = linkStr.split(',')
         uris = uris.filter(uri => !uri.startsWith('http://www.yso.fi/'))
-        uris.map((uri, index) => {
+        uris.map(uri => {
           urisJSX.push(this.renderAnnotation(uri))
         })
         tooltipJSX = (
@@ -78,7 +78,7 @@ export default class HTMLParser {
       }
       return (
         <Tooltip
-          key={occurrenceID}
+          key={index}
           title={tooltipJSX}
           interactive
           placement='top'
