@@ -113,29 +113,7 @@ class SituationsKeywords extends React.Component {
       </>
     )
   }
-/*
-  generateNodeProps = treeObj => {
-    const { node } = treeObj
 
-    return {
-      title: (
-        <FormControlLabel
-        control={
-          <Checkbox
-            className={''}
-            checked={false}
-            disabled={false}
-            onChange={this.handleCheckboxChange(treeObj)}
-            value={treeObj.node.id}
-            color='primary'
-          />
-        }          
-          label={this.generateLabel(treeObj.node)}
-        />
-      )      
-    }
-  }
-  */
  generateNodeProps = treeObj => {
   const { node } = treeObj
 
@@ -151,11 +129,11 @@ class SituationsKeywords extends React.Component {
         label={this.generateLabel(treeObj.node)}
       />
     )      
+    }
   }
-}
 
-  handleDelete = item => () => {
-    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item})
+  handleDelete(item, index) {
+    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item, keyword_index: index})
     this.props.fetchSituationResults()    
   }
 
@@ -171,7 +149,7 @@ class SituationsKeywords extends React.Component {
       ) : (
           <>      
               <div className={''}>
-                {selectedKeywords !== null && selectedKeywords.map(item => {
+                {selectedKeywords !== null && selectedKeywords.map( (item, index) => {
                   const key = item
                   return (
                     <Tooltip key={key.id} title={key.id}>
@@ -180,7 +158,7 @@ class SituationsKeywords extends React.Component {
                         //icon={icon}
                         label={key.name}
                         className={classes.chip}
-                       onDelete={this.handleDelete(item)}
+                       onDelete={ () => this.handleDelete(item, index)}
                         color='primary'
                       />
                     </Tooltip>

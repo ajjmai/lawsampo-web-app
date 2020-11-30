@@ -173,8 +173,7 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
       }
     case 'REMOVE_SITUATION_KEYWORD':
       if (Array.isArray(k)) {
-        const index = findIndex(k, ['id', action.keyword.id])
-        k.splice(index, 1)
+        k.splice(action.keyword_index, 1)
       }
       return {
         ...state,
