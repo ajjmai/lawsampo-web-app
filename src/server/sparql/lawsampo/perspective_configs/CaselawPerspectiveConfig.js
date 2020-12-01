@@ -12,6 +12,7 @@ export const caselawPerspectiveConfig = {
   },
   facetClass: 'lss:Judgment',
   langTag: 'fi',
+  langTagSecondary: 'sv',
   paginatedResults: {
     properties: judgementProperties
   },
