@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'lawsampo',
+    short: 'LawSampo',
     long: 'LawSampo',
     subheading: `
       Finnish Legislation and Case Law on the Semantic Web

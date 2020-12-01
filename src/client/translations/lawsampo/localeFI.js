@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'Suomi',
   appTitle: {
-    short: 'lakisampo',
+    short: 'Lakisampo',
     long: 'Lakisampo',
     subheading: `
       Suomen ajantasainen lainsäädäntö ja oikeustapaukset semanttisessa webissä
