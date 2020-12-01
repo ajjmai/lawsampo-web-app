@@ -56,7 +56,7 @@ import {
   backendErrorText
 } from '../configs/lawsampo/GeneralConfig'
 
-import { fetchSituations } from './situations'
+import { fetchSituations, fetchSituationResults } from './situations'
 
 /*
 * Note that all code inside the 'client' folder runs on the browser, so there is no 'process' object as in Node.js.
@@ -518,7 +518,8 @@ const rootEpic = combineEpics(
   fetchGeoJSONLayersEpic,
   fetchGeoJSONLayersBackendEpic,
   fetchKnowledgeGraphMetadataEpic,
-  fetchSituations
+  fetchSituations,
+  fetchSituationResults
 )
 
 export default rootEpic

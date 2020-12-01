@@ -14,10 +14,38 @@ import {
   backendErrorText
 } from '../configs/lawsampo/GeneralConfig'
 
-import { updateSituationResults } from '../reducers/lawsampo/situationsFacets'
+import { updateSituationResults, updateSituations } from '../reducers/lawsampo/situationsFacets'
 const apiUrl = process.env.API_URL
 
 export const fetchSituations = (action$, state$) => action$.pipe(
+  ofType('FETCH_SITUATIONS'),
+  withLatestFrom(state$),
+  mergeMap(([action, state]) => {
+    const requestUrl = `${apiUrl}/classifier/categories`
+    return ajax({
+      url: requestUrl,
+      method: 'GET'
+    }).pipe(
+      map(ajaxResponse => {
+        return updateSituations({
+          situations: ajaxResponse.response.situations
+        })
+      }),
+      catchError(error => of({
+        type: FETCH_FACET_FAILED,
+        facetClass: '',
+        facetID: '',
+        error: error,
+        message: {
+          text: backendErrorText,
+          title: 'Error'
+        }
+      }))
+    )
+  })
+)
+
+export const fetchSituationResults = (action$, state$) => action$.pipe(
   ofType('FETCH_SITUATION_RESULTS'),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {

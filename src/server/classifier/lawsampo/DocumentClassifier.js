@@ -4,8 +4,10 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
-  const response = await axios.post(baseUrl + 'categories')
-  return response.data
+  const response = await axios.get(baseUrl + 'categories')
+  return {
+    situations: response.data
+  }
 }
 export const fetchClassifierResults = async (resultType, query, keywords, category) => {
   try {

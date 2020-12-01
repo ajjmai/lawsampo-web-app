@@ -68,6 +68,12 @@ export const updateSituationResults = ({ suggestedKeywords, suggestedCategories,
   }
 )
 
+export const fetchSituations = () => (
+  {
+    type: 'FETCH_SITUATIONS'
+  }
+)
+
 export const updateSituations = ({ situations }) => (
   {
     type: 'UPDATE_SITUATIONS',
@@ -83,6 +89,7 @@ export const INITIAL_STATE = {
   query: '',
   selectedSituation: null,
   situations: [
+    /*
     {
       id: 0,
       name: 'asuminen kiinteistö'
@@ -131,6 +138,7 @@ export const INITIAL_STATE = {
       id: 11,
       name: 'yritykset yhteisöt työelämä'
     }
+    */
   ],
   keywords: [],
   selectedKeywords: [],
@@ -203,7 +211,18 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
         isFetching: false
 
       }
+    case 'FETCH_SITUATIONS':
+      return {
+        ...state,
+        isFetching: true
+      }
+    case 'UPDATE_SITUATIONS':
+      return {
+        ...state,
+        situations: action.situations,
+        isFetching: false
 
+      }
     default:
       return state
   }

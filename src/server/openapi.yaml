@@ -450,6 +450,17 @@ paths:
             application/json:
               schema:
                 type: object              
+  /classifier/categories:
+    get:
+      summary: Get classification categories
+      
+      responses:
+        '200':
+          description: Custom response
+          content:
+            application/json:
+              schema:
+                type: object 
   /classifier:
     post:
       summary: Get classifications
@@ -467,6 +478,7 @@ paths:
             application/json:
               schema:
                 type: object 
+                
 
         
 

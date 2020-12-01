@@ -76,7 +76,8 @@ import {
   removeSituationKeyword,
   fetchSituationResults,
   clearAllSituations,
-  updateResultType
+  updateResultType,
+  fetchSituations
 } from '../reducers/lawsampo/situationsFacets'
 // import { filterResults } from '../selectors'
 
@@ -362,6 +363,7 @@ const SemanticPortal = props => {
                             >
                               <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                                 <SituationsFacetBar
+                                  fetchSituations={props.fetchSituations}
                                   facetData={props[`${perspective.id}Facets`]}
                                   updateSituationQuery={props.updateSituationQuery}
                                   updateSituationSelected={props.updateSituationSelected}
@@ -690,6 +692,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = ({
+  fetchSituations,
   updateResultType,
   clearAllSituations,
   addSituationKeyword,

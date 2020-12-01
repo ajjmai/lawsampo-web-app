@@ -69,6 +69,10 @@ class SituationFacetBar extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    this.props.fetchSituations()
+  }
+
   componentDidUpdate = prevProps => {
     if (prevProps.facetData.query !== this.props.facetData.query ||
       prevProps.facetData.selectedSituation !== this.props.facetData.selectedSituation) {
