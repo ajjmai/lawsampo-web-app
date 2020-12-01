@@ -27,6 +27,7 @@ export default {
   facetBar: {
     results: 'Tulokset',
     activeFilters: 'Aktiiviset suodattimet:',
+    defaultMissingValueLabel: 'Tieto puuttuu',
     removeAllFilters: 'Poista kaikki',
     narrowDownBy: 'Rajoita',
     filterOptions: 'Asetukset',
@@ -246,6 +247,7 @@ export default {
         },
         euDirective: {
           label: 'EU-direktiivi',
+          missingValueLabel: 'ei direktiiviä',
           description: `
             EU-direktiivi
           `

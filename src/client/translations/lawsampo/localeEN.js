@@ -27,6 +27,7 @@ export default {
   facetBar: {
     results: 'Results',
     activeFilters: 'Active filters:',
+    defaultMissingValueLabel: 'Unknown',
     removeAllFilters: 'Remove all',
     narrowDownBy: 'Narrow down by',
     filterOptions: 'Filter options',
@@ -274,6 +275,7 @@ export default {
         },
         euDirective: {
           label: 'EU directive',
+          missingValueLabel: 'No directive',
           description: `
             EU directive
           `
@@ -382,12 +384,6 @@ export default {
           label: 'Statute enforcement date',
           description: `
             Statute enforcement date
-          `
-        },
-        euDirective: {
-          label: 'EU directive',
-          description: `
-            EU directive
           `
         },
         contentHTML: {
