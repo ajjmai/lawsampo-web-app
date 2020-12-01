@@ -379,9 +379,9 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Enforcement date',
+          label: 'Statute enforcement date',
           description: `
-            Enforcement date
+            Statute enforcement date
           `
         },
         euDirective: {

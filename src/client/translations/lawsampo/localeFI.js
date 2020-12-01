@@ -165,7 +165,7 @@ export default {
     statutes: {
       label: 'Säädökset',
       mainPageLabel: 'Lainsäädäntö: säädökset',
-      facetResultsType: 'säädöksiä',
+      facetResultsType: 'säädöstä',
       shortDescription: 'Ajantasaisten säädösten haku',
       longDescription: `
       `,
@@ -340,9 +340,9 @@ export default {
           `
         },
         enforcementDate: {
-          label: 'Voimaantulo',
+          label: 'Säädöksen voimaantulo',
           description: `
-            Voimaantulopäivämäärä
+            Säädöksen voimaantulopäivämäärä
           `
         },
         euDirective: {

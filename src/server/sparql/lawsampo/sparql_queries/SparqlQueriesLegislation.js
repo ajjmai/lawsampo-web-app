@@ -120,7 +120,7 @@ export const sectionProperties = `
   }
   UNION
   {
-    ?id lss:section_date ?enforcementDate .
+    ?id lss:section_statute_date ?enforcementDate .
   }
   UNION
   {

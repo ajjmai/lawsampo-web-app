@@ -43,8 +43,8 @@ export const sectionsPerspectiveConfig = {
       id: 'statuteYear',
       facetValueFilter: `
       `,
-      predicate: 'lss:timespan',
-      labelPath: 'lss:timespan/skos:prefLabel',
+      predicate: 'lss:statute_timespan',
+      labelPath: 'lss:section_statute_date',
       type: 'hierarchical',
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
