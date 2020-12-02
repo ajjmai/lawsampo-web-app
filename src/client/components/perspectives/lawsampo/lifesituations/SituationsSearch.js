@@ -84,8 +84,8 @@ class SituationsSearch extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    console.log(prevProps)
-    console.log(this.props)
+    // console.log(prevProps)
+    // console.log(this.props)
 
     if(prevProps.situations != this.props.situations) {
       this.setState(
