@@ -92,6 +92,7 @@
     "react-router-dom": "^5.1.2",
     "react-sortable-tree": "2.6.2",
     "react-sortable-tree-theme-file-explorer": "git+https://github.com/SemanticComputing/react-sortable-tree-theme-file-explorer.git",
+    "react-tagcloud": "^2.0.0",
     "recompose": "^0.28.2",
     "redux": "^4.0.1",
     "redux-observable": "^1.0.0",
