@@ -99,9 +99,11 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
-      id: 'tagCloud',
+      id: 'wordcloud',
+      dataId: 'referencedTerm',
       onlyOnInstancePage: true,
-      valueType: 'wordCloud'
+      valueType: 'wordcloud',
+      maxWords: 40
     },
     {
       id: 'contentHTMLAnnotated',
