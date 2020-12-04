@@ -44,6 +44,7 @@ export default {
     maxYear: 'Max year',
     min: 'Min',
     max: 'Max',
+    facetSearchFieldPlaceholder: 'Search...',
     applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
@@ -221,6 +222,7 @@ export default {
         },
         jenaText: {
           label: 'Free text search',
+          textFacetInputPlaceholder: 'Search...',
           description: `
             Free text search
           `
@@ -334,6 +336,7 @@ export default {
         },
         jenaText: {
           label: 'Free text search',
+          textFacetInputPlaceholder: 'Search...',
           description: `
             Free text search
           `
@@ -447,6 +450,7 @@ export default {
         },
         jenaText: {
           label: 'Free text search',
+          textFacetInputPlaceholder: 'Search...',
           description: `
             Free text search
           `

@@ -44,6 +44,7 @@ export default {
     maxYear: 'Max year',
     min: 'Min',
     max: 'Max',
+    facetSearchFieldPlaceholder: 'Hae...',
     applyFacetSelection: 'päivitä',
     pieChart: {
       tooltip: 'Piirakkakaavio'
@@ -193,6 +194,7 @@ export default {
         },
         jenaText: {
           label: 'Vapaatekstihaku',
+          textFacetInputPlaceholder: 'Hae...',
           description: `
             Vapaatekstihaku
           `
@@ -301,6 +303,7 @@ export default {
         },
         jenaText: {
           label: 'Vapaatekstihaku',
+          textFacetInputPlaceholder: 'Hae...',
           description: `
             Vapaatekstihaku
           `
@@ -398,6 +401,7 @@ export default {
         },
         jenaText: {
           label: 'Vapaatekstihaku',
+          textFacetInputPlaceholder: 'Hae...',
           description: `
             Vapaatekstihaku
           `
