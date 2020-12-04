@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://zeroshot.test.lakisampo.fi/'
+const baseUrl = 'https://contextualsearcher.test.lakisampo.fi/'
 //const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
