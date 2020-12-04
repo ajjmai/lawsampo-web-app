@@ -99,6 +99,11 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
+      id: 'tagCloud',
+      onlyOnInstancePage: true,
+      valueType: 'wordCloud'
+    },
+    {
       id: 'contentHTMLAnnotated',
       valueType: 'string',
       onlyOnInstancePage: true,

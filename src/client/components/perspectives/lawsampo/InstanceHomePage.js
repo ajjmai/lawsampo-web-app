@@ -14,7 +14,6 @@ import Export from '../../facet_results/Export'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
 // import { arrayToObject } from '../../../helpers/helpers'
-import { TagCloud } from 'react-tagcloud'
 
 const styles = theme => ({
   root: {
@@ -34,16 +33,6 @@ const styles = theme => ({
     justifyContent: 'center'
   }
 })
-
-const data = [
-  { value: 'JavaScript', count: 38 },
-  { value: 'React', count: 30 },
-  { value: 'Nodejs', count: 28 },
-  { value: 'Express.js', count: 25 },
-  { value: 'HTML5', count: 33 },
-  { value: 'MongoDB', count: 18 },
-  { value: 'CSS3', count: 20 }
-]
 
 /**
  * A component for generating a landing page for a single entity.
@@ -167,16 +156,6 @@ class InstanceHomePage extends React.Component {
                     resultClass={resultClass}
                     data={tableData}
                     properties={this.getVisibleRows(this.props.properties)}
-                  />}
-              />
-              <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/tag_cloud`}
-                render={() =>
-                  <TagCloud
-                    minSize={12}
-                    maxSize={35}
-                    tags={data}
-                    onClick={tag => console.log(`'${tag.value}' was selected!`)}
                   />}
               />
               <Route

@@ -5,7 +5,7 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 // import RedoIcon from '@material-ui/icons/Redo'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
-import BubbleChartIcon from '@material-ui/icons/BubbleChart'
+// import BubbleChartIcon from '@material-ui/icons/BubbleChart'
 import sdfImage from '../../img/lawsampo/sdf-tumb.png'
 import legislationImage from '../../img/lawsampo/legislation.png'
 import caselawImage from '../../img/lawsampo/caselaw.png'
@@ -36,13 +36,8 @@ export const perspectiveConfig = [
         icon: <CalendarViewDayIcon />
       },
       {
-        id: 'tag_cloud',
-        value: 2,
-        icon: <BubbleChartIcon />
-      },
-      {
         id: 'export',
-        value: 3,
+        value: 1,
         icon: <CloudDownloadIcon />
       }
     ]

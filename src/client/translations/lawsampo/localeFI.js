@@ -73,7 +73,7 @@ export default {
     by_year: 'vuosijakauma',
     network: 'verkosto',
     export: 'Vie',
-    statutes: 'Lait ja säädökset',
+    statutes: 'Lainsäädäntö',
     cases: 'Oikeustapaukset'
   },
   table: {
@@ -250,6 +250,12 @@ export default {
           missingValueLabel: 'ei direktiiviä',
           description: `
             EU-direktiivi
+          `
+        },
+        tagCloud: {
+          label: 'Sanapilvi',
+          description: `
+            Sanapilvi
           `
         },
         contentHTML: {
