@@ -81,7 +81,7 @@ export default {
     rowsPerPage: 'Riviä sivulla',
     of: 'of'
   },
-  exportToYasgui: 'avaa tuloskysely yasgui editorissa',
+  exportToYasgui: 'avaa tuloskysely yasgui-editorissa',
   openInLinkedDataBrowser: 'avaa linkitetyn datan selaimessa',
   resultsAsCSV: 'lataa tulokset CSV taulukkona',
   facets: {
@@ -478,114 +478,109 @@ export default {
   `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Using the LawSampo Portal
+      Lakisampo-portaalin käyttäminen
     </h1>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      General Idea
+      Yleistä
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The LawSampo Portal enables you to search and explore the legislative data originating from Semantic Finlex.
-      In addition, the portal is equipped with ready-to-use tools for Digital Humanities research using the
-      <a href="https://seco.cs.aalto.fi/publications/2020/hyvonen-sampos-dhn-2020.pdf" target='_blank' rel='noopener noreferrer'>
-      "Sampo" model</a> where the portal is used as follows:
+      Lakisampo-portaalissa voit hakea ja tutkia Semanttiseen Finlexiin pohjautuvaa lainsäädäntöaineistoa.
+      Lisäksi portaalissa on valmiit työkalut "Digital Humanities"-tutkimukseen käyttäen
+      <a href="https://seco.cs.aalto.fi/publications/2020/hyvonen-sampos-dhn-2020.pdf" target='_blank' rel='noopener noreferrer'>Sampo-mallia</a>,
+      jossa portaalia voi käyttää seuraavasti:
     </p>
     <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
     <li class="MuiTypography-gutterBottom">
-        On the front page of the portal different perspectives to the data are given as a selection: the statutes of
-        consolidated legislation, the sections of consolidated legislation, case law, case law finder (external service), and
-        contextual legislation search.
-        The idea is to provide access to the underlying data (knowledge graph)
-        through multiple use cases while the data remains the same.
+        Portaalin etusivulla voit valita eri näkymistä aineistoon:
+        Lainsäädäntö (hae lakeja, asetuksia ja päätöksiä),
+        Pykälät (hae yksittäisiä pykäliä),
+        Oikeuskäytäntö (hae oikeustapauksia),
+        Haku tekstillä (Hae oikeustapauksia tekstikuvauksen avulla),
+        Elämäntilanteet (Hae pykäliä ja oikeustapauksia elämäntilanteiden ja aiheiden avulla).
+        Ideana on tarjota pääsy Lakisammon dataan (tietämysverkkoon) erilaisissa käyttötapauksissa datan pysyessä samana.
       </li>
       <li class="MuiTypography-gutterBottom">
-        In the perspectives regarding consolidated legislation and caselaw, faceted search can be used for filtering out a subset
-        of objects of the view, the “target group” of interest. For example, statutes of a given time period can be selected.
-        By default the perspectives display all results from the corresponding class (Statute, Section, Case Law).
-        This default result set can be narrowed down by using the filters.
+        Lainsäädännön ja oikeuskäytännön näkymissä, voit käyttää fasettihakua tutkiaksesi sinua kiinnostavaa osajoukkoa näkymän entiteeteistä.
+        Esimerkiksi voit tutkia tietyn ajanjakson säädöksiä. Oletuksena näkymät näyttävät kaikki kyseiseen näkymään kuuluvat tulokset (säädöset, pykälät tai oikeustapaukset).
+        Tätä oletuksena näkyvää tulosjoukkoa voi rajata suodattimilla.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Finally, visualization tools can be applied to study the target group. For example, it is possible
-        to see on the temporal distribution of the court decisions of the case law.
+        Lopuksi voit käyttää visualisointityökaluja tutkiaksesi tulosjoukkoa tarkemmin.
+        Esimerkiksi voit katsoa oikeustapausten ajallista jakaumaa graafisesti.
       </li>
     </ol>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Using the "Export" tab in a perspective and then the button "Open SPARQL query in YASGUI" the SPARQL query corresponding to
-      the facet selections made is shown in the
-      <a href="https://yasgui.triply.cc" target='_blank' rel='noopener noreferrer'>
-      YASGUI</a> SPARQL querying interface with the results. Additional YASGUI tools for studying the results and downloading
-      the data are available there. For example, the results of the query can be downloaded in CSV format for additional
-      spreadsheet computing.
+      Näkymien Vie-välilehdeltä voit klikata "avaa tuloskysely YASGUI-editorissa" päästäksesi katsomaan tulosjoukon palauttavaa kyselyä ja tuloksia
+      <a href="https://yasgui.triply.cc" target='_blank' rel='noopener noreferrer'>YASGUI</a>-SPARQL-editorissa.
+      Voit käyttää YASGUI:n työkaluja tulosten tarkasteluun, tai ladata tulokset tiedostona,
+      esimerkiksi CSV-formaatissa ladataksesi tulokset taulukkolaskentaohjelmalla.
   </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      If you want to inspect the full raw data for any individual statute or other entity, click on the link of the entity.
+      Jos haluat tutkia kaikkea tietämysverkon tietoa, joka liittyy yhteen  säädökseen tai muuhun entiteettiin, klikkaa entiteettiä.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Using a Single Filter in Faceted Search
+      Yksittäisen suodattimen käyttö fasettihaussa
     </h2>
     <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
-      Selecting values within a filter
+      Arvojen valinta suodattimen sisällä
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      All possible values for a filter are displayed either as a list or as a hierarchical
-      tree (if available). The number of results is shown in brackets for each value.
-      Once a value is selected, the results are automatically updated. To prevent further
-      selections that do not return any results, also the possible values for all other
-      filters are updated at the same time.
+      Kaikki suodattimen mahdolliset arvot näytetään listana tai hierarkkisena puurakenteena.
+      Tulosten määrä näytetään suluissa jokaisen arvon perässä.
+      Kun arvo on valittu, tulokset päivitetään automaattisesti.
+      Tyhjään tulosjoukkoon johtavat valinnat estetään päivittämällä kaikkien suodattimien
+      mahdolliset valinnat, kun yhdessä suodattimessa on tehty valinta.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Multiple values can be selected within a single filter. Selecting multiple values
-      generates results that contain <strong>any</strong> of the selected values. For example, selecting
-      two different directives in the EU directive facet returns results that
-      make references to either of them.
+      Suodattimien arvoista voi valita useita, jolloin tulosjoukko muodostetaan yhdistämällä molempien valintojen tulokset yhteen.
+      Voit esimerkiksi valita EU-direktiivi-fasetista kaksi eri direktiiviä, jolloin tuloksina näytetään kaikki säädökset, jotka viittaavat jompaankumpaan.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Selected values of a filter appear in the Active filters section at the top of the list
-      of filters. To deselect a filter, click the X mark next to it within the Active filters
-      section. You can also deselect a filter value by unchecking the checkmark in the
-      filter’s value list. The Active filters section only appears if there are filter
-      values currently selected.
+      Suodattimen valitut arvot näkyvät suodattimien yläpuolella olevassa "Aktiiviset suodattimet" -osiossa.
+      Poistaaksesi valinnan, klikkaa x-merkkiä aktiivisen suodattimen oikealla puolella.
+      Voit myös poistaa valinnan klikkaamalla valintaa itse suodattimessa.
+      Aktiiviset suodattimet -osio näkyy vain jos suodattimissa on valittu arvoja.
     </p>
     <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
-      Searching categories within a filter
+      Arvojen etsiminen suodattimen sisällä
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Category selections within a filter can be searched by using the search field at the
-      top of each filter. All possible values of a filter remain visible at all times.
-      The values of the filter that match the search term are indicated by a purple underline.
+      Voit etsiä arvoja suodattimen sisällä käyttämällä suodattimen hakukenttää.
+      Kaikki suodattimen mahdolliset arvot ovat näkyvissä kokoajan.
+      Ne arvot, joihin hakulauseke täsmää, näkyvät alleviivattuna.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Steps for searching within filters:
+      Ohjeet hakemiseksi suodattimen sisällä:
     </p>
     <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
       <li class="MuiTypography-gutterBottom">
-        Type search term into search field. If there are matches, a number
-        will appear to the right of the search field, indicating the number
-        of filter values that match the search term.
+        Syötä hakulauseke hakukenttään. Jos se tuottaa tuloksia, näkyy
+        hakukentän oikealla puolella numero kertomassa tulosten määrän.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Click the arrows " <  > " to the right of the search field to cycle through
-        the results. As you click the arrow, a different filter value will appear
-        at the top of the list. Matched filters are underlined in purple.
+        Klikkaa " <  > " -nuolia hakukentän oikealla puolella hypätäksesi
+        tulosten välillä. Kun klikkaat nuolta, listan ylimpänä näkyy eri hakuosuma.
+        Ne arvot, joihin hakulauseke täsmää, näkyvät alleviivattuna.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Click the checkmark next to a filter value to activate it.
-        The results (and also other filters) are automatically updated.
+        Klikkaa arvoa aktivoidaksesi sen suodattimeen.
+        Tulokset (ja muut suodattimet) päivittyvät automaattisesti.
       </li>
     </ol>
     <p></p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Using Multiple Filters Simultaneously
+      Useiden suodattimien käyttö samaan aikaan
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The effectiveness of faceted search is realized when multiple filters are
-      applied at the same time. As in many e-commerce sites, a logical AND is
-      always used between the filters.
+      Fasettihaun tehokkuus pääsee oikeuksiinsa kun useissa suodattimissa on tehty
+      valintoja samaan aikaaan. Kuten monissa verkon kauppapaikoissa, loogista JA-operaattoria
+      käytetään valintojen välillä.
     </p>
     <p></p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      In faceted search you can make selections in filters in any order, and the hit
-      counts in the other filters are automatically updated. In this way you never end
-      up in "no hits" dead ends.
+      Fasettihaussa voit tehdä valintoja suodattimissa missä järjestyksessä tahansa ja
+      tulosten määrä muissa suodattimissa päivitetään automaattisesti.
+      Tällä tavalla käyttäjä ei päädy tyhjään tulosjoukkoon valintoja tehdessä.
     </p>
   `,
   feedback: `
