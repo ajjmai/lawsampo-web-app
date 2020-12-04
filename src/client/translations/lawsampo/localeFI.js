@@ -475,6 +475,15 @@ export default {
     }
   },
   aboutThePortalPartOne: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      Tietoa Lakisammosta
+    </h1>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      ...
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      ...
+    </p>  
   `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
