@@ -4,14 +4,14 @@ export default {
     short: 'Lakisampo',
     long: 'Lakisampo',
     subheading: `
-      Suomen ajantasainen lainsäädäntö ja oikeustapaukset semanttisessa webissä
+      Lainsäädäntö ja oikeuskäytäntö semanttisessa webissä
     `
   },
   appDescription: `
 
   `,
   selectPerspective: 'Valitse näkymä aineiston hakua ja tutkimista varten:',
-  mainPageImageLicence: 'Image used under license from Shutterstock.com',
+  mainPageImageLicence: 'Etusivun kuva: Shutterstock.com',
   topBar: {
     feedback: 'palaute',
     info: {
@@ -108,10 +108,10 @@ export default {
   },
   perspectives: {
     situations: {
-      label: 'Kontekstihaku',
-      mainPageLabel: 'Kontekstihaku',
+      label: 'Elämäntilanteet',
+      mainPageLabel: 'Elämäntilanteet',
       facetResultsType: '',
-      shortDescription: 'Haku elämäntilanteiden ja aiheiden avulla',
+      shortDescription: 'Hae pykäliä ja oikeustapauksia elämäntilanteiden ja aiheiden avulla',
       longDescription: '',
       inputPlaceHolder: '',
       properties: {
@@ -164,10 +164,10 @@ export default {
       }
     },
     statutes: {
-      label: 'Säädökset',
-      mainPageLabel: 'Lainsäädäntö: säädökset',
+      label: 'Lainsäädäntö',
+      mainPageLabel: 'Lainsäädäntö',
       facetResultsType: 'säädöstä',
-      shortDescription: 'Ajantasaisten säädösten haku',
+      shortDescription: 'Hae lakeja, asetuksia ja päätöksiä',
       longDescription: `
       `,
       instancePage: {
@@ -268,9 +268,9 @@ export default {
     },
     sections: {
       label: 'Pykälät',
-      mainPageLabel: 'Lainsäädäntö: Pykälät',
+      mainPageLabel: 'Pykälät',
       facetResultsType: 'pykälää',
-      shortDescription: 'Ajantasaisten pykälien haku',
+      shortDescription: 'Hae yksittäisiä lainsäädännön pykäliä',
       longDescription: `
       `,
       instancePage: {
@@ -371,7 +371,7 @@ export default {
       label: 'Oikeuskäytäntö',
       mainPageLabel: 'Oikeuskäytäntö',
       facetResultsType: 'oikeustapausta',
-      shortDescription: 'Oikeustapausten fasettihaku',
+      shortDescription: 'Hae oikeustapauksia',
       longDescription: `
       `,
       instancePage: {
@@ -459,9 +459,9 @@ export default {
       }
     },
     caselawfinder: {
-      label: 'Oikeustapaushaku',
-      mainPageLabel: 'Oikeustapaushaku',
-      shortDescription: 'Dokumenttiperusteinen haku oikeustapauksille'
+      label: 'Haku tekstillä',
+      mainPageLabel: 'Haku tekstillä',
+      shortDescription: 'Hae oikeustapauksia tekstikuvauksen avulla'
     }
   },
   aboutThePortalPartOne: `
