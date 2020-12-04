@@ -46,7 +46,7 @@ export const sectionsPerspectiveConfig = {
       predicate: 'lss:statute_timespan',
       labelPath: 'lss:section_statute_date',
       type: 'hierarchical',
-      parentPredicate: 'lss:timespan/skos:broader+',
+      parentPredicate: 'lss:statute_timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
     subjectCategory: {
