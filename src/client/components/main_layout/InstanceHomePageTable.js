@@ -65,9 +65,11 @@ class InstanceHomePageTable extends React.Component {
                 const label = intl.get(`perspectives.${resultClass}.properties.${row.id}.label`)
                 const description = intl.get(`perspectives.${resultClass}.properties.${row.id}.description`)
                 const {
-                  id, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
-                  linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask
+                  valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
+                  linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask,
+                  maxWords
                 } = row
+                const id = row.dataId ? row.dataId : row.id
                 return (
                   <TableRow key={row.id}>
                     <TableCell className={classes.labelCell}>
@@ -100,7 +102,7 @@ class InstanceHomePageTable extends React.Component {
                       sourceExternalLink={sourceExternalLink}
                       renderAsHTML={renderAsHTML}
                       HTMLParserTask={HTMLParserTask}
-                      referencedTerm={data.referencedTerm}
+                      maxWords={maxWords}
                     />
                   </TableRow>
                 )

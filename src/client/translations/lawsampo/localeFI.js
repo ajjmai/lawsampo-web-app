@@ -252,7 +252,7 @@ export default {
             EU-direktiivi
           `
         },
-        tagCloud: {
+        wordcloud: {
           label: 'Sanapilvi',
           description: `
             Sanapilvi
