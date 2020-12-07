@@ -469,8 +469,8 @@ export default {
       }
     },
     caselawfinder: {
-      label: 'Haku tekstillä',
-      mainPageLabel: 'Haku tekstillä',
+      label: 'Haku dokumentilla',
+      mainPageLabel: 'Haku dokumentilla',
       shortDescription: 'Hae oikeustapauksia tekstikuvauksen avulla'
     }
   },
