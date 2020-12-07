@@ -103,6 +103,9 @@ class InstanceHomePageTable extends React.Component {
     ) {
       hasExpandableContent = true
     }
+    if (config.valueType === 'wordcloud') {
+      hasExpandableContent = false
+    }
     return hasExpandableContent
   }
 
