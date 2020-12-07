@@ -58,7 +58,7 @@ export const caselawPerspectiveConfig = {
       facetValueFilter: `
       `,
       predicate: 'lss:timespan',
-      labelPath: 'lss:timespan/skos:prefLabel',
+      labelPath: 'dcterms:issued',
       type: 'hierarchical',
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
