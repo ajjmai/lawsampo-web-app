@@ -171,6 +171,7 @@ class InstanceHomePageTable extends React.Component {
                       sourceExternalLink={sourceExternalLink}
                       renderAsHTML={renderAsHTML}
                       HTMLParserTask={HTMLParserTask}
+                      referencedTerm={data.referencedTerm}
                       maxWords={maxWords}
                     />
                   </TableRow>
