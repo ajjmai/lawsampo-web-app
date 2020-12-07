@@ -73,7 +73,7 @@ export default {
     map: 'kartta',
     by_year: 'vuosijakauma',
     network: 'verkosto',
-    export: 'Vie',
+    export: 'avaa sovelluksessa',
     statutes: 'Lainsäädäntö',
     cases: 'Oikeustapaukset'
   },
