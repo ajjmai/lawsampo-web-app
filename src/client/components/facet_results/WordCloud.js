@@ -16,7 +16,8 @@ const style = {
 
 const Wordcloud = props => {
   const { data, maxWords } = props
-  let words = data.sort((a, b) => parseInt(b.count) - parseInt(a.count))
+  // sort without mutating the original array
+  let words = [...data].sort((a, b) => parseInt(b.count) - parseInt(a.count))
   if (words.length > maxWords) {
     words.splice(maxWords)
   }

@@ -92,7 +92,7 @@ export const statutePropertiesInstancePage = `
   }
   UNION 
   {
-    ?id lss:referencedTerms ?referencedTerm__id .
+    ?id lss:referencedTerms/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
     ?referencedTerm__id skos:prefLabel ?prefLabel_ .
     OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
     OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }

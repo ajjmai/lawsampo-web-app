@@ -18,6 +18,7 @@ export default class HTMLParser {
         break
       case 'addAnnotationTooltips':
         this.processReferencedTerms()
+        // console.log(this.referencedTermsObj)
         transform = this.addAnnotationTooltips
         break
       default:
@@ -51,7 +52,7 @@ export default class HTMLParser {
       if (linkStr.includes(',')) {
         const urisJSX = []
         let uris = linkStr.split(',')
-        uris = uris.filter(uri => !uri.startsWith('http://www.yso.fi/'))
+        uris = uris.filter(uri => this.shouldAddAnnotation(uri))
         uris.map(uri => {
           urisJSX.push(this.renderAnnotation(uri))
         })
@@ -62,7 +63,7 @@ export default class HTMLParser {
         )
       } else {
         const uri = linkStr
-        if (uri.startsWith('http://www.yso.fi/')) { return }
+        if (!this.shouldAddAnnotation(uri)) { return }
         tooltipJSX = (
           <div className={props.classes.tooltipContent}>
             {this.renderAnnotation(uri)}
@@ -93,6 +94,8 @@ export default class HTMLParser {
     }
   }
 
+  shouldAddAnnotation = uri => uri.startsWith('http://fi.dbpedia.org/') || uri.startsWith('http://ldf.fi/ttp/')
+
   renderAnnotation = uri => {
     if (uri.startsWith('http://ldf.fi/ttp/')) {
       const localID = uri.replace('http://ldf.fi/ttp/', '')
@@ -109,7 +112,11 @@ export default class HTMLParser {
     if (source === 'Wikipedia') {
       return (
         <React.Fragment key={uri}>
-          <p><a href={externalLink} target='_blank' rel='noopener noreferrer'>{prefLabel} ({source})</a></p>
+          <p>
+            <a href={externalLink} target='_blank' rel='noopener noreferrer'>
+              {prefLabel.charAt(0).toUpperCase() + prefLabel.slice(1)} ({source})
+            </a>
+          </p>
           <p>{description}</p>
         </React.Fragment>
       )
