@@ -66,7 +66,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'prefLabel',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: false,

@@ -24,9 +24,12 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
         return {
           ...obj,
           statute: {
-            id: obj.prefLabel,
             prefLabel: obj.statute,
             dataProviderUrl: '/statutes/page/' + obj.id
+          },
+          prefLabel: {
+            prefLabel: obj.prefLabel,
+            dataProviderUrl: '/sections/page/' + obj.section_id
           }
         }
       })
@@ -44,7 +47,6 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
         return {
           ...obj,
           prefLabel: {
-            id: obj.prefLabel,
             prefLabel: obj.prefLabel,
             dataProviderUrl: '/caselaw/page/' + obj.id
           }
