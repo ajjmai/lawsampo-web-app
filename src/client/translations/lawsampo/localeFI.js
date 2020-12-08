@@ -388,6 +388,12 @@ export default {
         description: `
         `
       },
+      courtDecisionsByYear: {
+        title: 'Oikeustapaukset vuosittain',
+        xaxisTitle: 'Vuosi',
+        yaxisTitle: 'Oikeustapausten lukumäärä',
+        seriesTitle: 'Oikeustapausten lukumäärä'
+      },
       properties: {
         uri: {
           label: 'URI-tunniste',

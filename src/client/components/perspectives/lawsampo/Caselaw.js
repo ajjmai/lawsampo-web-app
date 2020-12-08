@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import intl from 'react-intl-universal'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
@@ -47,10 +48,10 @@ const Caselaw = props => {
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
-            title='Court decisions by year'
-            xaxisTitle='Year'
-            yaxisTitle='Number of decisions'
-            seriesTitle='Number of decisions'
+            title={intl.get(`perspectives.${perspective.id}.courtDecisionsByYear.title`)}
+            xaxisTitle={intl.get(`perspectives.${perspective.id}.courtDecisionsByYear.xaxisTitle`)}
+            yaxisTitle={intl.get(`perspectives.${perspective.id}.courtDecisionsByYear.yaxisTitle`)}
+            seriesTitle={intl.get(`perspectives.${perspective.id}.courtDecisionsByYear.seriesTitle`)}
             resultClass='courtDecisionsByYear'
             facetClass='caselaw'
           />}
