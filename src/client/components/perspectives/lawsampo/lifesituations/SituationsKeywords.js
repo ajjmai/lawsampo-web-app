@@ -12,7 +12,10 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import purple from '@material-ui/core/colors/purple'
-
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import { findIndex } from 'lodash'
 import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
@@ -74,7 +77,9 @@ class SituationsKeywords extends React.Component {
       super(props)
       this.state = {
         treeData: this.props.keywords,
-        selectedKeyword: null
+        selectedKeyword: null,
+        deletedKeywords: [],
+        anchorEl: null
       }
   }
 
@@ -93,13 +98,20 @@ class SituationsKeywords extends React.Component {
 
 
 
-  handleCheckboxChange = treeObj => event => {
+  handleCheckboxChange = treeObj => event => {  
     this.props.addSituationKeyword({keyword: treeObj.node})
     this.props.fetchSituationResults()
   }
 
   handleChange = treeObj => event => {
-    this.setState({selectedKeyword: treeObj.node})
+    const deletedKeywords = this.state.deletedKeywords;        
+    // remove from history if added again
+    const historyIndex = findIndex(deletedKeywords, { id: treeObj.node.id})
+    if(historyIndex >= 0) {
+      deletedKeywords.splice(historyIndex, 1)    
+      
+    }
+    this.setState({selectedKeyword: treeObj.node, deletedKeywords})
     this.props.addSituationKeyword({keyword: treeObj.node})
     this.props.fetchSituationResults()
   }
@@ -133,13 +145,53 @@ class SituationsKeywords extends React.Component {
   }
 
   handleDelete(item, index) {
+    const deletedKeywords = this.state.deletedKeywords;        
+    // only add if not already there 
+    const historyIndex = findIndex(deletedKeywords, { id: item.id})
+    if(historyIndex < 0) {
+      deletedKeywords.push(item)    
+      if(deletedKeywords.length > 10) {
+        deletedKeywords.splice(10, 1)
+      }    
+      this.setState({deletedKeywords})  
+    }
     this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item, keywordIndex: index})
     this.props.fetchSituationResults()    
   }
 
+  getDeletedKeywordButtons = () => {
+    return this.state.deletedKeywords.map( (item, index) => {
+     return  (
+      <MenuItem key={item.id} onClick={ e => { this.addKeywordFromHistory(item, index)}}>
+        {item.name}
+      </MenuItem>
+    )
+    })
+  }
+
+  addKeywordFromHistory = (item, index) => {
+    const deletedKeywords = this.state.deletedKeywords;
+    // remove from list 
+    deletedKeywords.splice(index, 1)
+    this.setState({
+      anchorEl: null,
+      deletedKeywords: deletedKeywords
+    })
+    this.props.addSituationKeyword({keyword: item})
+    this.props.fetchSituationResults()
+  }
+  handleMenuButtonClick = event => {
+    this.setState({ anchorEl: event.currentTarget })
+  };
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null })
+  }
+
   render () {    
     const {selectedKeywords, isFetching, classes} = this.props
-    const {selectedKeyword} = this.state    
+    const {selectedKeyword, deletedKeywords, anchorEl} = this.state    
+    const deletedKeywordsOpen = Boolean(anchorEl)
     return (
       <>
       {isFetching ? (
@@ -147,7 +199,8 @@ class SituationsKeywords extends React.Component {
           <CircularProgress style={{ color: purple[500] }} thickness={5} />
         </div>
       ) : (
-          <>      
+          <>                      
+
               <div className={''}>
                 {selectedKeywords !== null && selectedKeywords.map( (item, index) => {
                   const key = item
@@ -164,6 +217,27 @@ class SituationsKeywords extends React.Component {
                     </Tooltip>
                   )
                 })}
+              {deletedKeywords.length > 0 &&
+              <>
+                <Tooltip disableFocusListener title={'Poistetut avainsanat'}>
+                  <IconButton
+                    aria-label={'test'}
+                    aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}
+                    aria-haspopup='true'
+                    onClick={this.handleMenuButtonClick}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  id='facet-option-menu'     
+                  anchorEl={anchorEl}             
+                  open={deletedKeywordsOpen}
+                  onClose={this.handleMenuClose}
+                >
+                  {this.getDeletedKeywordButtons()}
+                </Menu>
+              </>}                  
               </div>
                <FormControl>
                <RadioGroup value={selectedKeyword === null ? null : selectedKeyword.id}>
