@@ -3,32 +3,32 @@ import { statutesPerspectiveConfig } from './perspective_configs/StatutesPerspec
 // import { legislationPerspectiveConfig } from './perspective_configs/LegislationPerspectiveConfig'
 import { caselawPerspectiveConfig } from './perspective_configs/CaselawPerspectiveConfig'
 import {
-  statutesByYearQuery
-  // statuteProperties
+// statutesByYearQuery
+// statuteProperties
 } from './sparql_queries/SparqlQueriesLegislation'
 import {
   judgementsByYearQuery,
   judgementNetworkLinksQuery,
   judgementNetworkNodesQuery
 } from './sparql_queries/SparqlQueriesCaselaw'
-import { mapLineChart } from '../Mappers'
+import { mapLineChartFillEmptyValues } from '../Mappers'
 
 export const backendSearchConfig = {
   sections: sectionsPerspectiveConfig,
   statutes: statutesPerspectiveConfig,
   // legislation: legislationPerspectiveConfig,
   caselaw: caselawPerspectiveConfig,
-  statuteYearLineChart: {
-    perspectiveID: 'statutes',
-    q: statutesByYearQuery,
-    filterTarget: 'instance',
-    resultMapper: mapLineChart
-  },
-  caselawByYear: {
+  // statuteYearLineChart: {
+  //   perspectiveID: 'statutes',
+  //   q: statutesByYearQuery,
+  //   filterTarget: 'instance',
+  //   resultMapper: mapLineChartFillEmptyValues
+  // },
+  courtDecisionsByYear: {
     perspectiveID: 'caselaw',
     q: judgementsByYearQuery,
     filterTarget: 'judgement',
-    resultMapper: mapLineChart
+    resultMapper: mapLineChartFillEmptyValues
   },
   caselawInstancePageNetwork: {
     perspectiveID: 'caselaw',

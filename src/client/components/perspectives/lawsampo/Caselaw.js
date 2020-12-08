@@ -51,7 +51,7 @@ const Caselaw = props => {
             xaxisTitle='Year'
             yaxisTitle='Number of decisions'
             seriesTitle='Number of decisions'
-            resultClass='caselawByYear'
+            resultClass='courtDecisionsByYear'
             facetClass='caselaw'
           />}
       />

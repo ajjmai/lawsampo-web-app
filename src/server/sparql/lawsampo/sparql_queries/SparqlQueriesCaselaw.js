@@ -96,7 +96,7 @@ export const judgementsByYearQuery = `
     ?judgement a lss:Judgment .
     ?judgement dcterms:issued ?decisionDate .
     BIND(year(xsd:dateTime(?decisionDate)) as ?year)
-    FILTER (?year <= year(NOW()))
+    FILTER (?year > 1700 && ?year <= year(NOW()))
     BIND(STR(?year) as ?category)
   } 
   GROUP BY ?category 

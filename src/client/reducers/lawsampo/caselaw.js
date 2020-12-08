@@ -130,7 +130,7 @@ export const INITIAL_STATE = {
 
 const resultClasses = new Set([
   'caselaw',
-  'caselawByYear',
+  'courtDecisionsByYear',
   'caselawInstancePageNetwork'
 ])
 
