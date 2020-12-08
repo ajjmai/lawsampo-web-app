@@ -16,8 +16,14 @@ import querystring from 'querystring'
 import ResultTableHead from '../../../facet_results/ResultTableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import has from 'lodash'
+import { Paper, Typography } from '@material-ui/core'
 
 const styles = theme => ({
+  infoContainer: {
+    padding: '40px',
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0
+  },
   tableContainer: {
     overflow: 'auto',
     width: '100%',
@@ -84,7 +90,7 @@ class SituationsResultTable extends React.Component {
       this.setState({expandedRows: new Set()})
     }
   }
-  
+
   handleExpandRow = rowId => () => {
     const expandedRows = this.state.expandedRows
     if (expandedRows.has(rowId)) {
@@ -183,22 +189,37 @@ class SituationsResultTable extends React.Component {
                 <CircularProgress style={{ color: purple[500] }} thickness={5} />
               </div>
             ) : (
-              <Table size='small'>
-                <ResultTableHead
-                  resultClass={this.props.resultClass}
-                  columns={this.props.columns}
-                  onSortBy={this.handleSortBy}
-                  sortBy={sortBy}
-                  sortDirection={sortDirection}
-                  routeProps={this.props.routeProps}
-                />
-                <TableBody>
-                  {results.map((row, index) => this.rowRenderer(row, index))}
-                </TableBody>
-              </Table>
-            )}
+              <>
+              {
+                results.length > 0 ? (
+                  <Table size='small'>
+                    <ResultTableHead
+                      resultClass={this.props.resultClass}
+                      columns={this.props.columns}
+                      onSortBy={this.handleSortBy}
+                      sortBy={sortBy}
+                      sortDirection={sortDirection}
+                      routeProps={this.props.routeProps}
+                    />
+                    <TableBody>
+                      {results.map((row, index) => this.rowRenderer(row, index))}
+                    </TableBody>
+                  </Table>
+                ):
+                (
+                  <div className={classes.infoContainer}>
+                    <Typography variant='body1'>Valitse ensin hakuehdot vasemmalta.</Typography>        
+                  </div>
+                )
+              }
+              </>
+            )
+            
+          }
         </div>
+        
       </>
+      
     )
   }
 }
