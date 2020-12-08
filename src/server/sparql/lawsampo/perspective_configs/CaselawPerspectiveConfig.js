@@ -31,6 +31,10 @@ export const caselawPerspectiveConfig = {
       id: 'prefLabel',
       labelPath: 'lss:isRealizedBy/skos:prefLabel'
     },
+    ecli: {
+      id: 'ecli',
+      labelPath: 'dcterms:isVersionOf'
+    },
     abstract: {
       id: 'abstract',
       labelPath: 'lss:isRealizedBy/dcterms:abstract'

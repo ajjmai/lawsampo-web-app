@@ -399,6 +399,10 @@ export default {
           label: 'URI-tunniste',
           description: 'Uniform Resource Identifier -tunniste'
         },
+        ecli: {
+          label: 'Tunniste',
+          description: 'ECLI-tunniste'
+        },
         prefLabel: {
           label: 'Oikeustapaus',
           description: `

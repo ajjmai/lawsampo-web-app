@@ -29,6 +29,15 @@ export const INITIAL_STATE = {
       minWidth: 120
     },
     {
+      id: 'ecli',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 120
+    },
+    {
       id: 'uri',
       valueType: 'object',
       onlyOnInstancePage: true,
