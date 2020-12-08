@@ -89,7 +89,16 @@ export const INITIAL_STATE = {
       onlyOnInstancePage: true,
       valueType: 'object',
       makeLink: true,
-      externalLink: true,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false
+    },
+    {
+      id: 'similarCourtDecicions',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
       sortValues: false,
       numberedList: false
     },

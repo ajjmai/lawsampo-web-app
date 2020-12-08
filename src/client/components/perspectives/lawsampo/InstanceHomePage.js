@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
@@ -80,15 +80,15 @@ class InstanceHomePage extends React.Component {
   //   })
   // }
 
-  // mapDocuments = documents => {
-  //   return documents.map(doc => {
-  //     doc.prefLabel = doc.ecli.replace('ECLI:FI:', '')
-  //     let caselawUrl = '/caselaw/page/' + doc.sf_link.replace('https://data.finlex.fi/ecli/', '')
-  //     caselawUrl = caselawUrl.replace('.html', '')
-  //     doc.dataProviderUrl = caselawUrl // Link to semantic finlex: doc.sf_link
-  //     return doc
-  //   })
-  // }
+  mapDocuments = documents => {
+    return documents.map(doc => {
+      doc.prefLabel = doc.ecli.replace('ECLI:FI:', '')
+      const lawSampoLocalId = doc.ecli.replace('ECLI:FI:', '').replace(/:/g, '_').toLowerCase()
+      const instancePageLink = `/caselaw/page/caselaw_ecli_${lawSampoLocalId}`
+      doc.dataProviderUrl = instancePageLink
+      return doc
+    })
+  }
 
   fetchTableData = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
@@ -122,8 +122,17 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
-    const hasTableData = tableData !== null && Object.values(tableData).length >= 1
+    const { classes, tableData, tableExternalData, isLoading, resultClass, rootUrl } = this.props
+    let hasTableData
+    if (this.props.resultClass === 'caselaw') {
+      // Wait until results from SPARQL endpoint AND external API have arrived
+      hasTableData = tableData !== null && Object.values(tableData).length >= 1 && tableExternalData
+      if (hasTableData) {
+        tableData.similarCourtDecicions = this.mapDocuments(tableExternalData)
+      }
+    } else {
+      hasTableData = tableData !== null && Object.values(tableData).length >= 1
+    }
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -138,9 +147,9 @@ class InstanceHomePage extends React.Component {
             </div>}
           {!hasTableData &&
             <>
-              <Typography variant='h6'>
+              {/* <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
-              </Typography>
+              </Typography> */}
             </>}
           {/* make sure that tableData exists before rendering any components */}
           {hasTableData &&

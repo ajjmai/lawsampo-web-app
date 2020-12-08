@@ -454,6 +454,12 @@ export default {
             Viitattu ajantasainen säädös
           `
         },
+        similarCourtDecicions: {
+          label: 'Samankaltaisia oikeustapauksia',
+          description: `
+            Samankaltaisia oikeustapauksia
+          `
+        },
         contentHTML: {
           label: 'Oikeustapauksen sisältö',
           description: `
