@@ -1,6 +1,3 @@
-// import { judgementTextHTMLAnnotatedTest } from './annotatedHTMLtest'
-// BIND("""${judgementTextHTMLAnnotatedTest}""" as ?judgementTextHTMLAnnotated)
-
 export const judgementProperties = `
   # This first block must not constrain the results.
   {
@@ -13,17 +10,19 @@ export const judgementProperties = `
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
 
-    OPTIONAL {
-      ?id lss:isRealizedBy ?exp .
-      ?exp dcterms:language '<LANG>' ;
-           dcterms:abstract ?abstract_primary .
-    }
-    OPTIONAL {
-      ?id lss:isRealizedBy ?exp .
-      ?exp dcterms:language '<LANG_SECONDARY>' ; 
-           dcterms:abstract ?abstract_secondary .
-    }
-    BIND(COALESCE(?abstract_primary, ?abstract_secondary) AS ?abstract)
+    ?id lss:isRealizedBy/dcterms:abstract ?abstract . # abstract in all language versions
+
+    # OPTIONAL {
+    #   ?id lss:isRealizedBy ?exp .
+    #   ?exp dcterms:language '<LANG>' ;
+    #        dcterms:abstract ?abstract_primary .
+    # }
+    # OPTIONAL {
+    #   ?id lss:isRealizedBy ?exp .
+    #   ?exp dcterms:language '<LANG_SECONDARY>' ; 
+    #        dcterms:abstract ?abstract_secondary .
+    # }
+    # BIND(COALESCE(?abstract_primary, ?abstract_secondary) AS ?abstract) 
   }
   UNION
   {
