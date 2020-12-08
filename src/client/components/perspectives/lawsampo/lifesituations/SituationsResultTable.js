@@ -79,6 +79,12 @@ class SituationsResultTable extends React.Component {
     }
   }
 
+  componentDidUpdate = (prevProps) => {
+    if(prevProps.results != this.props.results) {
+      this.setState({expandedRows: new Set()})
+    }
+  }
+  
   handleExpandRow = rowId => () => {
     const expandedRows = this.state.expandedRows
     if (expandedRows.has(rowId)) {
