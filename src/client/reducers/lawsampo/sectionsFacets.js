@@ -38,8 +38,8 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    enforcementDate: {
-      id: 'enforcementDate',
+    statuteEnforcementDate: {
+      id: 'statuteEnforcementDate',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],

@@ -39,8 +39,8 @@ export const sectionsPerspectiveConfig = {
         FILTER(LANG(?prefLabel_) = '<LANG>')
       `
     },
-    enforcementDate: {
-      id: 'statuteYear',
+    statuteEnforcementDate: {
+      id: 'statuteEnforcementDate',
       facetValueFilter: `
       `,
       predicate: 'lss:statute_timespan',
@@ -48,6 +48,10 @@ export const sectionsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: 'lss:statute_timespan/skos:broader+',
       parentProperty: 'skos:broader'
+    },
+    sectionEnforcementDate: {
+      id: 'text',
+      labelPath: 'lss:section_date'
     },
     subjectCategory: {
       id: 'subjectCategory',

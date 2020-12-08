@@ -1,6 +1,3 @@
-// import { statuteTextHTMLAnnotatedTest } from './annotatedHTMLtest'
-// BIND("""${statuteTextHTMLAnnotatedTest}""" as ?statuteTextHTMLAnnotated)
-
 export const statutePropertiesFacetResults = `
   {
     ?id skos:prefLabel ?prefLabel__prefLabel .
@@ -122,7 +119,11 @@ export const sectionProperties = `
   }
   UNION
   {
-    ?id lss:section_statute_date ?enforcementDate .
+    ?id lss:section_statute_date ?statuteEnforcementDate .
+  }
+  UNION
+  {
+    ?id lss:section_date ?sectionEnforcementDate .
   }
   UNION
   {

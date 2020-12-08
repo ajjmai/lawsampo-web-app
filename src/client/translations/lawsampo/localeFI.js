@@ -350,10 +350,16 @@ export default {
             Säädöksen tyyppi
           `
         },
-        enforcementDate: {
+        statuteEnforcementDate: {
           label: 'Säädöksen voimaantulo',
           description: `
             Säädöksen voimaantulopäivämäärä
+          `
+        },
+        sectionEnforcementDate: {
+          label: 'Pykälän voimaantulo',
+          description: `
+            Pykälän voimaantulopäivämäärä
           `
         },
         euDirective: {

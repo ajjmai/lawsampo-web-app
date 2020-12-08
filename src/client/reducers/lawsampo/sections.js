@@ -57,13 +57,22 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
-      id: 'enforcementDate',
+      id: 'statuteEnforcementDate',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 170
+      minWidth: 220
+    },
+    {
+      id: 'sectionEnforcementDate',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 200
     },
     {
       id: 'subjectCategory',
