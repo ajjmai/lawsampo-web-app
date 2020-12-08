@@ -466,6 +466,12 @@ export default {
             Samankaltaisia oikeustapauksia
           `
         },
+        language: {
+          label: 'Kieli',
+          description: `
+            Kieli
+          `
+        },
         contentHTML: {
           label: 'Oikeustapauksen sisältö',
           description: `

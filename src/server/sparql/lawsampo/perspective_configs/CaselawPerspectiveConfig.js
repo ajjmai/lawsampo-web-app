@@ -103,6 +103,14 @@ export const caselawPerspectiveConfig = {
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')
       `
+    },
+    language: {
+      id: 'language',
+      facetValueFilter: '',
+      labelPath: 'lss:isRealizedBy/dcterms:language',
+      predicate: 'lss:isRealizedBy/dcterms:language',
+      type: 'list',
+      literal: true
     }
   }
 }

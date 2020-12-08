@@ -12,32 +12,25 @@ export const judgementProperties = `
  
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
+
+    OPTIONAL {
+      ?id lss:isRealizedBy ?exp .
+      ?exp dcterms:language '<LANG>' ;
+           dcterms:abstract ?abstract_primary .
+    }
+    OPTIONAL {
+      ?id lss:isRealizedBy ?exp .
+      ?exp dcterms:language '<LANG_SECONDARY>' ; 
+           dcterms:abstract ?abstract_secondary .
+    }
+    BIND(COALESCE(?abstract_primary, ?abstract_secondary) AS ?abstract)
   }
   UNION
-  # Expression = language version.
-  # Currently there is only one language version at a time, so it's safe to use UNION.
   {
     ?id lss:isRealizedBy ?expression . 
     ?expression dcterms:language '<LANG>' .
-    
-    OPTIONAL { ?expression dcterms:abstract ?abstract }
     ?expression lss:html ?html_ .
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
-    
-    OPTIONAL { 
-       ?expression lss:annotatedHtml ?annotatedHtml_ .
-       BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
-    }
-  }
-  UNION
-  {
-    ?id lss:isRealizedBy ?expression . 
-    ?expression dcterms:language '<LANG_SECONDARY>' .
-    
-    OPTIONAL { ?expression dcterms:abstract ?abstract }
-    ?expression lss:html ?html_ .
-    BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
-    
     OPTIONAL { 
        ?expression lss:annotatedHtml ?annotatedHtml_ .
        BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
