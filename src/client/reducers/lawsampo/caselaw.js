@@ -1,4 +1,5 @@
 import { handleDataFetchingAction } from '../general/results'
+import { FETCH_SIMILAR_DOCUMENTS_BY_ID_FAILED } from '../../actions'
 
 export const INITIAL_STATE = {
   results: null,
@@ -145,6 +146,12 @@ const resultClasses = new Set([
 
 const caselaw = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
+    if (action.type === FETCH_SIMILAR_DOCUMENTS_BY_ID_FAILED) {
+      return {
+        ...state,
+        instanceTableExternalData: []
+      }
+    }
     return handleDataFetchingAction(state, action)
   } else return state
 }

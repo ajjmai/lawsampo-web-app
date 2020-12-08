@@ -128,7 +128,7 @@ class InstanceHomePage extends React.Component {
       // Wait until results from SPARQL endpoint AND external API have arrived
       hasTableData = tableData !== null && Object.values(tableData).length >= 1 && tableExternalData
       if (hasTableData) {
-        tableData.similarCourtDecicions = this.mapDocuments(tableExternalData)
+        tableData.similarCourtDecicions = tableExternalData.length > 0 ? this.mapDocuments(tableExternalData) : '-'
       }
     } else {
       hasTableData = tableData !== null && Object.values(tableData).length >= 1
