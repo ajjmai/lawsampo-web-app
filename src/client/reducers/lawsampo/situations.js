@@ -1,3 +1,6 @@
+import {
+  updateHeaderExpanded
+} from '../general/helpers'
 export const INITIAL_STATE = {
   facetedSearchHeaderExpanded: false,
   facetUpdateID: 0,
@@ -111,6 +114,9 @@ export const INITIAL_STATE = {
 
 const situations = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'UPDATE_PERSPECTIVE_HEADER_EXPANDED':
+      return updateHeaderExpanded(state, action)
+
     case 'UPDATE_RESULT_TYPE':
       return {
         ...state,

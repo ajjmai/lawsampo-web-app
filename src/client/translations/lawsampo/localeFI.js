@@ -113,7 +113,34 @@ export default {
       mainPageLabel: 'Elämäntilanteet',
       facetResultsType: '',
       shortDescription: 'Hae pykäliä ja oikeustapauksia elämäntilanteiden ja aiheiden avulla',
-      longDescription: '',
+      longDescription: `
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Yleistä
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tähän yleiskuvaus näkymästä.
+      </p>      
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Käyttöohjeet
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Valitse ensin alustavat hakuehdot vasemmasta sarakkeet. Voit käyttää tekstihakua tai valita yleisen
+      pääkatetorian palautettaville tuloksille. Hakuehtojen jälkeen järjestelmä tekee ensimmäisen haun
+      ja näyttää siihen liittyvät tulokset. Hakuehdot näkymä sulkeutuu ja käyttöön avautuu tulosten 
+      tarkentamiseen liittyvät "Suositellut kategoriat" ja "Suositellut asiasanat" toiminnot.     
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Jos teit alussa tekstihaun, voit valita sekä tarkentavat kategorian että asiasanoja. 
+      Muussa tapauksessa hauan tarkentaminen onnistuu vain asiasanojen avulla. Tarkentavat tiedot 
+      päivittyvät jokaisen valinnan jälkeen. 
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Koska suositelluissa asiasanoissa näytetään vain 25 parasta/osuvinta valintaa, on mahdollista
+      tietty asiasana ei ole enää valittavissa hakuehdoista poistamisen jälkeen. Klikkaamalla valittujen
+      asiasanojen jälkeen näkyvää ikonia (kolme pistettä), saat näkyvin kymmenen viimeksi poistettua
+      uniikkia asiasanaa. 
+      </p>
+      `,
       inputPlaceHolder: '',
       properties: {
         uri: {

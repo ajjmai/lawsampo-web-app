@@ -131,7 +131,35 @@ export default {
       mainPageLabel: 'Contextual Search',
       facetResultsType: '',
       shortDescription: 'For legal documents based on life events and topics',
-      longDescription: '',
+      longDescription: `
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      General
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      General description of the view.
+      </p>      
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Instructions
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      You first have to select the initial search parameters from the lefthand side. 
+      You can use either free text search or select one of the predefined main categories. 
+      First search results are shown after the selection and user interface swithes to 
+      mode designed to help you to focus the search by selecting additional categories or 
+      keywords. 
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      If you started with a text search, you can add a category information after initial 
+      information. On the other hand, if you already have selected a category, you can use 
+      the suggested keywords to specify the search. Results are updated after every change. 
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Since suggested keywords only show 25 of the "best" keywords at a time, is is possible 
+      that specific keywords are not available after they have been removed from the search parameters.
+      History of ten most recently removed keywords can be access by clicking the icon (three dots)
+      which appears after active keywords. 
+      </p>
+      `,
       inputPlaceHolder: '',
       properties: {
         uri: {
