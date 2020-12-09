@@ -7,6 +7,7 @@ import SituationsCategory from './SituationsCategory'
 import { Accordion, AccordionDetails, AccordionSummary, Chip, IconButton, Paper, Tooltip, Typography } from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
 import clsx from 'clsx'
+import intl from 'react-intl-universal'
 
 const styles = theme => ({
   root: {
@@ -117,7 +118,7 @@ class SituationFacetBar extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, perspective } = this.props    
     let initialActive = true
     if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
@@ -137,7 +138,7 @@ class SituationFacetBar extends React.Component {
             id='panel1a-header'
           >
             <div className={classes.headingContainer}>
-              <Typography variant='body1'>Hakuehdot</Typography>
+              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.searchTitle`)}</Typography>
               <Tooltip
                 title='facetDescription'
                 enterDelay={300}
@@ -158,6 +159,7 @@ class SituationFacetBar extends React.Component {
             <div>
               <div className={classes.facetInfoContainer}>
                 <SituationsSearch
+                  perspective={this.props.perspective}
                   query={this.props.facetData.query}
                   selectedSituation={this.props.facetData.selectedSituation}
                   situations={this.props.facetData.situations}
@@ -183,7 +185,7 @@ class SituationFacetBar extends React.Component {
             id='panel1a-header'
           >
             <div className={classes.headingContainer}>
-              <Typography variant='body1'>Suositellut kategoriat</Typography>
+              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggestedCategories`)}</Typography>
               <Tooltip
                 title='facetDescription'
                 enterDelay={300}
@@ -225,7 +227,7 @@ class SituationFacetBar extends React.Component {
             id='panel1a-header'
           >
             <div className={classes.headingContainer}>
-              <Typography variant='body1'>Suositellut asiasanat</Typography>
+              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggestedKeywords`)}</Typography>
               <Tooltip
                 title='facetDescription'
                 enterDelay={300}
@@ -244,6 +246,7 @@ class SituationFacetBar extends React.Component {
               <div className={classes.facetInfoContainer}>
 
                 <SituationsKeywords
+                  perspective={this.props.perspective}
                   isFetching={this.props.facetData.isFetching}
                   fetchSituationResults={this.props.fetchSituationResults}
                   selectedKeywords={this.props.facetData.selectedKeywords}

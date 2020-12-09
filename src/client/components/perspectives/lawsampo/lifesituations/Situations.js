@@ -24,6 +24,7 @@ const Situations = props => {
         path={`${rootUrl}/${perspective.id}/iterative-search/statutes`}
         render={routeProps =>
           <SituationsResultTable
+            perspective={perspective}
             isFetching={props.facetData.isFetching}
             data={props.facetResults}
             columns={props.facetResults.statutesProperties}
@@ -43,6 +44,7 @@ const Situations = props => {
         path={`${rootUrl}/${perspective.id}/iterative-search/cases`}
         render={routeProps =>
           <SituationsResultTable
+            perspective={perspective}
             isFetching={props.facetData.isFetching}
             data={props.facetResults}
             columns={props.facetResults.caseProperties}

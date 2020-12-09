@@ -3,24 +3,18 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
-import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Paper from '@material-ui/core/Paper'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import purple from '@material-ui/core/colors/purple'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { findIndex } from 'lodash'
-import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
+import SortableTree from 'react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
 
-import Checkbox from '@material-ui/core/Checkbox'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Radio, RadioGroup } from '@material-ui/core'
@@ -189,7 +183,7 @@ class SituationsKeywords extends React.Component {
   }
 
   render () {    
-    const {selectedKeywords, isFetching, classes} = this.props
+    const {selectedKeywords, isFetching, classes, perspective} = this.props
     const {selectedKeyword, deletedKeywords, anchorEl} = this.state    
     const deletedKeywordsOpen = Boolean(anchorEl)
     return (
@@ -219,7 +213,7 @@ class SituationsKeywords extends React.Component {
                 })}
               {deletedKeywords.length > 0 &&
               <>
-                <Tooltip disableFocusListener title={'Poistetut avainsanat'}>
+                <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
                   <IconButton
                     aria-label={'test'}
                     aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}

@@ -178,7 +178,7 @@ class SituationsResultTable extends React.Component {
   }
 
   render () {
-    const { classes, isFetching, results, resultClass } = this.props
+    const { classes, isFetching, results, resultClass, perspective } = this.props
     const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection } = this.props.data
     return (
       <>
@@ -208,7 +208,7 @@ class SituationsResultTable extends React.Component {
                 ):
                 (
                   <div className={classes.infoContainer}>
-                    <Typography variant='body1'>Valitse ensin hakuehdot vasemmalta.</Typography>        
+                    <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.initialResults`)}</Typography>        
                   </div>
                 )
               }

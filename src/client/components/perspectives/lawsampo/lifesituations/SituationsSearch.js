@@ -5,16 +5,12 @@ import intl from 'react-intl-universal'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Paper from '@material-ui/core/Paper'
-import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
+import SortableTree from 'react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
 import { FormControlLabel } from '@material-ui/core'
@@ -158,7 +154,7 @@ class SituationsSearch extends React.Component {
       }
 
       render () {
-        const { classes, selectedSituation } = this.props
+        const { classes, selectedSituation, perspective } = this.props
         const searchButton = (
           <IconButton
             aria-label='Search'
@@ -173,7 +169,7 @@ class SituationsSearch extends React.Component {
           <div>
             <div className={classes.root}>
               <div className={classes.headingContainer}>
-                <Typography variant='body1'>Tekstihaku</Typography>
+                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.query`)}</Typography>
               </div>
               <FormControl className={classes.textSearch}>
 
@@ -193,7 +189,7 @@ class SituationsSearch extends React.Component {
             </div>
             <div className={classes.root}>
               <div className={classes.headingContainer}>
-                <Typography variant='body1'>tai valitse pääkategoria:</Typography>
+                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.mainCategory`)}</Typography>
               </div>
 
               <FormControl>

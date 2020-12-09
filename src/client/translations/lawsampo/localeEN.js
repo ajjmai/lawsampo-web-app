@@ -161,6 +161,15 @@ export default {
       </p>
       `,
       inputPlaceHolder: '',
+      facetBar: {
+        searchTitle: 'Search',
+        query: 'Text query',
+        mainCategory: 'or select a main category:',
+        suggestedCategories: 'Suggested categories',
+        suggestedKeywords: 'Suggested keywords'
+      },
+      initialResults: 'Select search parameters first from the left to see results.',
+      removedKeywords: 'Removed keywords',
       properties: {
         uri: {
           label: 'URI',

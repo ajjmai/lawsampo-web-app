@@ -367,6 +367,7 @@ const SemanticPortal = props => {
                             >
                               <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                                 <SituationsFacetBar
+                                  perspective={perspective}
                                   fetchSituations={props.fetchSituations}
                                   facetData={props[`${perspective.id}Facets`]}
                                   updateSituationQuery={props.updateSituationQuery}

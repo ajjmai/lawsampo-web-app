@@ -142,6 +142,15 @@ export default {
       </p>
       `,
       inputPlaceHolder: '',
+      facetBar: {
+        searchTitle: 'Hakuehdot',
+        query: 'Tekstihaku',
+        mainCategory: 'tai valitse pääkategoria:',
+        suggestedCategories: 'Suositellut kategoriat',
+        suggestedKeywords: 'Suositellut asiasanat'
+      },
+      initialResults: 'Valitse ensin hakuehdot vasemmalta.',
+      removedKeywords: 'Poistetut avainsanat',
       properties: {
         uri: {
           label: 'URI-tunniste',

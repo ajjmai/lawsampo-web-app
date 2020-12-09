@@ -1,27 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import intl from 'react-intl-universal'
-import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
-import Input from '@material-ui/core/Input'
-import InputLabel from '@material-ui/core/InputLabel'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import FormControl from '@material-ui/core/FormControl'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Paper from '@material-ui/core/Paper'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import purple from '@material-ui/core/colors/purple'
 
-import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
-import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
-import Typography from '@material-ui/core/Typography'
-
-import Checkbox from '@material-ui/core/Checkbox'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Radio, RadioGroup } from '@material-ui/core'
-
+import FormControl from '@material-ui/core/FormControl'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import SortableTree from 'react-sortable-tree'
+import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
+import Typography from '@material-ui/core/Typography'
+import purple from '@material-ui/core/colors/purple'
 
 
 
