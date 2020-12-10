@@ -540,6 +540,12 @@ export default {
             Referenced statute
           `
         },
+        language: {
+          label: 'Language version',
+          description: `
+            Language version
+          `
+        },
         contentHTML: {
           label: 'Content (HTML)',
           description: `

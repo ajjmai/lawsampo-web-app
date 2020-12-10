@@ -513,7 +513,7 @@ export default {
           `
         },
         language: {
-          label: 'Kieli',
+          label: 'Rajoita sisällön kieltä',
           description: `
             Kieli
           `
