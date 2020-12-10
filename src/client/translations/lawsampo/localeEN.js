@@ -446,12 +446,45 @@ export default {
       facetResultsType: 'court decisions',
       shortDescription: 'Faceted search for court decisions',
       longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to...
-        </p>
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          And...
-        </p>
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      General
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The Case law view contains published court decisions of the Supreme court and Supreme Administrative court of Finland 
+      from 1980 until 2019. In this view the user can browse and study the decisions.
+      </p>
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      User manual
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The Case Law view consists of two parts: the result set and facets. The facets are on the left hand side of the page and they can be used to
+      scale the results set to find what the user is looking for. The results set is divided into three different tabs: Table, By Year, and Export. These tabs 
+      show the results in different formats. The table view shows the results as a list whereas the By Year tab shows a yearly distribution of the 
+      court decisions.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      In the <b>Table tab</b> the results are shown as a list that can be scaled down using the facets. The facets contain options to target different court decisions.
+      The facets can be opened using the small arrow in the right hand side of the facet. This opens the facet and shows it's options (e.g., "Subject keyword") 
+      or text search field (e.g., "Free text search"). There is also a text search field to scale down the number of options in the facets with multiple choices. 
+      Some facets also contain a hierarchy for options (e.g., "Decision date") to help the user. These hierarchies can be browsed by clicking the arrow on the
+      left hand side of the option.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Some of the options contain also a pie chart option to view the distribution of the values of the options in the data. In order to view the value distribution 
+      of the data, the user can click the pie chart icon located next to the arrow that can be used to open the facet. The pie chart icon is only available when the
+      facet has been opened. By clicking the pie chart icon, the user is shown a pie chart on a white background. The user can see the legend on the top right corner 
+      of the view and the pie chart in the center. By hovering over the pie chart the user will get the legend for each piece of the pie. By clicking outside the 
+      view, the user can close the view.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      In the <b>By Year tab</b>, the user can look at the distribution of court decisions by year. By taking the mouse cursor on top of the line, the user will get the number of
+      court decisions at the time. In this view the user can also use the facets to scale down the number of court decisions by year similarly to Table tab. 
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      In the <b>Export tab</b> the user can export the data into an external Yasgui application by clicking the button for that. Also here the resultset can be scaled down using the 
+      facets on the left hand side of the view.
+      </p>
+
       `,
       instancePage: {
         label: 'Court decision',

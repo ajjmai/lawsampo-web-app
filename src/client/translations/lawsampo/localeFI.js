@@ -424,7 +424,45 @@ export default {
       facetResultsType: 'oikeustapausta',
       shortDescription: 'Hae oikeustapauksia',
       longDescription: `
-      `,
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Yleistä
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Oikeuskäytäntö -näkymässä voi selata Korkeimman hallinto-oikeuden tai Korkeimman oikeuden julkaisemia päätöksiä vuosien 1980-2019 välillä. 
+      </p>      
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Käyttöohjeet
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Näkymä koostuu tulosjoukosta ja valikoista, joilla voi rajata tulosjoukkoa. Näkymässä vasemmalla on rajauksia varten erilaisia valikoita, joissa on arvoja joiden 
+      perusteella voidaan rajata tulosjoukkoa. Tulosjoukkoa voi tarkastella kolmella eri välilehdellä: Taulukko, Vuosijakauma, ja Avaa sovelluksessa. 
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tulosjoukko esitetään oikealla listana <b>Taulukko-välilehdellä</b>. Suodattaaksesi tulosjoukkoa
+      valitse vasemman puolisista valikoista tulosjoukon ominaisuuksia, joita haluat tuloksen sisältävän. Valikot
+      avautuvat klikkaamalla valikon oikeassa reunassa olevaa väkästä. Tämän jälkeen valikkoon avautuu valikko,
+      johon voi kirjoittaa haluamansa hakutermin, jolla hakea tuloksia tuloslistaukseen (esim. "Vapaatekstihaku") tai rajatakseen valikon
+      arvoja (esim. "Aihe"), jos valikossa on useampia vaihtoehtoja. Jos valikko sisältää useita vaihtoehtoja, niitä klikkaamalla
+      voi rajata tulosjoukkoa niihin tapauksiin, jotka sisältävät ominaisuuden. Osa valikkojen vaihtoehdoista on porrastettu tai
+      niillä on hierarkia (esim. "Antopäivä"), jolloin vaihtoehtoja voi selata myös klikkaamalla vaihtoehdon edessä olevaa nuolta, jolloin
+      sen alle avautuu lista tarkempia vaihtoehtoja.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Osalla vasemman reunan valikoista sisältää myös mahdollisuuden tarkastella aineiston vaihtoehtojen jakaumaa. Tarkastellakseen valikon arvojen
+      jakaumaa, käyttäjä voi klikata valikon aukaisevan/sulkevan nuolen vierestä löytyvää piirakkaa. Tämän jälkeen näytöllä avautuu piirakkakaavio
+      arvojakaumasta ja kuvan oikeassa yläkulmassa näkyvät selitteet. Samat selitteet näkee myös viemällä hiiren piirakan palan kohdalle. 
+      Piirakan saa suljettua klikkaamalla piirakan ulkopuolelle.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      <b>Vuosijakauma -välilehdessä</b> käyttäjä voi tarkastella oikeustapausten jakaumaa antovuoden perusteella. Viemällä hiiren kuvaajan janan päälle,
+      käyttäjä voi saada arvot näkyviin janalla tiettynä ajanhetkenä. Vuosijakauma -näkymässä voi käyttää samoja valikkojen arvoja kuin 
+      Taulukko -näkymässä.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      <b>Avaa sovelluksessa -välilehdellä</b> voi avata tulokset Yasgui -sovelluksessa klikkaamalla sille tehtyä painiketta. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+      vasemmalla olevien valikkojen arvoja.
+      </p>
+     `,
       instancePage: {
         label: 'Oikeustapaus',
         description: `
