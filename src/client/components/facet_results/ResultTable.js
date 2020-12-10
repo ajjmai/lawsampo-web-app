@@ -214,15 +214,11 @@ class ResultTable extends React.Component {
           previewImageHeight={column.previewImageHeight}
           container='cell'
           expanded={expanded}
-          linkAsButton={has(column, 'linkAsButton')
-            ? column.linkAsButton
-            : null}
-          collapsedMaxWords={has(column, 'collapsedMaxWords')
-            ? column.collapsedMaxWords
-            : null}
-          renderAsHTML={has(column, 'renderAsHTML')
-            ? column.renderAsHTML
-            : null}
+          linkAsButton={column.linkAsButton}
+          collapsedMaxWords={column.collapsedMaxWords}
+          renderAsHTML={column.renderAsHTML}
+          hasParts={row.hasParts}
+          hasChapters={row.hasChapters}
         />
       )
     })

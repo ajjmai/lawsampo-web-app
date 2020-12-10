@@ -247,7 +247,7 @@ export default {
             Tunniste
           `
         },
-        section: {
+        firstLevel: {
           label: 'Pykälät',
           description: `
             Pykälät

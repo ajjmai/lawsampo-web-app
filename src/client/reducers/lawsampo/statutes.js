@@ -64,12 +64,13 @@ export const INITIAL_STATE = {
       minWidth: 170
     },
     {
-      id: 'section',
-      valueType: 'object',
+      id: 'firstLevel',
+      valueType: 'sectionOfALaw',
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false
+      numberedList: false,
+      minWidth: 220
     },
     {
       id: 'euDirective',
@@ -103,7 +104,7 @@ export const INITIAL_STATE = {
       dataId: 'referencedTerm',
       onlyOnInstancePage: true,
       valueType: 'wordcloud',
-      maxWords: 40
+      wordCloudMaxWords: 40
     },
     {
       id: 'contentHTMLAnnotated',
