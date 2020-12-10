@@ -24,9 +24,29 @@ export const statutePropertiesFacetResults = `
   }
   UNION 
   {
-    ?id lss:section ?section__id .
-    ?section__id skos:prefLabel ?section__prefLabel .
-    BIND(CONCAT("/sections/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
+    ?id lss:section ?firstLevel__secondLevel__section__id .
+    ?firstLevel__secondLevel__section__id lss:part_number_int ?firstLevel__id ;
+                                          lss:chapter_number_int ?firstLevel__secondLevel__id ;
+                                          skos:prefLabel ?firstLevel__secondLevel__section__prefLabel ;
+                                          lss:section_number_int ?firstLevel__secondLevel__section__sectionNumberInt ;
+                                          lss:section_number ?firstLevel__secondLevel__section__sectionNumber .
+    BIND("" as ?firstLevel__prefLabel)                            
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__secondLevel__section__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__secondLevel__section__dataProviderUrl)
+    BIND(true as ?hasParts)
+    BIND(true as ?hasChapters)
+  }
+  UNION 
+  {
+    ?id lss:section ?firstLevel__section__id .
+    ?firstLevel__section__id lss:chapter_number_int ?firstLevel__id ;
+                             skos:prefLabel ?firstLevel__section__prefLabel ;
+                             lss:section_number_int ?firstLevel__section__sectionNumberInt ;
+                             lss:section_number ?firstLevel__section__sectionNumber .
+    BIND("" as ?firstLevel__prefLabel)                            
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__section__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__section__dataProviderUrl)
+    BIND(false as ?hasParts)
+    BIND(true as ?hasChapters)
+    FILTER NOT EXISTS { ?firstLevel__section__id lss:part_number_int [] }
   }
   UNION
   {
@@ -62,9 +82,29 @@ export const statutePropertiesInstancePage = `
   }
   UNION 
   {
-    ?id lss:section ?section__id .
-    ?section__id skos:prefLabel ?section__prefLabel .
-    BIND(CONCAT("/sections/page/", REPLACE(STR(?section__id), "http://ldf.fi/lawsampo/", "")) AS ?section__dataProviderUrl)
+    ?id lss:section ?firstLevel__secondLevel__section__id .
+    ?firstLevel__secondLevel__section__id lss:part_number_int ?firstLevel__id ;
+                                          lss:chapter_number_int ?firstLevel__secondLevel__id ;
+                                          skos:prefLabel ?firstLevel__secondLevel__section__prefLabel ;
+                                          lss:section_number_int ?firstLevel__secondLevel__section__sectionNumberInt ;
+                                          lss:section_number ?firstLevel__secondLevel__section__sectionNumber .
+    BIND("" as ?firstLevel__prefLabel)                            
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__secondLevel__section__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__secondLevel__section__dataProviderUrl)
+    BIND(true as ?hasParts)
+    BIND(true as ?hasChapters)
+  }
+  UNION 
+  {
+    ?id lss:section ?firstLevel__section__id .
+    ?firstLevel__section__id lss:chapter_number_int ?firstLevel__id ;
+                             skos:prefLabel ?firstLevel__section__prefLabel ;
+                             lss:section_number_int ?firstLevel__section__sectionNumberInt ;
+                             lss:section_number ?firstLevel__section__sectionNumber .
+    BIND("" as ?firstLevel__prefLabel)                            
+    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__section__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__section__dataProviderUrl)
+    BIND(false as ?hasParts)
+    BIND(true as ?hasChapters)
+    FILTER NOT EXISTS { ?firstLevel__section__id lss:part_number_int [] }
   }
   UNION
   {

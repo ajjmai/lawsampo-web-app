@@ -122,10 +122,11 @@ class InstanceHomePageTable extends React.Component {
                 const {
                   valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
                   linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask,
-                  maxWords
+                  wordCloudMaxWords, hasParts, hasChapters
                 } = row
                 const id = row.dataId ? row.dataId : row.id
                 const expanded = this.state.expandedRows.has(row.id)
+                // const expanded = true
                 return (
                   <TableRow key={row.id}>
                     <TableCell className={classes.labelCell}>
@@ -172,7 +173,9 @@ class InstanceHomePageTable extends React.Component {
                       renderAsHTML={renderAsHTML}
                       HTMLParserTask={HTMLParserTask}
                       referencedTerm={data.referencedTerm}
-                      maxWords={maxWords}
+                      wordCloudMaxWords={wordCloudMaxWords}
+                      hasParts={hasParts}
+                      hasChapters={hasChapters}
                     />
                   </TableRow>
                 )
