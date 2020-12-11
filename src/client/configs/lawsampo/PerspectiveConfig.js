@@ -16,7 +16,7 @@ export const perspectiveConfig = [
     frontPageImage: legislationImage,
     frontPageElement: 'card',
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
+    defaultActiveFacets: new Set(['jenaText']),
     tabs: [
       {
         id: 'table',
@@ -47,7 +47,7 @@ export const perspectiveConfig = [
     frontPageImage: legislationImage,
     frontPageElement: 'card',
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
+    defaultActiveFacets: new Set(['jenaText']),
     tabs: [
       {
         id: 'table',
@@ -79,7 +79,7 @@ export const perspectiveConfig = [
     frontPageImage: caselawImage,
     frontPageElement: 'card',
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
+    defaultActiveFacets: new Set(['jenaText']),
     tabs: [
       {
         id: 'table',
