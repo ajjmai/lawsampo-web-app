@@ -5,6 +5,7 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 // import RedoIcon from '@material-ui/icons/Redo'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
+import SubjectIcon from '@material-ui/icons/Subject'
 // import BubbleChartIcon from '@material-ui/icons/BubbleChart'
 import sdfImage from '../../img/lawsampo/sdf-tumb.png'
 import legislationImage from '../../img/lawsampo/legislation.png'
@@ -31,13 +32,18 @@ export const perspectiveConfig = [
     ],
     instancePageTabs: [
       {
-        id: 'table',
+        id: 'content',
         value: 0,
+        icon: <SubjectIcon />
+      },
+      {
+        id: 'table',
+        value: 1,
         icon: <CalendarViewDayIcon />
       },
       {
         id: 'export',
-        value: 1,
+        value: 2,
         icon: <CloudDownloadIcon />
       }
     ]

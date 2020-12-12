@@ -8,10 +8,8 @@ const options = {
   fontSizes: [14, 60]
 }
 
-const size = [500, 300]
-
 const style = {
-  marginLeft: -70
+  // marginLeft: -70
 }
 
 const Wordcloud = props => {
@@ -27,7 +25,6 @@ const Wordcloud = props => {
     <ReactWordcloud
       style={style}
       options={options}
-      size={size}
       words={words}
     />
   )

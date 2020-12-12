@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 // import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
+import ContextualContent from '../../main_layout/ContextualContent'
 // import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
 // import { coseLayout, cytoscapeStyle, preprocess } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
 // import { createMultipleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 import { Route, Redirect } from 'react-router-dom'
-import { has } from 'lodash'
+// import { has } from 'lodash'
 // import { arrayToObject } from '../../../helpers/helpers'
 
 const styles = theme => ({
@@ -22,8 +22,8 @@ const styles = theme => ({
   },
   content: {
     width: '100%',
-    height: 'calc(100% - 72px)',
-    overflow: 'auto'
+    height: 'calc(100% - 72px)'
+    // overflow: 'auto'
   },
   spinnerContainer: {
     display: 'flex',
@@ -110,15 +110,10 @@ class InstanceHomePage extends React.Component {
   }
 
   getVisibleRows = rows => {
-    const visibleRows = []
-    const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
-    rows.map(row => {
-      if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
-       !has(row, 'onlyForClass')) {
-        visibleRows.push(row)
-      }
-    })
-    return visibleRows
+    // const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
+    const skipRows = new Set(['contentHTMLAnnotated', 'wordcloud', 'firstLevel'])
+    rows = rows.filter(row => !skipRows.has(row.id))
+    return rows
   }
 
   render = () => {
@@ -140,7 +135,7 @@ class InstanceHomePage extends React.Component {
           tabs={this.props.tabs}
           screenSize={this.props.screenSize}
         />
-        <Paper className={classes.content}>
+        <div className={classes.content}>
           {isLoading &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
@@ -157,6 +152,21 @@ class InstanceHomePage extends React.Component {
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
                 render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
+              />
+              <Route
+                path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/content`, '/iframe.html']} // support also rendering in Storybook
+                render={() =>
+                  <ContextualContent
+                    data={tableData.contentHTMLAnnotated}
+                    tableOfContents={tableData.firstLevel}
+                    tableOfContentsConfig={this.props.properties.find(item => item.id === 'firstLevel')}
+                    hasParts={tableData.hasParts}
+                    hasChapters={tableData.hasChapters}
+                    HTMLParserTask='addAnnotationTooltips'
+                    referencedTerm={tableData.referencedTerm}
+                    wordcloudData={tableData.referencedTerm}
+                    wordcloudMaxWords={40}
+                  />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
@@ -177,7 +187,7 @@ class InstanceHomePage extends React.Component {
                   />}
               />
             </>}
-        </Paper>
+        </div>
       </div>
     )
   }

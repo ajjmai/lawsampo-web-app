@@ -48,10 +48,12 @@ const ResultTableCell = props => {
           sortBy={sortBy}
           numberedList={numberedList}
           columnId={columnId}
+          collapsible
           expanded={expanded}
           linkAsButton={linkAsButton}
           showSource={showSource}
           sourceExternalLink={sourceExternalLink}
+          maxHeight={200}
         />
       break
     case 'string':

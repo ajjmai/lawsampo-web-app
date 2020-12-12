@@ -69,7 +69,8 @@ export default {
     }
   },
   tabs: {
-    table: 'taulukko',
+    content: 'sisältö',
+    table: 'tiedot',
     map: 'kartta',
     by_year: 'vuosijakauma',
     network: 'verkosto',

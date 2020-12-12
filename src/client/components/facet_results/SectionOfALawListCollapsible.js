@@ -1,21 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import ObjectListItem from './ObjectListItem'
 // import { has } from 'lodash'
 import { Link } from 'react-router-dom'
 
-const styles = () => ({
+const useStyles = makeStyles(theme => ({
   valueList: {
     paddingLeft: 20,
-    maxHeight: 200,
+    maxHeight: props => props.maxHeight,
     overflow: 'auto'
   },
   valueListNoBullets: {
     listStyle: 'none',
-    // paddingLeft: 0,
-    maxHeight: 200,
+    paddingLeft: 0,
+    maxHeight: props => props.maxHeight,
     overflow: 'auto'
   },
   numberedList: {
@@ -26,10 +26,11 @@ const styles = () => ({
     width: 180,
     display: 'inline-block'
   }
-})
+}))
 
-const SectionListCollapsible = props => {
-  const { classes, data } = props
+const SectionOfALawListCollapsible = props => {
+  const classes = useStyles(props)
+  const { data, collapsible } = props
 
   const renderItem = ({ collapsed, itemData, isFirstValue = false }) => {
     if (isFirstValue && itemData.prefLabel === '') {
@@ -112,7 +113,7 @@ const SectionListCollapsible = props => {
             </li>
           )
         })}
-        {orphanSections &&
+        {orphanSections && orphanSections.length > 0 &&
           <li key='ei_lukua'>
             Pykälät ilman lukua
             <ul>
@@ -166,32 +167,41 @@ const SectionListCollapsible = props => {
   if (data == null || data === '-') {
     return '-'
   } else if (Array.isArray(data)) {
-    return (
-      <>
-        {!props.expanded && renderItem({ collapsed: true, itemData: data.sort((a, b) => a.integer - b.integer)[0], isFirstValue: true })}
-        <Collapse in={props.expanded} timeout='auto' unmountOnExit>
+    if (collapsible) {
+      return (
+        <>
+          {!props.expanded && renderItem({ collapsed: true, itemData: data.sort((a, b) => a.integer - b.integer)[0], isFirstValue: true })}
+          <Collapse in={props.expanded} timeout='auto' unmountOnExit>
+            {props.hasParts && renderThreeLevelSectionListing(data)}
+            {!props.hasParts && props.hasChapters && renderTwoLevelSectionListing(data)}
+            {!props.hasParts && !props.hasChapters && renderSectionListing(data)}
+          </Collapse>
+        </>
+      )
+    } else {
+      return (
+        <>
           {props.hasParts && renderThreeLevelSectionListing(data)}
           {!props.hasParts && props.hasChapters && renderTwoLevelSectionListing(data)}
           {!props.hasParts && !props.hasChapters && renderSectionListing(data)}
-        </Collapse>
-      </>
-    )
+        </>
+      )
+    }
   } else {
     return renderItem({ collapsed: false, itemData: data, isFirstValue: true })
   }
 }
 
-SectionListCollapsible.propTypes = {
-  classes: PropTypes.object.isRequired,
+SectionOfALawListCollapsible.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   makeLink: PropTypes.bool.isRequired,
   externalLink: PropTypes.bool.isRequired,
   sortValues: PropTypes.bool.isRequired,
   numberedList: PropTypes.bool.isRequired,
   expanded: PropTypes.bool.isRequired,
-  columnId: PropTypes.string.isRequired,
+  columnId: PropTypes.string,
   linkAsButton: PropTypes.bool,
   showSource: PropTypes.bool
 }
 
-export default withStyles(styles)(SectionListCollapsible)
+export default SectionOfALawListCollapsible

@@ -17,7 +17,7 @@ import ResultTableHead from './ResultTableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import ResultTablePaginationActions from './ResultTablePaginationActions'
 import history from '../../History'
-import has from 'lodash'
+// import has from 'lodash'
 
 const styles = theme => ({
   tableContainer: {
@@ -94,11 +94,11 @@ class ResultTable extends React.Component {
 
     // then update app state and url accordingly
     this.props.updatePage(this.props.resultClass, page)
-    
+
     history.push({
       pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
       search: `?page=${page}`
-    })    
+    })
 
     // check if facet updates have been made before
     if (this.props.facetUpdateID > 0) {

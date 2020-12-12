@@ -12,12 +12,13 @@ import ResultTableCell from '../facet_results/ResultTableCell'
 import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
+import Paper from '@material-ui/core/Paper'
 
 const styles = theme => ({
-  instanceTable: {
+  root: {
     // maxWidth: 1000,
     // width: '100%',
-    // height: '100%',
+    height: 'calc(100% - 1px)',
     borderTop: '1px solid rgba(224, 224, 224, 1);'
   },
   divider: {
@@ -114,74 +115,76 @@ class InstanceHomePageTable extends React.Component {
     return (
       <>
         {data &&
-          <Table className={classes.instanceTable} size='small'>
-            <TableBody>
-              {properties.map(row => {
-                const label = intl.get(`perspectives.${resultClass}.properties.${row.id}.label`)
-                const description = intl.get(`perspectives.${resultClass}.properties.${row.id}.description`)
-                const {
-                  valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
-                  linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask,
-                  wordCloudMaxWords
-                } = row
-                const id = row.dataId ? row.dataId : row.id
-                const expanded = this.state.expandedRows.has(row.id)
-                return (
-                  <TableRow key={row.id}>
-                    <TableCell className={classes.labelCell}>
-                      {label}
-                      <Tooltip
-                        className={classes.tooltip}
-                        title={description}
-                        enterDelay={300}
-                      >
-                        <IconButton>
-                          <InfoIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </TableCell>
-                    <TableCell className={classes.expandCell}>
-                      {this.hasExpandableContent({ data: data[id], config: row }) &&
-                        <IconButton
-                          className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded
-                          })}
-                          onClick={this.handleExpandRow(row.id)}
-                          aria-expanded={expanded}
-                          aria-label='Show more'
+          <Paper square className={classes.root}>
+            <Table size='small'>
+              <TableBody>
+                {properties.map(row => {
+                  const label = intl.get(`perspectives.${resultClass}.properties.${row.id}.label`)
+                  const description = intl.get(`perspectives.${resultClass}.properties.${row.id}.description`)
+                  const {
+                    valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
+                    linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask,
+                    wordCloudMaxWords
+                  } = row
+                  const id = row.dataId ? row.dataId : row.id
+                  const expanded = this.state.expandedRows.has(row.id)
+                  return (
+                    <TableRow key={row.id}>
+                      <TableCell className={classes.labelCell}>
+                        {label}
+                        <Tooltip
+                          className={classes.tooltip}
+                          title={description}
+                          enterDelay={300}
                         >
-                          <ExpandMoreIcon />
-                        </IconButton>}
-                    </TableCell>
-                    <ResultTableCell
-                      columnId={id}
-                      data={data[id]}
-                      valueType={valueType}
-                      makeLink={makeLink}
-                      externalLink={externalLink}
-                      sortValues={sortValues}
-                      sortBy={sortBy}
-                      numberedList={numberedList}
-                      container='cell'
-                      expanded={expanded}
-                      previewImageHeight={previewImageHeight}
-                      linkAsButton={linkAsButton}
-                      collapsedMaxWords={collapsedMaxWords}
-                      showSource={showSource}
-                      sourceExternalLink={sourceExternalLink}
-                      renderAsHTML={renderAsHTML}
-                      HTMLParserTask={HTMLParserTask}
-                      referencedTerm={data.referencedTerm}
-                      wordCloudMaxWords={wordCloudMaxWords}
-                      hasParts={data.hasParts}
-                      hasChapters={data.hasChapters}
-                    />
-                  </TableRow>
-                )
-              }
-              )}
-            </TableBody>
-          </Table>}
+                          <IconButton>
+                            <InfoIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                      <TableCell className={classes.expandCell}>
+                        {this.hasExpandableContent({ data: data[id], config: row }) &&
+                          <IconButton
+                            className={clsx(classes.expand, {
+                              [classes.expandOpen]: expanded
+                            })}
+                            onClick={this.handleExpandRow(row.id)}
+                            aria-expanded={expanded}
+                            aria-label='Show more'
+                          >
+                            <ExpandMoreIcon />
+                          </IconButton>}
+                      </TableCell>
+                      <ResultTableCell
+                        columnId={id}
+                        data={data[id]}
+                        valueType={valueType}
+                        makeLink={makeLink}
+                        externalLink={externalLink}
+                        sortValues={sortValues}
+                        sortBy={sortBy}
+                        numberedList={numberedList}
+                        container='cell'
+                        expanded={expanded}
+                        previewImageHeight={previewImageHeight}
+                        linkAsButton={linkAsButton}
+                        collapsedMaxWords={collapsedMaxWords}
+                        showSource={showSource}
+                        sourceExternalLink={sourceExternalLink}
+                        renderAsHTML={renderAsHTML}
+                        HTMLParserTask={HTMLParserTask}
+                        referencedTerm={data.referencedTerm}
+                        wordCloudMaxWords={wordCloudMaxWords}
+                        hasParts={data.hasParts}
+                        hasChapters={data.hasChapters}
+                      />
+                    </TableRow>
+                  )
+                }
+                )}
+              </TableBody>
+            </Table>
+          </Paper>}
       </>
     )
   }
