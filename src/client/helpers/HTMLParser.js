@@ -3,6 +3,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { Link } from 'react-router-dom'
 import Tooltip from '@material-ui/core/Tooltip'
 import { arrayToObject } from './helpers'
+import { findAll } from 'domutils'
 
 export default class HTMLParser {
   constructor (props) {
@@ -12,19 +13,31 @@ export default class HTMLParser {
 
   parseHTML (html) {
     let transform
+    let preprocessNodes
     switch (this.props.HTMLParserTask) {
       case 'addReactRouterLinks':
         transform = this.addReactRouterLinks
         break
       case 'addAnnotationTooltips':
         this.processReferencedTerms()
-        // console.log(this.referencedTermsObj)
         transform = this.addAnnotationTooltips
+        preprocessNodes = this.preprocessNodes
         break
       default:
         transform = null
     }
-    return ReactHtmlParser(html, { transform })
+    return ReactHtmlParser(html, { transform, preprocessNodes })
+  }
+
+  preprocessNodes (nodes) {
+    // Add ids for section divs
+    const sectionDivs = findAll((node) => (node.attribs.class === 'section'), nodes)
+    sectionDivs.map(node => {
+      let sectionNumber = node.children[0].children[0].data
+      sectionNumber = sectionNumber.replace(/\s/g, '').replace('§', '')
+      node.attribs.id = `#section${sectionNumber}`
+    })
+    return nodes
   }
 
   addReactRouterLinks (node, index) {
@@ -44,10 +57,22 @@ export default class HTMLParser {
 
   addAnnotationTooltips = (node, index) => {
     const props = this.props
+
+    // Section divs: add refs based on id
+    if (node.parent && node.parent.attribs && node.parent.attribs.class === 'section' && node.name === 'h4' && node.children[0].data && node.children[0].data.includes('§')) {
+      const id = node.parent.attribs.id
+      return (
+        <React.Fragment key={index}>
+          <div className='ref' ref={element => { this.props.sectionRefs.current[id] = element }} />
+          <h4 className='item-identifier'>{node.children[0].data}</h4>
+        </React.Fragment>
+      )
+    }
+
+    // Add tooltips for showing automatic annnotations
     if (this.referencedTermsObj && node.type === 'tag' && node.name === 'span' &&
     node.attribs.name === 'namedentity' && node.attribs['data-link'] !== '') {
       const linkStr = node.attribs['data-link']
-      // const occurrenceID = node.attribs['data-occurrence-id']
       let tooltipJSX
       if (linkStr.includes(',')) {
         const urisJSX = []
@@ -133,19 +158,4 @@ export default class HTMLParser {
       )
     }
   }
-
-  // renderAnnotation = uri => {
-  //   if (uri.startsWith('http://ldf.fi/ttp/')) {
-  //     const localID = uri.replace('http://ldf.fi/ttp/', '')
-  //     uri = `http://ldf.fi/ttp/${encodeURIComponent(localID)}`
-  //   }
-  //   return (
-  //     <>
-  //       <li><i><small>URI:</small></i> <a href={uri} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].id}</a></li>
-  //       <li><i><small>dctems:hasFormat:</small></i> <a href={this.referencedTermsObj[uri].format} target='_blank' rel='noopener noreferrer'>{this.referencedTermsObj[uri].format}</a></li>
-  //       <li><i><small>skos:prefLabel:</small></i> {this.referencedTermsObj[uri].prefLabel}</li>
-  //       <li><i><small>rdfs:comment:</small></i> {this.referencedTermsObj[uri].comment}</li>
-  //     </>
-  //   )
-  // }
 }

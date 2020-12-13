@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 // import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -7,6 +7,8 @@ import SectionOfALawListCollapsible from '../facet_results/SectionOfALawListColl
 import HTMLParser from '../../helpers/HTMLParser'
 import Wordcloud from '../facet_results/WordCloud'
 import { Typography } from '@material-ui/core'
+import { useLocation } from 'react-router-dom'
+import { has } from 'lodash'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,14 +65,25 @@ const ContextualContent = props => {
     makeLink, externalLink, sortValues, sortBy, numberedList, columnId, linkAsButton,
     showSource, sourceExternalLink
   } = props.tableOfContentsConfig
+  const location = useLocation()
+  const sectionRefs = useRef({})
 
   // Fuseki splits long HTML texts, combine them here
   if (Array.isArray(data)) {
     data = data.join('')
     data = false
   }
-  const parser = new HTMLParser({ ...props, classes })
+  const parser = new HTMLParser({ ...props, classes, sectionRefs })
   data = parser.parseHTML(data)
+
+  useEffect(() => {
+    if (location.hash) {
+      const ref = sectionRefs.current
+      if (has(ref, location.hash)) {
+        ref[location.hash].scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, [location])
 
   return (
     <div className={classes.root}>
@@ -112,8 +125,5 @@ const ContextualContent = props => {
     </div>
   )
 }
-
-// ContextualContent.propTypes = {
-// }
 
 export default ContextualContent
