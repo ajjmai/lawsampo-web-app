@@ -5,7 +5,8 @@ import 'tippy.js/animations/scale.css'
 
 const options = {
   rotations: 0,
-  fontSizes: [14, 60]
+  fontSizes: [14, 60],
+  deterministic: true
 }
 
 const style = {
@@ -14,6 +15,11 @@ const style = {
 
 const Wordcloud = props => {
   const { data, maxWords } = props
+
+  if (data == null) {
+    return (<></>)
+  }
+
   // sort without mutating the original array
   let words = [...data].sort((a, b) => parseInt(b.count) - parseInt(a.count))
   if (words.length > maxWords) {
