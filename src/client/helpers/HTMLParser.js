@@ -37,9 +37,11 @@ export default class HTMLParser {
       if (node.parent.attribs.class === 'entry-into-force' && node.parent.parent.attribs.class === 'chapter') {
         chapterNumber = node.parent.parent.children[0].children[0].data
         chapterNumber = `chapter_${chapterNumber.replace(' luku', '')}_`
+        chapterNumber = chapterNumber.replace(/\s/g, '')
       } else if (node.parent.attribs.class === 'chapter') {
         chapterNumber = node.parent.children[0].children[0].data
         chapterNumber = `chapter_${chapterNumber.replace(' luku', '')}_`
+        chapterNumber = chapterNumber.replace(/\s/g, '')
       } else {
         chapterNumber = ''
       }
