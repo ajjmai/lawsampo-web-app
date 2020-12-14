@@ -78,10 +78,12 @@ const ContextualContent = props => {
 
   useEffect(() => {
     if (location.hash) {
-      const ref = sectionRefs.current
-      if (has(ref, location.hash)) {
-        ref[location.hash].scrollIntoView({ behavior: 'smooth' })
-      }
+      setTimeout(() => {
+        const ref = sectionRefs.current
+        if (has(ref, location.hash)) {
+          ref[location.hash].scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 500)
     }
   }, [location])
 
@@ -111,6 +113,7 @@ const ContextualContent = props => {
               showSource={showSource}
               sourceExternalLink={sourceExternalLink}
               collapsible={false}
+              onlyHashLinks
             />
           </Paper>
           <Paper className={classes.wordCloud}>

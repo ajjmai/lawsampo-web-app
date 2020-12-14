@@ -151,7 +151,7 @@ class InstanceHomePage extends React.Component {
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
-                render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
+                render={routeProps => <Redirect to={{ pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/content`, hash: routeProps.location.hash }} />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/content`, '/iframe.html']} // support also rendering in Storybook

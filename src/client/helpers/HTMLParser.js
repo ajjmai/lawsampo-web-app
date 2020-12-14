@@ -33,9 +33,19 @@ export default class HTMLParser {
     // Add ids for section divs
     const sectionDivs = findAll((node) => (node.attribs.class === 'section'), nodes)
     sectionDivs.map(node => {
+      let chapterNumber
+      if (node.parent.attribs.class === 'entry-into-force' && node.parent.parent.attribs.class === 'chapter') {
+        chapterNumber = node.parent.parent.children[0].children[0].data
+        chapterNumber = `chapter_${chapterNumber.replace(' luku', '')}_`
+      } else if (node.parent.attribs.class === 'chapter') {
+        chapterNumber = node.parent.children[0].children[0].data
+        chapterNumber = `chapter_${chapterNumber.replace(' luku', '')}_`
+      } else {
+        chapterNumber = ''
+      }
       let sectionNumber = node.children[0].children[0].data
       sectionNumber = sectionNumber.replace(/\s/g, '').replace('§', '')
-      node.attribs.id = `#section${sectionNumber}`
+      node.attribs.id = `#${chapterNumber}section_${sectionNumber}`
     })
     return nodes
   }

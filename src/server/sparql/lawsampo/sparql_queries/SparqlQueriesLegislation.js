@@ -23,9 +23,10 @@ const sectionBlock = `
                                           lss:section_number_int ?firstLevel__secondLevel__section__sectionNumberInt ;                                  
                                           skos:prefLabel ?section_prefLabel_ .
     BIND(CONCAT("Osa ", ?firstLevel__id) as ?firstLevel__prefLabel)
-    BIND(CONCAT(?firstLevel__secondLevel__id, " luku") as ?firstLevel__secondLevel__prefLabel)    
-    ${getSectionLabel('?firstLevel__secondLevel__section__prefLabel')}                    
-    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__secondLevel__section__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__secondLevel__section__dataProviderUrl)
+    BIND(CONCAT(?firstLevel__secondLevel__id, " luku") as ?firstLevel__secondLevel__prefLabel)  
+    ${getSectionLabel('?firstLevel__secondLevel__section__prefLabel')}  
+    BIND(?firstLevel__secondLevel__id as ?firstLevel__secondLevel__section__chapterNumber)                    
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__secondLevel__section__dataProviderUrl)
     BIND(true as ?hasParts)
     BIND(true as ?hasChapters)
   }
@@ -38,8 +39,9 @@ const sectionBlock = `
                              lss:section_number_int ?firstLevel__section__sectionNumberInt ;                           
                              skos:prefLabel ?section_prefLabel_ .
     BIND(CONCAT(?firstLevel__id, " luku") as ?firstLevel__prefLabel)  
-    ${getSectionLabel('?firstLevel__section__prefLabel')}              
-    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", ""), "/content#section", ?firstLevel__section__sectionNumber) AS ?firstLevel__section__dataProviderUrl)
+    ${getSectionLabel('?firstLevel__section__prefLabel')}        
+    BIND(?firstLevel__id as ?firstLevel__section__chapterNumber)      
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__section__dataProviderUrl)
     BIND(false as ?hasParts)
     BIND(true as ?hasChapters)
     FILTER NOT EXISTS { 
@@ -54,7 +56,7 @@ const sectionBlock = `
                     skos:prefLabel ?section_prefLabel_ .             
     ${getSectionLabel('?firstLevel__prefLabel')}            
     BIND(?firstLevel__sectionNumberInt as ?firstLevel__integer)
-    BIND(CONCAT("/sections/page/", REPLACE(STR(?firstLevel__id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__dataProviderUrl)
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__dataProviderUrl)
     BIND(false as ?hasParts)
     BIND(false as ?hasChapters)
     FILTER NOT EXISTS { 

@@ -51,6 +51,20 @@ const SectionOfALawListCollapsible = props => {
     )
   }
 
+  const renderSectionLink = ({ section }) => {
+    const chapterNumber = section.chapterNumber ? `chapter_${section.chapterNumber}_` : ''
+    return (
+      <Link
+        to={{
+          ...(!props.onlyHashLinks && { pathname: section.dataProviderUrl }),
+          hash: `#${chapterNumber}section_${section.sectionNumber}`
+        }}
+      >
+        {section.sectionNumber} § {section.prefLabel}
+      </Link>
+    )
+  }
+
   const renderThreeLevelSectionListing = data => {
     let firstLevel = Array.isArray(data) ? data : [data]
     firstLevel = firstLevel.sort((a, b) => a.integer - b.integer || a.id - b.id)
@@ -72,9 +86,7 @@ const SectionOfALawListCollapsible = props => {
                       <ul>
                         {sections.map((section, index) =>
                           <li key={index}>
-                            <Link to={section.dataProviderUrl}>
-                              {section.sectionNumber} § {section.prefLabel}
-                            </Link>
+                            {renderSectionLink({ section })}
                           </li>
                         )}
                       </ul>
@@ -104,9 +116,7 @@ const SectionOfALawListCollapsible = props => {
               <ul>
                 {sections.map((section, index) =>
                   <li key={index}>
-                    <Link to={section.dataProviderUrl}>
-                      {section.sectionNumber} § {section.prefLabel}
-                    </Link>
+                    {renderSectionLink({ section })}
                   </li>
                 )}
               </ul>
@@ -119,9 +129,7 @@ const SectionOfALawListCollapsible = props => {
             <ul>
               {orphanSections.map((section, index) =>
                 <li key={index}>
-                  <Link to={section.dataProviderUrl}>
-                    {section.sectionNumber} § {section.prefLabel}
-                  </Link>
+                  {renderSectionLink({ section })}
                 </li>
               )}
             </ul>
@@ -155,9 +163,7 @@ const SectionOfALawListCollapsible = props => {
       <ul className={classes.valueList}>
         {firstLevel.map((section, index) =>
           <li key={index}>
-            <Link to={section.dataProviderUrl || ''}>
-              {section.sectionNumber} § {section.prefLabel}
-            </Link>
+            {renderSectionLink({ section })}
           </li>
         )}
       </ul>
