@@ -25,8 +25,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 150
+      numberedList: false
+      // minWidth: 150
     },
     {
       id: 'prefLabel',
@@ -34,8 +34,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 150
+      numberedList: false
+      // minWidth: 150
     },
     {
       id: 'uri',
@@ -62,8 +62,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 220
+      numberedList: false
+      // minWidth: 220
     },
     {
       id: 'sectionEnforcementDate',
@@ -71,8 +71,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 200
+      numberedList: false
+      // minWidth: 200
     },
     {
       id: 'subjectCategory',
@@ -80,8 +80,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
+      // minWidth: 170
     },
     {
       id: 'situationCategory',
@@ -89,8 +89,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
+      // minWidth: 170
     },
     {
       id: 'contentHTMLAnnotated',
