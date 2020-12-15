@@ -97,7 +97,7 @@ const ContextualContent = props => {
         </Grid>
         <Grid className={classes.gridItem} item xs={4}>
           <Paper className={classes.tableOfContents}>
-            <Typography variant='h6' component='h2'>Sisällysluettelo</Typography>
+            <Typography variant='h6' component='h2'>Voimassa olevat pykälät</Typography>
             <SectionOfALawListCollapsible
               data={tableOfContents}
               hasParts={hasParts === 'true'}
@@ -117,7 +117,7 @@ const ContextualContent = props => {
             />
           </Paper>
           <Paper className={classes.wordCloud}>
-            <Typography variant='h6' component='h2'>Sanapilvi</Typography>
+            <Typography variant='h6' component='h2'>Käsitepilvi</Typography>
             <div className={classes.wordCloudContainer}>
               <Wordcloud data={wordcloudData} maxWords={wordcloudMaxWords} />
             </div>
