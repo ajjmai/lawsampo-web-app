@@ -119,6 +119,7 @@ class InstanceHomePage extends React.Component {
   render = () => {
     const { classes, tableData, tableExternalData, isLoading, resultClass, rootUrl } = this.props
     let hasTableData
+    let defaultTab = 'table'
     if (this.props.resultClass === 'caselaw') {
       // Wait until results from SPARQL endpoint AND external API have arrived
       hasTableData = tableData !== null && Object.values(tableData).length >= 1 && tableExternalData
@@ -127,6 +128,9 @@ class InstanceHomePage extends React.Component {
       }
     } else {
       hasTableData = tableData !== null && Object.values(tableData).length >= 1
+    }
+    if (resultClass === 'statutes') {
+      defaultTab = 'content'
     }
     return (
       <div className={classes.root}>
@@ -151,7 +155,7 @@ class InstanceHomePage extends React.Component {
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
-                render={routeProps => <Redirect to={{ pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/content`, hash: routeProps.location.hash }} />}
+                render={routeProps => <Redirect to={{ pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/${defaultTab}`, hash: routeProps.location.hash }} />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/content`, '/iframe.html']} // support also rendering in Storybook
