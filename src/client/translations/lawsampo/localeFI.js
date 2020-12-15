@@ -364,13 +364,13 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Aihe',
+          label: 'Aihe (autom. tunnistettu)',
           description: `
             Aihe
           `
         },
         situationCategory: {
-          label: 'Elämäntilanne',
+          label: 'Elämäntilanne (autom. tunnistettu)',
           description: `
             Elämäntilanne
           `

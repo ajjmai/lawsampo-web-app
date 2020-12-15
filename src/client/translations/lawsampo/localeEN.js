@@ -397,13 +397,13 @@ export default {
           `
         },
         subjectCategory: {
-          label: 'Subject keyword',
+          label: 'Subject keyword (automatically identified)',
           description: `
             Subject keyword
           `
         },
         situationCategory: {
-          label: 'Life situation / topic',
+          label: 'Life situation / topic (automatically identified)',
           description: `
             Life situation / topic
           `
