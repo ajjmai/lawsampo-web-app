@@ -101,7 +101,7 @@ class SituationsSearch extends React.Component {
       return (
         <>
           <Typography variant='body2'>
-            {node.name}
+            {node.prefLabel}
           </Typography>
         </>
       )
@@ -118,7 +118,7 @@ class SituationsSearch extends React.Component {
                 onChange={this.handleSituationChange(treeObj)}
               />
             }
-            value={treeObj.node.id}
+            value={treeObj.node.uri}
             label={this.generateLabel(treeObj.node)}
           />
         )
@@ -193,7 +193,7 @@ class SituationsSearch extends React.Component {
               </div>
 
               <FormControl>
-                <RadioGroup value={selectedSituation === null ? null : selectedSituation.id}>
+                <RadioGroup value={selectedSituation === null ? null : selectedSituation.uri}>
                   <SortableTree
                     treeData={this.state.treeData}
                     onChange={treeData => this.setState({ treeData })}

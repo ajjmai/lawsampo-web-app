@@ -100,7 +100,7 @@ class SituationsKeywords extends React.Component {
   handleChange = treeObj => event => {
     const deletedKeywords = this.state.deletedKeywords;        
     // remove from history if added again
-    const historyIndex = findIndex(deletedKeywords, { id: treeObj.node.id})
+    const historyIndex = findIndex(deletedKeywords, { id: treeObj.node.uri})
     if(historyIndex >= 0) {
       deletedKeywords.splice(historyIndex, 1)    
       
@@ -114,7 +114,7 @@ class SituationsKeywords extends React.Component {
     return (
       <>
         <Typography variant='body2'>
-          {node.name}          
+          {node.prefLabel}          
         </Typography>
       </>
     )
@@ -131,7 +131,7 @@ class SituationsKeywords extends React.Component {
         onChange={this.handleChange(treeObj)}
         />
       }    
-        value={treeObj.node.id}
+        value={treeObj.node.uri}
         label={this.generateLabel(treeObj.node)}
       />
     )      
@@ -141,7 +141,7 @@ class SituationsKeywords extends React.Component {
   handleDelete(item, index) {
     const deletedKeywords = this.state.deletedKeywords;        
     // only add if not already there 
-    const historyIndex = findIndex(deletedKeywords, { id: item.id})
+    const historyIndex = findIndex(deletedKeywords, { id: item.uri})
     if(historyIndex < 0) {
       deletedKeywords.push(item)    
       if(deletedKeywords.length > 10) {
@@ -156,8 +156,8 @@ class SituationsKeywords extends React.Component {
   getDeletedKeywordButtons = () => {
     return this.state.deletedKeywords.map( (item, index) => {
      return  (
-      <MenuItem key={item.id} onClick={ e => { this.addKeywordFromHistory(item, index)}}>
-        {item.name}
+      <MenuItem key={item.uri} onClick={ e => { this.addKeywordFromHistory(item, index)}}>
+        {item.prefLabel}
       </MenuItem>
     )
     })
@@ -199,16 +199,14 @@ class SituationsKeywords extends React.Component {
                 {selectedKeywords !== null && selectedKeywords.map( (item, index) => {
                   const key = item
                   return (
-                    <Tooltip key={key.id} title={key.id}>
                       <Chip
-                        key={key.id}
+                        key={key.uri}
                         //icon={icon}
-                        label={key.name}
+                        label={key.prefLabel}
                         className={classes.chip}
                        onDelete={ () => this.handleDelete(item, index)}
                         color='primary'
                       />
-                    </Tooltip>
                   )
                 })}
               {deletedKeywords.length > 0 &&
@@ -234,7 +232,7 @@ class SituationsKeywords extends React.Component {
               </>}                  
               </div>
                <FormControl>
-               <RadioGroup value={selectedKeyword === null ? null : selectedKeyword.id}>
+               <RadioGroup value={selectedKeyword === null ? null : selectedKeyword.uri}>
                 <SortableTree
                   treeData={this.state.treeData}
                   onChange={treeData => this.setState({ treeData })}

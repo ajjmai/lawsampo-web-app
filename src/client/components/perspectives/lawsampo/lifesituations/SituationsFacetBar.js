@@ -100,19 +100,17 @@ class SituationFacetBar extends React.Component {
       if (this.props.facetData.query !== '') {
         label = this.props.facetData.query
       } else if (this.props.facetData.selectedSituation !== null) {
-        label = this.props.facetData.selectedSituation.name
+        label = this.props.facetData.selectedSituation.prefLabel
       }
       return (
-        <Tooltip key='tooltip-key-initial' title='test'>
-          <Chip
-            key='initial-chip'
-            icon={null}
-            label={label}
-            className={classes.chip}
-            onDelete={this.handleInitialDelete}
-            color='primary'
-          />
-        </Tooltip>
+        <Chip
+          key='initial-chip'
+          icon={null}
+          label={label}
+          className={classes.chip}
+          onDelete={this.handleInitialDelete}
+          color='primary'
+        />
       )
     }
   }
@@ -122,7 +120,7 @@ class SituationFacetBar extends React.Component {
     let initialActive = true
     if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
-    const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0)
+    const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0 ) || (this.props.facetData.query === '' && this.props.facetData.selectedSituation != null)
     return (
       <>
         <Accordion

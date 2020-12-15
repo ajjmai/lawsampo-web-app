@@ -12,14 +12,15 @@ export const fetchClassifierCategories = async () => {
 export const fetchClassifierResults = async (resultType, query, keywords, category) => {
   try {
     if (resultType === 'statutes') {
-      const response = await axios.post(baseUrl + 'statutes', {
+      const b = {
         query: query,
         selected_keywords: keywords,
-        category: category
-      })
+        selected_category: category
+      }
+      const response = await axios.post(baseUrl + 'statutes', b)
       // handle statutes field for results tables
       const responseData = response.data
-      const results = responseData.results
+      const results = responseData.docs
       const formattedResults = results.map(obj => {
         return {
           ...obj,
@@ -39,10 +40,10 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
       const response = await axios.post(baseUrl + 'cases', {
         query: query,
         selected_keywords: keywords,
-        category: category
+        selected_category: category
       })
       const responseData = response.data
-      const results = responseData.results
+      const results = responseData.docs
       const formattedResults = results.map(obj => {
         return {
           ...obj,

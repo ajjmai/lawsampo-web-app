@@ -88,7 +88,7 @@ class SituationsCategory extends React.Component {
     return (
       <>
         <Typography variant='body2'>
-          {node.name}          
+          {node.prefLabel}          
         </Typography>
       </>
     )
@@ -105,7 +105,7 @@ class SituationsCategory extends React.Component {
           onChange={this.handleChange(treeObj)}
           />
         }    
-          value={treeObj.node.id}
+          value={treeObj.node.uri}
           label={this.generateLabel(treeObj.node)}
         />
       )      
@@ -135,21 +135,20 @@ class SituationsCategory extends React.Component {
               <div className={''}>
                 {this.props.selectedSituation !== null &&
                   (
-                    <Tooltip key={this.props.selectedSituation.id} title={this.props.selectedSituation.id}>
-                      <Chip
-                        key={this.props.selectedSituation.id}
-                        //icon={icon}
-                        label={this.props.selectedSituation.name}
-                        className={classes.chip}
-                        onDelete={this.handleDelete}
-                        color='primary'
-                      />
-                    </Tooltip>
+                    <Chip
+                      key={this.props.selectedSituation.uri}
+                      //icon={icon}
+                      label={this.props.selectedSituation.prefLabel}
+                      className={classes.chip}
+                      onDelete={this.handleDelete}
+                      color='primary'
+                    />
                   )
                 }
               </div>
+              { !selectedCategory && (
               <FormControl>
-               <RadioGroup value={selectedCategory === null ? null : selectedCategory.id}>
+               <RadioGroup value={selectedCategory === null ? null : selectedCategory.uri}>
                 <SortableTree
                   treeData={treeData}
                   onChange={treeData => this.setState({ treeData })}
@@ -162,6 +161,7 @@ class SituationsCategory extends React.Component {
                 />
                 </RadioGroup>
               </FormControl>
+              )}
               </>
 
 )}

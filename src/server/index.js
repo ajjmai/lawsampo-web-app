@@ -81,10 +81,11 @@ new OpenApiValidator({
       const { body } = req
       try {
         let cat = null
-        if ('category' in body) {
-          cat = body.category
+        if ('selected_category' in body) {
+          cat = body.selected_category
         }
         const data = await fetchClassifierResults(body.resultType, body.query, body.selected_keywords, cat)
+        
         res.json(data)
       } catch (error) {
         console.log(error)

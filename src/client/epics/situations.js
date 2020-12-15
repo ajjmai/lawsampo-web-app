@@ -50,18 +50,18 @@ export const fetchSituationResults = (action$, state$) => action$.pipe(
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
     const { query, selectedKeywords, selectedSituation, resultType } = state.situationsFacets
-    const { facetClass, facetID } = action
+    const { facetClass, facetID } = action    
     let body = {
       resultType: resultType,
       query: query,
-      selected_keywords: selectedKeywords.map((e) => e.id)
+      selected_keywords: selectedKeywords
     }
     if (selectedSituation != null) {
       body = {
         resultType: resultType,
         query: query,
-        selected_keywords: selectedKeywords.map((e) => e.id),
-        category: selectedSituation.id
+        selected_keywords: selectedKeywords,
+        selected_category: selectedSituation
       }
     }
 
