@@ -60,6 +60,7 @@ const ResultTableCell = props => {
       cellContent =
         <StringList
           data={data}
+          sortValues={sortValues}
           expanded={expanded}
           collapsedMaxWords={collapsedMaxWords}
           renderAsHTML={renderAsHTML}

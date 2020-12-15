@@ -48,7 +48,9 @@ const StringList = props => {
   }
 
   const createBasicList = data => {
-    data = data.sort()
+    if (props.sortValues) {
+      data = data.sort()
+    }
     if (props.numberedList) {
       return (
         <ol className={props.classes.numberedList}>

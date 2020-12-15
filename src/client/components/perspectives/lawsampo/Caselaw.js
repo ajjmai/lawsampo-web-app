@@ -8,8 +8,35 @@ import ApexChart from '../../facet_results/ApexChart'
 import Export from '../../facet_results/Export'
 import { createSingleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 
+const processAbstracts = results => {
+  results.forEach(item => {
+    let abstractText
+    if (Array.isArray(item.abstract)) {
+      if (item.abstract[0].id) {
+        const primary = item.abstract.find(abstract => abstract.id === 'abstractPrimary')
+        const secondary = item.abstract.find(abstract => abstract.id === 'abstractSecondary')
+        abstractText = [primary.text, secondary.text]
+      }
+    } else {
+      if (item.abstract.id) {
+        abstractText = item.abstract.text
+      }
+    }
+    if (abstractText) {
+      item.abstract = abstractText
+    }
+  })
+  return results
+}
+
 const Caselaw = props => {
   const { rootUrl, perspective } = props
+  let modifiedPaginatedResults = props.facetResults.paginatedResults
+  if (props.facetResults.paginatedResults.length > 0) {
+    modifiedPaginatedResults = processAbstracts(props.facetResults.paginatedResults)
+  }
+  const modifiedResults = { ...props.facetResults, paginatedResults: modifiedPaginatedResults }
+
   return (
     <>
       <PerspectiveTabs
@@ -25,7 +52,7 @@ const Caselaw = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/table`}
         render={routeProps =>
           <ResultTable
-            data={props.facetResults}
+            data={modifiedResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='caselaw'
             facetClass='caselaw'

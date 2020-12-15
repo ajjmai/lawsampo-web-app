@@ -1,37 +1,38 @@
 export const judgementProperties = `
   # This first block must not constrain the results.
   {
-    ?id skos:prefLabel ?prefLabel__id
+    ?id dcterms:isVersionOf ?ecli .
+
+    ?id skos:prefLabel ?prefLabel__id .
     BIND(?prefLabel__id as ?prefLabel__prefLabel)
     BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    FILTER(LANG(?prefLabel__id) = '<LANG>')
 
-    ?id dcterms:isVersionOf ?ecli .
- 
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
-
-    ?id lss:isRealizedBy/dcterms:abstract ?abstract . # abstract in all language versions
-
-    # OPTIONAL {
-    #   ?id lss:isRealizedBy ?exp .
-    #   ?exp dcterms:language '<LANG>' ;
-    #        dcterms:abstract ?abstract_primary .
-    # }
-    # OPTIONAL {
-    #   ?id lss:isRealizedBy ?exp .
-    #   ?exp dcterms:language '<LANG_SECONDARY>' ; 
-    #        dcterms:abstract ?abstract_secondary .
-    # }
-    # BIND(COALESCE(?abstract_primary, ?abstract_secondary) AS ?abstract) 
+  }
+  UNION 
+  {
+    ?id lss:isRealizedBy ?expP .
+    ?expP dcterms:language '<LANG>' ;
+          dcterms:abstract ?abstract__text .
+    BIND('abstractPrimary' as ?abstract__id)
+  }
+  UNION 
+  {
+    ?id lss:isRealizedBy ?expS .
+    ?expS dcterms:language '<LANG_SECONDARY>' ;
+          dcterms:abstract ?abstract__text .
+    BIND('abstractSecondary' as ?abstract__id)
   }
   UNION
   {
-    ?id lss:isRealizedBy ?expression . 
-    ?expression dcterms:language '<LANG>' .
-    ?expression lss:html ?html_ .
+    ?id lss:isRealizedBy ?expHTML . 
+    ?expHTML dcterms:language '<LANG>' .
+    ?expHTML lss:html ?html_ .
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
     OPTIONAL { 
-       ?expression lss:annotatedHtml ?annotatedHtml_ .
+       ?expHTML lss:annotatedHtml ?annotatedHtml_ .
        BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
     }
   }

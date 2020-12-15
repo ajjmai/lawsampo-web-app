@@ -117,7 +117,8 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, tableData, tableExternalData, isLoading, resultClass, rootUrl } = this.props
+    const { classes, tableExternalData, isLoading, resultClass, rootUrl } = this.props
+    let { tableData } = this.props
     let hasTableData
     let defaultTab = 'table'
     if (this.props.resultClass === 'caselaw') {
@@ -131,6 +132,24 @@ class InstanceHomePage extends React.Component {
     }
     if (resultClass === 'statutes') {
       defaultTab = 'content'
+    }
+    if (resultClass === 'caselaw' && hasTableData) {
+      const abstractData = tableData.abstract
+      let abstractText
+      if (Array.isArray(abstractData)) {
+        if (abstractData[0].id) {
+          const primary = abstractData.find(abstract => abstract.id === 'abstractPrimary')
+          const secondary = abstractData.find(abstract => abstract.id === 'abstractSecondary')
+          abstractText = [primary.text, secondary.text]
+        }
+      } else {
+        if (abstractData.id) {
+          abstractText = abstractData.text
+        }
+      }
+      if (abstractText) {
+        tableData = { ...tableData, abstract: abstractText }
+      }
     }
     return (
       <div className={classes.root}>
