@@ -3,7 +3,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { Link } from 'react-router-dom'
 import Tooltip from '@material-ui/core/Tooltip'
 import { arrayToObject } from './helpers'
-import { findAll } from 'domutils'
+import { findAll, prependChild } from 'domutils'
 
 export default class HTMLParser {
   constructor (props) {
@@ -30,7 +30,7 @@ export default class HTMLParser {
   }
 
   preprocessNodes (nodes) {
-    // Add ids for section divs
+    // Add new divs with ids for each section
     const sectionDivs = findAll((node) => (node.attribs.class === 'section'), nodes)
     sectionDivs.map(node => {
       let chapterNumber
@@ -45,9 +45,20 @@ export default class HTMLParser {
       } else {
         chapterNumber = ''
       }
-      let sectionNumber = node.children[0].children[0].data
-      sectionNumber = sectionNumber.replace(/\s/g, '').replace('§', '')
-      node.attribs.id = `#${chapterNumber}section_${sectionNumber}`
+      const sectionItemIdentifier = node.children[0].children[0].data
+      let sectionNumber
+      if (sectionItemIdentifier.includes('§')) {
+        sectionNumber = sectionItemIdentifier.replace(/\s/g, '').replace('§', '')
+      } else {
+        sectionNumber = '1'
+      }
+      const newNode = {
+        type: 'tag',
+        name: 'div',
+        attribs: { id: `#${chapterNumber}section_${sectionNumber}` },
+        children: []
+      }
+      prependChild(node, newNode)
     })
     return nodes
   }
@@ -70,15 +81,16 @@ export default class HTMLParser {
   addAnnotationTooltips = (node, index) => {
     const props = this.props
 
-    // Section divs: add refs based on id
-    if (node.parent && node.parent.attribs && node.parent.attribs.class === 'section' && node.name === 'h4' && node.children[0].data && node.children[0].data.includes('§')) {
-      const id = node.parent.attribs.id
-      return (
-        <React.Fragment key={index}>
-          <div className='ref' ref={element => { this.props.sectionRefs.current[id] = element }} />
-          <h4 className='item-identifier'>{node.children[0].data}</h4>
-        </React.Fragment>
-      )
+    // Sections: replace the divs created in preprocessNodes with new divs that hold a ref
+    if (node.parent &&
+      node.parent.attribs &&
+      node.parent.attribs.class === 'section' &&
+      node.attribs &&
+      node.attribs.id &&
+      node.attribs.id.includes('section')
+    ) {
+      const id = node.attribs.id
+      return <div key={index} id={id} className='ref' ref={element => { this.props.sectionRefs.current[id] = element }} />
     }
 
     // Add tooltips for showing automatic annnotations

@@ -85,7 +85,7 @@ const ContextualContent = props => {
         }
       }, 500)
     }
-  }, [location])
+  }, [location.hash])
 
   return (
     <div className={classes.root}>
