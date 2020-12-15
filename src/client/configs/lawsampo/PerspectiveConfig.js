@@ -117,12 +117,6 @@ export const perspectiveConfig = [
     ]
   },
   {
-    id: 'caselawfinder',
-    frontPageImage: sdfImage,
-    frontPageElement: 'card',
-    externalUrl: 'https://data.finlex.fi/document-finder'
-  },
-  {
     id: 'situations',
     searchMode: 'iterative-search',
     frontPageElement: 'card',
@@ -153,5 +147,11 @@ export const perspectiveConfig = [
         icon: <CloudDownloadIcon />
       }
     ]
+  },
+  {
+    id: 'caselawfinder',
+    frontPageImage: sdfImage,
+    frontPageElement: 'card',
+    externalUrl: 'https://data.finlex.fi/document-finder'
   }
 ]
