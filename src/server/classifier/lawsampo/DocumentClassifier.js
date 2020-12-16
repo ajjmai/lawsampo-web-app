@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-//const baseUrl = 'https://contextualsearcher.test.lakisampo.fi/'
-const baseUrl = 'http://localhost:5000/'
+const baseUrl = 'https://contextualsearcher.test.lakisampo.fi/'
+//const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
   const response = await axios.get(baseUrl + 'categories')
