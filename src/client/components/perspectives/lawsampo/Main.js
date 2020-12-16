@@ -51,8 +51,8 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    [theme.breakpoints.up(1275 + theme.spacing(6))]: {
-      maxWidth: 1275,
+    [theme.breakpoints.up(1280 + theme.spacing(6))]: {
+      maxWidth: 1280,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
