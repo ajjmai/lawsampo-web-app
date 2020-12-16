@@ -88,7 +88,7 @@ const TopBar = props => {
   const renderMobileMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
-      return <></>
+      return null
       // return (
       //   <a
       //     className={classes.link}
@@ -118,7 +118,7 @@ const TopBar = props => {
   const renderDesktopTopMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
-      return <></>
+      return null
       // return (
       //   <a
       //     className={classes.link}
