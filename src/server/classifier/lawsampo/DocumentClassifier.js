@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'https://contextualsearcher.test.lakisampo.fi/'
-//const baseUrl = 'http://localhost:5000/'
+//const baseUrl = 'https://contextualsearcher.test.lakisampo.fi/'
+const baseUrl = 'http://localhost:5000/'
 
 export const fetchClassifierCategories = async () => {
   const response = await axios.get(baseUrl + 'categories')
@@ -23,7 +23,13 @@ export const fetchClassifierResults = async (resultType, query, keywords, select
       // handle statutes field for results tables
       const responseData = response.data
       const results = responseData.docs
+      
       const formattedResults = results.map(obj => {
+        let hashbang = 'section_' + obj.section_number
+        if (obj.chapter_number !== '') {
+          hashbang = 'chapter_' + obj.chapter_number + '_' + hashbang
+        }
+
         return {
           ...obj,
           statute: {
@@ -32,7 +38,7 @@ export const fetchClassifierResults = async (resultType, query, keywords, select
           },
           prefLabel: {
             prefLabel: obj.prefLabel,
-            dataProviderUrl: '/sections/page/' + obj.section_id
+            dataProviderUrl: '/statutes/page/' + obj.id + '#' + hashbang
           }
         }
       })
