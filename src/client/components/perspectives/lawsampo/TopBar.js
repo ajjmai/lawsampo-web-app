@@ -88,19 +88,20 @@ const TopBar = props => {
   const renderMobileMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
-      return (
-        <a
-          className={classes.link}
-          key={perspective.id}
-          href={perspective.externalUrl}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <MenuItem>
-            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
-          </MenuItem>
-        </a>
-      )
+      return <></>
+      // return (
+      //   <a
+      //     className={classes.link}
+      //     key={perspective.id}
+      //     href={perspective.externalUrl}
+      //     target='_blank'
+      //     rel='noopener noreferrer'
+      //   >
+      //     <MenuItem>
+      //       {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+      //     </MenuItem>
+      //   </a>
+      // )
     } else {
       return (
         <MenuItem
@@ -117,21 +118,22 @@ const TopBar = props => {
   const renderDesktopTopMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
-      return (
-        <a
-          className={classes.link}
-          key={perspective.id}
-          href={perspective.externalUrl}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Button
-            className={classes.appBarButton}
-          >
-            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
-          </Button>
-        </a>
-      )
+      return <></>
+      // return (
+      //   <a
+      //     className={classes.link}
+      //     key={perspective.id}
+      //     href={perspective.externalUrl}
+      //     target='_blank'
+      //     rel='noopener noreferrer'
+      //   >
+      //     <Button
+      //       className={classes.appBarButton}
+      //     >
+      //       {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+      //     </Button>
+      //   </a>
+      // )
     } else {
       return (
         <Button
