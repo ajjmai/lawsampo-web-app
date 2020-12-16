@@ -73,6 +73,7 @@ import {
   updateSituationQuery,
   updateSituationSelected,
   addSituationKeyword,
+  setSituationKeywords,
   removeSituationKeyword,
   fetchSituationResults,
   clearAllSituations,
@@ -373,6 +374,7 @@ const SemanticPortal = props => {
                                   updateSituationQuery={props.updateSituationQuery}
                                   updateSituationSelected={props.updateSituationSelected}
                                   addSituationKeyword={props.addSituationKeyword}
+                                  setSituationKeywords={props.setSituationKeywords}
                                   removeSituationKeyword={props.removeSituationKeyword}
                                   clearAllSituations={props.clearAllSituations}
                                   fetchSituationResults={props.fetchSituationResults}
@@ -704,6 +706,7 @@ const mapDispatchToProps = ({
   updateResultType,
   clearAllSituations,
   addSituationKeyword,
+  setSituationKeywords,
   removeSituationKeyword,
   updateSituationQuery,
   updateSituationSelected,

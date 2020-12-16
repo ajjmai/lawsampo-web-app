@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import SituationsSearch from './SituationsSearch'
 import SituationsKeywords from './SituationsKeywords'
 import SituationsCategory from './SituationsCategory'
-import { Accordion, AccordionDetails, AccordionSummary, Chip, IconButton, Paper, Tooltip, Typography } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, IconButton, Paper, Tooltip, Typography } from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
 import clsx from 'clsx'
 import intl from 'react-intl-universal'
@@ -93,6 +93,11 @@ class SituationFacetBar extends React.Component {
     this.props.clearAllSituations()
   }
 
+  handleClearKeywords = () => {
+    this.props.setSituationKeywords({negativeKeywords: [], positiveKeywords: []})
+    this.props.fetchSituationResults()
+  }
+
   getActiveInitialData = (initialActive) => {
     const { classes } = this.props
     if (!initialActive) {
@@ -121,6 +126,7 @@ class SituationFacetBar extends React.Component {
     if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
     const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0 ) || (this.props.facetData.query === '' && this.props.facetData.selectedSituation != null)
+    const isKeywordsClearVisible = (this.props.facetData.selectedPositiveKeywords.length + this.props.facetData.selectedNegativeKeywords.length) > 0
     return (
       <>
         <Accordion
@@ -234,7 +240,13 @@ class SituationFacetBar extends React.Component {
                   <InfoIcon />
                 </IconButton>
               </Tooltip>
-
+              { isKeywordsClearVisible && (
+              <Button 
+                onClick={this.handleClearKeywords}                
+                variant='contained'
+                color='secondary'
+                size='small'>Tyhjennä</Button>
+              )}
             </div>
           </AccordionSummary>
           <AccordionDetails
@@ -248,6 +260,8 @@ class SituationFacetBar extends React.Component {
                   isFetching={this.props.facetData.isFetching}
                   fetchSituationResults={this.props.fetchSituationResults}
                   selectedKeywords={this.props.facetData.selectedKeywords}
+                  facetData={this.props.facetData}
+                  setSituationKeywords={this.props.setSituationKeywords}
                   keywords={this.props.facetData.keywords}
                   addSituationKeyword={this.props.addSituationKeyword}
                   removeSituationKeyword={this.props.removeSituationKeyword}

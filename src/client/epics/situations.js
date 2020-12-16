@@ -49,19 +49,23 @@ export const fetchSituationResults = (action$, state$) => action$.pipe(
   ofType('FETCH_SITUATION_RESULTS'),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { query, selectedKeywords, selectedSituation, resultType } = state.situationsFacets
-    const { facetClass, facetID } = action    
+    const { query, selectedKeywords, selectedSituation, resultType, selectedPositiveKeywords, selectedNegativeKeywords } = state.situationsFacets
+    const { facetClass, facetID } = action
     let body = {
       resultType: resultType,
       query: query,
-      selected_keywords: selectedKeywords
+      selected_keywords: selectedKeywords,
+      selectedNegativeKeywords: selectedNegativeKeywords,
+      selectedPositiveKeywords: selectedPositiveKeywords
     }
     if (selectedSituation != null) {
       body = {
         resultType: resultType,
         query: query,
         selected_keywords: selectedKeywords,
-        selected_category: selectedSituation
+        selected_category: selectedSituation,
+        selectedNegativeKeywords: selectedNegativeKeywords,
+        selectedPositiveKeywords: selectedPositiveKeywords
       }
     }
 

@@ -1,3 +1,5 @@
+import { findIndex } from 'lodash'
+
 export const updateSituationQuery = ({ query }) => (
   {
     type: 'UPDATE_SITUATION_QUERY',
@@ -22,6 +24,14 @@ export const addSituationKeyword = ({ keyword }) => (
   {
     type: 'ADD_SITUATION_KEYWORD',
     keyword
+  }
+)
+
+export const setSituationKeywords = ({ positiveKeywords, negativeKeywords }) => (
+  {
+    type: 'SET_SITUATION_KEYWORDS',
+    positiveKeywords,
+    negativeKeywords
   }
 )
 
@@ -88,60 +98,11 @@ export const INITIAL_STATE = {
   isFetching: false,
   query: '',
   selectedSituation: null,
-  situations: [
-    /*
-    {
-      id: 0,
-      name: 'asuminen kiinteistö'
-    },
-    {
-      id: 1,
-      name: 'ihmisoikeudet perusoikeudet'
-    },
-    {
-      id: 2,
-      name: 'julkishallinto valtionhallinto'
-    },
-    {
-      id: 3,
-      name: 'koulutus'
-    },
-    {
-      id: 4,
-      name: 'liikenne kuljetus'
-    },
-    {
-      id: 5,
-      name: 'omaisuus kaupankäynti kuluttajansuoja'
-    },
-    {
-      id: 6,
-      name: 'perheoikeus perintöoikeus'
-    },
-    {
-      id: 7,
-      name: 'rahoitus'
-    },
-    {
-      id: 8,
-      name: 'rikosasiat oikeudenkäynti'
-    },
-    {
-      id: 9,
-      name: 'verotus'
-    },
-    {
-      id: 10,
-      name: 'ympäristö'
-    },
-    {
-      id: 11,
-      name: 'yritykset yhteisöt työelämä'
-    }
-    */
-  ],
+  situations: [],
   keywords: [],
   selectedKeywords: [],
+  selectedPositiveKeywords: [],
+  selectedNegativeKeywords: [],
   categories: [],
   resultType: 'statutes'
 
@@ -177,13 +138,30 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
         selectedKeywords: k
 
       }
-    case 'REMOVE_SITUATION_KEYWORD':
-      if (Array.isArray(k)) {
-        k.splice(action.keywordIndex, 1)
-      }
+    case 'SET_SITUATION_KEYWORDS':
       return {
         ...state,
-        selectedKeywords: k
+        selectedPositiveKeywords: action.positiveKeywords,
+        selectedNegativeKeywords: action.negativeKeywords
+      }
+    case 'REMOVE_SITUATION_KEYWORD':
+      const pos = state.selectedPositiveKeywords
+      const neg = state.selectedNegativeKeywords
+      let itemIndex = findIndex(pos, { uri: action.keyword.uri })
+      if(itemIndex >= 0) {
+        pos.splice(itemIndex, 1)
+      } 
+      else {
+        itemIndex = findIndex(neg, { uri: action.keyword.uri })
+        if(itemIndex >= 0) {
+          neg.splice(itemIndex, 1)
+        }
+      }
+
+      return {
+        ...state,
+        selectedPositiveKeywords: pos,
+        selectedNegativeKeywords: neg
       }
     case 'CLEAR_ALL':
       return {
@@ -193,7 +171,9 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
         keywords: [],
         selectedSituation: null,
         selectedKeywords: [],
-        selectedCategories: []
+        selectedCategories: [],
+        selectedPositiveKeywords: [],
+        selectedNegativeKeywords: []
       }
     case 'FETCH_SITUATION_RESULTS':
       return {

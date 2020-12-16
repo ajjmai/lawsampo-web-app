@@ -9,13 +9,15 @@ export const fetchClassifierCategories = async () => {
     situations: response.data
   }
 }
-export const fetchClassifierResults = async (resultType, query, keywords, category) => {
+export const fetchClassifierResults = async (resultType, query, keywords, selectedNegativeKeywords, selectedPositiveKeywords, category) => {
   try {
     if (resultType === 'statutes') {
       const b = {
         query: query,
         selected_keywords: keywords,
-        selected_category: category
+        selected_category: category,
+        selected_negative_keywords: selectedNegativeKeywords,
+        selected_positive_keywords: selectedPositiveKeywords
       }
       const response = await axios.post(baseUrl + 'statutes', b)
       // handle statutes field for results tables
@@ -40,7 +42,10 @@ export const fetchClassifierResults = async (resultType, query, keywords, catego
       const response = await axios.post(baseUrl + 'cases', {
         query: query,
         selected_keywords: keywords,
-        selected_category: category
+        selected_category: category,
+        selected_negative_keywords: selectedNegativeKeywords,
+        selected_positive_keywords: selectedPositiveKeywords
+
       })
       const responseData = response.data
       const results = responseData.docs
