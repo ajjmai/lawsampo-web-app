@@ -51,8 +51,8 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    [theme.breakpoints.up(800 + theme.spacing(6))]: {
-      width: 800,
+    [theme.breakpoints.up(1275 + theme.spacing(6))]: {
+      maxWidth: 1275,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -68,6 +68,13 @@ const useStyles = makeStyles(theme => ({
   lowerRow: {
     marginTop: theme.spacing(1)
   },
+  selectInternalPerspective: {
+    marginBottom: theme.spacing(1)
+  },
+  selectExternalPerspective: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
+  },
   licenceTextContainer: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
@@ -78,6 +85,16 @@ const useStyles = makeStyles(theme => ({
 
 const Main = props => {
   const { perspectives, screenSize } = props
+  const internalPerspectives = []
+  const externalPerspectives = []
+  perspectives.map(perspective => {
+    if (perspective.externalUrl) {
+      externalPerspectives.push(perspective)
+    } else {
+      internalPerspectives.push(perspective)
+    }
+  })
+
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
@@ -126,28 +143,36 @@ const Main = props => {
               </Typography>
             </div>
           </div>
-
         </div>
-
       </div>
       <div className={classes.layout}>
-        <div className={classes.heroContent}>
-          <Typography variant={descriptionVariant} color='textPrimary' paragraph>
-            {intl.getHTML('appDescription')}
-          </Typography>
-          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
-            {intl.get('selectPerspective')}
-          </Typography>
-        </div>
+        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+          {intl.get('selectPerspective')}
+        </Typography>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
-          justify={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
+          justify='center'
         >
-          {perspectives.map(perspective =>
+          {internalPerspectives.map(perspective =>
             <MainCard
               key={perspective.id}
               perspective={perspective}
-              cardHeadingVariant='h5'
+              cardHeadingVariant='h4'
+              rootUrl={props.rootUrl}
+            />)}
+        </Grid>
+        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+          {intl.get('selectPerspectiveExternal')}
+        </Typography>
+        <Grid
+          container spacing={screenSize === 'sm' ? 2 : 1}
+          justify='center'
+        >
+          {externalPerspectives.map(perspective =>
+            <MainCard
+              key={perspective.id}
+              perspective={perspective}
+              cardHeadingVariant='h4'
               rootUrl={props.rootUrl}
             />)}
         </Grid>

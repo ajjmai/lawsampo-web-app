@@ -11,6 +11,7 @@ export default {
 
   `,
   selectPerspective: 'Valitse näkymä aineiston hakua ja tutkimista varten:',
+  selectPerspectiveExternal: 'Muut Lakisammon aineistoa hyödyntävät sovellukset:',
   mainPageImageLicence: 'Etusivun kuva: Shutterstock.com',
   topBar: {
     feedback: 'palaute',

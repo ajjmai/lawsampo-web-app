@@ -11,6 +11,7 @@ export default {
 
   `,
   selectPerspective: 'Select an application perspective to search and browse the data:',
+  selectPerspectiveExternal: 'Other applications based on LawSampo data:',
   mainPageImageLicence: 'Image used under license from Shutterstock.com',
   topBar: {
     feedback: 'feedback',
