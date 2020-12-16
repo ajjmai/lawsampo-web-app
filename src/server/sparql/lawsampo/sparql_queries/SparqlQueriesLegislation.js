@@ -7,7 +7,7 @@ const getSectionLabel = labelVar => {
         IF(STRSTARTS(?section_prefLabel_, "pykälä"), "", 1/0),
         ?section_prefLabel_
       ) as ${labelVar}
-  )    
+    )    
 `
 }
 
@@ -159,19 +159,24 @@ export const statutePropertiesInstancePage = `
 `
 
 export const sectionProperties = `
-  {
-    ?id lss:statute ?statute__id .
-    ?statute__id skos:prefLabel ?statute__prefLabel .  
-    # create link to statute instance page:
-    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", "")) AS ?statute__dataProviderUrl)
-    
-    
-    ?id skos:prefLabel ?prefLabel__id .
+  {  
+    ?id skos:prefLabel ?prefLabel__id ;
+        lss:statute ?statute__id ;
+        lss:section_number ?section_number .
+    OPTIONAL { ?id lss:chapter_number ?chapter_number }    
     BIND(?prefLabel__id as ?prefLabel__prefLabel)
-    # create link to section instance page:
-    BIND(CONCAT("/sections/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
 
-    # create link to SAHA
+    BIND(IF(BOUND(?chapter_number),
+         CONCAT("chapter_", ?chapter_number, "_"),
+         ""
+        )
+     as ?chapter)
+    BIND(CONCAT("#", ?chapter, "section_", ?section_number) as ?hash)   
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", ""), ?hash) AS ?prefLabel__dataProviderUrl)
+
+    ?statute__id skos:prefLabel ?statute__prefLabel .  
+    BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", "")) AS ?statute__dataProviderUrl)
+   
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
   }
