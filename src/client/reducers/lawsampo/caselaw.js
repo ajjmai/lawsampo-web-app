@@ -26,8 +26,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 120
+      numberedList: false
     },
     {
       id: 'ecli',
@@ -35,8 +34,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 120
+      numberedList: false
     },
     {
       id: 'uri',
@@ -45,8 +43,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 230
+      numberedList: false
     },
     {
       id: 'abstract',
@@ -64,8 +61,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 150
+      numberedList: false
     },
     {
       id: 'judge',
@@ -73,8 +69,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 150
+      numberedList: false
     },
     {
       id: 'decisionDate',
@@ -82,8 +77,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 160
+      numberedList: false
     },
     {
       id: 'subjectCategory',
@@ -113,17 +107,6 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
-      id: 'contentHTML',
-      valueType: 'string',
-      onlyOnInstancePage: true,
-      renderAsHTML: true,
-      makeLink: false,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 160
-    },
-    {
       id: 'contentHTMLAnnotated',
       valueType: 'string',
       onlyOnInstancePage: true,
@@ -132,8 +115,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 160
+      numberedList: false
     }
   ]
 }

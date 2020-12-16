@@ -29,21 +29,19 @@ export const judgementProperties = `
   {
     ?id lss:isRealizedBy ?expHTML . 
     ?expHTML dcterms:language '<LANG>' .
-    ?expHTML lss:html ?html_ .
-    BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTML)
-    OPTIONAL { 
-       ?expHTML lss:annotatedHtml ?annotatedHtml_ .
-       BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
-    }
+    ?expHTML lss:annotatedHtml ?annotatedHtml_ .
+    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
   UNION 
   {
     ?id lss:referencedTerms/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
-    ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .
+    ?referencedTerm__id skos:prefLabel ?prefLabel_ .
     OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
     OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
     OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
+    OPTIONAL { ?referencedTerm__id lss:count ?referencedTerm__count }
     BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
+    BIND(LCASE(?prefLabel_) as ?referencedTerm__prefLabel)
   }
   UNION
   {

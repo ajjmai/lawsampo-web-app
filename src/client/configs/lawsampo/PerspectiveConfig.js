@@ -105,13 +105,18 @@ export const perspectiveConfig = [
     ],
     instancePageTabs: [
       {
-        id: 'table',
+        id: 'content',
         value: 0,
+        icon: <SubjectIcon />
+      },
+      {
+        id: 'table',
+        value: 1,
         icon: <CalendarViewDayIcon />
       },
       {
         id: 'export',
-        value: 1,
+        value: 2,
         icon: <CloudDownloadIcon />
       }
     ]

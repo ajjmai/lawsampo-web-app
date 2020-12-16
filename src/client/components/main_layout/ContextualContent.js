@@ -64,7 +64,7 @@ const ContextualContent = props => {
   const {
     makeLink, externalLink, sortValues, sortBy, numberedList, columnId, linkAsButton,
     showSource, sourceExternalLink
-  } = props.tableOfContentsConfig
+  } = props.tableOfContentsConfig || {}
   const location = useLocation()
   const sectionRefs = useRef({})
 
@@ -77,7 +77,7 @@ const ContextualContent = props => {
   data = parser.parseHTML(data)
 
   useEffect(() => {
-    if (location.hash) {
+    if (tableOfContents && location.hash) {
       setTimeout(() => {
         const ref = sectionRefs.current
         if (has(ref, location.hash)) {
@@ -97,24 +97,27 @@ const ContextualContent = props => {
         </Grid>
         <Grid className={classes.gridItem} item xs={4}>
           <Paper className={classes.tableOfContents}>
-            <Typography variant='h6' component='h2'>Voimassa olevat pykälät</Typography>
-            <SectionOfALawListCollapsible
-              data={tableOfContents}
-              hasParts={hasParts === 'true'}
-              hasChapters={hasChapters === 'true'}
-              makeLink={makeLink}
-              externalLink={externalLink}
-              sortValues={sortValues}
-              sortBy={sortBy}
-              numberedList={numberedList}
-              columnId={columnId}
-              expanded
-              linkAsButton={linkAsButton}
-              showSource={showSource}
-              sourceExternalLink={sourceExternalLink}
-              collapsible={false}
-              onlyHashLinks
-            />
+            {tableOfContents &&
+              <>
+                <Typography variant='h6' component='h2'>Voimassa olevat pykälät</Typography>
+                <SectionOfALawListCollapsible
+                  data={tableOfContents}
+                  hasParts={hasParts === 'true'}
+                  hasChapters={hasChapters === 'true'}
+                  makeLink={makeLink}
+                  externalLink={externalLink}
+                  sortValues={sortValues}
+                  sortBy={sortBy}
+                  numberedList={numberedList}
+                  columnId={columnId}
+                  expanded
+                  linkAsButton={linkAsButton}
+                  showSource={showSource}
+                  sourceExternalLink={sourceExternalLink}
+                  collapsible={false}
+                  onlyHashLinks
+                />
+              </>}
           </Paper>
           <Paper className={classes.wordCloud}>
             <Typography variant='h6' component='h2'>Käsitepilvi</Typography>

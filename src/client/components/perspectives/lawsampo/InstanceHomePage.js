@@ -130,7 +130,7 @@ class InstanceHomePage extends React.Component {
     } else {
       hasTableData = tableData !== null && Object.values(tableData).length >= 1
     }
-    if (resultClass === 'statutes') {
+    if (resultClass === 'statutes' || resultClass === 'caselaw') {
       defaultTab = 'content'
     }
     if (resultClass === 'caselaw' && hasTableData) {
