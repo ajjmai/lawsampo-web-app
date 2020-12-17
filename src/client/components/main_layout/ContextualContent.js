@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
   wordCloud: {
     marginTop: theme.spacing(1),
     padding: theme.spacing(2),
-    height: 'calc(40% - 16px)'
+    height: 'calc(40% - 16px)',
+    overflow: 'auto'
   },
   wordCloudContainer: {
     width: '100%'
