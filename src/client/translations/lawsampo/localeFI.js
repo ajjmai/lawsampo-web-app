@@ -526,6 +526,27 @@ export default {
       instancePage: {
         label: 'Oikeustapaus',
         description: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tämä sivu näyttää yhden oikeustapauksen sisällön ja metatiedot.
+          Oikeustapauksen tiedot perustuvat Semanttisen Finlexin aineistoon.
+          Näkymä sisältää kolme välilehteä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>SISÄLTÖ</STRONG>-välilehti näyttää oikeustapauksen tekstisisällön kontekstuaalisessa
+            lukijassa, joka näyttää käsitteiden selityksiä ja linkkejä viedessäsi
+            kursorin niiden kohdalle.
+          </li>
+          <li>
+            <strong>TIEDOT</STRONG>-välilehti näyttää oikeustapauksen metatiedot
+            ja linkin oikeustapaukseen Finlexissä.
+          </li>
+          <li>
+            <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            oikeustapauksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+          </li>
+        </ul>
+
         `
       },
       courtDecisionsByYear: {
