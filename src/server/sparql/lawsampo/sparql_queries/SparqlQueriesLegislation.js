@@ -129,6 +129,12 @@ export const statutePropertiesInstancePage = `
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
+  UNION
+  {
+     ?id lss:finlex_url ?finlexLink__id .
+     BIND('Finlex' as ?finlexLink__prefLabel)
+     BIND(?finlexLink__id as ?finlexLink__dataProviderUrl)
+  }
   UNION 
   {
     ?id lss:situation_category ?situationCategory__id .

@@ -342,6 +342,12 @@ export default {
           description: `
             Annotated content (HTML)
           `
+        },
+        finlexLink: {
+          label: 'Link to Finlex service',
+          description: `
+            Link to Finlex service
+          `
         }
       }
     },
@@ -635,6 +641,12 @@ export default {
           label: 'Annotated content (HTML)',
           description: `
             Annotated content (HTML)
+          `
+        },
+        finlexLink: {
+          label: 'Link to Finlex service',
+          description: `
+            Link to Finlex service
           `
         }
       }

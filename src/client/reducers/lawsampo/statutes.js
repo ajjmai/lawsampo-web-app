@@ -91,6 +91,15 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
+      id: 'finlexLink',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false
+    },
+    {
       id: 'uri',
       valueType: 'object',
       onlyOnInstancePage: true,

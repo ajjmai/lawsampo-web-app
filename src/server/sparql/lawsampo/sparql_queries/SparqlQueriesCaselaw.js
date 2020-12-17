@@ -80,6 +80,12 @@ export const judgementProperties = `
     ?id lss:subject_category ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
   }
+  UNION
+  {
+     ?id lss:finlex_url ?finlexLink__id .
+     BIND('Finlex' as ?finlexLink__prefLabel)
+     BIND(?finlexLink__id as ?finlexLink__dataProviderUrl)
+  }
 `
 export const judgementsByYearQuery = `
   SELECT ?category (count(distinct ?judgement) as ?count) WHERE {

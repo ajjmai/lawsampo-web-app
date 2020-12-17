@@ -328,6 +328,12 @@ export default {
             EU-direktiivi
           `
         },
+        finlexLink: {
+          label: 'Linkki Finlex-palveluun',
+          description: `
+            Linkki Finlex-palveluun
+          `
+        },
         wordcloud: {
           label: 'Sanapilvi',
           description: `
@@ -626,6 +632,12 @@ export default {
           label: 'Oikeustapauksen kontekstuaalinen sisältö',
           description: `
             Oikeustapauksen kontekstuaalinen sisältö
+          `
+        },
+        finlexLink: {
+          label: 'Linkki Finlex-palveluun',
+          description: `
+            Linkki Finlex-palveluun
           `
         }
       }

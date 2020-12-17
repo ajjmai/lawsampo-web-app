@@ -37,15 +37,6 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
-      id: 'uri',
-      valueType: 'object',
-      onlyOnInstancePage: true,
-      makeLink: true,
-      externalLink: true,
-      sortValues: false,
-      numberedList: false
-    },
-    {
       id: 'abstract',
       valueType: 'string',
       collapsedMaxWords: 6,
@@ -103,6 +94,24 @@ export const INITIAL_STATE = {
       valueType: 'object',
       makeLink: true,
       externalLink: false,
+      sortValues: false,
+      numberedList: false
+    },
+    {
+      id: 'finlexLink',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false
+    },
+    {
+      id: 'uri',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
       sortValues: false,
       numberedList: false
     },
