@@ -95,7 +95,7 @@ export default class HTMLParser {
 
     // Add tooltips for showing automatic annnotations
     if (this.referencedTermsObj && node.type === 'tag' && node.name === 'span' &&
-    node.attribs.name === 'namedentity' && node.attribs['data-link'] !== '') {
+    node.attribs.name === 'namedentity' && node.attribs['data-link'] && node.attribs['data-link'] !== '') {
       const linkStr = node.attribs['data-link']
       let tooltipJSX
       if (linkStr.includes(',')) {
