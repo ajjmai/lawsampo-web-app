@@ -60,6 +60,12 @@ export const judgementProperties = `
   }
   UNION
   {
+    ?id lss:material_type ?typeOfSourceData__id .
+    ?typeOfSourceData__id skos:prefLabel ?typeOfSourceData__prefLabel .
+    FILTER(LANG(?typeOfSourceData__prefLabel) = '<LANG>')
+  }
+  UNION
+  {
     ?id lss:referenceToCourtDecision ?referencedCourtDecision__id .
     BIND(?referencedCourtDecision_id AS ?referencedCourtDecision__prefLabel)
     BIND(CONCAT("/caselaw/page/", REPLACE(STR(?rcl__id), "http://ldf.fi/lawsampo/", "")) AS ?referencedCourtDecision__dataProviderUrl)

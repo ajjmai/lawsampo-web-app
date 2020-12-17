@@ -55,6 +55,15 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
+      id: 'typeOfSourceData',
+      onlyOnInstancePage: true,
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false
+    },
+    {
       id: 'judge',
       valueType: 'object',
       makeLink: false,
