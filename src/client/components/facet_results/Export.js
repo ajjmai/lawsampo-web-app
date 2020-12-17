@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 // import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 import { yasguiBaseUrl, yasguiParams } from '../../configs/lawsampo/GeneralConfig'
 import querystring from 'querystring'
 import intl from 'react-intl-universal'
@@ -48,7 +49,7 @@ class Export extends React.Component {
       yasguiUrl = `${yasguiBaseUrl}/#query=${encodeURIComponent(sparqlQuery)}&${querystring.stringify(yasguiParams)}`
     }
     return (
-      <div className={classes.root}>
+      <Paper square className={classes.root}>
         <a
           className={classes.link}
           href={yasguiUrl}
@@ -59,7 +60,7 @@ class Export extends React.Component {
             {intl.get('exportToYasgui')}
           </Button>
         </a>
-        {this.props.pageType === 'instancePage' &&
+        {this.props.pageType === 'instancePage' && this.props.sahaButton &&
           <a
             className={classes.link}
             href={this.props.id}
@@ -70,7 +71,7 @@ class Export extends React.Component {
               {intl.get('openInLinkedDataBrowser')}
             </Button>
           </a>}
-      </div>
+      </Paper>
     )
   }
 }

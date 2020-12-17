@@ -6,6 +6,7 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import SubjectIcon from '@material-ui/icons/Subject'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 // import BubbleChartIcon from '@material-ui/icons/BubbleChart'
 // import sdfImage from '../../img/lawsampo/sdf-tumb.png'
 // import legislationImage from '../../img/lawsampo/legislation.png'
@@ -27,7 +28,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 1,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ],
     instancePageTabs: [
@@ -44,7 +45,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 2,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ]
   },
@@ -62,7 +63,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 1,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ],
     instancePageTabs: [
@@ -75,7 +76,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 1,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ]
   },
@@ -98,7 +99,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 2,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ],
     instancePageTabs: [
@@ -115,7 +116,7 @@ export const perspectiveConfig = [
       {
         id: 'export',
         value: 2,
-        icon: <CloudDownloadIcon />
+        icon: <ArrowForwardIcon />
       }
     ]
   },
