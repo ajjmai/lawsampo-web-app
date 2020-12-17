@@ -73,8 +73,8 @@ export const caselawPerspectiveConfig = {
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')
       `,
-      labelPath: 'ls:material_type/skos:prefLabel',
-      predicate: 'ls:material_type',
+      labelPath: 'lss:material_type/skos:prefLabel',
+      predicate: 'lss:material_type',
       type: 'list'
     },
     typeOftheMatter: {
