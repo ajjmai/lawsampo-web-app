@@ -228,6 +228,26 @@ export default {
       instancePage: {
         label: 'Säädös',
         description: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tämä sivu näyttää yhden ajantasaisen lainsäädännön säädöksen sisällön ja metatiedot.
+          Säädösten tiedot perustuvat Semanttisen Finlexin aineistoon.
+          Näkymä sisältää kolme välilehteä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>SISÄLTÖ</STRONG>-välilehti näyttää säädöksen tekstisisällön kontekstuaalisessa
+            lukijassa, joka näyttää käsitteiden selityksiä ja linkkejä viedessäsi
+            kursorin niiden kohdalle.
+          </li>
+          <li>
+            <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot
+            ja linkin säädökseen Finlexissä.
+          </li>
+          <li>
+            <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            säädöksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+          </li>
+        </ul>
         `
       },
       properties: {

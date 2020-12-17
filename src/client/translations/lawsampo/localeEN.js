@@ -70,6 +70,7 @@ export default {
     }
   },
   tabs: {
+    content: 'contents',
     table: 'table',
     map: 'map',
     by_year: 'by year',
@@ -370,9 +371,27 @@ export default {
       instancePage: {
         label: 'Section',
         description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a...
-          </p>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          This landing page provides the content and metadata of a single statute
+          of Finnish consolidated legislation. The information is based on the
+          Semantic Finlex data.
+          The view contains three tabs:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>CONTENTS</STRONG> tab shows the contents of the statute on
+            a contextual reader. Contextual information and links are shown when
+            taking the cursor to highlighted entities.
+          </li>
+          <li>
+            <strong>TABLE</STRONG> tab shows the metadata of the statute and
+            a link to the statute in Finlex.
+          </li>
+          <li>
+            <strong>EXPORT</strong> tab contains a link to open the statute
+            query in YASGUI.
+          </li>
+        </ul>
         `
       },
       properties: {
