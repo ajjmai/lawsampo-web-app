@@ -535,22 +535,28 @@ export default {
       instancePage: {
         label: 'Court decision',
         description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            The MMM data model follows the
-            <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo</a>
-            definition of a work, which refers to
-            “distinct concepts or combinations of concepts identified in artistic and
-            intellectual expressions.” Works contain title and author information.
-            This definition is not shared by the Bibale or Oxford Libraries’ conception
-            of the term, which both define their internal “work” concept more closely to
-            the FRBRoo conception of an Expression. The SDBM does not have a work concept
-            at all, recording only the titles of the texts as given in its various sources,
-            without normalizing that data or linking it directly to author information.
-            Works were generated within the MMM dataset by manually creating links across
-            the three datasets’ various conceptions of the relationship between authors
-            and their creations. This process was not able to reconcile every work
-            contained within the combined dataset.
-          </p>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          This landing page provides the content and metadata of a single court decision
+          of Finnish Supreme Court or Supreme Administrative Court. The information is based on the
+          Semantic Finlex data.
+          The view contains three tabs:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>CONTENTS</STRONG> tab shows the contents of the court decision on
+            a contextual reader. Contextual information and links are shown when
+            taking the cursor to highlighted entities.
+          </li>
+          <li>
+            <strong>TABLE</STRONG> tab shows the metadata of the court decision and
+            a link to the court decision in Finlex.
+          </li>
+          <li>
+            <strong>EXPORT</strong> tab contains a link to open the court decision
+            query in YASGUI.
+          </li>
+        </ul>
+
         `
       },
       properties: {
