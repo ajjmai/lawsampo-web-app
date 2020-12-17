@@ -124,6 +124,7 @@ export const perspectiveConfig = [
     id: 'situations',
     searchMode: 'iterative-search',
     frontPageImage: manuscriptsImage,
+    perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['situationFilters']),
     tabs: [
       {

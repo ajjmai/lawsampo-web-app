@@ -13,8 +13,8 @@ export const INITIAL_STATE = {
   sortDirection: null,
   fetching: false,
   fetchingResultCount: false,
-  facetedSearchHeaderExpanded: false,
-  instancePageHeaderExpanded: false,
+  facetedSearchHeaderExpanded: true,
+  instancePageHeaderExpanded: true,
   instanceTableData: null,
   instanceTableExternalData: null,
   instanceSparqlQuery: null,
@@ -33,8 +33,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
     },
     {
       id: 'identifier',
@@ -42,8 +41,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 160
+      numberedList: false
     },
     {
       id: 'enforcementDate',
@@ -51,8 +49,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 170
+      numberedList: false
     },
     {
       id: 'firstLevel',
@@ -60,8 +57,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: false,
-      numberedList: false,
-      minWidth: 220
+      numberedList: false
     },
     {
       id: 'euDirective',
@@ -69,8 +65,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: false,
-      numberedList: false,
-      minWidth: 160
+      numberedList: false
     },
     {
       id: 'subjectCategory',

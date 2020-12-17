@@ -2,7 +2,7 @@ import {
   updateHeaderExpanded
 } from '../general/helpers'
 export const INITIAL_STATE = {
-  facetedSearchHeaderExpanded: false,
+  facetedSearchHeaderExpanded: true,
   facetUpdateID: 0,
   fetchingResultCount: false,
   resultType: 'statutes',
