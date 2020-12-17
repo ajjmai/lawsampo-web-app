@@ -516,8 +516,14 @@ export default {
             Tuomarin nimi
           `
         },
+        typeOfSourceData: {
+          label: 'Aineiston tyyppi',
+          description: `
+            Aineiston tyyppi
+          `
+        },
         typeOftheMatter: {
-          label: 'Tyyppi',
+          label: 'Oikeustapauksen tyyppi',
           description: `
             Oikeustapauksen tyyppi
           `

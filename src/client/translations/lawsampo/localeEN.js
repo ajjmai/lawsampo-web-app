@@ -544,6 +544,12 @@ export default {
             Name(s) of the judge(s)
           `
         },
+        typeOfSourceData: {
+          label: 'Type of source data',
+          description: `
+            Type of source data
+          `
+        },
         typeOftheMatter: {
           label: 'Type of the matter',
           description: `

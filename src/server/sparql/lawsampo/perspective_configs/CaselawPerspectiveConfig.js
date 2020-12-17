@@ -67,6 +67,16 @@ export const caselawPerspectiveConfig = {
       parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    typeOfSourceData: {
+      id: 'typeOfSourceData',
+      facetValueFilter: '',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = '<LANG>')
+      `,
+      labelPath: 'ls:material_type/skos:prefLabel',
+      predicate: 'ls:material_type',
+      type: 'list'
+    },
     typeOftheMatter: {
       id: 'typeOftheMatter',
       facetValueFilter: `
