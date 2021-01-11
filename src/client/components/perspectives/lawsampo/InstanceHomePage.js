@@ -15,15 +15,15 @@ import { Route, Redirect } from 'react-router-dom'
 // import { has } from 'lodash'
 // import { arrayToObject } from '../../../helpers/helpers'
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '100%',
     height: '100%'
   },
   content: {
     width: '100%',
-    height: 'calc(100% - 72px)'
-    // overflow: 'auto'
+    height: 'calc(100% - 72px)',
+    overflow: 'auto'
   },
   spinnerContainer: {
     display: 'flex',

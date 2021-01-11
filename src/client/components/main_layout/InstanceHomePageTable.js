@@ -18,7 +18,7 @@ const styles = theme => ({
   root: {
     // maxWidth: 1000,
     // width: '100%',
-    height: 'calc(100% - 1px)',
+    // height: 'calc(100% - 1px)',
     borderTop: '1px solid rgba(224, 224, 224, 1);'
   },
   divider: {
