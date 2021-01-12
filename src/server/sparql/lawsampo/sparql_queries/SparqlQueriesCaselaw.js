@@ -1,5 +1,48 @@
-export const judgementProperties = `
+export const judgementPropertiesFacetResults = `
   # This first block must not constrain the results.
+  {
+    ?id dcterms:isVersionOf ?ecli .
+
+    ?id skos:prefLabel ?prefLabel__id .
+    BIND(?prefLabel__id as ?prefLabel__prefLabel)
+    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    FILTER(LANG(?prefLabel__id) = '<LANG>')
+
+    BIND(?id as ?uri__prefLabel)
+    BIND(?id as ?uri__dataProviderUrl)
+  }
+  UNION 
+  {
+    ?id lss:isRealizedBy ?expP .
+    ?expP dcterms:language '<LANG>' ;
+          dcterms:abstract ?abstract__text .
+    BIND('abstractPrimary' as ?abstract__id)
+  }
+  UNION 
+  {
+    ?id lss:isRealizedBy ?expS .
+    ?expS dcterms:language '<LANG_SECONDARY>' ;
+          dcterms:abstract ?abstract__text .
+    BIND('abstractSecondary' as ?abstract__id)
+  }
+  UNION
+  {
+    ?id dcterms:contributor ?judge__id .
+    ?judge__id rdfs:label|skos:prefLabel ?judge__prefLabel .
+  }
+  UNION
+  {
+    ?id dcterms:issued ?decisionDate .
+  }
+  UNION
+  {
+    ?id dcterms:creator ?court__id .
+    ?court__id skos:prefLabel ?court__prefLabel .
+    FILTER(LANG(?court__prefLabel) = '<LANG>')
+  }
+`
+
+export const judgementPropertiesInstancePage = `
   {
     ?id dcterms:isVersionOf ?ecli .
 
@@ -93,6 +136,7 @@ export const judgementProperties = `
      BIND(?finlexLink__id as ?finlexLink__dataProviderUrl)
   }
 `
+
 export const judgementsByYearQuery = `
   SELECT ?category (count(distinct ?judgement) as ?count) WHERE {
     <FILTER>

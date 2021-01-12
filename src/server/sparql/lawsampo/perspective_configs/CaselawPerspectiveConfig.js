@@ -1,5 +1,6 @@
 import {
-  judgementProperties
+  judgementPropertiesFacetResults,
+  judgementPropertiesInstancePage
 } from '../sparql_queries/SparqlQueriesCaselaw'
 import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
@@ -15,10 +16,10 @@ export const caselawPerspectiveConfig = {
   langTagSecondary: 'sv',
   includeInSitemap: true,
   paginatedResults: {
-    properties: judgementProperties
+    properties: judgementPropertiesFacetResults
   },
   instance: {
-    properties: judgementProperties,
+    properties: judgementPropertiesInstancePage,
     relatedInstances: ''
   },
   facets: {
