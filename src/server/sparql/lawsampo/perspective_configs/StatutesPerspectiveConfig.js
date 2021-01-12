@@ -14,6 +14,7 @@ export const statutesPerspectiveConfig = {
   },
   facetClass: 'lss:Statute',
   langTag: 'fi',
+  includeInSitemap: true,
   paginatedResults: {
     properties: statutePropertiesFacetResults
   },
