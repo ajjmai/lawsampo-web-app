@@ -53,7 +53,6 @@ export const statutesPerspectiveConfig = {
       predicate: 'lss:timespan',
       labelPath: 'lss:timespan/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: 'lss:timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
     subjectCategory: {

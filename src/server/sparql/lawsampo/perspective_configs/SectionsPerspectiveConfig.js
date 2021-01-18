@@ -33,7 +33,6 @@ export const sectionsPerspectiveConfig = {
       labelPath: 'lss:statute/skos:prefLabel',
       predicate: 'lss:statute',
       type: 'hierarchical',
-      parentPredicate: 'lss:statute/eli:type_document',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')
@@ -46,7 +45,6 @@ export const sectionsPerspectiveConfig = {
       predicate: 'lss:statute_timespan',
       labelPath: 'lss:section_statute_date',
       type: 'hierarchical',
-      parentPredicate: 'lss:statute_timespan/skos:broader+',
       parentProperty: 'skos:broader'
     },
     sectionEnforcementDate: {

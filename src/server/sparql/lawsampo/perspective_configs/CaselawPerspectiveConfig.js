@@ -96,7 +96,6 @@ export const caselawPerspectiveConfig = {
       predicate: 'lss:subject_category',
       type: 'list'
       // type: 'hierarchical',
-      // parentPredicate: 'lss:subject_category/skos:broader',
       // parentProperty: 'skos:broader'
     },
     situationCategory: {
@@ -114,7 +113,6 @@ export const caselawPerspectiveConfig = {
       labelPath: 'lss:referenceToStatute/skos:prefLabel',
       predicate: 'lss:referenceToStatute',
       type: 'hierarchical',
-      parentPredicate: 'lss:referenceToStatute/eli:type_document',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
         FILTER(LANG(?prefLabel_) = '<LANG>')
