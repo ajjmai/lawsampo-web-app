@@ -622,7 +622,7 @@ export default {
         decisionDate: {
           label: 'Antopäivä',
           description: `
-            Antopäivä
+            Tuomion antamispäivämäärä
           `
         },
         referencedStatute: {
@@ -640,7 +640,7 @@ export default {
         language: {
           label: 'Rajoita sisällön kieltä',
           description: `
-            Kieli
+            Sisällön kieli
           `
         },
         contentHTML: {
