@@ -164,6 +164,12 @@ export default {
             Säädös
           `
         },
+        case: {
+          label: 'Oikeustapaus',
+          description: `
+          Oikeustapaus
+          `
+        },
         prefLabel: {
           label: 'Pykälä',
           description: `

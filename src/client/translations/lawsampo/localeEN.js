@@ -183,6 +183,12 @@ export default {
             Statute
           `
         },
+        case: {
+          label: 'Court decision',
+          description: `
+          Court decision
+          `
+        },
         prefLabel: {
           label: 'Section',
           description: `

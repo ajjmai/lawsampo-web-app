@@ -9,7 +9,7 @@ export const INITIAL_STATE = {
   caseProperties: [
 
     {
-      id: 'prefLabel',
+      id: 'case',
       valueType: 'object',
       makeLink: true,
       externalLink: false,

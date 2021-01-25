@@ -58,7 +58,7 @@ export const fetchClassifierResults = async (resultType, query, keywords, select
       const formattedResults = results.map(obj => {
         return {
           ...obj,
-          prefLabel: {
+          case: {
             prefLabel: obj.prefLabel,
             dataProviderUrl: '/caselaw/page/' + obj.id
           }
