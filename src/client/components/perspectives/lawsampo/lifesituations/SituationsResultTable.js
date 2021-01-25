@@ -40,8 +40,11 @@ const styles = theme => ({
     borderTop: '1px solid rgba(224, 224, 224, 1);'
   },
   paginationCaption: {
-    minWidth: 110
+    
   },
+  paginationActions: {
+    display: 'none'
+  },  
   paginationToolbar: {
     [theme.breakpoints.down('xs')]: {
       display: 'flex',
@@ -177,11 +180,38 @@ class SituationsResultTable extends React.Component {
     )
   }
 
+
+  handleOnChangeRowsPerPage = event => {
+    const rowsPerPage = event.target.value
+    if (rowsPerPage !== this.props.data.pagesize) {
+      this.props.updateRowsPerPage(this.props.resultClass, rowsPerPage)
+            
+    }
+  }
+
   render () {
     const { classes, isFetching, results, resultClass, perspective } = this.props
     const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection } = this.props.data
     return (
       <>
+        <TablePagination
+          component='div'
+          classes={{
+            root: classes.paginationRoot,
+            caption: classes.paginationCaption,
+            toolbar: classes.paginationToolbar,
+            actions: classes.paginationActions
+          }}
+          labelDisplayedRows={() => ''}
+          count={pagesize}          
+          rowsPerPage={pagesize}
+          page={0}
+          onChangePage={() => {}}
+          labelRowsPerPage={intl.get('table.rowsPerPage')}
+          rowsPerPageOptions={[5, 10, 15, 25, 30, 50, 100]}
+          onChangeRowsPerPage={this.handleOnChangeRowsPerPage}
+
+        />      
         <div className={classes.tableContainer}>
           {isFetching
             ? (

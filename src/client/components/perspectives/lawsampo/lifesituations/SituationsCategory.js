@@ -88,7 +88,7 @@ class SituationsCategory extends React.Component {
     return (
       <>
         <Typography variant='body2'>
-          {node.prefLabel}          
+          {node.prefLabel}
         </Typography>
       </>
     )
@@ -103,9 +103,10 @@ class SituationsCategory extends React.Component {
         control={
           <Radio 
           onChange={this.handleChange(treeObj)}
+          value={treeObj.node.uri}
           />
         }    
-          value={treeObj.node.uri}
+          
           label={this.generateLabel(treeObj.node)}
         />
       )      

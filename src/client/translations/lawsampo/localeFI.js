@@ -149,7 +149,11 @@ export default {
         query: 'Tekstihaku',
         mainCategory: 'tai valitse pääkategoria:',
         suggestedCategories: 'Suositellut kategoriat',
-        suggestedKeywords: 'Asiasanat'
+        suggestedKeywords: 'Asiasanat',
+        addToSelected: 'Lisää valittuihin',
+        selected: 'Valitut',
+        suggested: 'Suositellut',
+        clear: 'Tyhjennä'
       },
       initialResults: 'Valitse ensin hakuehdot vasemmalta.',
       removedKeywords: 'Poistetut avainsanat',

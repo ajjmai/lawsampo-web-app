@@ -23,7 +23,8 @@ const styles = theme => ({
   facetInfoContainer: {
     padding: theme.spacing(1),
     borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0
+    borderBottomRightRadius: 0,
+    overflowX: 'auto'
   },
   accordionDetails: {
     paddingTop: 0,
@@ -202,7 +203,7 @@ class SituationFacetBar extends React.Component {
             </div>
           </AccordionSummary>
           <AccordionDetails
-            className={clsx(classes.accordionDetails)}
+            className={clsx(classes.root, classes.accordionDetails)}
           >
             <div>
               <div className={classes.facetInfoContainer}>
@@ -245,7 +246,7 @@ class SituationFacetBar extends React.Component {
                 onClick={this.handleClearKeywords}                
                 variant='contained'
                 color='secondary'
-                size='small'>Tyhjennä</Button>
+                size='small'>{intl.get(`perspectives.${perspective.id}.facetBar.clear`)}</Button>
               )}
             </div>
           </AccordionSummary>

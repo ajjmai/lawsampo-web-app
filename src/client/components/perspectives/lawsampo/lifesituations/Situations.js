@@ -26,6 +26,8 @@ const Situations = props => {
           <SituationsResultTable
             perspective={perspective}
             isFetching={props.facetData.isFetching}
+            
+            fetchSituationResults={props.fetchSituationResults}
             data={props.facetResults}
             columns={props.facetResults.statutesProperties}
             results={props.facetResults.statutesResults}
@@ -53,6 +55,7 @@ const Situations = props => {
             resultClass='situations'
             facetClass='situations'
             fetchPaginatedResults={props.fetchPaginatedResults}
+            fetchSituationResults={props.fetchSituationResults}
             updatePage={() => {}}
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}

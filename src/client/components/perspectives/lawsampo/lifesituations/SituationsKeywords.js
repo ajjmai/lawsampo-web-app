@@ -36,6 +36,10 @@ const styles = theme => ({
     backgroundColor: '#3f51b5',
     color: '#ffffff'
   },
+  selectedNegativeKeyword: {
+    backgroundColor: '#f50057',
+    color: '#ffffff'
+  },  
   facetSearchContainer: {
     width: '100%',
     height: 44,
@@ -128,7 +132,7 @@ class SituationsKeywords extends React.Component {
     return (
       <>
         <Typography variant='body2'>
-          {node.prefLabel}          
+          {node.prefLabel}       
         </Typography>
       </>
     )
@@ -154,6 +158,7 @@ class SituationsKeywords extends React.Component {
 
   getUpdateButton = () => {    
     // filter doesn't include holes from the sparse array
+    const {perspective} = this.props
     const isDisabled = this.state.itemState.filter( x => true).length === 0    
     return (
       <FormControl>
@@ -162,7 +167,7 @@ class SituationsKeywords extends React.Component {
         disabled={isDisabled}
         variant='contained'
         color='primary'
-        size='small'>Lisää valittuihin</Button>
+        size='small'>{intl.get(`perspectives.${perspective.id}.facetBar.addToSelected`)}</Button>
     </FormControl>
     )
   }
@@ -175,7 +180,7 @@ class SituationsKeywords extends React.Component {
     const itemState = this.state.itemState[index]
     if (itemState != undefined) {
       if(itemState == 0) {
-        rootClassNegative = classes.selectedKeyword
+        rootClassNegative = classes.selectedNegativeKeyword
       }
       else {
         rootClassPositive = classes.selectedKeyword
@@ -190,7 +195,7 @@ class SituationsKeywords extends React.Component {
           <AddIcon classes={{root: rootClassPositive }} onClick={ (event) => this.togglePending(e, index, 1)}></AddIcon>
         </ListItemIcon>
         <ListItemText>
-          {e.prefLabel}  
+          {e.prefLabel} <sub>({e.weight.toFixed(2)})</sub>
         </ListItemText>
         <ListItemIcon
           edge="end">
@@ -299,7 +304,7 @@ class SituationsKeywords extends React.Component {
           <>                      
 
               <div className={classes.headingContainer}>
-                <Typography variant='body1'>Valitut:</Typography>
+                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.selected`)}:</Typography>
                 {deletedKeywords.length > 0 &&
               <>
                 <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
@@ -357,7 +362,7 @@ class SituationsKeywords extends React.Component {
               </div>
 
               <div>
-              <Typography variant='body1'>Suositellut:</Typography>
+              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggested`)}:</Typography>
               <div>
                 {this.getUpdateButton()}
 

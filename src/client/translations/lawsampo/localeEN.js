@@ -168,7 +168,11 @@ export default {
         query: 'Text query',
         mainCategory: 'or select a main category:',
         suggestedCategories: 'Suggested categories',
-        suggestedKeywords: 'Suggested keywords'
+        suggestedKeywords: 'Suggested keywords',
+        addToSelected: 'Add to selected',
+        selected: 'Selected',
+        suggested: 'Suggested',
+        clear: 'Clear'
       },
       initialResults: 'Select search parameters first from the left to see results.',
       removedKeywords: 'Removed keywords',

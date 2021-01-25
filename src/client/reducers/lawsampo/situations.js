@@ -1,11 +1,17 @@
 import {
-  updateHeaderExpanded
+  updateHeaderExpanded,
+  updateRowsPerPage
 } from '../general/helpers'
+
+
 export const INITIAL_STATE = {
   facetedSearchHeaderExpanded: true,
   facetUpdateID: 0,
   fetchingResultCount: false,
   resultType: 'statutes',
+  resultCount: 25,
+  page: 1,
+  pagesize: 25,
   caseProperties: [
 
     {
@@ -114,9 +120,10 @@ export const INITIAL_STATE = {
 
 const situations = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'UPDATE_ROWS_PER_PAGE':
+      return updateRowsPerPage(state, action)
     case 'UPDATE_PERSPECTIVE_HEADER_EXPANDED':
       return updateHeaderExpanded(state, action)
-
     case 'UPDATE_RESULT_TYPE':
       return {
         ...state,
