@@ -138,7 +138,8 @@ export default {
       General
       </h3>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      General description of the view.
+      Contextual search view providers an iterative search functionality which allows you 
+      to focus the search incrementally. 
       </p>
       <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
       Instructions
@@ -154,6 +155,12 @@ export default {
       If you started with a text search, you can add a category information after initial
       information. On the other hand, if you already have selected a category, you can use
       the suggested keywords to specify the search. Results are updated after every change.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Positive keywords are selected using "+" icon and negative ones with a "-" icon. Documents 
+      containing positive keywords are included in the results whereas content associated with 
+      negative keywords are excluded from the results. Number after each keyword represents the 
+      weight of the keyword in the current result set. 
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Since suggested keywords only show 25 of the "best" keywords at a time, is is possible

@@ -120,7 +120,7 @@ export default {
       Yleistä
       </h3>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Tähän yleiskuvaus näkymästä.
+      Elämäntilanteet näkymä tarjoaa mahdollisuuden etsiä sopivia dokumentteja asteittain tarkentuvan haun avulla.
       </p>
       <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
       Käyttöohjeet
@@ -128,13 +128,19 @@ export default {
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Valitse ensin alustavat hakuehdot vasemmasta sarakkeet. Voit käyttää tekstihakua tai valita yleisen
       pääkatetorian palautettaville tuloksille. Hakuehtojen jälkeen järjestelmä tekee ensimmäisen haun
-      ja näyttää siihen liittyvät tulokset. Hakuehdot näkymä sulkeutuu ja käyttöön avautuu tulosten
+      ja näyttää siihen liittyvät tulokset. "Hakuehdot" näkymä sulkeutuu ja käyttöön avautuu tulosten
       tarkentamiseen liittyvät "Suositellut kategoriat" ja "Suositellut asiasanat" toiminnot.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Jos teit alussa tekstihaun, voit valita sekä tarkentavat kategorian että asiasanoja.
       Muussa tapauksessa hauan tarkentaminen onnistuu vain asiasanojen avulla. Tarkentavat tiedot
-      päivittyvät jokaisen valinnan jälkeen.
+      päivittyvät jokaisen asiasana- tai kategoriamuutoksen jälkeen.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Asiasanojen valinta tapahtuu klikkaamalla joko "+" tai "-" ikonia ja lopuksi "Lisää valitut" painiketta.
+      "+"-ikonilla valitut asiasanat esiintyvät tulosdokumenteissa ja punaisella "-"-ikonilla valittuja
+      asiasanoja sisältävät dokumentit rajataan pois tuloksista. Asiasanojen jäljessä olevat numero 
+      kertoo kyseisen termin painoarvon nykyisessä tulosjoukossa.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Koska suositelluissa asiasanoissa näytetään vain 25 parasta/osuvinta valintaa, on mahdollista
