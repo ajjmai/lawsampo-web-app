@@ -102,6 +102,7 @@ export default class HTMLParser {
         const urisJSX = []
         let uris = linkStr.split(',')
         uris = uris.filter(uri => this.shouldAddAnnotation(uri))
+        if (uris.length === 0) { return }
         uris.map(uri => {
           urisJSX.push(this.renderAnnotation(uri))
         })
@@ -143,7 +144,12 @@ export default class HTMLParser {
     }
   }
 
-  shouldAddAnnotation = uri => uri.startsWith('http://fi.dbpedia.org/') || uri.startsWith('http://ldf.fi/ttp/')
+  shouldAddAnnotation = uri => {
+    // Add annotations only for DBpedia and TTP terms which have an external link
+    return (uri.startsWith('http://fi.dbpedia.org/') ||
+      uri.startsWith('http://ldf.fi/ttp/')) &&
+      this.referencedTermsObj[uri] && this.referencedTermsObj[uri].externalLink
+  }
 
   renderAnnotation = uri => {
     if (uri.startsWith('http://ldf.fi/ttp/')) {
