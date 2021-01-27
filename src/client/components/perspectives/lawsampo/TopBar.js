@@ -17,7 +17,7 @@ import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
-import { showLanguageButton } from '../../../configs/lawsampo/GeneralConfig'
+import { showLanguageButton, feedbackLink } from '../../../configs/lawsampo/GeneralConfig'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -87,21 +87,23 @@ const TopBar = props => {
 
   const renderMobileMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
+    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
     if (has(perspective, 'externalUrl')) {
-      return null
-      // return (
-      //   <a
-      //     className={classes.link}
-      //     key={perspective.id}
-      //     href={perspective.externalUrl}
-      //     target='_blank'
-      //     rel='noopener noreferrer'
-      //   >
-      //     <MenuItem>
-      //       {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
-      //     </MenuItem>
-      //   </a>
-      // )
+      return (
+        <a
+          className={classes.link}
+          key={perspective.id}
+          href={perspective.externalUrl}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <MenuItem>
+            {perspective.label
+              ? perspective.label.toUpperCase()
+              : intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+          </MenuItem>
+        </a>
+      )
     } else {
       return (
         <MenuItem
@@ -117,23 +119,25 @@ const TopBar = props => {
 
   const renderDesktopTopMenuItem = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
+    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
     if (has(perspective, 'externalUrl')) {
-      return null
-      // return (
-      //   <a
-      //     className={classes.link}
-      //     key={perspective.id}
-      //     href={perspective.externalUrl}
-      //     target='_blank'
-      //     rel='noopener noreferrer'
-      //   >
-      //     <Button
-      //       className={classes.appBarButton}
-      //     >
-      //       {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
-      //     </Button>
-      //   </a>
-      // )
+      return (
+        <a
+          className={classes.link}
+          key={perspective.id}
+          href={perspective.externalUrl}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Button
+            className={classes.appBarButton}
+          >
+            {perspective.label
+              ? perspective.label
+              : intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+          </Button>
+        </a>
+      )
     } else {
       return (
         <Button
@@ -160,13 +164,11 @@ const TopBar = props => {
     >
       {perspectives.map(perspective => renderMobileMenuItem(perspective))}
       <Divider />
-      <MenuItem
-        key='feedback'
-        component={AdapterLink}
-        to={`${props.rootUrl}/feedback`}
-      >
-        {intl.get('topBar.feedback').toUpperCase()}
-      </MenuItem>
+      {renderMobileMenuItem({
+        id: 'feedback',
+        externalUrl: feedbackLink,
+        label: intl.get('topBar.feedback')
+      })}
       <MenuItem
         key={0}
         component={AdapterLink}
@@ -214,15 +216,11 @@ const TopBar = props => {
           <div className={classes.sectionDesktop}>
             {perspectives.map((perspective, index) => renderDesktopTopMenuItem(perspective, index))}
             <div className={classes.appBarDivider} />
-            <Button
-              className={classes.appBarButton}
-              component={AdapterNavLink}
-              to={`${props.rootUrl}/feedback`}
-              isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/feedback`)}
-              activeClassName={classes.appBarButtonActive}
-            >
-              {intl.get('topBar.feedback')}
-            </Button>
+            {renderDesktopTopMenuItem({
+              id: 'feedback',
+              externalUrl: feedbackLink,
+              label: intl.get('topBar.feedback')
+            })}
             <TopBarInfoButton rootUrl={props.rootUrl} />
             <Button
               className={classes.appBarButton}

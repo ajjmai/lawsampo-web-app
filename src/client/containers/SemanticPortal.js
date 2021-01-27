@@ -16,7 +16,6 @@ import Grid from '@material-ui/core/Grid'
 
 // ** General components **
 import InfoHeader from '../components/main_layout/InfoHeader'
-import FeedbackPage from '../components/main_layout/FeedbackPage'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'

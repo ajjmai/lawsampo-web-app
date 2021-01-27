@@ -21,3 +21,5 @@ export const yasguiParams = {
   requestMethod: 'POST',
   tabTitle: 'Exported query'
 }
+
+export const feedbackLink = 'https://link.webropolsurveys.com/S/E4C53B4A2D5D01B4'
