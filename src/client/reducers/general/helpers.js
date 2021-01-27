@@ -19,6 +19,14 @@ export const fetchResultCount = state => {
   }
 }
 
+export const fetchInstanceAnalysisData = state => {
+  return {
+    ...state,
+    instanceAnalysisData: null,
+    fetchingInstanceAnalysisData: true
+  }
+}
+
 export const fetchResultsFailed = state => {
   return {
     ...state,
@@ -47,9 +55,9 @@ export const updateInstanceAnalysisData = (state, action) => {
   return {
     ...state,
     instanceAnalysisData: action.data,
-    instanceAnalysisDataUpdateID: ++state.instancePageAnalysisDataUpdateID,
+    instanceAnalysisDataUpdateID: ++state.instanceAnalysisDataUpdateID,
     instanceSparqlQuery: action.sparqlQuery,
-    fetching: false
+    fetchingInstanceAnalysisData: false
   }
 }
 
