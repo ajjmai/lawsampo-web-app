@@ -52,7 +52,7 @@ class InstanceHomePage extends React.Component {
     // handle the case when the TABLE tab was not originally active
     const prevPathname = prevProps.routeProps.location.pathname
     const currentPathname = this.props.routeProps.location.pathname
-    if (prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+    if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
       this.fetchTableData()
     }
     if (this.props.resultClass === 'caselaw') {
@@ -67,6 +67,8 @@ class InstanceHomePage extends React.Component {
       }
     }
   }
+
+  hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
 
   // getLocalIDFromSemanticFinlexURI = () => {
   //   // Special treatment, because there are slashes in the localID of Semantic Finlex URI
@@ -118,17 +120,15 @@ class InstanceHomePage extends React.Component {
 
   render = () => {
     const { classes, tableExternalData, isLoading, resultClass, rootUrl } = this.props
+    let hasTableData = this.hasTableData()
     let { tableData } = this.props
-    let hasTableData
     let defaultTab = 'table'
     if (this.props.resultClass === 'caselaw') {
       // Wait until results from SPARQL endpoint AND external API have arrived
-      hasTableData = tableData !== null && Object.values(tableData).length >= 1 && tableExternalData
+      hasTableData = this.hasTableData() && tableExternalData
       if (hasTableData) {
         tableData.similarCourtDecicions = tableExternalData.length > 0 ? this.mapDocuments(tableExternalData) : '-'
       }
-    } else {
-      hasTableData = tableData !== null && Object.values(tableData).length >= 1
     }
     if (resultClass === 'statutes' || resultClass === 'caselaw') {
       defaultTab = 'content'
