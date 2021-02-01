@@ -141,8 +141,8 @@ class SituationsResultTable extends React.Component {
           valueType={column.valueType}
           makeLink={column.makeLink}
           externalLink={column.externalLink}
-          sortValues={column.sortValues}
-          sortBy={column.sortBy}
+          //sortValues={[]}
+          //sortBy={column.sortBy}
           numberedList={column.numberedList}
           minWidth={column.minWidth}
           previewImageHeight={column.previewImageHeight}
@@ -226,9 +226,9 @@ class SituationsResultTable extends React.Component {
                     <ResultTableHead
                       resultClass={this.props.resultClass}
                       columns={this.props.columns}
-                      onSortBy={this.handleSortBy}
-                      sortBy={sortBy}
-                      sortDirection={sortDirection}
+                      onSortBy={() => {}}
+                      //sortBy={sortBy}
+                      //sortDirection={sortDirection}
                       routeProps={this.props.routeProps}
                     />
                     <TableBody>
