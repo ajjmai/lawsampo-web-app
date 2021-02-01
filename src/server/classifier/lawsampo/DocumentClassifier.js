@@ -14,7 +14,7 @@ export const fetchClassifierResults = async (resultType, size, query, keywords, 
   try {
     if (resultType === 'statutes') {
       const b = {
-        
+        size: size,
         query: query,
         selected_keywords: keywords,
         selected_category: category,
@@ -47,7 +47,7 @@ export const fetchClassifierResults = async (resultType, size, query, keywords, 
       return responseData
     } else {
       const response = await axios.post(baseUrl + 'cases', {
-        
+        size: size,
         query: query,
         selected_keywords: keywords,
         selected_category: category,
