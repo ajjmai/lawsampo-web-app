@@ -17,12 +17,14 @@ import Typography from '@material-ui/core/Typography'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
+import LaunchIcon from '@material-ui/icons/Launch'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Button, Icon, List, ListItem, ListItemIcon, ListItemText, Radio, RadioGroup } from '@material-ui/core'
 
 import remove from 'lodash'
 import reduce from 'lodash'
+import Link from '@material-ui/core/Link'
 
 
 const styles = theme => ({
@@ -76,6 +78,9 @@ const styles = theme => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+  },
+  keywordLink: {
+    color: '#000000'
   }
 })
 
@@ -195,7 +200,10 @@ class SituationsKeywords extends React.Component {
           <AddIcon classes={{root: rootClassPositive }} onClick={ (event) => this.togglePending(e, index, 1)}></AddIcon>
         </ListItemIcon>
         <ListItemText>
-          {e.prefLabel} <sub>({e.weight.toFixed(2)})</sub>
+          <Link href={e.uri} target="_blank" classes={{root: classes.keywordLink}} rel="noopener" rel="noreferrer">
+          {e.prefLabel}
+          </Link>
+           <sub>({e.weight.toFixed(2)})</sub>
         </ListItemText>
         <ListItemIcon
           edge="end">
