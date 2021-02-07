@@ -95,6 +95,15 @@ export const INITIAL_STATE = {
       numberedList: false
     },
     {
+      id: 'smurLink',
+      valueType: 'object',
+      onlyOnInstancePage: true,
+      makeLink: true,
+      externalLink: true,
+      sortValues: false,
+      numberedList: false
+    },
+    {
       id: 'uri',
       valueType: 'object',
       onlyOnInstancePage: true,

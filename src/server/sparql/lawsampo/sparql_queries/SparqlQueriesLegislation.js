@@ -7,63 +7,63 @@ const getSectionLabel = labelVar => {
         IF(STRSTARTS(?section_prefLabel_, "pykälä"), "", 1/0),
         ?section_prefLabel_
       ) as ${labelVar}
-    )    
+    )
 `
 }
 
 const sectionBlock = `
-  UNION 
+  UNION
   {
     ?id lss:section ?firstLevel__secondLevel__section__id .
     ?firstLevel__secondLevel__section__id lss:part_number ?firstLevel__id ;
                                           lss:part_number_int ?firstLevel__integer ;
                                           lss:chapter_number ?firstLevel__secondLevel__id ;
-                                          lss:chapter_number_int ?firstLevel__secondLevel__integer ;   
-                                          lss:section_number ?firstLevel__secondLevel__section__sectionNumber ;                                     
-                                          lss:section_number_int ?firstLevel__secondLevel__section__sectionNumberInt ;                                  
+                                          lss:chapter_number_int ?firstLevel__secondLevel__integer ;
+                                          lss:section_number ?firstLevel__secondLevel__section__sectionNumber ;
+                                          lss:section_number_int ?firstLevel__secondLevel__section__sectionNumberInt ;
                                           skos:prefLabel ?section_prefLabel_ .
     BIND(CONCAT("Osa ", ?firstLevel__id) as ?firstLevel__prefLabel)
-    BIND(CONCAT(?firstLevel__secondLevel__id, " luku") as ?firstLevel__secondLevel__prefLabel)  
-    ${getSectionLabel('?firstLevel__secondLevel__section__prefLabel')}  
-    BIND(?firstLevel__secondLevel__id as ?firstLevel__secondLevel__section__chapterNumber)                    
+    BIND(CONCAT(?firstLevel__secondLevel__id, " luku") as ?firstLevel__secondLevel__prefLabel)
+    ${getSectionLabel('?firstLevel__secondLevel__section__prefLabel')}
+    BIND(?firstLevel__secondLevel__id as ?firstLevel__secondLevel__section__chapterNumber)
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__secondLevel__section__dataProviderUrl)
     BIND(true as ?hasParts)
     BIND(true as ?hasChapters)
   }
-  UNION 
+  UNION
   {
     ?id lss:section ?firstLevel__section__id .
     ?firstLevel__section__id lss:chapter_number ?firstLevel__id ;
-                             lss:chapter_number_int ?firstLevel__integer ;   
-                             lss:section_number ?firstLevel__section__sectionNumber ;         
-                             lss:section_number_int ?firstLevel__section__sectionNumberInt ;                           
+                             lss:chapter_number_int ?firstLevel__integer ;
+                             lss:section_number ?firstLevel__section__sectionNumber ;
+                             lss:section_number_int ?firstLevel__section__sectionNumberInt ;
                              skos:prefLabel ?section_prefLabel_ .
-    BIND(CONCAT(?firstLevel__id, " luku") as ?firstLevel__prefLabel)  
-    ${getSectionLabel('?firstLevel__section__prefLabel')}        
-    BIND(?firstLevel__id as ?firstLevel__section__chapterNumber)      
+    BIND(CONCAT(?firstLevel__id, " luku") as ?firstLevel__prefLabel)
+    ${getSectionLabel('?firstLevel__section__prefLabel')}
+    BIND(?firstLevel__id as ?firstLevel__section__chapterNumber)
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__section__dataProviderUrl)
     BIND(false as ?hasParts)
     BIND(true as ?hasChapters)
-    FILTER NOT EXISTS { 
+    FILTER NOT EXISTS {
       ?firstLevel__section__id lss:part_number [] .
     }
-  } 
+  }
   UNION
   {
     ?id lss:section ?firstLevel__id .
     ?firstLevel__id lss:section_number_int ?firstLevel__sectionNumberInt ;
                     lss:section_number ?firstLevel__sectionNumber ;
-                    skos:prefLabel ?section_prefLabel_ .             
-    ${getSectionLabel('?firstLevel__prefLabel')}            
+                    skos:prefLabel ?section_prefLabel_ .
+    ${getSectionLabel('?firstLevel__prefLabel')}
     BIND(?firstLevel__sectionNumberInt as ?firstLevel__integer)
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?firstLevel__dataProviderUrl)
     BIND(false as ?hasParts)
     BIND(false as ?hasChapters)
-    FILTER NOT EXISTS { 
-      VALUES ?prop { lss:part_number lss:chapter_number } 
-      ?firstLevel__id ?prop [] . 
+    FILTER NOT EXISTS {
+      VALUES ?prop { lss:part_number lss:chapter_number }
+      ?firstLevel__id ?prop [] .
     }
-  } 
+  }
 `
 
 export const statutePropertiesFacetResults = `
@@ -82,7 +82,7 @@ export const statutePropertiesFacetResults = `
     ?id eli:type_document/skos:prefLabel ?statuteType .
     FILTER(lang(?statuteType) = '<LANG>')
   }
-  UNION 
+  UNION
   {
     ?id lss:sf_identifier ?identifier .
   }
@@ -119,7 +119,7 @@ export const statutePropertiesInstancePage = `
   {
     ?id lss:statute_date ?enforcementDate .
   }
-  UNION 
+  UNION
   {
     ?id lss:sf_identifier ?identifier .
   }
@@ -135,12 +135,18 @@ export const statutePropertiesInstancePage = `
      BIND('Finlex' as ?finlexLink__prefLabel)
      BIND(?finlexLink__id as ?finlexLink__dataProviderUrl)
   }
-  UNION 
+  UNION
+  {
+     ?id lss:smur_url ?smurLink__id .
+     BIND('Säädösmuutosten hakemisto' as ?smurLink__prefLabel)
+     BIND(?smurLink__id as ?smurLink__dataProviderUrl)
+  }
+  UNION
   {
     ?id lss:situation_category ?situationCategory__id .
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
   }
-  UNION 
+  UNION
   {
     ?id lss:subject_category ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
@@ -150,7 +156,7 @@ export const statutePropertiesInstancePage = `
     ?id lss:annotatedHtml ?annotatedHtml_ .
     BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
-  UNION 
+  UNION
   {
     ?id lss:referencedTerms/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
     ?referencedTerm__id skos:prefLabel ?prefLabel_ .
@@ -165,11 +171,11 @@ export const statutePropertiesInstancePage = `
 `
 
 export const sectionProperties = `
-  {  
+  {
     ?id skos:prefLabel ?prefLabel__id ;
         lss:statute ?statute__id ;
         lss:section_number ?section_number .
-    OPTIONAL { ?id lss:chapter_number ?chapter_number }    
+    OPTIONAL { ?id lss:chapter_number ?chapter_number }
     BIND(?prefLabel__id as ?prefLabel__prefLabel)
 
     BIND(IF(BOUND(?chapter_number),
@@ -177,12 +183,12 @@ export const sectionProperties = `
          ""
         )
      as ?chapter)
-    BIND(CONCAT("#", ?chapter, "section_", ?section_number) as ?hash)   
+    BIND(CONCAT("#", ?chapter, "section_", ?section_number) as ?hash)
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", ""), ?hash) AS ?prefLabel__dataProviderUrl)
 
-    ?statute__id skos:prefLabel ?statute__prefLabel .  
+    ?statute__id skos:prefLabel ?statute__prefLabel .
     BIND(CONCAT("/statutes/page/", REPLACE(STR(?statute__id), "http://ldf.fi/lawsampo/", "")) AS ?statute__dataProviderUrl)
-   
+
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
   }
@@ -198,12 +204,12 @@ export const sectionProperties = `
   {
     ?id lss:text ?text .
   }
-  UNION 
+  UNION
   {
     ?id lss:situation_category ?situationCategory__id .
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
   }
-   UNION 
+   UNION
   {
     ?id lss:subject_category ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
@@ -219,7 +225,7 @@ export const sectionProperties = `
     ?id lss:annotatedHtml ?annotatedHtml_ .
     BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
-  UNION 
+  UNION
   {
     ?id lss:referencedTerms ?referencedTerm__id .
     ?referencedTerm__id skos:prefLabel ?referencedTerm__prefLabel .

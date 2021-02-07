@@ -365,6 +365,12 @@ export default {
           description: `
             Link to the statute in Finlex
           `
+        },
+        smurLink: {
+          label: 'Link to Säädösmuutosten hakemisto',
+          description: `
+          Link to the statute in Säädösmuutosten hakemisto
+        `
         }
       }
     },

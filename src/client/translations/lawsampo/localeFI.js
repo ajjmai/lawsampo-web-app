@@ -350,6 +350,12 @@ export default {
             Linkki säädökseen Finlex-palvelussa
           `
         },
+        smurLink: {
+          label: 'Linkki Säädösmuutosten hakemistoon',
+          description: `
+            Linkki säädökseen Säädösmuutosten hakemistossa
+          `
+        },
         wordcloud: {
           label: 'Sanapilvi',
           description: `
