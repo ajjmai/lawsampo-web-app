@@ -462,13 +462,13 @@ export default {
         subjectCategory: {
           label: 'Subject keyword (automatically identified)',
           description: `
-            Subject keyword
+            Subject keyword identified automatically from the section contents
           `
         },
         situationCategory: {
           label: 'Life situation / topic (automatically identified)',
           description: `
-            Life situation / topic
+            Life situation or topic identified automatically from the section contents
           `
         },
         documentType: {
@@ -483,10 +483,10 @@ export default {
             Statute type
           `
         },
-        enforcementDate: {
+        statuteEnforcementDate: {
           label: 'Statute enforcement date',
           description: `
-            Statute enforcement date
+            Enforcement date of the newest statute version
           `
         },
         contentHTML: {

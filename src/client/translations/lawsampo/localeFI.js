@@ -410,7 +410,7 @@ export default {
         },
         statute: {
           label: 'Säädös',
-          description: `
+          description: `Säädös, johon pykälä kuuluu
           `
         },
         jenaText: {
@@ -441,13 +441,13 @@ export default {
         subjectCategory: {
           label: 'Aihe (autom. tunnistettu)',
           description: `
-            Aihe
+            Pykälän sisällön perusteella automaattisesti tunnistettu aihe
           `
         },
         situationCategory: {
           label: 'Elämäntilanne (autom. tunnistettu)',
           description: `
-            Elämäntilanne
+            Pykälän sisällön perusteella automaattisesti tunnistettu pykälään liittyvä elämäntilanne
           `
         },
         documentType: {
@@ -465,7 +465,7 @@ export default {
         statuteEnforcementDate: {
           label: 'Säädöksen voimaantulo',
           description: `
-            Säädöksen voimaantulopäivämäärä
+            Säädöksen uusimman version voimaantulopäivämäärä
           `
         },
         sectionEnforcementDate: {
