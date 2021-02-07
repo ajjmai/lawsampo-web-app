@@ -138,8 +138,8 @@ export default {
       General
       </h3>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Contextual search view providers an iterative search functionality which allows you 
-      to focus the search incrementally. 
+      Contextual search view providers an iterative search functionality which allows you
+      to focus the search incrementally.
       </p>
       <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
       Instructions
@@ -157,10 +157,10 @@ export default {
       the suggested keywords to specify the search. Results are updated after every change.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Positive keywords are selected using "+" icon and negative ones with a "-" icon. Documents 
-      containing positive keywords are included in the results whereas content associated with 
-      negative keywords are excluded from the results. Number after each keyword represents the 
-      weight of the keyword in the current result set. 
+      Positive keywords are selected using "+" icon and negative ones with a "-" icon. Documents
+      containing positive keywords are included in the results whereas content associated with
+      negative keywords are excluded from the results. Number after each keyword represents the
+      weight of the keyword in the current result set.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Since suggested keywords only show 25 of the "best" keywords at a time, is is possible
@@ -272,12 +272,12 @@ export default {
       properties: {
         uri: {
           label: 'URI',
-          description: 'Uniform Resource Identifier'
+          description: 'Statute Uniform Resource Identifier'
         },
         prefLabel: {
           label: 'Statute',
           description: `
-            Preferred label
+            Name of the statute
           `
         },
         statute: {
@@ -290,7 +290,7 @@ export default {
           label: 'Free text search',
           textFacetInputPlaceholder: 'Search...',
           description: `
-            Free text search
+            Search statutes based on their textual contents
           `
         },
         text: {
@@ -314,13 +314,13 @@ export default {
         subjectCategory: {
           label: 'Subject keyword (automatically identified)',
           description: `
-            Subject keyword
+            Subject keyword identified automatically from the statute contents
           `
         },
         situationCategory: {
           label: 'Life situation / topic (automatically identified)',
           description: `
-            Life situation / topic
+            Life situation or topic identified automatically from the statute contents
           `
         },
         documentType: {
@@ -338,14 +338,14 @@ export default {
         enforcementDate: {
           label: 'Enforcement date',
           description: `
-            Enforcement date
+            Enforcement date of the newest statute version
           `
         },
         euDirective: {
           label: 'EU directive',
           missingValueLabel: 'No directive',
           description: `
-            EU directive
+            Referenced EU directive
           `
         },
         contentHTML: {
@@ -363,7 +363,7 @@ export default {
         finlexLink: {
           label: 'Link to Finlex service',
           description: `
-            Link to Finlex service
+            Link to the statute in Finlex
           `
         }
       }
@@ -438,7 +438,7 @@ export default {
           label: 'Free text search',
           textFacetInputPlaceholder: 'Search...',
           description: `
-            Free text search
+            Search sections based on their textual contents
           `
         },
         text: {

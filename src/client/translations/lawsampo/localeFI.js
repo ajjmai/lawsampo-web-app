@@ -139,7 +139,7 @@ export default {
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Asiasanojen valinta tapahtuu klikkaamalla joko "+" tai "-" ikonia ja lopuksi "Lisää valitut" painiketta.
       "+"-ikonilla valitut asiasanat esiintyvät tulosdokumenteissa ja punaisella "-"-ikonilla valittuja
-      asiasanoja sisältävät dokumentit rajataan pois tuloksista. Asiasanojen jäljessä olevat numero 
+      asiasanoja sisältävät dokumentit rajataan pois tuloksista. Asiasanojen jäljessä olevat numero
       kertoo kyseisen termin painoarvon nykyisessä tulosjoukossa.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -269,11 +269,11 @@ export default {
       properties: {
         uri: {
           label: 'URI-tunniste',
-          description: 'Uniform Resource Identifier -tunniste'
+          description: 'Säädöksen Uniform Resource Identifier -tunniste'
         },
         prefLabel: {
           label: 'Säädös',
-          description: `
+          description: `Säädöksen nimi
           `
         },
         statute: {
@@ -286,7 +286,7 @@ export default {
           label: 'Vapaatekstihaku',
           textFacetInputPlaceholder: 'Hae...',
           description: `
-            Vapaatekstihaku
+            Hae säädöksiä niiden tekstisisältöjen perusteella
           `
         },
         text: {
@@ -298,7 +298,7 @@ export default {
         identifier: {
           label: 'Tunniste',
           description: `
-            Tunniste
+            Säädöksen tunniste
           `
         },
         firstLevel: {
@@ -310,13 +310,13 @@ export default {
         subjectCategory: {
           label: 'Aihe (autom. tunnistettu)',
           description: `
-            Aihe
+            Säädöksen sisällön perusteella automaattisesti tunnistettu aihe
           `
         },
         situationCategory: {
           label: 'Elämäntilanne (autom. tunnistettu)',
           description: `
-            Elämäntilanne
+            Säädöksen sisällön perusteella automaattisesti tunnistettu säädökseen liittyvä elämäntilanne
           `
         },
         documentType: {
@@ -334,20 +334,20 @@ export default {
         enforcementDate: {
           label: 'Voimaantulo',
           description: `
-            Voimaantulopäivämäärä
+            Säädöksen uusimman version voimaantulopäivämäärä
           `
         },
         euDirective: {
           label: 'EU-direktiivi',
           missingValueLabel: 'ei direktiiviä',
           description: `
-            EU-direktiivi
+            Säädöksen viittaama EU-direktiivi
           `
         },
         finlexLink: {
           label: 'Linkki Finlex-palveluun',
           description: `
-            Linkki Finlex-palveluun
+            Linkki säädökseen Finlex-palvelussa
           `
         },
         wordcloud: {
@@ -417,7 +417,7 @@ export default {
           label: 'Vapaatekstihaku',
           textFacetInputPlaceholder: 'Hae...',
           description: `
-            Vapaatekstihaku
+            Hae pykäliä niiden tekstisisältöjen perusteella
           `
         },
         text: {
