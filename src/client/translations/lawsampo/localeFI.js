@@ -75,7 +75,7 @@ export default {
     map: 'kartta',
     by_year: 'vuosijakauma',
     network: 'verkosto',
-    export: 'avaa sovelluksessa',
+    export: 'avaa yasgui-sovelluksessa',
     statutes: 'Lainsäädäntö',
     cases: 'Oikeustapaukset'
   },
@@ -224,20 +224,23 @@ export default {
       facetResultsType: 'säädöstä',
       shortDescription: 'Hae lakeja, asetuksia ja päätöksiä',
       longDescription: `
-      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön säädöksiä.
-        Suodattimien avulla voit rajoittaa tulosjoukkoa, joka näkyy taulukossa.
-        Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
-        Tulosnäkymä voidaan valita näkymän välilehdiltä:
-      </p>
-      <ul class="MuiTypography-root MuiTypography-body1">
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön säädöksiä.
+          Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
+          Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
+        <br />
+          Tulosnäkymä voidaan valita näkymän välilehdiltä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
         <li>
-          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon säädökset.
-          Yksi rivi vastaa yhtä säädöstä.
+          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon säädökset taulukkona, jossa yksi rivi vastaa yhtä säädöstä.
+          Säädösten tiedot näkyvät tulostaulukossa sarakkeittain, säädöksen nimen toimiessa linkkinä säädöksen tietosivulle.
+          Säädöksen sisältämät pykälät näkyvät listana Pykälät-sarakkeessa.
         </li>
         <li>
-          <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
-          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+          <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+          vasemmalla olevien valikkojen arvoja.
         </li>
       </ul>
       `,
@@ -260,8 +263,8 @@ export default {
             ja linkin säädökseen Finlexissä.
           </li>
           <li>
-            <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
-            säädöksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+            <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            säädöksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille.
           </li>
         </ul>
         `
@@ -384,18 +387,22 @@ export default {
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön pykäliä.
-          Suodattimien avulla voit rajoittaa tulosjoukkoa, joka näkyy taulukossa.
+          Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
           Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
+        <br />
           Tulosnäkymä voidaan valita näkymän välilehdiltä:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
         <li>
-          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon pykälät.
-          Yksi rivi vastaa yhtä pykälää.
+          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon pykälät taulukkona, jossa yksi rivi vastaa yhtä pykälää.
+          Pykälien tiedot näkyvät tulostaulukossa sarakkeittain.
+          Säädöksen nimi toimii linkkinä säädöksen tietosivulle ja Pykälä-sarakkeen arvot toimivat linkkeinä tietyn pykälän tekstiin säädöksen sivulla.
+          Säädöksen sisältämät pykälät näkyvät listana Pykälät-sarakkeessa.
         </li>
         <li>
-          <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
-          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+          <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+          vasemmalla olevien valikkojen arvoja.
         </li>
         </ul>
       `,
@@ -517,7 +524,7 @@ export default {
       </h3>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Näkymä koostuu tulosjoukosta ja valikoista, joilla voi rajata tulosjoukkoa. Näkymässä vasemmalla on rajauksia varten erilaisia valikoita, joissa on arvoja joiden
-      perusteella voidaan rajata tulosjoukkoa. Tulosjoukkoa voi tarkastella kolmella eri välilehdellä: Taulukko, Vuosijakauma, ja Avaa sovelluksessa.
+      perusteella voidaan rajata tulosjoukkoa. Tulosjoukkoa voi tarkastella kolmella eri välilehdellä: Taulukko, Vuosijakauma, ja Avaa YASGUI-sovelluksessa.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Tulosjoukko esitetään oikealla listana <b>Taulukko-välilehdellä</b>. Suodattaaksesi tulosjoukkoa
@@ -541,7 +548,7 @@ export default {
       Taulukko -näkymässä.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      <b>Avaa sovelluksessa -välilehdellä</b> voi avata tulokset YASGUI-sovelluksessa klikkaamalla sille tehtyä painiketta. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+      <b>Avaa YASGUI-sovelluksessa -välilehdellä</b> voi avata tulokset YASGUI-sovelluksessa klikkaamalla sille tehtyä painiketta. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
       vasemmalla olevien valikkojen arvoja.
       </p>
      `,
@@ -564,8 +571,8 @@ export default {
             ja linkin oikeustapaukseen Finlexissä.
           </li>
           <li>
-            <strong>AVAA SOVELLUKSESSA</strong>-välilehti sisältää linkin
-            oikeustapauksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa.
+            <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            oikeustapauksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille.
           </li>
         </ul>
 
@@ -726,7 +733,7 @@ export default {
         Ideana on tarjota pääsy Lakisammon dataan (tietämysverkkoon) erilaisissa käyttötapauksissa datan pysyessä samana.
       </li>
       <li class="MuiTypography-gutterBottom">
-        Lainsäädännön ja oikeuskäytännön näkymissä, voit käyttää fasettihakua tutkiaksesi sinua kiinnostavaa osajoukkoa näkymän entiteeteistä.
+        Lainsäädännön, pykälien ja oikeuskäytännön näkymissä voit käyttää fasettihakua tutkiaksesi sinua kiinnostavaa osajoukkoa näkymän entiteeteistä.
         Esimerkiksi voit tutkia tietyn ajanjakson säädöksiä. Oletuksena näkymät näyttävät kaikki kyseiseen näkymään kuuluvat tulokset (säädöset, pykälät tai oikeustapaukset).
         Tätä oletuksena näkyvää tulosjoukkoa voi rajata suodattimilla.
       </li>

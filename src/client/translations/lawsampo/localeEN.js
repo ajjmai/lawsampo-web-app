@@ -256,8 +256,8 @@ export default {
             One table row corresponds to one statute.
           </li>
           <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
+            <strong>EXPORT</strong> tab contains a link to open the SPARQL query used to generate the result
+            table view into YASGUI query editor. This is intended for software developers.
           </li>
         </ul>
         `,
@@ -392,8 +392,8 @@ export default {
           One table row corresponds to one section.
         </li>
         <li>
-          <strong>EXPORT</strong> the SPARQL query used to generate the result
-          table view into YASGUI query editor.
+          <strong>EXPORT</strong> tab contains a link to open the SPARQL query used to generate the result
+          table view into YASGUI query editor. This is intended for software developers.
         </li>
         </ul>
       `,
@@ -418,7 +418,7 @@ export default {
           </li>
           <li>
             <strong>EXPORT</strong> tab contains a link to open the statute
-            query in YASGUI.
+            query in YASGUI. This is intended for software developers.
           </li>
         </ul>
         `
@@ -725,7 +725,7 @@ export default {
         through multiple use cases while the data remains the same.
       </li>
       <li class="MuiTypography-gutterBottom">
-        In the perspectives regarding consolidated legislation and caselaw, faceted search can be used for filtering out a subset
+        In the perspectives of statutes, sections, and caselaw, the faceted search can be used for filtering out a subset
         of objects of the view, the “target group” of interest. For example, statutes of a given time period can be selected.
         By default the perspectives display all results from the corresponding class (Statute, Section, Case Law).
         This default result set can be narrowed down by using the filters.
