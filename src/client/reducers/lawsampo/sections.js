@@ -8,9 +8,9 @@ export const INITIAL_STATE = {
   paginatedResultsSparqlQuery: null,
   resultCount: 0,
   page: -1,
-  pagesize: 10,
-  sortBy: null,
-  sortDirection: null,
+  pagesize: 20,
+  sortBy: 'statute',
+  sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
   facetedSearchHeaderExpanded: true,
@@ -26,7 +26,6 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false
-      // minWidth: 150
     },
     {
       id: 'prefLabel',
@@ -35,7 +34,6 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false
-      // minWidth: 150
     },
     {
       id: 'uri',
@@ -54,7 +52,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 250
+      minWidth: 300
     },
     {
       id: 'statuteEnforcementDate',
@@ -63,7 +61,6 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false
-      // minWidth: 220
     },
     {
       id: 'sectionEnforcementDate',
@@ -72,7 +69,6 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false
-      // minWidth: 200
     },
     {
       id: 'subjectCategory',
@@ -81,7 +77,6 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: false,
       numberedList: false
-      // minWidth: 170
     },
     {
       id: 'situationCategory',
@@ -90,7 +85,6 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: false,
       numberedList: false
-      // minWidth: 170
     },
     {
       id: 'contentHTMLAnnotated',
