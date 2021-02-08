@@ -134,7 +134,8 @@ export const INITIAL_STATE = {
 }
 
 const resultClasses = new Set([
-  'statutes'
+  'statutes',
+  'lawSampoKnowledgeGraphMetadata'
 ])
 
 const statutes = (state = INITIAL_STATE, action) => {

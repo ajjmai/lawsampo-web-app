@@ -702,6 +702,9 @@ export default {
       Group (SeCo) at various research projects with the Ministry of Justice and Edita Publishing Ltd in Aalto University
       and Helsinki Centre for Digital Humanities (HELDIG) at the University of Helsinki in collaboration.
     </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Data source
+    </h2>
   `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">

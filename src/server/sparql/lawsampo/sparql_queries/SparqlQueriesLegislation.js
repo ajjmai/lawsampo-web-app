@@ -246,3 +246,14 @@ export const statutesByYearQuery = `
   GROUP BY ?category
   ORDER BY ?category
 `
+
+// https://version.aalto.fi/gitlab/seco/lawsampo-data/-/blob/master/void/lawsampo-void.ttl
+export const knowledgeGraphMetadataQuery = `
+  SELECT * 
+  WHERE {
+    BIND(<http://data.finlex.fi> as ?id)
+    #?id skos:prefLabel ?prefLabel ;
+    #    dct:modified ?modified ;
+    #    foaf:page ?page .
+  }
+`

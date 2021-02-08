@@ -3,6 +3,7 @@ import { statutesPerspectiveConfig } from './perspective_configs/StatutesPerspec
 // import { legislationPerspectiveConfig } from './perspective_configs/LegislationPerspectiveConfig'
 import { caselawPerspectiveConfig } from './perspective_configs/CaselawPerspectiveConfig'
 import {
+  knowledgeGraphMetadataQuery
 // statutesByYearQuery
 // statuteProperties
 } from './sparql_queries/SparqlQueriesLegislation'
@@ -11,13 +12,18 @@ import {
   judgementNetworkLinksQuery,
   judgementNetworkNodesQuery
 } from './sparql_queries/SparqlQueriesCaselaw'
+import { makeObjectList } from '../SparqlObjectMapper'
 import { mapLineChartFillEmptyValues } from '../Mappers'
 
 export const backendSearchConfig = {
   sections: sectionsPerspectiveConfig,
   statutes: statutesPerspectiveConfig,
-  // legislation: legislationPerspectiveConfig,
   caselaw: caselawPerspectiveConfig,
+  lawSampoKnowledgeGraphMetadata: {
+    perspectiveID: 'statutes',
+    q: knowledgeGraphMetadataQuery,
+    resultMapper: makeObjectList
+  },
   // statuteYearLineChart: {
   //   perspectiveID: 'statutes',
   //   q: statutesByYearQuery,

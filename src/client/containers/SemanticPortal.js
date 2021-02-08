@@ -30,6 +30,7 @@ import Main from '../components/perspectives/lawsampo/Main'
 import FacetedSearchPerspective from '../components/perspectives/lawsampo/FacetedSearchPerspective'
 import InstanceHomePage from '../components/perspectives/lawsampo/InstanceHomePage'
 import Footer from '../components/perspectives/lawsampo/Footer'
+import KnowledgeGraphMetadataTable from '../components/perspectives/lawsampo/KnowledgeGraphMetadataTable'
 import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/lawsampo/GeneralConfig'
@@ -653,11 +654,11 @@ const SemanticPortal = props => {
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <TextPage>
                     {intl.getHTML('aboutThePortalPartOne')}
-                    {/* <KnowledgeGraphMetadataTable
-                      resultClass='perspective1KnowledgeGraphMetadata'
+                    <KnowledgeGraphMetadataTable
+                      resultClass='lawSampoKnowledgeGraphMetadata'
                       fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                      knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
-                    /> */}
+                      knowledgeGraphMetadata={props.statutes.knowledgeGraphMetadata}
+                    />
                     {intl.getHTML('aboutThePortalPartTwo')}
                   </TextPage>
                 </div>}

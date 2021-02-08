@@ -19,6 +19,7 @@ export const prefixes = `
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX eli: <http://data.europa.eu/eli/ontology#>
   PREFIX dcterms: <http://purl.org/dc/terms/>
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
   PREFIX lss: <http://ldf.fi/schema/lawsampo/>
   PREFIX ls: <http://ldf.fi/lawsampo/>
   `
