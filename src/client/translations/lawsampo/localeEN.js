@@ -703,8 +703,11 @@ export default {
       and Helsinki Centre for Digital Humanities (HELDIG) at the University of Helsinki in collaboration.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Data source
+      Data sources
     </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The below table lists the data sources which have been used in creating the LawSampo data service. 
+    </p>
   `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">

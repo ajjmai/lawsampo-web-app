@@ -29,9 +29,9 @@ const KnowledgeGraphMetadataTable = props => {
     }
   }, [])
 
-  const data = props.knowledgeGraphMetadata ? props.knowledgeGraphMetadata : null
+  const data = props.knowledgeGraphMetadata
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className={classes.root}>
@@ -41,7 +41,7 @@ const KnowledgeGraphMetadataTable = props => {
             <TableHead>
               <TableRow>
                 <TableCell>Database</TableCell>
-                <TableCell>Data dump date</TableCell>
+                <TableCell>Updated</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

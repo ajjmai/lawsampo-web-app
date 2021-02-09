@@ -252,8 +252,9 @@ export const knowledgeGraphMetadataQuery = `
   SELECT * 
   WHERE {
     BIND(<http://data.finlex.fi> as ?id)
-    #?id skos:prefLabel ?prefLabel ;
-    #    dct:modified ?modified ;
-    #    foaf:page ?page .
+    ?id skos:prefLabel ?prefLabel ;
+        dct:modified ?modified ;
+        foaf:page ?page .
+    FILTER(lang(?prefLabel) = '<LANG>')    
   }
 `
