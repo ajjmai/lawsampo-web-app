@@ -8,15 +8,15 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import SubjectIcon from '@material-ui/icons/Subject'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 // import BubbleChartIcon from '@material-ui/icons/BubbleChart'
-// import sdfImage from '../../img/lawsampo/sdf-tumb.png'
-// import legislationImage from '../../img/lawsampo/legislation.png'
-// import caselawImage from '../../img/lawsampo/caselaw.png'
-import manuscriptsImage from '../../img/main_page/manuscripts-452x262.jpg'
+import statutesImage from '../../img/lawsampo/statutes_cropped.jpg'
+import sectionsImage from '../../img/lawsampo/sections_cropped.jpg'
+import caselawImage from '../../img/lawsampo/case_law_cropped.jpg'
+import situationsImage from '../../img/lawsampo/contextual_search_cropped.jpg'
 
 export const perspectiveConfig = [
   {
     id: 'statutes',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: statutesImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
     tabs: [
@@ -51,7 +51,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'sections',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: sectionsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
     tabs: [
@@ -82,7 +82,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselaw',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: caselawImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
     tabs: [
@@ -123,7 +123,7 @@ export const perspectiveConfig = [
   {
     id: 'situations',
     searchMode: 'iterative-search',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: situationsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['situationFilters']),
     tabs: [
@@ -154,7 +154,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselawfinder',
-    frontPageImage: manuscriptsImage,
+    frontPageImage: null,
     externalUrl: 'https://data.finlex.fi/document-finder'
   }
 ]
