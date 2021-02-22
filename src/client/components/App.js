@@ -2,11 +2,14 @@ import React from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import SemanticPortal from '../containers/SemanticPortal'
 // import deepPurple from '@material-ui/core/colors/deepPurple'
-import indigo from '@material-ui/core/colors/indigo'
+// import indigo from '@material-ui/core/colors/indigo'
 
 const theme = createMuiTheme({
   palette: {
-    primary: indigo
+    primary: {
+      // main: '#3e2723' // dark brown
+      main: '#263238' // dark blue grey
+    }
   },
   overrides: {
     MuiTooltip: {
