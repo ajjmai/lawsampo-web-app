@@ -21,7 +21,7 @@ export const fetchClassifierResults = async (resultType, size, query, keywords, 
         selected_negative_keywords: selectedNegativeKeywords,
         selected_positive_keywords: selectedPositiveKeywords
       }
-      const response = await axios.post(baseUrl + 'statutes', b)
+      const response = await axios.post(baseUrl + 'search/statutes', b)
       // handle statutes field for results tables
       const responseData = response.data
       const results = responseData.docs
@@ -46,7 +46,7 @@ export const fetchClassifierResults = async (resultType, size, query, keywords, 
       responseData.results = formattedResults
       return responseData
     } else {
-      const response = await axios.post(baseUrl + 'cases', {
+      const response = await axios.post(baseUrl + 'search/cases', {
         size: size,
         query: query,
         selected_keywords: keywords,
