@@ -70,16 +70,18 @@ export const judgementPropertiesInstancePage = `
   }
   UNION
   {
-    ?id lss:isRealizedBy ?expHTML .
+    BIND(<ID> as ?id)
     OPTIONAL {
-      ?expHTML dcterms:language '<LANG>' .
-      ?expHTML lss:annotatedHtml ?annotatedHtmlPrimary .
-    } 
+      ?id lss:isRealizedBy ?expPrimary .
+      ?expPrimary dcterms:language '<LANG>' ;
+                  lss:annotatedHtml ?htmlPrimary .
+    }
     OPTIONAL {
-      ?expHTML dcterms:language '<LANG_SECONDARY>' .
-      ?expHTML lss:html ?htmlSecondary .
+      ?id lss:isRealizedBy ?expSecondary .
+      ?expSecondary dcterms:language '<LANG_SECONDARY>' ;
+                    lss:html ?htmlSecondary  # Swedish HTML's are not annotated    
     } 
-    BIND(COALESCE(?annotatedHtmlPrimary, ?htmlSecondary) as ?html_)
+    BIND(COALESCE(?htmlPrimary, ?htmlSecondary) as ?html_)
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
   UNION 
