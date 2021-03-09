@@ -70,10 +70,17 @@ export const judgementPropertiesInstancePage = `
   }
   UNION
   {
-    ?id lss:isRealizedBy ?expHTML . 
-    ?expHTML dcterms:language '<LANG>' .
-    ?expHTML lss:annotatedHtml ?annotatedHtml_ .
-    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+    ?id lss:isRealizedBy ?expHTML .
+    OPTIONAL {
+      ?expHTML dcterms:language '<LANG>' .
+      ?expHTML lss:annotatedHtml ?annotatedHtmlPrimary .
+    } 
+    OPTIONAL {
+      ?expHTML dcterms:language '<LANG_SECONDARY>' .
+      ?expHTML lss:html ?htmlSecondary .
+    } 
+    BIND(COALESCE(?annotatedHtmlPrimary, ?htmlSecondary) as ?html_)
+    BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
   UNION 
   {
