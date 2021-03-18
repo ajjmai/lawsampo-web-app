@@ -1,5 +1,9 @@
 export default {
   languageLabel: 'English',
+  html: {
+    title: 'LawSampo – Finnish Legislation and Case Law on the Semantic Web',
+    description: 'LawSampo is a semantic portal which provides ready-to-use tooling for exploring and analyzing legal documents'
+  },
   appTitle: {
     short: 'LawSampo',
     long: 'LawSampo',

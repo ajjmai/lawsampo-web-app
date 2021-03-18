@@ -1,5 +1,9 @@
 export default {
   languageLabel: 'Suomi',
+  html: {
+    title: 'Lakisampo – Lainsäädäntö ja oikeuskäytäntö semanttisessa webissä',
+    description: 'Lakisampo-portaali tarjoaa työkaluja oikeudellisten aineistojen hakuun ja analysointiin'
+  },
   appTitle: {
     short: 'Lakisampo',
     long: 'Lakisampo',
