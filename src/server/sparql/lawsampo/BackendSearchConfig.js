@@ -13,7 +13,7 @@ import {
   judgementNetworkNodesQuery
 } from './sparql_queries/SparqlQueriesCaselaw'
 import { makeObjectList } from '../SparqlObjectMapper'
-import { mapLineChartFillEmptyValues } from '../Mappers'
+import { mapLineChart } from '../Mappers'
 
 export const backendSearchConfig = {
   sections: sectionsPerspectiveConfig,
@@ -28,13 +28,16 @@ export const backendSearchConfig = {
   //   perspectiveID: 'statutes',
   //   q: statutesByYearQuery,
   //   filterTarget: 'instance',
-  //   resultMapper: mapLineChartFillEmptyValues
+  //   resultMapper: mapLineChart
   // },
   courtDecisionsByYear: {
     perspectiveID: 'caselaw',
     q: judgementsByYearQuery,
     filterTarget: 'judgement',
-    resultMapper: mapLineChartFillEmptyValues
+    resultMapper: mapLineChart,
+    resultMapperConfig: {
+      fillEmptyValues: true
+    }
   },
   caselawInstancePageNetwork: {
     perspectiveID: 'caselaw',
