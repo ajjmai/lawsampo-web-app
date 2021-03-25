@@ -622,6 +622,11 @@ export default {
             Name(s) of the judge(s)
           `
         },
+	ecli: {
+          label: 'ECLI identifier',
+          description: 'ECLI identifier'
+        },
+
         typeOfSourceData: {
           label: 'Type of source data',
           description: `
@@ -652,6 +657,12 @@ export default {
             Judgement date
           `
         },
+        similarCourtDecicions: {
+          label: 'Similar court decisions',
+          description: `
+            Textually similar court decisions
+          `
+        }, 
         referencedStatute: {
           label: 'Referenced consolidated statute',
           description: `
