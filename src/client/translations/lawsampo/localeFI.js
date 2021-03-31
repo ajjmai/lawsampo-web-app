@@ -17,6 +17,7 @@ export default {
   selectPerspective: 'Valitse näkymä aineiston hakua ja tutkimista varten:',
   selectPerspectiveExternal: 'Muut Lakisammon aineistoa hyödyntävät sovellukset:',
   mainPageImageLicence: 'Etusivun kuva: Shutterstock.com',
+  backendErrorText: 'Yksi Lakisampo-portaalin taustapalveluista ei ole tällä hetkellä saatavilla. Ole hyvä ja yritä myöhemmin uudestaan.',
   topBar: {
     feedback: 'palaute',
     info: {

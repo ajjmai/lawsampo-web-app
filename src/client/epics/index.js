@@ -13,7 +13,7 @@ import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
 import localeEN from '../translations/lawsampo/localeEN'
 import localeFI from '../translations/lawsampo/localeFI'
-import localeSV from '../translations/lawsampo/localeSV'
+// import localeSV from '../translations/lawsampo/localeSV'
 import { stateToUrl, pickSelectedDatasets } from '../helpers/helpers'
 import querystring from 'querystring'
 import {

@@ -17,6 +17,7 @@ export default {
   selectPerspective: 'Select an application perspective to search and browse the data:',
   selectPerspectiveExternal: 'Other applications based on LawSampo data:',
   mainPageImageLicence: 'Image used under license from Shutterstock.com',
+  backendErrorText: 'One of the backend services is not available at the moment. Please try again later.',
   topBar: {
     feedback: 'feedback',
     info: {
@@ -622,7 +623,7 @@ export default {
             Name(s) of the judge(s)
           `
         },
-	ecli: {
+        ecli: {
           label: 'ECLI identifier',
           description: 'ECLI identifier'
         },
@@ -662,7 +663,7 @@ export default {
           description: `
             Textually similar court decisions
           `
-        }, 
+        },
         referencedStatute: {
           label: 'Referenced consolidated statute',
           description: `

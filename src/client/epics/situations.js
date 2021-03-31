@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import { ofType } from 'redux-observable'
 import { of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
@@ -10,10 +11,6 @@ import {
 import {
   FETCH_FACET_FAILED
 } from '../actions'
-import {
-  backendErrorText
-} from '../configs/lawsampo/GeneralConfig'
-
 import { updateSituationResults, updateSituations } from '../reducers/lawsampo/situationsFacets'
 const apiUrl = process.env.API_URL
 
@@ -37,7 +34,7 @@ export const fetchSituations = (action$, state$) => action$.pipe(
         facetID: '',
         error: error,
         message: {
-          text: backendErrorText,
+          text: intl.get('backendErrorText'),
           title: 'Error'
         }
       }))
@@ -96,7 +93,7 @@ export const fetchSituationResults = (action$, state$) => action$.pipe(
         facetID,
         error: error,
         message: {
-          text: backendErrorText,
+          text: intl.get('backendErrorText'),
           title: 'Error'
         }
       }))
