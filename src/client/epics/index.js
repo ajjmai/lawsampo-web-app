@@ -13,8 +13,8 @@ import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
 import localeEN from '../translations/lawsampo/localeEN'
 import localeFI from '../translations/lawsampo/localeFI'
-// import localeSV from '../translations/lawsampo/localeSV'
-import { stateToUrl, handleAxiosError, pickSelectedDatasets /* boundsToValues */ } from '../helpers/helpers'
+import localeSV from '../translations/lawsampo/localeSV'
+import { stateToUrl, pickSelectedDatasets } from '../helpers/helpers'
 import querystring from 'querystring'
 import {
   FETCH_RESULT_COUNT,
@@ -39,6 +39,7 @@ import {
   CLIENT_FS_FETCH_RESULTS,
   CLIENT_FS_FETCH_RESULTS_FAILED,
   LOAD_LOCALES,
+  SHOW_ERROR,
   updateResultCount,
   updatePaginatedResults,
   updateResults,
@@ -51,13 +52,9 @@ import {
   updateLocale,
   updateGeoJSONLayers,
   updateKnowledgeGraphMetadata,
-  SHOW_ERROR
+  fetchGeoJSONLayersFailed
 } from '../actions'
-import {
-  documentFinderAPIUrl,
-  backendErrorText
-} from '../configs/lawsampo/GeneralConfig'
-
+import { documentFinderAPIUrl } from '../configs/lawsampo/GeneralConfig'
 import { fetchSituations, fetchSituationResults } from './situations'
 
 /*
@@ -71,6 +68,8 @@ export const availableLocales = {
   fi: localeFI
   // sv: localeSV
 }
+
+let backendErrorText = null
 
 const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_PAGINATED_RESULTS),
@@ -424,6 +423,7 @@ const loadLocalesEpic = action$ => action$.pipe(
       locales: availableLocales,
       warningHandler: () => null
     })
+    backendErrorText = intl.get('backendErrorText')
     return updateLocale({ language: action.currentLanguage })
   })
 )
@@ -487,8 +487,18 @@ const fetchGeoJSONLayersEpic = action$ => action$.pipe(
   ofType(FETCH_GEOJSON_LAYERS),
   mergeMap(async action => {
     const { layerIDs, bounds } = action
-    const data = await Promise.all(layerIDs.map(layerID => fetchGeoJSONLayer(layerID, bounds)))
-    return updateGeoJSONLayers({ payload: data })
+    try {
+      const data = await Promise.all(layerIDs.map(layerID => fetchGeoJSONLayer(layerID, bounds)))
+      return updateGeoJSONLayers({ payload: data })
+    } catch (error) {
+      return fetchGeoJSONLayersFailed({
+        error,
+        message: {
+          text: backendErrorText,
+          title: 'Error'
+        }
+      })
+    }
   })
 )
 
@@ -509,14 +519,10 @@ const fetchGeoJSONLayer = async (layerID, bounds) => {
     // outputFormat: 'application/json' for kotus layers
   }
   const url = `${baseUrl}?${querystring.stringify(mapServerParams)}`
-  try {
-    const response = await axios.get(url)
-    return {
-      layerID: layerID,
-      geoJSON: response.data
-    }
-  } catch (error) {
-    handleAxiosError(error)
+  const response = await axios.get(url)
+  return {
+    layerID: layerID,
+    geoJSON: response.data
   }
 }
 
