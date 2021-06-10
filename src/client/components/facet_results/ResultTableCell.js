@@ -18,7 +18,9 @@ const ResultTableCell = props => {
     maxWords, hasParts, hasChapters
   } = props
   let cellContent = null
-  const cellStyle = { minWidth }
+  const cellStyle = {
+    ...(minWidth && { minWidth })
+  }
   switch (valueType) {
     case 'object':
       cellContent =
