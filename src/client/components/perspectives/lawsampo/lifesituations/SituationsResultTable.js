@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
 import { withStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
@@ -12,11 +12,11 @@ import IconButton from '@material-ui/core/IconButton'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import purple from '@material-ui/core/colors/purple'
-import querystring from 'querystring'
+// import querystring from 'querystring'
 import ResultTableHead from '../../../facet_results/ResultTableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import has from 'lodash'
-import { Paper, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   infoContainer: {
@@ -40,11 +40,11 @@ const styles = theme => ({
     borderTop: '1px solid rgba(224, 224, 224, 1);'
   },
   paginationCaption: {
-    
+
   },
   paginationActions: {
     display: 'none'
-  },  
+  },
   paginationToolbar: {
     [theme.breakpoints.down('xs')]: {
       display: 'flex',
@@ -89,8 +89,8 @@ class SituationsResultTable extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    if(prevProps.results != this.props.results) {
-      this.setState({expandedRows: new Set()})
+    if (prevProps.results !== this.props.results) {
+      this.setState({ expandedRows: new Set() })
     }
   }
 
@@ -141,8 +141,8 @@ class SituationsResultTable extends React.Component {
           valueType={column.valueType}
           makeLink={column.makeLink}
           externalLink={column.externalLink}
-          //sortValues={[]}
-          //sortBy={column.sortBy}
+          sortValues={column.sortValues}
+          sortBy={column.sortBy}
           numberedList={column.numberedList}
           minWidth={column.minWidth}
           previewImageHeight={column.previewImageHeight}
@@ -180,18 +180,16 @@ class SituationsResultTable extends React.Component {
     )
   }
 
-
   handleOnChangeRowsPerPage = event => {
     const rowsPerPage = event.target.value
     if (rowsPerPage !== this.props.data.pagesize) {
       this.props.updateRowsPerPage(this.props.resultClass, rowsPerPage)
-            
     }
   }
 
   render () {
-    const { classes, isFetching, results, resultClass, perspective } = this.props
-    const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection } = this.props.data
+    const { classes, isFetching, results, perspective } = this.props
+    const { pagesize } = this.props.data
     return (
       <>
         <TablePagination
@@ -203,7 +201,7 @@ class SituationsResultTable extends React.Component {
             actions: classes.paginationActions
           }}
           labelDisplayedRows={() => ''}
-          count={pagesize}          
+          count={pagesize}
           rowsPerPage={pagesize}
           page={0}
           onChangePage={() => {}}
@@ -211,7 +209,7 @@ class SituationsResultTable extends React.Component {
           rowsPerPageOptions={[5, 10, 15, 25, 30, 50, 100]}
           onChangeRowsPerPage={this.handleOnChangeRowsPerPage}
 
-        />      
+        />
         <div className={classes.tableContainer}>
           {isFetching
             ? (
@@ -220,36 +218,34 @@ class SituationsResultTable extends React.Component {
               </div>
             ) : (
               <>
-              {
-                results.length > 0 ? (
-                  <Table size='small'>
-                    <ResultTableHead
-                      resultClass={this.props.resultClass}
-                      columns={this.props.columns}
-                      onSortBy={() => {}}
-                      //sortBy={sortBy}
-                      //sortDirection={sortDirection}
-                      routeProps={this.props.routeProps}
-                    />
-                    <TableBody>
-                      {results.map((row, index) => this.rowRenderer(row, index))}
-                    </TableBody>
-                  </Table>
-                ):
-                (
-                  <div className={classes.infoContainer}>
-                    <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.initialResults`)}</Typography>        
-                  </div>
-                )
-              }
+                {
+                  results.length > 0 ? (
+                    <Table size='small'>
+                      <ResultTableHead
+                        resultClass={this.props.resultClass}
+                        columns={this.props.columns}
+                        onSortBy={() => {}}
+                        // sortBy={sortBy}
+                        // sortDirection={sortDirection}
+                        routeProps={this.props.routeProps}
+                      />
+                      <TableBody>
+                        {results.map((row, index) => this.rowRenderer(row, index))}
+                      </TableBody>
+                    </Table>
+                  )
+                    : (
+                      <div className={classes.infoContainer}>
+                        <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.initialResults`)}</Typography>
+                      </div>
+                    )
+                }
               </>
-            )
-            
-          }
+            )}
         </div>
-        
+
       </>
-      
+
     )
   }
 }

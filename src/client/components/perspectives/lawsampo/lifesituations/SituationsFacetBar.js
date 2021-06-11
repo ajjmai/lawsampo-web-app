@@ -1,10 +1,9 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-
 import SituationsSearch from './SituationsSearch'
 import SituationsKeywords from './SituationsKeywords'
 import SituationsCategory from './SituationsCategory'
-import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, IconButton, Paper, Tooltip, Typography } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, IconButton, Tooltip, Typography } from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
 import clsx from 'clsx'
 import intl from 'react-intl-universal'
@@ -95,7 +94,7 @@ class SituationFacetBar extends React.Component {
   }
 
   handleClearKeywords = () => {
-    this.props.setSituationKeywords({negativeKeywords: [], positiveKeywords: []})
+    this.props.setSituationKeywords({ negativeKeywords: [], positiveKeywords: [] })
     this.props.fetchSituationResults()
   }
 
@@ -122,11 +121,11 @@ class SituationFacetBar extends React.Component {
   }
 
   render () {
-    const { classes, perspective } = this.props    
+    const { classes, perspective } = this.props
     let initialActive = true
     if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation !== null) { initialActive = false }
     const keywordsDisabled = initialActive
-    const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0 ) || (this.props.facetData.query === '' && this.props.facetData.selectedSituation != null)
+    const categoriesDisabled = (this.props.facetData.query === '' && this.props.facetData.categories.length === 0) || (this.props.facetData.query === '' && this.props.facetData.selectedSituation != null)
     const isKeywordsClearVisible = (this.props.facetData.selectedPositiveKeywords.length + this.props.facetData.selectedNegativeKeywords.length) > 0
     return (
       <>
@@ -241,12 +240,14 @@ class SituationFacetBar extends React.Component {
                   <InfoIcon />
                 </IconButton>
               </Tooltip>
-              { isKeywordsClearVisible && (
-              <Button 
-                onClick={this.handleClearKeywords}                
-                variant='contained'
-                color='secondary'
-                size='small'>{intl.get(`perspectives.${perspective.id}.facetBar.clear`)}</Button>
+              {isKeywordsClearVisible && (
+                <Button
+                  onClick={this.handleClearKeywords}
+                  variant='contained'
+                  color='secondary'
+                  size='small'
+                >{intl.get(`perspectives.${perspective.id}.facetBar.clear`)}
+                </Button>
               )}
             </div>
           </AccordionSummary>

@@ -1,8 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-
 import Chip from '@material-ui/core/Chip'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 import { Radio, RadioGroup } from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -11,8 +10,6 @@ import SortableTree from 'react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
 import purple from '@material-ui/core/colors/purple'
-
-
 
 const styles = (theme) => ({
   facetSearchContainer: {
@@ -58,29 +55,27 @@ const styles = (theme) => ({
  * A component for text search in client-side faceted search architecture.
  */
 class SituationsCategory extends React.Component {
-
-    constructor (props) {
-        super(props)
-        this.state = {
-          treeData: this.props.categories,
-          selectedCategory: null
-        }
+  constructor (props) {
+    super(props)
+    this.state = {
+      treeData: this.props.categories,
+      selectedCategory: null
     }
+  }
 
-    componentDidUpdate = prevProps => {    
-      if(prevProps.isFetching !== this.props.isFetching ||
+    componentDidUpdate = prevProps => {
+      if (prevProps.isFetching !== this.props.isFetching ||
         prevProps.selectedSituation !== this.props.selectedSituation) {
-      
         this.setState({
           treeData: this.props.categories,
           selectedCategory: this.props.selectedSituation
         })
-      }  
+      }
     }
 
     handleChange = treeObj => event => {
-      this.setState({selectedCategory: treeObj.node})
-      this.props.updateSituationSelected({selectedSituation: treeObj.node})
+      this.setState({ selectedCategory: treeObj.node })
+      this.props.updateSituationSelected({ selectedSituation: treeObj.node })
       this.props.fetchSituationResults()
     }
 
@@ -95,79 +90,78 @@ class SituationsCategory extends React.Component {
   }
 
   generateNodeProps = treeObj => {
-    const { node } = treeObj
-  
+    // const { node } = treeObj
+
     return {
       title: (
         <FormControlLabel
-        control={
-          <Radio 
-          onChange={this.handleChange(treeObj)}
-          value={treeObj.node.uri}
-          />
-        }    
-          
+          control={
+            <Radio
+              onChange={this.handleChange(treeObj)}
+              value={treeObj.node.uri}
+            />
+          }
+
           label={this.generateLabel(treeObj.node)}
         />
-      )      
+      )
     }
   }
-  
+
   handleDelete = () => {
-    this.setState({selectedCategory: null})
-    this.props.updateSituationSelected({selectedSituation: null})
-    this.props.fetchSituationResults()    
+    this.setState({ selectedCategory: null })
+    this.props.updateSituationSelected({ selectedSituation: null })
+    this.props.fetchSituationResults()
   }
 
-  render () {    
-    
-    const {selectedCategory} = this.state
-    const {isFetching, classes} =  this.props
+  render () {
+    const { selectedCategory } = this.state
+    const { isFetching, classes } = this.props
     const treeData = this.props.categories
-    
+
     return (
       <>
-      {isFetching ? (
-        <div className={classes.spinnerContainer}>
-          <CircularProgress style={{ color: purple[500] }} thickness={5} />
-        </div>
-      ) : (      
-            <>
-              <div className={''}>
-                {this.props.selectedSituation !== null &&
+        {isFetching ? (
+          <div className={classes.spinnerContainer}>
+            <CircularProgress style={{ color: purple[500] }} thickness={5} />
+          </div>
+        ) : (
+          <>
+            <div className=''>
+              {this.props.selectedSituation !== null &&
                   (
                     <Chip
                       key={this.props.selectedSituation.uri}
-                      //icon={icon}
+                      // icon={icon}
                       label={this.props.selectedSituation.prefLabel}
                       className={classes.chip}
                       onDelete={this.handleDelete}
                       color='primary'
                     />
-                  )
-                }
-              </div>
-              { !selectedCategory && (
+                  )}
+            </div>
+            {!selectedCategory && (
               <FormControl>
-               <RadioGroup value={selectedCategory === null ? null : selectedCategory.uri}>
-                <SortableTree
-                  treeData={treeData}
-                  onChange={treeData => this.setState({ treeData })}
-                  canDrag={false}
-                  rowHeight={30}
-                  onlyExpandSearchedNodes
-                  theme={FileExplorerTheme}
-                  generateNodeProps={this.generateNodeProps}
-                  isVirtualized={false}
-                />
+                <RadioGroup value={selectedCategory === null ? null : selectedCategory.uri}>
+                  <SortableTree
+                    treeData={treeData}
+                    onChange={treeData => this.setState({ treeData })}
+                    canDrag={false}
+                    rowHeight={30}
+                    onlyExpandSearchedNodes
+                    theme={FileExplorerTheme}
+                    generateNodeProps={this.generateNodeProps}
+                    isVirtualized={false}
+                  />
                 </RadioGroup>
               </FormControl>
-              )}
-              </>
+            )}
+          </>
 
-)}
-</>
-)}
+        )}
+      </>
+    )
+  }
 }
 
 export default withStyles(styles)(SituationsCategory)

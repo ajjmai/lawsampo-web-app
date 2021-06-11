@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import IconButton from '@material-ui/core/IconButton'
@@ -83,15 +83,15 @@ class SituationsSearch extends React.Component {
     // console.log(prevProps)
     // console.log(this.props)
 
-    if(prevProps.situations != this.props.situations) {
+    if (prevProps.situations !== this.props.situations) {
       this.setState(
         {
           treeData: this.props.situations
         }
       )
     }
-
   }
+
     handleSituationChange = treeObj => event => {
       this.props.updateSituationSelected({ selectedSituation: treeObj.node })
       this.props.fetchSituationResults()
@@ -108,7 +108,7 @@ class SituationsSearch extends React.Component {
     }
 
     generateNodeProps = treeObj => {
-      const { node } = treeObj
+      // const { node } = treeObj
 
       return {
         title: (

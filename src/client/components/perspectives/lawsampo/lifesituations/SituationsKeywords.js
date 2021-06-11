@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import IconButton from '@material-ui/core/IconButton'
@@ -11,21 +11,16 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { findIndex } from 'lodash'
-import SortableTree from 'react-sortable-tree'
-import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
+// import SortableTree from 'react-sortable-tree'
+// import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
-
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
-import LaunchIcon from '@material-ui/icons/Launch'
+// import LaunchIcon from '@material-ui/icons/Launch'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
-import { Button, Icon, List, ListItem, ListItemIcon, ListItemText, Radio, RadioGroup } from '@material-ui/core'
-
-import remove from 'lodash'
-import reduce from 'lodash'
+import { Button, List, ListItem, ListItemIcon, ListItemText, Radio } from '@material-ui/core'
 import Link from '@material-ui/core/Link'
-
 
 const styles = theme => ({
   headingContainer: {
@@ -41,7 +36,7 @@ const styles = theme => ({
   selectedNegativeKeyword: {
     backgroundColor: '#f50057',
     color: '#ffffff'
-  },  
+  },
   facetSearchContainer: {
     width: '100%',
     height: 44,
@@ -77,7 +72,7 @@ const styles = theme => ({
     textDecoration: 'inherit'
   },
   chip: {
-    margin: theme.spacing(0.5),
+    margin: theme.spacing(0.5)
   },
   keywordLink: {
     color: '#000000'
@@ -88,48 +83,41 @@ const styles = theme => ({
  * A component for text search in client-side faceted search architecture.
  */
 class SituationsKeywords extends React.Component {
-
   constructor (props) {
-      super(props)
-      this.state = {
-        treeData: this.props.keywords,
-        selectedKeyword: null,
-        deletedKeywords: [],
-        anchorEl: null,
-        itemState: []
-      }
+    super(props)
+    this.state = {
+      treeData: this.props.keywords,
+      selectedKeyword: null,
+      deletedKeywords: [],
+      anchorEl: null,
+      itemState: []
+    }
   }
 
   componentDidUpdate = prevProps => {
-    
-  
     if (prevProps.keywords !== this.props.keywords ||
       prevProps.isFetching !== this.props.isFetching) {
       this.setState({
         selectedKeyword: null,
         treeData: this.props.keywords
       })
-    } 
-       
+    }
   }
 
-
-
-  handleCheckboxChange = treeObj => event => {  
-    this.props.addSituationKeyword({keyword: treeObj.node})
+  handleCheckboxChange = treeObj => event => {
+    this.props.addSituationKeyword({ keyword: treeObj.node })
     this.props.fetchSituationResults()
   }
 
   handleChange = treeObj => event => {
-    const deletedKeywords = this.state.deletedKeywords;        
+    const deletedKeywords = this.state.deletedKeywords
     // remove from history if added again
-    const historyIndex = findIndex(deletedKeywords, { id: treeObj.node.uri})
-    if(historyIndex >= 0) {
-      deletedKeywords.splice(historyIndex, 1)    
-      
+    const historyIndex = findIndex(deletedKeywords, { id: treeObj.node.uri })
+    if (historyIndex >= 0) {
+      deletedKeywords.splice(historyIndex, 1)
     }
-    this.setState({selectedKeyword: treeObj.node, deletedKeywords})
-    this.props.addSituationKeyword({keyword: treeObj.node})
+    this.setState({ selectedKeyword: treeObj.node, deletedKeywords })
+    this.props.addSituationKeyword({ keyword: treeObj.node })
     this.props.fetchSituationResults()
   }
 
@@ -137,127 +125,127 @@ class SituationsKeywords extends React.Component {
     return (
       <>
         <Typography variant='body2'>
-          {node.prefLabel}       
+          {node.prefLabel}
         </Typography>
       </>
     )
   }
 
  generateNodeProps = treeObj => {
-  const { node } = treeObj
+   // const { node } = treeObj
 
-  return {
-    title: (
-      <FormControlLabel
-      control={
-        <Radio 
-        onChange={this.handleChange(treeObj)}
-        />
-      }    
-        value={treeObj.node.uri}
-        label={this.generateLabel(treeObj.node)}
-      />
-    )      
-    }
-  }
+   return {
+     title: (
+       <FormControlLabel
+         control={
+           <Radio
+             onChange={this.handleChange(treeObj)}
+           />
+         }
+         value={treeObj.node.uri}
+         label={this.generateLabel(treeObj.node)}
+       />
+     )
+   }
+ }
 
-  getUpdateButton = () => {    
+  getUpdateButton = () => {
     // filter doesn't include holes from the sparse array
-    const {perspective} = this.props
-    const isDisabled = this.state.itemState.filter( x => true).length === 0    
+    const { perspective } = this.props
+    const isDisabled = this.state.itemState.filter(x => true).length === 0
     return (
       <FormControl>
-      <Button 
-        onClick={this.addKeywords}
-        disabled={isDisabled}
-        variant='contained'
-        color='primary'
-        size='small'>{intl.get(`perspectives.${perspective.id}.facetBar.addToSelected`)}</Button>
-    </FormControl>
+        <Button
+          onClick={this.handleAddKeywords}
+          disabled={isDisabled}
+          variant='contained'
+          color='primary'
+          size='small'
+        >{intl.get(`perspectives.${perspective.id}.facetBar.addToSelected`)}
+        </Button>
+      </FormControl>
     )
   }
 
   getKeywordListItem = (e, index) => {
     const { classes } = this.props
-    let item = null
+    // const item = null
     let rootClassPositive = ''
     let rootClassNegative = ''
     const itemState = this.state.itemState[index]
-    if (itemState != undefined) {
-      if(itemState == 0) {
+    if (itemState !== undefined) {
+      if (itemState === 0) {
         rootClassNegative = classes.selectedNegativeKeyword
-      }
-      else {
+      } else {
         rootClassPositive = classes.selectedKeyword
       }
     }
-    
-    
+
     return (
       <ListItem key={e.uri}>
         <ListItemIcon
-          edge="start">
-          <AddIcon classes={{root: rootClassPositive }} onClick={ (event) => this.togglePending(e, index, 1)}></AddIcon>
+          edge='start'
+        >
+          <AddIcon classes={{ root: rootClassPositive }} onClick={(event) => this.togglePending(e, index, 1)} />
         </ListItemIcon>
         <ListItemText>
-          <Link href={e.uri} target="_blank" classes={{root: classes.keywordLink}} rel="noopener" rel="noreferrer">
-          {e.prefLabel}
+          <Link href={e.uri} target='_blank' classes={{ root: classes.keywordLink }}>
+            {e.prefLabel}
           </Link>
-           <sub>({e.weight.toFixed(2)})</sub>
+          <sub>({e.weight.toFixed(2)})</sub>
         </ListItemText>
         <ListItemIcon
-          edge="end">
-          <RemoveIcon classes={{root: rootClassNegative }} onClick={ (event) => this.togglePending(e, index, 0)}></RemoveIcon>
-        </ListItemIcon>                      
+          edge='end'
+        >
+          <RemoveIcon classes={{ root: rootClassNegative }} onClick={(event) => this.togglePending(e, index, 0)} />
+        </ListItemIcon>
       </ListItem>
     )
   }
 
-  handleDelete(item, index) {
-    const deletedKeywords = this.state.deletedKeywords;        
-    // only add if not already there 
-    const historyIndex = findIndex(deletedKeywords, { id: item.uri})
-    if(historyIndex < 0) {
-      deletedKeywords.push(item)    
-      if(deletedKeywords.length > 10) {
+  handleDelete (item, index) {
+    const deletedKeywords = this.state.deletedKeywords
+    // only add if not already there
+    const historyIndex = findIndex(deletedKeywords, { id: item.uri })
+    if (historyIndex < 0) {
+      deletedKeywords.push(item)
+      if (deletedKeywords.length > 10) {
         deletedKeywords.splice(10, 1)
-      }    
-      this.setState({deletedKeywords})  
+      }
+      this.setState({ deletedKeywords })
     }
-    this.props.removeSituationKeyword({facetClass: this.props.facetClass, keyword: item, keywordIndex: index})
-    this.props.fetchSituationResults()    
+    this.props.removeSituationKeyword({ facetClass: this.props.facetClass, keyword: item, keywordIndex: index })
+    this.props.fetchSituationResults()
   }
 
   getDeletedKeywordButtons = () => {
-    return this.state.deletedKeywords.map( (item, index) => {
-     return  (
-      <MenuItem key={item.uri} onClick={ e => { this.addKeywordFromHistory(item, index)}}>
-        {item.prefLabel}
-      </MenuItem>
-    )
+    return this.state.deletedKeywords.map((item, index) => {
+      return (
+        <MenuItem key={item.uri} onClick={e => { this.addKeywordFromHistory(item, index) }}>
+          {item.prefLabel}
+        </MenuItem>
+      )
     })
   }
 
-  togglePending = (item, index, type) => {    
+  togglePending = (item, index, type) => {
     const itemState = this.state.itemState
     const currentState = itemState[index]
-    if (currentState != undefined) {
-      if(type === currentState) {
+    if (currentState !== undefined) {
+      if (type === currentState) {
         delete itemState[index]
+      } else {
+        itemState[index] = +!currentState
       }
-      else {
-        itemState[index] = +!currentState 
-      }      
-    }
-    else {
+    } else {
       itemState[index] = type
     }
-    this.setState({itemState})
+    this.setState({ itemState })
   }
 
   addKeywordFromHistory = (item, index) => {
-    const deletedKeywords = this.state.deletedKeywords;
-    // remove from list 
+    const deletedKeywords = this.state.deletedKeywords
+    // remove from list
     deletedKeywords.splice(index, 1)
     this.setState({
       anchorEl: null,
@@ -267,9 +255,10 @@ class SituationsKeywords extends React.Component {
     const negativeKeywords = this.props.facetData.selectedNegativeKeywords
     const positiveKeywords = this.props.facetData.selectedPositiveKeywords
     positiveKeywords.push(item)
-    this.props.setSituationKeywords({positiveKeywords, negativeKeywords})  
+    this.props.setSituationKeywords({ positiveKeywords, negativeKeywords })
     this.props.fetchSituationResults()
   }
+
   handleMenuButtonClick = event => {
     this.setState({ anchorEl: event.currentTarget })
   };
@@ -278,117 +267,106 @@ class SituationsKeywords extends React.Component {
     this.setState({ anchorEl: null })
   }
 
-  addKeywords = (e) => {
+  handleAddKeywords = e => {
     // map includes "holes" from the sparse array
     const positiveKeywords = this.props.facetData.selectedPositiveKeywords
     const negativeKeywords = this.props.facetData.selectedNegativeKeywords
-    this.state.itemState.map( (i, index) => {
-      if(i != undefined) {
-        if(i == 1) {
+    this.state.itemState.map((i, index) => {
+      if (i !== undefined) {
+        if (i === 1) {
           positiveKeywords.push(this.state.treeData[index])
-        }
-        else {
+        } else {
           negativeKeywords.push(this.state.treeData[index])
         }
-  
       }
     })
-    this.setState({ itemState: []})
-    this.props.setSituationKeywords({positiveKeywords, negativeKeywords})    
+    this.setState({ itemState: [] })
+    this.props.setSituationKeywords({ positiveKeywords, negativeKeywords })
     this.props.fetchSituationResults()
   }
 
-  render () {    
-    const {selectedKeywords, isFetching, classes, perspective, facetData} = this.props
-    const {selectedKeyword, deletedKeywords, anchorEl, treeData} = this.state    
+  render () {
+    const { isFetching, classes, perspective, facetData } = this.props
+    const { deletedKeywords, anchorEl, treeData } = this.state
     const deletedKeywordsOpen = Boolean(anchorEl)
     return (
       <>
-      {isFetching ? (
-        <div className={classes.spinnerContainer}>
-          <CircularProgress style={{ color: purple[500] }} thickness={5} />
-        </div>
-      ) : (
-          <>                      
-
-              <div className={classes.headingContainer}>
-                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.selected`)}:</Typography>
-                {deletedKeywords.length > 0 &&
-              <>
-                <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
-                  <IconButton
-                    aria-label={'test'}
-                    aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}
-                    aria-haspopup='true'
-                    onClick={this.handleMenuButtonClick}
+        {isFetching ? (
+          <div className={classes.spinnerContainer}>
+            <CircularProgress style={{ color: purple[500] }} thickness={5} />
+          </div>
+        ) : (
+          <>
+            <div className={classes.headingContainer}>
+              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.selected`)}:</Typography>
+              {deletedKeywords.length > 0 &&
+                <>
+                  <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
+                    <IconButton
+                      aria-label='test'
+                      aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}
+                      aria-haspopup='true'
+                      onClick={this.handleMenuButtonClick}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    id='facet-option-menu'
+                    anchorEl={anchorEl}
+                    open={deletedKeywordsOpen}
+                    onClose={this.handleMenuClose}
                   >
-                    <MoreVertIcon />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  id='facet-option-menu'     
-                  anchorEl={anchorEl}             
-                  open={deletedKeywordsOpen}
-                  onClose={this.handleMenuClose}
-                >
-                  {this.getDeletedKeywordButtons()}
-                </Menu>
-              </>} 
-              </div>
-              <div>
-                {facetData.selectedPositiveKeywords.map( (item, index) => {
-                  const key = item
-                  const icon = <AddIcon/>
-
-                  return (
-                      <Chip
-                        key={item.uri}
-                        icon={icon}
-                        label={item.prefLabel}
-                        className={classes.chip}
-                       onDelete={ () => this.handleDelete(item)}
-                        color='primary'
-                      />
-                  )
-                })}
-                {facetData.selectedNegativeKeywords.map( (item, index) => {
-                  const key = item
-                  const icon = <RemoveIcon/>
-
-                  return (
-                      <Chip
-                        key={item.uri}
-                        icon={icon}
-                        label={item.prefLabel}
-                        className={classes.chip}
-                        onDelete={ () => this.handleDelete(item)}
-                        color='secondary'
-                      />
-                  )
-                })}                
-                 
-              </div>
-
-              <div>
+                    {this.getDeletedKeywordButtons()}
+                  </Menu>
+                </>}
+            </div>
+            <div>
+              {facetData.selectedPositiveKeywords.map((item, index) => {
+                // const key = item
+                const icon = <AddIcon />
+                return (
+                  <Chip
+                    key={item.uri}
+                    icon={icon}
+                    label={item.prefLabel}
+                    className={classes.chip}
+                    onDelete={() => this.handleDelete(item)}
+                    color='primary'
+                  />
+                )
+              })}
+              {facetData.selectedNegativeKeywords.map((item, index) => {
+                // const key = item
+                const icon = <RemoveIcon />
+                return (
+                  <Chip
+                    key={item.uri}
+                    icon={icon}
+                    label={item.prefLabel}
+                    className={classes.chip}
+                    onDelete={() => this.handleDelete(item)}
+                    color='secondary'
+                  />
+                )
+              })}
+            </div>
+            <div>
               <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggested`)}:</Typography>
               <div>
                 {this.getUpdateButton()}
-
-              </div>              
+              </div>
               <List>
-                {treeData.map( (e, index) => {
+                {treeData.map((e, index) => {
                   return this.getKeywordListItem(e, index)
-                  
                 })}
               </List>
-
-              </div>
-
+            </div>
+          </>
+        )}
       </>
-
-    )}
-  </>
-    )}
+    )
+  }
 }
 
 export default withStyles(styles)(SituationsKeywords)

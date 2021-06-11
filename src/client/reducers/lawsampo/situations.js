@@ -3,7 +3,6 @@ import {
   updateRowsPerPage
 } from '../general/helpers'
 
-
 export const INITIAL_STATE = {
   facetedSearchHeaderExpanded: true,
   facetUpdateID: 0,

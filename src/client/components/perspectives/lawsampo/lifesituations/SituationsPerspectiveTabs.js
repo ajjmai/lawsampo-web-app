@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -20,33 +20,29 @@ const styles = () => ({
  */
 class SituationsPerspectiveTabs extends React.Component {
   constructor (props) {
-    super(props)        
-    const value = this.pathnameToValue(this.props.routeProps.location.pathname)    
+    super(props)
+    const value = this.pathnameToValue(this.props.routeProps.location.pathname)
     this.state = { value }
   }
 
   componentDidMount = () => {
     const newPath = this.props.routeProps.location.pathname
     let page = 'statutes'
-    if(newPath.endsWith('cases'))
-      page ='cases'
-    this.props.updateResultType({resultType: page})
-
-
+    if (newPath.endsWith('cases')) { page = 'cases' }
+    this.props.updateResultType({ resultType: page })
   }
 
-  componentDidUpdate = prevProps => {    
+  componentDidUpdate = prevProps => {
     const newPath = this.props.routeProps.location.pathname
-    const oldPath = prevProps.routeProps.location.pathname    
+    const oldPath = prevProps.routeProps.location.pathname
     if (newPath !== oldPath) {
       let page = 'statutes'
-      if(newPath.endsWith('cases'))
-        page ='cases'
-      this.props.updateResultType({resultType: page})
-      
-      if(this.props.facetData.query !== '' || this.props.facetData.selectedSituation != null) {        
+      if (newPath.endsWith('cases')) { page = 'cases' }
+      this.props.updateResultType({ resultType: page })
+
+      if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation != null) {
         this.props.fetchSituationResults()
-      }      
+      }
       this.setState({ value: this.pathnameToValue(newPath) })
     }
   }
@@ -96,8 +92,5 @@ class SituationsPerspectiveTabs extends React.Component {
     )
   }
 }
-
-
-
 
 export default withStyles(styles)(SituationsPerspectiveTabs)

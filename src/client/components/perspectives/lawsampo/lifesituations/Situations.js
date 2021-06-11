@@ -26,7 +26,6 @@ const Situations = props => {
           <SituationsResultTable
             perspective={perspective}
             isFetching={props.facetData.isFetching}
-            
             fetchSituationResults={props.fetchSituationResults}
             data={props.facetResults}
             columns={props.facetResults.statutesProperties}

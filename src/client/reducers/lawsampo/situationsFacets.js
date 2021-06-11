@@ -144,16 +144,15 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
         selectedPositiveKeywords: action.positiveKeywords,
         selectedNegativeKeywords: action.negativeKeywords
       }
-    case 'REMOVE_SITUATION_KEYWORD':
+    case 'REMOVE_SITUATION_KEYWORD': {
       const pos = state.selectedPositiveKeywords
       const neg = state.selectedNegativeKeywords
       let itemIndex = findIndex(pos, { uri: action.keyword.uri })
-      if(itemIndex >= 0) {
+      if (itemIndex >= 0) {
         pos.splice(itemIndex, 1)
-      } 
-      else {
+      } else {
         itemIndex = findIndex(neg, { uri: action.keyword.uri })
-        if(itemIndex >= 0) {
+        if (itemIndex >= 0) {
           neg.splice(itemIndex, 1)
         }
       }
@@ -163,6 +162,7 @@ const situationsFacets = (state = INITIAL_STATE, action) => {
         selectedPositiveKeywords: pos,
         selectedNegativeKeywords: neg
       }
+    }
     case 'CLEAR_ALL':
       return {
         ...state,
