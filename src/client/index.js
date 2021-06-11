@@ -29,7 +29,7 @@ if (Object.prototype.hasOwnProperty.call(availableLocales, localeFromUrl)) {
   locale = defaultLocale
   const { pathname, hash } = window.location
   const newPathname = updateLocaleToPathname({
-    pathname: pathname,
+    pathname,
     locale,
     replaceOld: false
   })
