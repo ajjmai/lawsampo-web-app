@@ -1,19 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 // import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
-import ContextualContent from '../../main_layout/ContextualContent'
 // import Network from '../../facet_results/Network'
+// import ApexChart from '../../facet_results/ApexChart'
 import Export from '../../facet_results/Export'
+// import Recommendations from './Recommendations'
 // import { coseLayout, cytoscapeStyle, preprocess } from '../../../configs/lawsampo/Cytoscape.js/NetworkConfig'
 // import { createMultipleLineChartData } from '../../../configs/lawsampo/ApexCharts/LineChartConfig'
 import { Route, Redirect } from 'react-router-dom'
 // import { has } from 'lodash'
-// import { arrayToObject } from '../../../helpers/helpers'
+import ContextualContent from '../../main_layout/ContextualContent'
 
 const styles = () => ({
   root: {
@@ -43,7 +45,7 @@ class InstanceHomePage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      localID: []
+      localID: null
     }
   }
 
@@ -54,6 +56,11 @@ class InstanceHomePage extends React.Component {
     const prevPathname = prevProps.routeProps.location.pathname
     const currentPathname = this.props.routeProps.location.pathname
     if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+      this.fetchTableData()
+    }
+    // handle browser's back button
+    const localID = this.getLocalIDFromURL()
+    if (this.state.localID !== localID) {
       this.fetchTableData()
     }
     if (this.props.resultClass === 'caselaw') {
@@ -135,17 +142,15 @@ class InstanceHomePage extends React.Component {
     const { fetching, instanceTableExternalData } = perspectiveState
     let { instanceTableData } = perspectiveState
     const resultClass = perspectiveConfig.id
+    const defaultInstancePageTab = perspectiveConfig.defaultInstancePageTab
+      ? perspectiveConfig.defaultInstancePageTab : 'table'
     let hasTableData = this.hasTableData()
-    let defaultTab = 'table'
     if (this.props.resultClass === 'caselaw') {
       // Wait until results from SPARQL endpoint AND external API have arrived
       hasTableData = this.hasTableData() && instanceTableExternalData
       if (hasTableData) {
         instanceTableData.similarCourtDecicions = instanceTableExternalData.length > 0 ? this.mapDocuments(instanceTableExternalData) : '-'
       }
-    }
-    if (resultClass === 'statutes' || resultClass === 'caselaw') {
-      defaultTab = 'content'
     }
     if (resultClass === 'caselaw' && hasTableData) {
       const abstractData = instanceTableData.abstract
@@ -173,8 +178,8 @@ class InstanceHomePage extends React.Component {
           screenSize={screenSize}
           layoutConfig={layoutConfig}
         />
-        <div className={classes.content}>
-          {fetching &&
+        <Paper square className={classes.content}>
+          {fetching && !hasTableData &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
@@ -189,7 +194,13 @@ class InstanceHomePage extends React.Component {
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
-                render={routeProps => <Redirect to={{ pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/${defaultTab}`, hash: routeProps.location.hash }} />}
+                render={routeProps =>
+                  <Redirect
+                    to={{
+                      pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/${defaultInstancePageTab}`,
+                      hash: routeProps.location.hash
+                    }}
+                  />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/content`, '/iframe.html']} // support also rendering in Storybook
@@ -222,10 +233,11 @@ class InstanceHomePage extends React.Component {
                     sparqlQuery={this.props.sparqlQuery}
                     pageType='instancePage'
                     id={instanceTableData.id}
+                    layoutConfig={layoutConfig}
                   />}
               />
             </>}
-        </div>
+        </Paper>
       </div>
     )
   }

@@ -19,6 +19,8 @@ export const perspectiveConfig = [
     frontPageImage: statutesImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
+    defaultTab: 'table',
+    defaultInstancePageTab: 'content',
     tabs: [
       {
         id: 'table',
@@ -54,6 +56,8 @@ export const perspectiveConfig = [
     frontPageImage: sectionsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
+    defaultTab: 'table',
+    // defaultInstancePageTab: no instance pages for sections
     tabs: [
       {
         id: 'table',
@@ -65,26 +69,16 @@ export const perspectiveConfig = [
         value: 1,
         icon: <ArrowForwardIcon />
       }
-    ],
-    instancePageTabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-
-      {
-        id: 'export',
-        value: 1,
-        icon: <ArrowForwardIcon />
-      }
     ]
+    // instancePageTabs: no instance pages for sections
   },
   {
     id: 'caselaw',
     frontPageImage: caselawImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
+    defaultTab: 'table',
+    defaultInstancePageTab: 'content',
     tabs: [
       {
         id: 'table',

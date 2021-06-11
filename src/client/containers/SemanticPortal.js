@@ -600,9 +600,9 @@ const SemanticPortal = props => {
                 <TextPage>
                   {intl.getHTML('aboutThePortalPartOne')}
                   <KnowledgeGraphMetadataTable
-                    resultClass='perspective1KnowledgeGraphMetadata'
+                    resultClass='lawSampoKnowledgeGraphMetadata'
                     fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                    knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
+                    knowledgeGraphMetadata={props.statutes.knowledgeGraphMetadata}
                   />
                   {intl.getHTML('aboutThePortalPartTwo')}
                 </TextPage>
