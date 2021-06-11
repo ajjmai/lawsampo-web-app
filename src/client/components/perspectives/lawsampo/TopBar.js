@@ -17,37 +17,34 @@ import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
-import { showLanguageButton, feedbackLink } from '../../../configs/lawsampo/GeneralConfig'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
   },
-  toolbar: {
+  topBarToolbar: props => ({
+    minHeight: props.layoutConfig.topBar.reducedHeight,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      minHeight: props.layoutConfig.topBar.defaultHeight
+    },
     paddingLeft: theme.spacing(1.5),
     paddingRight: theme.spacing(1.5)
-  },
-  sectionDesktop: {
+  }),
+  sectionDesktop: props => ({
     display: 'none',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'flex'
     }
-  },
+  }),
   link: {
     textDecoration: 'none'
   },
-  sectionMobile: {
+  sectionMobile: props => ({
     display: 'flex',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'none'
     }
-  },
-  homeButtonText: {
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem'
-    }
-  },
+  }),
   appBarButton: {
     whiteSpace: 'nowrap',
     color: 'white !important',
@@ -61,11 +58,42 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     borderLeft: '2px solid white'
   },
-  secoLogo: {
+  secoLogo: props => ({
     marginLeft: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'none'
     }
+  }),
+  secoLogoImage: props => ({
+    height: 32,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: 50
+    }
+  }),
+  mainLogo: props => ({
+    height: 23,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: 40
+    },
+    marginRight: theme.spacing(1)
+  }),
+  mainLogoButtonRoot: {
+    paddingLeft: 0,
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 48
+    }
+  },
+  mainLogoButtonLabel: {
+    justifyContent: 'left'
+  },
+  mainLogoTypography: {
+    whiteSpace: 'nowrap',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem'
+    }
+    // [theme.breakpoints.down('xs')]: {
+    //     display: 'none'
+    // }
   }
 }))
 
@@ -77,17 +105,17 @@ const TopBar = props => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
   const { perspectives, currentLocale, availableLocales /* rootUrl */ } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
   const handleMobileMenuOpen = event => setMobileMoreAnchorEl(event.currentTarget)
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null)
+  // const clientFSMode = props.location.pathname.indexOf('clientFS') !== -1
 
   // https://material-ui.com/components/buttons/#third-party-routing-library
   const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />)
   const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
 
   const renderMobileMenuItem = perspective => {
-    const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
-    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
+    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -110,6 +138,7 @@ const TopBar = props => {
           key={perspective.id}
           component={AdapterLink}
           to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          onClick={handleMobileMenuClose}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
@@ -118,8 +147,7 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
-    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
+    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -162,17 +190,26 @@ const TopBar = props => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {perspectives.map(perspective => renderMobileMenuItem(perspective))}
+      {perspectives.map(perspective => perspective.isHidden ? null : renderMobileMenuItem(perspective))}
       <Divider />
       {renderMobileMenuItem({
         id: 'feedback',
-        externalUrl: feedbackLink,
+        externalUrl: props.layoutConfig.topBar.feedbackLink,
         label: intl.get('topBar.feedback')
       })}
+      {/* <MenuItem
+        key='feedback'
+        component={AdapterLink}
+        to={`${props.rootUrl}/feedback`}
+        onClick={handleMobileMenuClose}
+      >
+        {intl.get('topBar.feedback').toUpperCase()}
+      </MenuItem> */}
       <MenuItem
         key={0}
         component={AdapterLink}
         to={`${props.rootUrl}/about`}
+        onClick={handleMobileMenuClose}
       >
         {intl.get('topBar.info.aboutThePortal').toUpperCase()}
       </MenuItem>
@@ -182,6 +219,7 @@ const TopBar = props => {
         href={intl.get('topBar.info.blogUrl')}
         target='_blank'
         rel='noopener noreferrer'
+        onClick={handleMobileMenuClose}
       >
         <MenuItem>
           {intl.get('topBar.info.blog').toUpperCase()}
@@ -191,6 +229,7 @@ const TopBar = props => {
         key='info'
         component={AdapterLink}
         to={`${props.rootUrl}/instructions`}
+        onClick={handleMobileMenuClose}
       >
         {intl.get('topBar.instructions').toUpperCase()}
       </MenuItem>
@@ -201,24 +240,34 @@ const TopBar = props => {
       {/* Add an empty Typography element to ensure that that the MuiTypography class is loaded for
          any lower level components that use MuiTypography class only in translation files */}
       <Typography />
-      <AppBar position='absolute'>
-        <Toolbar className={classes.toolbar}>
-          <Button component={AdapterLink} to='/'>
-            <Typography className={classes.homeButtonText} variant='h6'>{intl.get('appTitle.short')}</Typography>
+      <AppBar position='static'>
+        <Toolbar className={classes.topBarToolbar}>
+          <Button
+            component={AdapterLink} to='/'
+            classes={{
+              root: classes.mainLogoButtonRoot,
+              label: classes.mainLogoButtonLabel
+            }}
+          >
+            {/* <img className={classes.mainLogo} src={} /> */}
+            <Typography className={classes.mainLogoTypography} variant='h6'>
+              {props.xsScreen ? intl.get('appTitle.mobile') : intl.get('appTitle.short')}
+            </Typography>
           </Button>
-          {/* <TopBarSearchField
-            fetchFullTextResults={props.fetchFullTextResults}
-            clearResults={props.clearResults}
-            xsScreen={props.xsScreen}
-            rootUrl={rootUrl}
-          /> */}
+          {/* {!clientFSMode &&
+            <TopBarSearchField
+              fetchFullTextResults={props.fetchFullTextResults}
+              clearResults={props.clearResults}
+              xsScreen={props.xsScreen}
+              rootUrl={rootUrl}
+            />} */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {perspectives.map((perspective, index) => renderDesktopTopMenuItem(perspective, index))}
+            {perspectives.map((perspective, index) => perspective.isHidden ? null : renderDesktopTopMenuItem(perspective, index))}
             <div className={classes.appBarDivider} />
             {renderDesktopTopMenuItem({
               id: 'feedback',
-              externalUrl: feedbackLink,
+              externalUrl: props.layoutConfig.topBar.feedbackLink,
               label: intl.get('topBar.feedback')
             })}
             <TopBarInfoButton rootUrl={props.rootUrl} />
@@ -231,7 +280,7 @@ const TopBar = props => {
             >
               {intl.get('topBar.instructions')}
             </Button>
-            {showLanguageButton &&
+            {props.layoutConfig.topBar.showLanguageButton &&
               <TopBarLanguageButton
                 currentLocale={currentLocale}
                 availableLocales={availableLocales}
@@ -245,9 +294,16 @@ const TopBar = props => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Button><img src={secoLogo} /></Button>
+            <Button><img className={classes.secoLogoImage} src={secoLogo} /></Button>
           </a>
           <div className={classes.sectionMobile}>
+            {props.layoutConfig.topBar.showLanguageButton &&
+              <TopBarLanguageButton
+                currentLocale={currentLocale}
+                availableLocales={availableLocales}
+                loadLocales={props.loadLocales}
+                location={props.location}
+              />}
             <IconButton aria-haspopup='true' onClick={handleMobileMenuOpen} color='inherit'>
               <MoreIcon />
             </IconButton>
@@ -295,7 +351,8 @@ TopBar.propTypes = {
   /**
    * Root url of the application.
    */
-  rootUrl: PropTypes.string.isRequired
+  rootUrl: PropTypes.string.isRequired,
+  layoutConfig: PropTypes.object.isRequired
 }
 
 export default TopBar

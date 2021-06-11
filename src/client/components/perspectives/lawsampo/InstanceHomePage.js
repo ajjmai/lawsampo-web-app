@@ -20,11 +20,12 @@ const styles = () => ({
     width: '100%',
     height: '100%'
   },
-  content: {
+  content: props => ({
+    padding: 0,
     width: '100%',
-    height: 'calc(100% - 72px)',
+    height: `calc(100% - ${props.layoutConfig.tabHeight}px)`,
     overflow: 'auto'
-  },
+  }),
   spinnerContainer: {
     display: 'flex',
     width: '100%',
@@ -68,7 +69,10 @@ class InstanceHomePage extends React.Component {
     }
   }
 
-  hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
+  hasTableData = () => {
+    const { instanceTableData } = this.props.perspectiveState
+    return instanceTableData !== null && Object.values(instanceTableData).length >= 1
+  }
 
   // getLocalIDFromSemanticFinlexURI = () => {
   //   // Special treatment, because there are slashes in the localID of Semantic Finlex URI
@@ -93,22 +97,30 @@ class InstanceHomePage extends React.Component {
   }
 
   fetchTableData = () => {
-    const locationArr = this.props.routeProps.location.pathname.split('/')
-    let localID = locationArr.pop()
-    this.props.tabs.map(tab => {
-      if (localID === tab.id) {
-        localID = locationArr.pop() // pop again if tab id
-      }
-    })
+    const { perspectiveConfig } = this.props
+    const localID = this.getLocalIDFromURL()
     this.setState({ localID })
+    let uri = ''
     const base = 'http://ldf.fi/lawsampo'
-    const uri = `${base}/${localID}`
+    const resultClass = perspectiveConfig.id
+    uri = `${base}/${localID}`
     this.props.fetchByURI({
-      resultClass: this.props.resultClass,
+      resultClass,
       facetClass: null,
       variant: null,
       uri: uri
     })
+  }
+
+  getLocalIDFromURL = () => {
+    const locationArr = this.props.routeProps.location.pathname.split('/')
+    let localID = locationArr.pop()
+    this.props.perspectiveConfig.instancePageTabs.map(tab => {
+      if (localID === tab.id) {
+        localID = locationArr.pop() // pop again if tab id
+      }
+    })
+    return localID
   }
 
   getVisibleRows = rows => {
@@ -119,22 +131,24 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, tableExternalData, isLoading, resultClass, rootUrl } = this.props
+    const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize, layoutConfig } = this.props
+    const { fetching, instanceTableExternalData } = perspectiveState
+    let { instanceTableData } = perspectiveState
+    const resultClass = perspectiveConfig.id
     let hasTableData = this.hasTableData()
-    let { tableData } = this.props
     let defaultTab = 'table'
     if (this.props.resultClass === 'caselaw') {
       // Wait until results from SPARQL endpoint AND external API have arrived
-      hasTableData = this.hasTableData() && tableExternalData
+      hasTableData = this.hasTableData() && instanceTableExternalData
       if (hasTableData) {
-        tableData.similarCourtDecicions = tableExternalData.length > 0 ? this.mapDocuments(tableExternalData) : '-'
+        instanceTableData.similarCourtDecicions = instanceTableExternalData.length > 0 ? this.mapDocuments(instanceTableExternalData) : '-'
       }
     }
     if (resultClass === 'statutes' || resultClass === 'caselaw') {
       defaultTab = 'content'
     }
     if (resultClass === 'caselaw' && hasTableData) {
-      const abstractData = tableData.abstract
+      const abstractData = instanceTableData.abstract
       let abstractText
       if (Array.isArray(abstractData)) {
         if (abstractData[0].id) {
@@ -148,18 +162,19 @@ class InstanceHomePage extends React.Component {
         }
       }
       if (abstractText) {
-        tableData = { ...tableData, abstract: abstractText }
+        instanceTableData = { ...instanceTableData, abstract: abstractText }
       }
     }
     return (
       <div className={classes.root}>
         <PerspectiveTabs
           routeProps={this.props.routeProps}
-          tabs={this.props.tabs}
-          screenSize={this.props.screenSize}
+          tabs={perspectiveConfig.instancePageTabs}
+          screenSize={screenSize}
+          layoutConfig={layoutConfig}
         />
         <div className={classes.content}>
-          {isLoading &&
+          {fetching &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
@@ -180,14 +195,14 @@ class InstanceHomePage extends React.Component {
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/content`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
                   <ContextualContent
-                    data={tableData.contentHTMLAnnotated}
-                    tableOfContents={tableData.firstLevel}
-                    tableOfContentsConfig={this.props.properties.find(item => item.id === 'firstLevel')}
-                    hasParts={tableData.hasParts}
-                    hasChapters={tableData.hasChapters}
+                    data={instanceTableData.contentHTMLAnnotated}
+                    tableOfContents={instanceTableData.firstLevel}
+                    tableOfContentsConfig={perspectiveState.properties.find(item => item.id === 'firstLevel')}
+                    hasParts={instanceTableData.hasParts}
+                    hasChapters={instanceTableData.hasChapters}
                     HTMLParserTask='addAnnotationTooltips'
-                    referencedTerm={tableData.referencedTerm}
-                    wordcloudData={tableData.referencedTerm}
+                    referencedTerm={instanceTableData.referencedTerm}
+                    wordcloudData={instanceTableData.referencedTerm}
                     wordcloudMaxWords={40}
                   />}
               />
@@ -196,8 +211,8 @@ class InstanceHomePage extends React.Component {
                 render={() =>
                   <InstanceHomePageTable
                     resultClass={resultClass}
-                    data={tableData}
-                    properties={this.getVisibleRows(this.props.properties)}
+                    data={instanceTableData}
+                    properties={this.getVisibleRows(perspectiveState.properties)}
                   />}
               />
               <Route
@@ -206,7 +221,7 @@ class InstanceHomePage extends React.Component {
                   <Export
                     sparqlQuery={this.props.sparqlQuery}
                     pageType='instancePage'
-                    id={tableData.id}
+                    id={instanceTableData.id}
                   />}
               />
             </>}
@@ -217,27 +232,89 @@ class InstanceHomePage extends React.Component {
 }
 
 InstanceHomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-  fetchByURI: PropTypes.func.isRequired,
+  /**
+   * Faceted search configs and results of this perspective.
+   */
+  perspectiveState: PropTypes.object.isRequired,
+  /**
+    * Leaflet map config and external layers.
+    */
+  leafletMapState: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching paginated results.
+    */
+  fetchPaginatedResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching all results.
+    */
   fetchResults: PropTypes.func.isRequired,
-  resultClass: PropTypes.string.isRequired,
-  tableData: PropTypes.object,
-  tableExternalData: PropTypes.array,
-  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  resultUpdateID: PropTypes.number.isRequired,
-  sparqlQuery: PropTypes.string,
-  properties: PropTypes.array.isRequired,
-  tabs: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  routeProps: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired,
-  rootUrl: PropTypes.string.isRequired,
+  /**
+    * Redux action for fetching facet values for statistics.
+    */
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers.
+    */
   fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers via backend.
+    */
   fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  /**
+    * Redux action for clearing external GeoJSON layers.
+    */
   clearGeoJSONLayers: PropTypes.func.isRequired,
-  leafletMap: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching information about a single entity.
+    */
+  fetchByURI: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the page of paginated results.
+    */
+  updatePage: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the rows per page of paginated results.
+    */
+  updateRowsPerPage: PropTypes.func.isRequired,
+  /**
+    * Redux action for sorting the paginated results.
+    */
+  sortResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the active selection or config of a facet.
+    */
   showError: PropTypes.func.isRequired,
-  fetchSimilarDocumentsById: PropTypes.func.isRequired
+  /**
+    * Redux action for showing an error
+    */
+  updateFacetOption: PropTypes.func.isRequired,
+  /**
+    * Routing information from React Router.
+    */
+  routeProps: PropTypes.object.isRequired,
+  /**
+    * Perspective config.
+    */
+  perspective: PropTypes.object.isRequired,
+  /**
+    * State of the animation, used by TemporalMap.
+    */
+  animationValue: PropTypes.array.isRequired,
+  /**
+    * Redux action for animating TemporalMap.
+    */
+  animateMap: PropTypes.func.isRequired,
+  /**
+    * Current screen size.
+    */
+  screenSize: PropTypes.string.isRequired,
+  /**
+    * Root url of the application.
+    */
+  rootUrl: PropTypes.string.isRequired,
+  layoutConfig: PropTypes.object.isRequired
 }
+
+export const InstanceHomePageComponent = InstanceHomePage
 
 export default withStyles(styles)(InstanceHomePage)
