@@ -322,7 +322,7 @@ const SemanticPortal = props => {
           /> */}
           {/* routes for faceted search perspectives */}
           {perspectiveConfig.map(perspective => {
-            if (!has(perspective, 'externalUrl') && perspective.id !== 'placesClientFS') {
+            if (perspective.type === 'faceted-search') {
               return (
                 <React.Fragment key={perspective.id}>
                   <Route
@@ -532,6 +532,57 @@ const SemanticPortal = props => {
               />
             </Switch>
           )}
+          <Route
+            path={`${rootUrlWithLang}/situations/iterative-search`}
+            render={routeProps => {
+              const perspective = perspectiveConfig.find(p => p.id === 'situations')
+              return (
+                <>
+                  <InfoHeader
+                    resultClass={perspective.id}
+                    pageType='facetResults'
+                    expanded={props[perspective.id].facetedSearchHeaderExpanded}
+                    updateExpanded={props.updatePerspectiveHeaderExpanded}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
+                  />
+                  <Grid
+                    container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
+                      ? classes.perspectiveContainerHeaderExpanded
+                      : classes.perspectiveContainer}
+                  >
+                    <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                      <SituationsFacetBar
+                        perspective={perspective}
+                        fetchSituations={props.fetchSituations}
+                        facetData={props[`${perspective.id}Facets`]}
+                        updateSituationQuery={props.updateSituationQuery}
+                        updateSituationSelected={props.updateSituationSelected}
+                        addSituationKeyword={props.addSituationKeyword}
+                        setSituationKeywords={props.setSituationKeywords}
+                        removeSituationKeyword={props.removeSituationKeyword}
+                        clearAllSituations={props.clearAllSituations}
+                        fetchSituationResults={props.fetchSituationResults}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                      <Situations
+                        updateRowsPerPage={props.updateRowsPerPage}
+                        updateResultType={props.updateResultType}
+                        fetchSituationResults={props.fetchSituationResults}
+                        facetResults={props[`${perspective.id}`]}
+                        facetData={props[`${perspective.id}Facets`]}
+                        perspective={perspective}
+                        routeProps={routeProps}
+                        screenSize={screenSize}
+                        rootUrl={rootUrlWithLang}
+                      />
+                    </Grid>
+                  </Grid>
+                </>
+              )
+            }}
+          />
           {/* <Route
             path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
             render={routeProps =>

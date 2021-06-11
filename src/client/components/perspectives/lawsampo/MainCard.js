@@ -69,9 +69,8 @@ const MainCard = props => {
   const { perspective, cardHeadingVariant } = props
   const xsScreen = useMediaQuery(theme => theme.breakpoints.down('xs'))
   // const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
-  const externalPerspective = has(perspective, 'externalUrl')
+  const externalPerspective = perspective.type === 'external'
   const card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card'
-  const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
 
   return (
     <Grid
@@ -79,7 +78,7 @@ const MainCard = props => {
       key={perspective.id}
       item xs={12} sm={3} // optimized for four perspectives
       component={externalPerspective ? 'a' : Link}
-      to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
+      to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${perspective.type}`}
       container={xsScreen}
       href={externalPerspective ? perspective.externalUrl : null}
       target={externalPerspective ? '_blank' : null}

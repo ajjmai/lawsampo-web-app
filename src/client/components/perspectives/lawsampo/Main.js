@@ -92,7 +92,7 @@ const Main = props => {
   const internalPerspectives = []
   const externalPerspectives = []
   perspectives.map(perspective => {
-    if (perspective.externalUrl) {
+    if (perspective.type === 'external') {
       externalPerspectives.push(perspective)
     } else {
       internalPerspectives.push(perspective)

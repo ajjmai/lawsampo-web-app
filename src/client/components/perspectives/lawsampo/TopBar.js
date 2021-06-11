@@ -15,7 +15,6 @@ import { Link, NavLink } from 'react-router-dom'
 import TopBarInfoButton from '../../main_layout/TopBarInfoButton'
 import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
-import { has } from 'lodash'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
 
 const useStyles = makeStyles(theme => ({
@@ -115,8 +114,7 @@ const TopBar = props => {
   const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
 
   const renderMobileMenuItem = perspective => {
-    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
-    if (has(perspective, 'externalUrl')) {
+    if (perspective.type === 'external') {
       return (
         <a
           className={classes.link}
@@ -137,7 +135,7 @@ const TopBar = props => {
         <MenuItem
           key={perspective.id}
           component={AdapterLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          to={`${props.rootUrl}/${perspective.id}/${perspective.type}`}
           onClick={handleMobileMenuClose}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
@@ -147,8 +145,7 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
-    if (has(perspective, 'externalUrl')) {
+    if (perspective.type === 'external') {
       return (
         <a
           className={classes.link}
@@ -172,7 +169,7 @@ const TopBar = props => {
           key={perspective.id}
           className={classes.appBarButton}
           component={AdapterNavLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          to={`${props.rootUrl}/${perspective.id}/${perspective.type}`}
           isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/${perspective.id}`)}
           activeClassName={classes.appBarButtonActive}
         >
@@ -194,6 +191,7 @@ const TopBar = props => {
       <Divider />
       {renderMobileMenuItem({
         id: 'feedback',
+        type: 'external',
         externalUrl: props.layoutConfig.topBar.feedbackLink,
         label: intl.get('topBar.feedback')
       })}
@@ -267,6 +265,7 @@ const TopBar = props => {
             <div className={classes.appBarDivider} />
             {renderDesktopTopMenuItem({
               id: 'feedback',
+              type: 'external',
               externalUrl: props.layoutConfig.topBar.feedbackLink,
               label: intl.get('topBar.feedback')
             })}

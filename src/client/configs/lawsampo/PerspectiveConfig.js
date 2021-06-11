@@ -16,6 +16,7 @@ import situationsImage from '../../img/lawsampo/contextual_search_cropped.jpg'
 export const perspectiveConfig = [
   {
     id: 'statutes',
+    type: 'faceted-search',
     frontPageImage: statutesImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
@@ -53,6 +54,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'sections',
+    type: 'faceted-search',
     frontPageImage: sectionsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
@@ -74,6 +76,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselaw',
+    type: 'faceted-search',
     frontPageImage: caselawImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['jenaText']),
@@ -116,7 +119,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'situations',
-    searchMode: 'iterative-search',
+    type: 'iterative-search',
     frontPageImage: situationsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['situationFilters']),
@@ -148,6 +151,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'caselawfinder',
+    type: 'external',
     frontPageImage: null,
     externalUrl: 'https://data.finlex.fi/document-finder'
   }
