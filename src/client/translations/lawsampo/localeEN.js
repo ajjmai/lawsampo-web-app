@@ -32,6 +32,7 @@ export default {
   },
   facetBar: {
     results: 'Results',
+    filters: 'Filters',
     activeFilters: 'Active filters:',
     defaultMissingValueLabel: 'Unknown',
     removeAllFilters: 'Remove all',

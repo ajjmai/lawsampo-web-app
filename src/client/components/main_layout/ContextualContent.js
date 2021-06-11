@@ -22,15 +22,17 @@ const useStyles = makeStyles(theme => ({
   mainContainer: props => ({
     margin: 0,
     maxWidth: 1600,
+    marginTop: theme.spacing(0.5),
     flexWrap: 'wrap-reverse',
     [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
-      height: '100%'
+      height: `calc(100% - ${theme.spacing(0.5)}`
     }
   }),
   gridItem: props => ({
     [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
       height: '100%'
     },
+    paddingTop: '0px !important',
     paddingBottom: '0px !important'
   }),
   textOuterContainer: props => ({
@@ -38,7 +40,8 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     marginTop: -8,
     [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
-      height: '100%'
+      height: '100%',
+      marginTop: 'initial'
     }
   }),
   textInnerContainer: {
