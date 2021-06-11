@@ -83,6 +83,7 @@ const Caselaw = props => {
             seriesTitle={intl.get(`perspectives.${perspective.id}.courtDecisionsByYear.seriesTitle`)}
             resultClass='courtDecisionsByYear'
             facetClass='caselaw'
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -95,6 +96,7 @@ const Caselaw = props => {
             pageType='facetResults'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
+            layoutConfig={props.layoutConfig}
           />}
       />
     </>
