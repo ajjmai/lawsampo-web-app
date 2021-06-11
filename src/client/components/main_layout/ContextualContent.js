@@ -19,30 +19,51 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
     backgroundColor: '#bdbdbd'
   },
-  mainContainer: {
-    marginTop: theme.spacing(0.25),
-    height: 'calc(100% - 30px)',
-    maxWidth: 1600
+  mainContainer: props => ({
+    margin: 0,
+    maxWidth: 1600,
+    flexWrap: 'wrap-reverse',
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      height: '100%'
+    }
+  }),
+  gridItem: props => ({
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      height: '100%'
+    },
+    paddingBottom: '0px !important'
+  }),
+  textOuterContainer: props => ({
+    height: 400,
+    overflow: 'auto',
+    marginTop: -8,
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      height: '100%'
+    }
+  }),
+  textInnerContainer: {
+    padding: theme.spacing(2)
   },
-  gridItem: {
-    height: '100%'
-  },
-  text: {
+  tableOfContents: props => ({
     padding: theme.spacing(2),
-    height: '100%',
-    overflow: 'auto'
-  },
-  tableOfContents: {
-    padding: theme.spacing(2),
-    height: 'calc(60% - 24px)',
-    overflow: 'auto'
-  },
-  wordCloud: {
+    overflow: 'auto',
+    height: 180,
+    top: theme.spacing(0.5),
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      height: 'calc(60% - 72px)'
+    }
+  }),
+  wordCloud: props => ({
     marginTop: theme.spacing(1),
     padding: theme.spacing(2),
-    height: 'calc(40% - 16px)',
-    overflow: 'auto'
-  },
+    overflow: 'auto',
+    height: 200,
+    display: 'none',
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      height: '40%',
+      display: 'block'
+    }
+  }),
   wordCloudContainer: {
     width: '100%'
   },
@@ -59,7 +80,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ContextualContent = props => {
-  const classes = useStyles()
+  const classes = useStyles(props)
   let { data } = props
   const { tableOfContents, hasParts, hasChapters, wordcloudData, wordcloudMaxWords } = props
   const {
@@ -91,12 +112,14 @@ const ContextualContent = props => {
   return (
     <div className={classes.root}>
       <Grid className={classes.mainContainer} container spacing={1}>
-        <Grid className={classes.gridItem} item xs={8}>
-          <Paper className={classes.text}>
-            {data}
+        <Grid className={classes.gridItem} item xs={12} sm={12} md={8}>
+          <Paper className={classes.textOuterContainer}>
+            <div className={classes.textInnerContainer}>
+              {data}
+            </div>
           </Paper>
         </Grid>
-        <Grid className={classes.gridItem} item xs={4}>
+        <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
           {tableOfContents &&
             <Paper className={classes.tableOfContents}>
               <>
@@ -128,7 +151,6 @@ const ContextualContent = props => {
           </Paper>
         </Grid>
       </Grid>
-
     </div>
   )
 }

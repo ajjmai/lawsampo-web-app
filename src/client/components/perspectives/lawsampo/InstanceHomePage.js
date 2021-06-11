@@ -215,6 +215,7 @@ class InstanceHomePage extends React.Component {
                     referencedTerm={instanceTableData.referencedTerm}
                     wordcloudData={instanceTableData.referencedTerm}
                     wordcloudMaxWords={40}
+                    layoutConfig={layoutConfig}
                   />}
               />
               <Route
@@ -224,6 +225,7 @@ class InstanceHomePage extends React.Component {
                     resultClass={resultClass}
                     data={instanceTableData}
                     properties={this.getVisibleRows(perspectiveState.properties)}
+                    layoutConfig={layoutConfig}
                   />}
               />
               <Route
