@@ -118,13 +118,13 @@ export const judgementPropertiesInstancePage = `
   }
   UNION
   {
-    ?id lss:referenceToCourtDecision ?referencedCourtDecision__id .
+    ?id lss:reference_to_court_decision ?referencedCourtDecision__id .
     BIND(?referencedCourtDecision_id AS ?referencedCourtDecision__prefLabel)
     BIND(CONCAT("/caselaw/page/", REPLACE(STR(?rcl__id), "http://ldf.fi/lawsampo/", "")) AS ?referencedCourtDecision__dataProviderUrl)
   }
   UNION
   {
-    ?id lss:referenceToLegislation ?referencedStatute__id .
+    ?id lss:reference_to_legislation ?referencedStatute__id .
     BIND(?referencedStatute__id AS ?referencedStatute__prefLabel)
     BIND(?referencedStatute__id AS ?referencedStatute__dataProviderUrl)
   }

@@ -110,8 +110,8 @@ export const caselawPerspectiveConfig = {
     referencedStatute: {
       id: 'referencedStatute',
       facetValueFilter: '',
-      labelPath: 'lss:referenceToStatute/skos:prefLabel',
-      predicate: 'lss:referenceToStatute',
+      labelPath: 'lss:reference_to_statute/skos:prefLabel',
+      predicate: 'lss:reference_to_statute',
       type: 'hierarchical',
       parentProperty: 'eli:type_document',
       facetLabelFilter: `
