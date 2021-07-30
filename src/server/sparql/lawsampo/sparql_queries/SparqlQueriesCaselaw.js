@@ -11,16 +11,16 @@ export const judgementPropertiesFacetResults = `
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
   }
-  UNION 
+  UNION
   {
-    ?id lss:isRealizedBy ?expP .
+    ?id lss:is_realized_by ?expP .
     ?expP dcterms:language '<LANG>' ;
           dcterms:abstract ?abstract__text .
     BIND('abstractPrimary' as ?abstract__id)
   }
-  UNION 
+  UNION
   {
-    ?id lss:isRealizedBy ?expS .
+    ?id lss:is_realized_by ?expS .
     ?expS dcterms:language '<LANG_SECONDARY>' ;
           dcterms:abstract ?abstract__text .
     BIND('abstractSecondary' as ?abstract__id)
@@ -54,16 +54,16 @@ export const judgementPropertiesInstancePage = `
     BIND(?id as ?uri__prefLabel)
     BIND(?id as ?uri__dataProviderUrl)
   }
-  UNION 
+  UNION
   {
-    ?id lss:isRealizedBy ?expP .
+    ?id lss:is_realized_by ?expP .
     ?expP dcterms:language '<LANG>' ;
           dcterms:abstract ?abstract__text .
     BIND('abstractPrimary' as ?abstract__id)
   }
-  UNION 
+  UNION
   {
-    ?id lss:isRealizedBy ?expS .
+    ?id lss:is_realized_by ?expS .
     ?expS dcterms:language '<LANG_SECONDARY>' ;
           dcterms:abstract ?abstract__text .
     BIND('abstractSecondary' as ?abstract__id)
@@ -72,19 +72,19 @@ export const judgementPropertiesInstancePage = `
   {
     BIND(<ID> as ?id)
     OPTIONAL {
-      ?id lss:isRealizedBy ?expPrimary .
+      ?id lss:is_realized_by ?expPrimary .
       ?expPrimary dcterms:language '<LANG>' ;
                   lss:annotatedHtml ?htmlPrimary .
     }
     OPTIONAL {
-      ?id lss:isRealizedBy ?expSecondary .
+      ?id lss:is_realized_by ?expSecondary .
       ?expSecondary dcterms:language '<LANG_SECONDARY>' ;
-                    lss:html ?htmlSecondary  # Swedish HTML's are not annotated    
-    } 
+                    lss:html ?htmlSecondary  # Swedish HTML's are not annotated
+    }
     BIND(COALESCE(?htmlPrimary, ?htmlSecondary) as ?html_)
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
-  UNION 
+  UNION
   {
     ?id lss:referencedTerms/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
     ?referencedTerm__id skos:prefLabel ?prefLabel_ .
@@ -128,12 +128,12 @@ export const judgementPropertiesInstancePage = `
     BIND(?referencedStatute__id AS ?referencedStatute__prefLabel)
     BIND(?referencedStatute__id AS ?referencedStatute__dataProviderUrl)
   }
-  UNION 
+  UNION
   {
     ?id lss:situation_category ?situationCategory__id .
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
   }
-   UNION 
+   UNION
   {
     ?id lss:subject_category ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
@@ -154,8 +154,8 @@ export const judgementsByYearQuery = `
     BIND(year(xsd:dateTime(?decisionDate)) as ?year)
     FILTER (?year > 1700 && ?year <= year(NOW()))
     BIND(STR(?year) as ?category)
-  } 
-  GROUP BY ?category 
+  }
+  GROUP BY ?category
   ORDER BY ?category
 `
 
@@ -164,7 +164,7 @@ export const judgementNetworkLinksQuery = `
   WHERE {
     VALUES ?id { <ID> }
     ?id sfcl:referenceToCaseLaw ?target .
-  } 
+  }
 `
 
 export const judgementNetworkNodesQuery = `

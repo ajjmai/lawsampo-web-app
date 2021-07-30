@@ -25,13 +25,13 @@ export const caselawPerspectiveConfig = {
   facets: {
     jenaText: {
       id: 'jenaText',
-      textQueryPredicate: 'lss:isRealizedBy',
+      textQueryPredicate: 'lss:is_realized_by',
       textQueryProperty: '',
       type: 'text'
     },
     prefLabel: {
       id: 'prefLabel',
-      labelPath: 'lss:isRealizedBy/skos:prefLabel'
+      labelPath: 'lss:is_realized_by/skos:prefLabel'
     },
     ecli: {
       id: 'ecli',
@@ -39,7 +39,7 @@ export const caselawPerspectiveConfig = {
     },
     abstract: {
       id: 'abstract',
-      labelPath: 'lss:isRealizedBy/dcterms:abstract'
+      labelPath: 'lss:is_realized_by/dcterms:abstract'
     },
     court: {
       id: 'court',
@@ -90,7 +90,7 @@ export const caselawPerspectiveConfig = {
     subjectCategory: {
       id: 'subjectCategory',
       facetValueFilter: `
-       
+
       `,
       labelPath: 'lss:subject_category/skos:prefLabel',
       predicate: 'lss:subject_category',
@@ -101,7 +101,7 @@ export const caselawPerspectiveConfig = {
     situationCategory: {
       id: 'situationCategory',
       facetValueFilter: `
-       
+
       `,
       labelPath: 'lss:situation_category/skos:prefLabel',
       predicate: 'lss:situation_category',
@@ -121,8 +121,8 @@ export const caselawPerspectiveConfig = {
     language: {
       id: 'language',
       facetValueFilter: '',
-      labelPath: 'lss:isRealizedBy/dcterms:language',
-      predicate: 'lss:isRealizedBy/dcterms:language',
+      labelPath: 'lss:is_realized_by/dcterms:language',
+      predicate: 'lss:is_realized_by/dcterms:language',
       type: 'list',
       literal: true
     }
