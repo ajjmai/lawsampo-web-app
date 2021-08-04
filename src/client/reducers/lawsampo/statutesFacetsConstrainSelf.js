@@ -5,9 +5,24 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
-    documentType: {
-      id: 'documentType',
-      label: 'Document type',
+    jenaText: {
+      id: 'jenaText',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'one',
+      filterType: 'textFilter',
+      textFilter: null
+    },
+    statuteType: {
+      id: 'statuteType',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -16,32 +31,15 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
+      pieChartButton: true,
       isFetching: false,
       searchField: false,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null
     },
-    statuteType: {
-      id: 'statuteType',
-      label: 'Statute type',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'four',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
-    statuteYear: {
-      id: 'statuteYear',
-      label: 'Statute year',
+    enforcementDate: {
+      id: 'enforcementDate',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -50,16 +48,15 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: false,
       spatialFilterButton: false,
+      pieChartButton: false,
       isFetching: false,
-      searchField: false,
-      containerClass: 'three',
-      type: 'integer',
-      filterType: 'integerFilter',
-      integerFilter: null
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
     },
-    euDirective: {
-      id: 'euDirective',
-      label: 'EU directive',
+    subjectCategory: {
+      id: 'subjectCategory',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -68,8 +65,43 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
+      pieChartButton: true,
       isFetching: false,
-      searchField: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    situationCategory: {
+      id: 'situationCategory',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    euDirective: {
+      id: 'euDirective',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null
