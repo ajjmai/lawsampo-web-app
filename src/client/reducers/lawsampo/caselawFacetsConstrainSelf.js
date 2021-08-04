@@ -5,6 +5,40 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
+    jenaText: {
+      id: 'jenaText',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'one',
+      filterType: 'textFilter',
+      textFilter: null,
+      priority: 1
+    },
+    referencedStatute: {
+      id: 'referencedStatute',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
     court: {
       id: 'court',
       // predicate: defined in backend
@@ -13,16 +47,51 @@ export const INITIAL_STATE = {
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: true,
+      sortButton: false,
       spatialFilterButton: false,
+      pieChartButton: true,
       isFetching: false,
       searchField: false,
       containerClass: 'five',
       filterType: 'uriFilter',
       uriFilter: null
     },
-    judge: {
-      id: 'judge',
+    // judge: {
+    //   id: 'judge',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null
+    // },
+    decisionDate: {
+      id: 'decisionDate',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    typeOfSourceData: {
+      id: 'typeOfSourceData',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -31,9 +100,10 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
+      pieChartButton: false,
       isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
+      searchField: false,
+      containerClass: 'four',
       filterType: 'uriFilter',
       uriFilter: null
     },
@@ -54,8 +124,25 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    keyword: {
-      id: 'keyword',
+    subjectCategory: {
+      id: 'subjectCategory',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    situationCategory: {
+      id: 'situationCategory',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -64,30 +151,30 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
+      pieChartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null
+    },
+    language: {
+      id: 'language',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'three',
+      filterType: 'uriFilter',
+      uriFilter: null
     }
-    // decisionDate: {
-    //   id: 'decisionDate',
-    //   label: 'Date',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: true,
-    //   spatialFilterButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'three',
-    //   type: 'integer',
-    //   filterType: 'integerFilter',
-    //   integerFilter: null,
-    // },
   }
 }
 
