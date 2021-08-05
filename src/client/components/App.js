@@ -1,8 +1,6 @@
 import React from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import SemanticPortal from '../containers/SemanticPortal'
-// import deepPurple from '@material-ui/core/colors/deepPurple'
-// import indigo from '@material-ui/core/colors/indigo'
 
 const theme = createMuiTheme({
   palette: {
