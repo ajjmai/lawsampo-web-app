@@ -389,17 +389,17 @@ export default {
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Use this perspective to access data related to the sections of the Finnish
           consolidated legislation. The facets provide selections to filter the
-          result set, which is shown on the table view. See <a href="/instructions">instructions</a>
+          result set, which is shown on the table tab. See <a href="/instructions">instructions</a>
           for filtering the results using the facets. The result view can be selected using the tabs:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
         <li>
-          <strong>TABLE</STRONG> view shows all sections in the result set.
+          <strong>TABLE</STRONG> tab shows all sections in the result set.
           One table row corresponds to one section.
         </li>
         <li>
           <strong>EXPORT</strong> tab contains a link to open the SPARQL query used to generate the result
-          table view into YASGUI query editor. This is intended for software developers.
+          table tab into YASGUI query editor. This is intended for software developers.
         </li>
         </ul>
       `,

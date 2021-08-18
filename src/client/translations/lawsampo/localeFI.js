@@ -403,7 +403,6 @@ export default {
           <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon pykälät taulukkona, jossa yksi rivi vastaa yhtä pykälää.
           Pykälien tiedot näkyvät tulostaulukossa sarakkeittain.
           Säädöksen nimi toimii linkkinä säädöksen tietosivulle ja Pykälä-sarakkeen arvot toimivat linkkeinä tietyn pykälän tekstiin säädöksen sivulla.
-          Säädöksen sisältämät pykälät näkyvät listana Pykälät-sarakkeessa.
         </li>
         <li>
           <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
