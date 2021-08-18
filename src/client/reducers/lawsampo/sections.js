@@ -62,14 +62,14 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false
     },
-    {
-      id: 'sectionEnforcementDate',
-      valueType: 'string',
-      makeLink: false,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false
-    },
+    // {
+    //   id: 'sectionEnforcementDate',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: false,
+    //   numberedList: false
+    // },
     {
       id: 'subjectCategory',
       valueType: 'object',
