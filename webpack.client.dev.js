@@ -9,6 +9,8 @@ module.exports = merge(common, {
     port: 3030,
     open: true,
     historyApiFallback: true,
-    publicPath: '/'
+    devMiddleware: {
+      publicPath: '/'
+    }
   }
 })
