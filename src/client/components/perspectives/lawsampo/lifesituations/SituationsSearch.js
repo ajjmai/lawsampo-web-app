@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 
-import SortableTree from 'react-sortable-tree'
+import SortableTree from '@nosferatu500/react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Typography from '@material-ui/core/Typography'
 import { FormControlLabel } from '@material-ui/core'
