@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-// import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
-import { yasguiBaseUrl, yasguiParams } from '../../configs/lawsampo/GeneralConfig'
 import querystring from 'querystring'
 import intl from 'react-intl-universal'
 
@@ -44,11 +41,12 @@ class Export extends React.Component {
   }
 
   render = () => {
-    const { classes, data, pageType } = this.props
+    const { classes, data, pageType, portalConfig } = this.props
+    const { yasguiBaseURL, yasguiParams } = portalConfig.yasguiConfig
     let yasguiUrl = ''
-    const sparqlQuery = pageType === 'facetResults' ? data.paginatedResultsSparqlQuery : this.props.sparqlQuery
+    const sparqlQuery = pageType === 'facetResults' ? data.paginatedResultsSparqlQuery : data.instanceSparqlQuery
     if (sparqlQuery !== null) {
-      yasguiUrl = `${yasguiBaseUrl}/#query=${encodeURIComponent(sparqlQuery)}&${querystring.stringify(yasguiParams)}`
+      yasguiUrl = `${yasguiBaseURL}/#query=${encodeURIComponent(sparqlQuery)}&${querystring.stringify(yasguiParams)}`
     }
     return (
       <Paper square className={classes.root}>
@@ -65,7 +63,7 @@ class Export extends React.Component {
         {this.props.pageType === 'instancePage' && this.props.sahaButton &&
           <a
             className={classes.link}
-            href={this.props.id}
+            href={this.props.data.instanceTableData.id}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -86,8 +84,7 @@ Export.propTypes = {
   facetClass: PropTypes.string,
   fetchPaginatedResults: PropTypes.func,
   updatePage: PropTypes.func,
-  sparqlQuery: PropTypes.string,
-  id: PropTypes.string
+  sparqlQuery: PropTypes.string
 }
 
 export default withStyles(styles)(Export)

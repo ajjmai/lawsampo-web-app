@@ -38,7 +38,7 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales,
   animateMap,
-  fetchSimilarDocumentsById,
+  updateVideoPlayerTime,
   clientFSToggleDataset,
   clientFSFetchResults,
   clientFSSortResults,
@@ -47,65 +47,61 @@ import {
   clientFSUpdateFacet,
   fetchKnowledgeGraphMetadata
 } from '../actions'
-// import { filterResults } from '../selectors'
-import { perspectiveConfig } from '../configs/lawsampo/PerspectiveConfig'
-import { perspectiveConfigOnlyInfoPages } from '../configs/lawsampo/PerspectiveConfigOnlyInfoPages'
-import { rootUrl, layoutConfig } from '../configs/lawsampo/GeneralConfig'
+import { filterResults } from '../selectors'
 import {
-  updateSituationQuery,
-  updateSituationSelected,
-  addSituationKeyword,
-  setSituationKeywords,
-  removeSituationKeyword,
-  fetchSituationResults,
-  clearAllSituations,
-  updateResultType,
-  fetchSituations
-} from '../reducers/lawsampo/situationsFacets'
+  processPortalConfig,
+  createPerspectiveConfig,
+  createPerspectiveConfigOnlyInfoPages
+} from '../helpers/helpers'
+import * as apexChartsConfig from '../library_configs/ApexCharts/ApexChartsConfig'
+import * as leafletConfig from '../library_configs/Leaflet/LeafletConfig'
+import * as networkConfig from '../library_configs/Cytoscape.js/NetworkConfig'
 
-// ** General components **
-// import InfoHeader from '../components/main_layout/InfoHeader'
-// import TextPage from '../components/main_layout/TextPage'
-// import Message from '../components/main_layout/Message'
-// import FacetBar from '../components/facet_bar/FacetBar'
+// ** Generate portal configuration based on JSON configs **
+import portalConfig from '../../configs/portalConfig.json'
+await processPortalConfig(portalConfig)
+const {
+  portalID,
+  rootUrl,
+  perspectives,
+  layoutConfig,
+  knowledgeGraphMetadataConfig
+} = portalConfig
+const perspectiveConfig = await createPerspectiveConfig({
+  portalID,
+  searchPerspectives: perspectives.searchPerspectives
+})
+const perspectiveConfigOnlyInfoPages = await createPerspectiveConfigOnlyInfoPages({
+  portalID,
+  onlyInstancePagePerspectives: perspectives.onlyInstancePages
+})
+
+// ** portal configuration end **
+
+// ** Import general components **
+const TopBar = lazy(() => import('../components/main_layout/TopBar'))
 const InfoHeader = lazy(() => import('../components/main_layout/InfoHeader'))
 const TextPage = lazy(() => import('../components/main_layout/TextPage'))
 const Message = lazy(() => import('../components/main_layout/Message'))
+const InstancePage = lazy(() => import('../components/main_layout/InstancePage'))
+const FullTextSearch = lazy(() => import('../components/main_layout/FullTextSearch'))
 const FacetBar = lazy(() => import('../components/facet_bar/FacetBar'))
+const FacetResults = lazy(() => import('../components/facet_results/FacetResults'))
+const FederatedResults = lazy(() => import('../components/facet_results/FederatedResults'))
+const KnowledgeGraphMetadataTable = lazy(() => import('../components/main_layout/KnowledgeGraphMetadataTable'))
 // ** General components end **
 
-// ** Portal specific components and configs **
-// import TopBar from '../components/perspectives/sampo/TopBar'
-// import FacetedSearchPerspective from '../components/perspectives/sampo/FacetedSearchPerspective'
-// import Main from '../components/perspectives/sampo/Main'
-// import FullTextSearch from '../components/perspectives/sampo/FullTextSearch'
-// import ClientFSPerspective from '../components/perspectives/sampo/client_fs/ClientFSPerspective'
-// import ClientFSMain from '../components/perspectives/sampo/client_fs/ClientFSMain'
-// import InstanceHomePage from '../components/perspectives/sampo/InstanceHomePage'
-// import Footer from '../components/perspectives/sampo/Footer'
-// import KnowledgeGraphMetadataTable from '../components/perspectives/sampo/KnowledgeGraphMetadataTable'
-const portalID = 'lawsampo'
-const TopBar = lazy(() => import('../components/perspectives/' + portalID + '/TopBar'))
-const Main = lazy(() => import('../components/perspectives/' + portalID + '/Main'))
-const FacetedSearchPerspective = lazy(() => import('../components/perspectives/' + portalID + '/FacetedSearchPerspective'))
-// const FullTextSearch = lazy(() => import('../components/perspectives/' + portalID + '/FullTextSearch'))
-// const ClientFSPerspective = lazy(() => import('../components/perspectives/' + portalID + '/client_fs/ClientFSPerspective'))
-// const ClientFSMain = lazy(() => import('../components/perspectives/' + portalID + '/client_fs/ClientFSMain'))
-const InstanceHomePage = lazy(() => import('../components/perspectives/' + portalID + '/InstanceHomePage'))
-const Footer = lazy(() => import('../components/perspectives/' + portalID + '/Footer'))
-const KnowledgeGraphMetadataTable = lazy(() => import('../components/perspectives/' + portalID + '/KnowledgeGraphMetadataTable'))
-const SituationsFacetBar = lazy(() => import('../components/perspectives/lawsampo/lifesituations/SituationsFacetBar'))
-const Situations = lazy(() => import('../components/perspectives/lawsampo/lifesituations/Situations'))
-// ** Portal specific components and configs end **
+// ** Import portal specific components **
+const Main = lazy(() => import(`../components/perspectives/${portalID}/Main`))
+const MainClientFS = lazy(() => import(`../components/perspectives/${portalID}/MainClientFS`))
+const Footer = lazy(() => import(`../components/perspectives/${portalID}/Footer`))
+// ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({
   root: {
-    /* Background color of the app.
-       In order to use both 'auto' and '100%' heights, bg-color
-       needs to be defined also in index.html (for #app and #root elements)
-    */
     backgroundColor: '#bdbdbd',
     overflowX: 'hidden',
+    minHeight: '100%',
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'hidden',
       height: '100%'
@@ -145,20 +141,18 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
-      height: `calc(100% - ${
-        layoutConfig.topBar.reducedHeight +
+      height: `calc(100% - ${layoutConfig.topBar.reducedHeight +
         layoutConfig.infoHeader.reducedHeight.height +
         layoutConfig.infoHeader.reducedHeight.expandedContentHeight +
         theme.spacing(3.5)
-      }px)`
+        }px)`
     },
     [theme.breakpoints.up(layoutConfig.reducedHeightBreakpoint)]: {
-      height: `calc(100% - ${
-        layoutConfig.topBar.defaultHeight +
+      height: `calc(100% - ${layoutConfig.topBar.defaultHeight +
         layoutConfig.infoHeader.default.height +
         layoutConfig.infoHeader.default.expandedContentHeight +
         theme.spacing(3.5)
-      }px)`
+        }px)`
     }
   },
   // perspective container is divided into two columns:
@@ -222,20 +216,18 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
-      height: `calc(100% - ${
-        layoutConfig.topBar.reducedHeight +
+      height: `calc(100% - ${layoutConfig.topBar.reducedHeight +
         2 * layoutConfig.infoHeader.reducedHeight.height +
         layoutConfig.infoHeader.reducedHeight.expandedContentHeight +
         theme.spacing(3.5)
-      }px)`
+        }px)`
     },
     [theme.breakpoints.up(layoutConfig.reducedHeightBreakpoint)]: {
-      height: `calc(100% - ${
-        layoutConfig.topBar.defaultHeight +
+      height: `calc(100% - ${layoutConfig.topBar.defaultHeight +
         89 +
         layoutConfig.infoHeader.default.expandedContentHeight +
         theme.spacing(3.5)
-      }px)`
+        }px)`
     }
   },
   instancePageContent: {
@@ -266,7 +258,7 @@ const SemanticPortal = props => {
   if (lgScreen) { screenSize = 'lg' }
   if (xlScreen) { screenSize = 'xl' }
   const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
-  // const noClientFSResults = props.clientFSState.results == null
+  const noClientFSResults = props.clientFSState && props.clientFSState.results === null
 
   useEffect(() => {
     document.title = intl.get('html.title')
@@ -306,7 +298,10 @@ const SemanticPortal = props => {
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
                 />
-                <Footer layoutConfig={layoutConfig} />
+                <Footer
+                  portalConfig={portalConfig}
+                  layoutConfig={layoutConfig}
+                />
               </>}
           />
           {/* https://stackoverflow.com/a/41024944 */}
@@ -320,7 +315,7 @@ const SemanticPortal = props => {
             }}
           />
           {/* route for full text search results */}
-          {/* <Route
+          <Route
             path={`${rootUrlWithLang}/full-text-search`}
             render={routeProps =>
               <FullTextSearch
@@ -334,7 +329,7 @@ const SemanticPortal = props => {
           />
           {/* routes for faceted search perspectives */}
           {perspectiveConfig.map(perspective => {
-            if (perspective.type === 'faceted-search') {
+            if (!has(perspective, 'externalUrl') && perspective.searchMode === 'faceted-search') {
               return (
                 <React.Fragment key={perspective.id}>
                   <Route
@@ -343,12 +338,13 @@ const SemanticPortal = props => {
                       return (
                         <>
                           <InfoHeader
+                            portalConfig={portalConfig}
+                            layoutConfig={layoutConfig}
                             resultClass={perspective.id}
                             pageType='facetResults'
                             expanded={props[perspective.id].facetedSearchHeaderExpanded}
                             updateExpanded={props.updatePerspectiveHeaderExpanded}
                             screenSize={screenSize}
-                            layoutConfig={layoutConfig}
                           />
                           <Grid
                             container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
@@ -357,12 +353,13 @@ const SemanticPortal = props => {
                           >
                             <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                               <FacetBar
+                                portalConfig={portalConfig}
+                                perspectiveConfig={perspective}
+                                layoutConfig={layoutConfig}
                                 facetedSearchMode='serverFS'
                                 facetData={props[`${perspective.id}Facets`]}
-                                facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
-                                  ? props[`${perspective.id}FacetsConstrainSelf`]
-                                  : null}
-                                facetResults={props[`${perspective.id}`]}
+                                facetDataConstrainSelf={props[`${perspective.id}FacetsConstrainSelf`]}
+                                perspectiveState={props[perspective.id]}
                                 facetClass={perspective.id}
                                 resultClass={perspective.id}
                                 fetchingResultCount={props[perspective.id].fetchingResultCount}
@@ -378,17 +375,19 @@ const SemanticPortal = props => {
                                 defaultActiveFacets={perspective.defaultActiveFacets}
                                 rootUrl={rootUrlWithLang}
                                 screenSize={screenSize}
-                                layoutConfig={layoutConfig}
+                                apexChartsConfig={apexChartsConfig}
+                                leafletConfig={leafletConfig}
+                                networkConfig={networkConfig}
                               />
                             </Grid>
                             <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                              <FacetedSearchPerspective
-                                perspectiveState={props[`${perspective.id}`]}
+                              <FacetResults
+                                portalConfig={portalConfig}
+                                layoutConfig={layoutConfig}
                                 perspectiveConfig={perspective}
+                                perspectiveState={props[`${perspective.id}`]}
                                 facetState={props[`${perspective.id}Facets`]}
-                                facetConstrainSelfState={has(props, `${perspective.id}FacetsConstrainSelf`)
-                                  ? props[`${perspective.id}FacetsConstrainSelf`]
-                                  : null}
+                                facetConstrainSelfState={props[`${perspective.id}FacetsConstrainSelf`]}
                                 leafletMapState={props.leafletMap}
                                 fetchPaginatedResults={props.fetchPaginatedResults}
                                 fetchResults={props.fetchResults}
@@ -410,7 +409,9 @@ const SemanticPortal = props => {
                                 animateMap={props.animateMap}
                                 screenSize={screenSize}
                                 rootUrl={rootUrlWithLang}
-                                layoutConfig={layoutConfig}
+                                apexChartsConfig={apexChartsConfig}
+                                leafletConfig={leafletConfig}
+                                networkConfig={networkConfig}
                               />
                             </Grid>
                           </Grid>
@@ -432,13 +433,14 @@ const SemanticPortal = props => {
                         return (
                           <>
                             <InfoHeader
+                              portalConfig={portalConfig}
+                              layoutConfig={layoutConfig}
                               resultClass={perspective.id}
                               pageType='instancePage'
                               instanceData={props[perspective.id].instanceTableData}
                               expanded={props[perspective.id].instancePageHeaderExpanded}
                               updateExpanded={props.updatePerspectiveHeaderExpanded}
                               screenSize={screenSize}
-                              layoutConfig={layoutConfig}
                             />
                             <Grid
                               container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
@@ -446,9 +448,11 @@ const SemanticPortal = props => {
                                 : classes.instancePageContainer}
                             >
                               <Grid item xs={12} className={classes.instancePageContent}>
-                                <InstanceHomePage
-                                  perspectiveState={props[`${perspective.id}`]}
+                                <InstancePage
+                                  portalConfig={portalConfig}
+                                  layoutConfig={layoutConfig}
                                   perspectiveConfig={perspective}
+                                  perspectiveState={props[`${perspective.id}`]}
                                   leafletMapState={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
@@ -468,9 +472,13 @@ const SemanticPortal = props => {
                                   perspective={perspective}
                                   animationValue={props.animationValue}
                                   animateMap={props.animateMap}
+                                  videoPlayerState={props.videoPlayer}
+                                  updateVideoPlayerTime={props.updateVideoPlayerTime}
                                   screenSize={screenSize}
                                   rootUrl={rootUrlWithLang}
-                                  layoutConfig={layoutConfig}
+                                  apexChartsConfig={apexChartsConfig}
+                                  leafletConfig={leafletConfig}
+                                  networkConfig={networkConfig}
                                 />
                               </Grid>
                             </Grid>
@@ -482,6 +490,7 @@ const SemanticPortal = props => {
                 </React.Fragment>
               )
             }
+            return null
           })}
           {/* create routes for classes that have only info pages and no faceted search perspective */}
           {perspectiveConfigOnlyInfoPages.map(perspective =>
@@ -496,13 +505,14 @@ const SemanticPortal = props => {
                   return (
                     <>
                       <InfoHeader
+                        portalConfig={portalConfig}
+                        layoutConfig={layoutConfig}
                         resultClass={perspective.id}
                         pageType='instancePage'
                         instanceData={props[perspective.id].instanceTableData}
                         expanded={props[perspective.id].instancePageHeaderExpanded}
                         updateExpanded={props.updatePerspectiveHeaderExpanded}
                         screenSize={screenSize}
-                        layoutConfig={layoutConfig}
                       />
                       <Grid
                         container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
@@ -510,9 +520,11 @@ const SemanticPortal = props => {
                           : classes.instancePageContainer}
                       >
                         <Grid item xs={12} className={classes.instancePageContent}>
-                          <InstanceHomePage
-                            perspectiveState={props[`${perspective.id}`]}
+                          <InstancePage
+                            portalConfig={portalConfig}
+                            layoutConfig={layoutConfig}
                             perspectiveConfig={perspective}
+                            perspectiveState={props[`${perspective.id}`]}
                             leafletMapState={props.leafletMap}
                             fetchPaginatedResults={props.fetchPaginatedResults}
                             fetchResults={props.fetchResults}
@@ -532,9 +544,13 @@ const SemanticPortal = props => {
                             perspective={perspective}
                             animationValue={props.animationValue}
                             animateMap={props.animateMap}
+                            videoPlayerState={props.videoPlayer}
+                            updateVideoPlayerTime={props.updateVideoPlayerTime}
                             screenSize={screenSize}
                             rootUrl={rootUrlWithLang}
-                            layoutConfig={layoutConfig}
+                            apexChartsConfig={apexChartsConfig}
+                            leafletConfig={leafletConfig}
+                            networkConfig={networkConfig}
                           />
                         </Grid>
                       </Grid>
@@ -545,66 +561,17 @@ const SemanticPortal = props => {
             </Switch>
           )}
           <Route
-            path={`${rootUrlWithLang}/situations/iterative-search`}
-            render={routeProps => {
-              const perspective = perspectiveConfig.find(p => p.id === 'situations')
-              return (
-                <>
-                  <InfoHeader
-                    resultClass={perspective.id}
-                    pageType='facetResults'
-                    expanded={props[perspective.id].facetedSearchHeaderExpanded}
-                    updateExpanded={props.updatePerspectiveHeaderExpanded}
-                    screenSize={screenSize}
-                    layoutConfig={layoutConfig}
-                  />
-                  <Grid
-                    container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
-                      ? classes.perspectiveContainerHeaderExpanded
-                      : classes.perspectiveContainer}
-                  >
-                    <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                      <SituationsFacetBar
-                        perspective={perspective}
-                        fetchSituations={props.fetchSituations}
-                        facetData={props[`${perspective.id}Facets`]}
-                        updateSituationQuery={props.updateSituationQuery}
-                        updateSituationSelected={props.updateSituationSelected}
-                        addSituationKeyword={props.addSituationKeyword}
-                        setSituationKeywords={props.setSituationKeywords}
-                        removeSituationKeyword={props.removeSituationKeyword}
-                        clearAllSituations={props.clearAllSituations}
-                        fetchSituationResults={props.fetchSituationResults}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                      <Situations
-                        updateRowsPerPage={props.updateRowsPerPage}
-                        updateResultType={props.updateResultType}
-                        fetchSituationResults={props.fetchSituationResults}
-                        facetResults={props[`${perspective.id}`]}
-                        facetData={props[`${perspective.id}Facets`]}
-                        perspective={perspective}
-                        routeProps={routeProps}
-                        screenSize={screenSize}
-                        rootUrl={rootUrlWithLang}
-                      />
-                    </Grid>
-                  </Grid>
-                </>
-              )
-            }}
-          />
-          {/* <Route
-            path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
+            path={`${rootUrlWithLang}/perspective4/federated-search`}
             render={routeProps =>
               <>
                 <Grid container className={classes.mainContainerClientFS}>
                   <Grid item sm={12} md={4} lg={3} className={classes.facetBarContainerClientFS}>
                     <FacetBar
+                      portalConfig={portalConfig}
+                      layoutConfig={layoutConfig}
                       facetedSearchMode='clientFS'
-                      facetClass='clientFSPlaces'
-                      resultClass='clientFSPlaces'
+                      facetClass='perspective4'
+                      resultClass='perspective4'
                       facetData={props.clientFSState}
                       clientFSFacetValues={props.clientFSFacetValues}
                       fetchingResultCount={props.clientFSState.textResultsFetching}
@@ -615,21 +582,25 @@ const SemanticPortal = props => {
                       clientFSClearResults={props.clientFSClearResults}
                       clientFSUpdateQuery={props.clientFSUpdateQuery}
                       clientFSUpdateFacet={props.clientFSUpdateFacet}
-                      defaultActiveFacets={perspectiveConfig.find(p => p.id === 'clientFSPlaces').defaultActiveFacets}
+                      defaultActiveFacets={perspectiveConfig.find(p => p.id === 'perspective4').defaultActiveFacets}
                       leafletMap={props.leafletMap}
                       updateMapBounds={props.updateMapBounds}
                       screenSize={screenSize}
                       showError={props.showError}
                       rootUrl={rootUrlWithLang}
-                      layoutConfig={layoutConfig}
+                      apexChartsConfig={apexChartsConfig}
+                      leafletConfig={leafletConfig}
+                      networkConfig={networkConfig}
                     />
                   </Grid>
                   <Grid item sm={12} md={8} lg={9} className={classes.resultsContainerClientFS}>
-                    {noClientFSResults && <ClientFSMain />}
+                    {noClientFSResults && <MainClientFS />}
                     {!noClientFSResults &&
-                      <ClientFSPerspective
+                      <FederatedResults
+                        portalConfig={portalConfig}
+                        layoutConfig={layoutConfig}
+                        perspective={perspectiveConfig.find(p => p.id === 'perspective4')}
                         routeProps={routeProps}
-                        perspective={perspectiveConfig.find(p => p.id === 'clientFSPlaces')}
                         screenSize={screenSize}
                         clientFSState={props.clientFSState}
                         clientFSResults={props.clientFSResults}
@@ -641,43 +612,50 @@ const SemanticPortal = props => {
                         clearGeoJSONLayers={props.clearGeoJSONLayers}
                         showError={props.showError}
                         rootUrl={rootUrlWithLang}
-                        layoutConfig={layoutConfig}
+                        apexChartsConfig={apexChartsConfig}
+                        leafletConfig={leafletConfig}
+                        networkConfig={networkConfig}
                       />}
                   </Grid>
                 </Grid>
-                <Footer layoutConfig={layoutConfig} />
+                <Footer
+                  portalConfig={portalConfig}
+                  layoutConfig={layoutConfig}
+                />
               </>}
-          /> */}
+
+          />
           {/* create routes for info buttons */}
-          {/* <Route
-              path={`${rootUrlWithLang}/feedback`}
+          {!layoutConfig.topBar.externalAboutPage &&
+            <Route
+              path={`${rootUrlWithLang}/about`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                  <FeedbackPage />
+                  <TextPage>
+                    {intl.getHTML('aboutThePortalPartOne')}
+                    {knowledgeGraphMetadataConfig.showTable &&
+                      <KnowledgeGraphMetadataTable
+                        portalConfig={portalConfig}
+                        layoutConfig={layoutConfig}
+                        perspectiveID={knowledgeGraphMetadataConfig.perspective}
+                        resultClass='knowledgeGraphMetadata'
+                        fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                        knowledgeGraphMetadata={props[knowledgeGraphMetadataConfig.perspective]
+                          ? props[knowledgeGraphMetadataConfig.perspective].knowledgeGraphMetadata
+                          : null}
+                      />}
+                    {intl.getHTML('aboutThePortalPartTwo')}
+                  </TextPage>
                 </div>}
-            /> */}
-          <Route
-            path={`${rootUrlWithLang}/about`}
-            render={() =>
-              <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                <TextPage>
-                  {intl.getHTML('aboutThePortalPartOne')}
-                  <KnowledgeGraphMetadataTable
-                    resultClass='lawSampoKnowledgeGraphMetadata'
-                    fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                    knowledgeGraphMetadata={props.statutes.knowledgeGraphMetadata}
-                  />
-                  {intl.getHTML('aboutThePortalPartTwo')}
-                </TextPage>
-              </div>}
-          />
-          <Route
-            path={`${rootUrlWithLang}/instructions`}
-            render={() =>
-              <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                <TextPage>{intl.getHTML('instructions')}</TextPage>
-              </div>}
-          />
+            />}
+          {!layoutConfig.topBar.externalInstructions &&
+            <Route
+              path={`${rootUrlWithLang}/instructions`}
+              render={() =>
+                <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
+                  <TextPage>{intl.getHTML('instructions')}</TextPage>
+                </div>}
+            />}
         </>
       </div>
     </MuiPickersUtilsProvider>
@@ -685,42 +663,37 @@ const SemanticPortal = props => {
 }
 
 const mapStateToProps = state => {
-  // const { clientFSResults, clientFSFacetValues } = filterResults(state.clientSideFacetedSearch)
-  return {
-    sections: state.sections,
-    sectionsFacets: state.sectionsFacets,
-    sectionsFacetsConstrainSelf: state.sectionsFacetsConstrainSelf,
-    situations: state.situations,
-    situationsFacets: state.situationsFacets,
-    statutes: state.statutes,
-    statutesFacets: state.statutesFacets,
-    statutesFacetsConstrainSelf: state.statutesFacetsConstrainSelf,
-    // legislation: state.legislation,
-    // legislationFacets: state.legislationFacets,
-    // legislationFacetsConstrainSelf: state.legislationFacetsConstrainSelf,
-    caselaw: state.caselaw,
-    caselawFacetsConstrainSelf: state.caselawFacetsConstrainSelf,
-    caselawFacets: state.caselawFacets,
-    leafletMap: state.leafletMap,
-    fullTextSearch: state.fullTextSearch,
-    // clientFSState: state.clientSideFacetedSearch,
-    // clientFSResults,
-    // clientFSFacetValues,
-    animationValue: state.animation.value,
-    options: state.options,
-    error: state.error
-  }
+  const stateToProps = {}
+  perspectiveConfig.forEach(perspective => {
+    const { id, searchMode } = perspective
+    if (searchMode && searchMode === 'federated-search') {
+      const perspectiveState = state[id]
+      const { clientFSResults, clientFSFacetValues } = filterResults(perspectiveState)
+      stateToProps.clientFSState = perspectiveState
+      stateToProps.clientFSResults = clientFSResults
+      stateToProps.clientFSFacetValues = clientFSFacetValues
+    } else {
+      stateToProps[id] = state[id]
+      stateToProps[`${id}Facets`] = state[`${id}Facets`]
+      if (has(state, `${id}FacetsConstrainSelf`)) {
+        stateToProps[`${id}FacetsConstrainSelf`] = state[`${id}FacetsConstrainSelf`]
+      }
+    }
+  })
+  perspectiveConfigOnlyInfoPages.forEach(perspective => {
+    const { id } = perspective
+    stateToProps[id] = state[id]
+  })
+  stateToProps.leafletMap = state.leafletMap
+  stateToProps.fullTextSearch = state.fullTextSearch
+  stateToProps.animationValue = state.animation.value
+  stateToProps.videoPlayer = state.videoPlayer
+  stateToProps.options = state.options
+  stateToProps.error = state.error
+  return stateToProps
 }
+
 const mapDispatchToProps = ({
-  fetchSituations,
-  updateResultType,
-  clearAllSituations,
-  addSituationKeyword,
-  setSituationKeywords,
-  removeSituationKeyword,
-  updateSituationQuery,
-  updateSituationSelected,
-  fetchSituationResults,
   fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
@@ -745,7 +718,7 @@ const mapDispatchToProps = ({
   updatePerspectiveHeaderExpanded,
   loadLocales,
   animateMap,
-  fetchSimilarDocumentsById,
+  updateVideoPlayerTime,
   clientFSToggleDataset,
   clientFSFetchResults,
   clientFSClearResults,
@@ -764,11 +737,14 @@ SemanticPortal.propTypes = {
    * Errors shown with react-redux-toastr.
    */
   error: PropTypes.object.isRequired,
-  leafletMap: PropTypes.object.isRequired,
+  /**
+   * Leaflet map config and external layers.
+   */
+  leafletMap: PropTypes.object,
   /**
    * State of the animation, used by TemporalMap.
    */
-  animationValue: PropTypes.array.isRequired,
+  animationValue: PropTypes.array,
   /**
    * Redux action for fetching all faceted search results.
    */
@@ -780,7 +756,7 @@ SemanticPortal.propTypes = {
   /**
    * Redux action for full text search results.
    */
-  fetchFullTextResults: PropTypes.func.isRequired,
+  fetchFullTextResults: PropTypes.func,
   /**
    * Redux action for fetching paginated faceted search results.
    */
@@ -792,16 +768,16 @@ SemanticPortal.propTypes = {
   /**
    * Redux action for loading external GeoJSON layers.
    */
-  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  fetchGeoJSONLayers: PropTypes.func,
   /**
    * Redux action for clearing external GeoJSON layers.
    */
-  clearGeoJSONLayers: PropTypes.func.isRequired,
+  clearGeoJSONLayers: PropTypes.func,
   /**
    * Redux action for loading external GeoJSON layers via the backend.
    * Useful when the API or similar needs to be hidden.
    */
-  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  fetchGeoJSONLayersBackend: PropTypes.func,
   /**
    * Redux action for sorting the paginated results.
    */
@@ -849,7 +825,7 @@ SemanticPortal.propTypes = {
   /**
    * Redux action for animating TemporalMap.
    */
-  animateMap: PropTypes.func.isRequired,
+  animateMap: PropTypes.func,
   /**
    * State for client-side faceted search.
    */
@@ -857,27 +833,27 @@ SemanticPortal.propTypes = {
   /**
    * Redux action for updating the dataset selections in client-side faceted search.
    */
-  clientFSToggleDataset: PropTypes.func.isRequired,
+  clientFSToggleDataset: PropTypes.func,
   /**
    * Redux action for the fetching the initial result set in client-side faceted search.
    */
-  clientFSFetchResults: PropTypes.func.isRequired,
+  clientFSFetchResults: PropTypes.func,
   /**
    * Redux action for the clearing the initial result set in client-side faceted search.
    */
-  clientFSClearResults: PropTypes.func.isRequired,
+  clientFSClearResults: PropTypes.func,
   /**
    * Redux action for sorting results in client-side faceted search.
    */
-  clientFSSortResults: PropTypes.func.isRequired,
+  clientFSSortResults: PropTypes.func,
   /**
    * Redux action for updating the initial query in client-side faceted search.
    */
-  clientFSUpdateQuery: PropTypes.func.isRequired,
+  clientFSUpdateQuery: PropTypes.func,
   /**
    * Redux action for updating a facet in client-side faceted search.
    */
-  clientFSUpdateFacet: PropTypes.func.isRequired
+  clientFSUpdateFacet: PropTypes.func
 }
 
 export const SemanticPortalComponent = SemanticPortal

@@ -12,13 +12,14 @@ import 'tippy.js/animations/scale.css'
 
 const ResultTableCell = props => {
   const {
-    data, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, minWidth,
-    container, columnId, expanded, linkAsButton, collapsedMaxWords, showSource,
+    data, tableData, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, minWidth,
+    height, container, columnId, expanded, linkAsButton, collapsedMaxWords, showSource,
     sourceExternalLink, renderAsHTML, HTMLParserTask, referencedTerm, previewImageHeight,
-    onExpandClick, rowId, shortenLabel, maxWords, hasParts, hasChapters 
+    onExpandClick, rowId, shortenLabel, maxWords, hasParts, hasChapters
   } = props
   let cellContent = null
   const cellStyle = {
+    ...(height && { height }),
     ...(minWidth && { minWidth })
   }
   switch (valueType) {
@@ -26,6 +27,7 @@ const ResultTableCell = props => {
       cellContent = (
         <ObjectListCollapsible
           data={data}
+          tableData={tableData}
           makeLink={makeLink}
           externalLink={externalLink}
           sortValues={sortValues}
@@ -44,7 +46,7 @@ const ResultTableCell = props => {
       )
       break
     case 'sectionOfALaw':
-      cellContent =
+      cellContent = (
         <SectionOfALawListCollapsible
           data={data}
           hasParts={hasParts === 'true'}
@@ -62,12 +64,13 @@ const ResultTableCell = props => {
           sourceExternalLink={sourceExternalLink}
           maxHeight={200}
         />
+      )
       break
     case 'string':
       cellContent = (
         <StringList
           data={data}
-          sortValues={sortValues}
+          tableData={tableData}
           expanded={expanded}
           onExpandClick={onExpandClick}
           rowId={rowId}
