@@ -216,10 +216,11 @@ class SituationsResultTable extends React.Component {
               <div className={classes.progressContainer}>
                 <CircularProgress style={{ color: purple[500] }} thickness={5} />
               </div>
-            ) : (
+              )
+            : (
               <>
-                {
-                  results.length > 0 ? (
+                {results.length > 0
+                  ? (
                     <Table size='small'>
                       <ResultTableHead
                         resultClass={this.props.resultClass}
@@ -233,19 +234,16 @@ class SituationsResultTable extends React.Component {
                         {results.map((row, index) => this.rowRenderer(row, index))}
                       </TableBody>
                     </Table>
-                  )
-                    : (
-                      <div className={classes.infoContainer}>
-                        <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.initialResults`)}</Typography>
-                      </div>
                     )
-                }
+                  : (
+                    <div className={classes.infoContainer}>
+                      <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.initialResults`)}</Typography>
+                    </div>
+                    )}
               </>
-            )}
+              )}
         </div>
-
       </>
-
     )
   }
 }

@@ -1,5 +1,17 @@
 {
-    "id": "situations", 
+    "id": "situations",
     "frontPageImage": "lawsampo/contextual_search_cropped.jpg",
-    "searchMode": "iterative-search"
+    "searchMode": "iterative-search",
+    "resultClasses": {
+        "statutes": {
+            "tabID": 0,
+            "tabPath": "statutes",
+            "tabIcon": "CalendarViewDay"
+        },
+        "cases": {
+            "tabID": 1,
+            "tabPath": "cases",
+            "tabIcon": "CalendarViewDay"
+        }
+    }
 }

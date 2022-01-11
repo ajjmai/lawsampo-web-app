@@ -56,6 +56,17 @@ import {
 import * as apexChartsConfig from '../library_configs/ApexCharts/ApexChartsConfig'
 import * as leafletConfig from '../library_configs/Leaflet/LeafletConfig'
 import * as networkConfig from '../library_configs/Cytoscape.js/NetworkConfig'
+import {
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  setSituationKeywords,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType,
+  fetchSituations
+} from '../reducers/lawsampo/situationsFacets'
 
 // ** Generate portal configuration based on JSON configs **
 import portalConfig from '../../configs/portalConfig.json'
@@ -95,6 +106,8 @@ const KnowledgeGraphMetadataTable = lazy(() => import('../components/main_layout
 const Main = lazy(() => import(`../components/perspectives/${portalID}/Main`))
 const MainClientFS = lazy(() => import(`../components/perspectives/${portalID}/MainClientFS`))
 const Footer = lazy(() => import(`../components/perspectives/${portalID}/Footer`))
+const SituationsFacetBar = lazy(() => import('../components/perspectives/lawsampo/lifesituations/SituationsFacetBar'))
+const Situations = lazy(() => import('../components/perspectives/lawsampo/lifesituations/Situations'))
 // ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({
@@ -561,6 +574,59 @@ const SemanticPortal = props => {
             </Switch>
           )}
           <Route
+            path={`${rootUrlWithLang}/situations/iterative-search`}
+            render={routeProps => {
+              const perspective = perspectiveConfig.find(p => p.id === 'situations')
+              return (
+                <>
+                  <InfoHeader
+                    resultClass={perspective.id}
+                    pageType='facetResults'
+                    expanded={props[perspective.id].facetedSearchHeaderExpanded}
+                    updateExpanded={props.updatePerspectiveHeaderExpanded}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
+                  />
+                  <Grid
+                    container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
+                      ? classes.perspectiveContainerHeaderExpanded
+                      : classes.perspectiveContainer}
+                  >
+                    <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                      <SituationsFacetBar
+                        perspective={perspective}
+                        fetchSituations={props.fetchSituations}
+                        facetData={props[`${perspective.id}Facets`]}
+                        updateSituationQuery={props.updateSituationQuery}
+                        updateSituationSelected={props.updateSituationSelected}
+                        addSituationKeyword={props.addSituationKeyword}
+                        setSituationKeywords={props.setSituationKeywords}
+                        removeSituationKeyword={props.removeSituationKeyword}
+                        clearAllSituations={props.clearAllSituations}
+                        fetchSituationResults={props.fetchSituationResults}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                      <Situations
+                        portalConfig={portalConfig}
+                        layoutConfig={layoutConfig}
+                        perspective={perspective}
+                        updateRowsPerPage={props.updateRowsPerPage}
+                        updateResultType={props.updateResultType}
+                        fetchSituationResults={props.fetchSituationResults}
+                        facetResults={props[`${perspective.id}`]}
+                        facetData={props[`${perspective.id}Facets`]}
+                        routeProps={routeProps}
+                        screenSize={screenSize}
+                        rootUrl={rootUrlWithLang}
+                      />
+                    </Grid>
+                  </Grid>
+                </>
+              )
+            }}
+          />
+          <Route
             path={`${rootUrlWithLang}/perspective4/federated-search`}
             render={routeProps =>
               <>
@@ -690,6 +756,8 @@ const mapStateToProps = state => {
   stateToProps.videoPlayer = state.videoPlayer
   stateToProps.options = state.options
   stateToProps.error = state.error
+  stateToProps.situations = state.situations
+  stateToProps.situationsFacets = state.situationsFacets
   return stateToProps
 }
 
@@ -725,7 +793,16 @@ const mapDispatchToProps = ({
   clientFSSortResults,
   clientFSUpdateQuery,
   clientFSUpdateFacet,
-  fetchKnowledgeGraphMetadata
+  fetchKnowledgeGraphMetadata,
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  setSituationKeywords,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType,
+  fetchSituations
 })
 
 SemanticPortal.propTypes = {

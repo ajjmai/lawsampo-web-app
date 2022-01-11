@@ -51,6 +51,7 @@ import {
   updateKnowledgeGraphMetadata,
   fetchGeoJSONLayersFailed
 } from '../actions'
+import { fetchSituations, fetchSituationResults } from './situations'
 import portalConfig from '../../configs/portalConfig.json'
 const { portalID, localeConfig, documentFinderConfig } = portalConfig
 const { documentFinderAPIUrl } = documentFinderConfig
@@ -575,7 +576,9 @@ const rootEpic = combineEpics(
   fetchSimilarDocumentsEpic,
   fetchGeoJSONLayersEpic,
   fetchGeoJSONLayersBackendEpic,
-  fetchKnowledgeGraphMetadataEpic
+  fetchKnowledgeGraphMetadataEpic,
+  fetchSituations,
+  fetchSituationResults
 )
 
 export default rootEpic

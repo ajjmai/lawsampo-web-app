@@ -18,6 +18,8 @@ import {
   fullTextSearchInitialState,
   federatedSearchInitialState
 } from './general/initialStates'
+import situations from './lawsampo/situations'
+import situationsFacets from './lawsampo/situationsFacets'
 
 const reducers = {
   leafletMap,
@@ -25,7 +27,9 @@ const reducers = {
   videoPlayer,
   options,
   error,
-  toastr: toastrReducer
+  toastr: toastrReducer,
+  situations,
+  situationsFacets
 }
 
 // Create portal spefic reducers based on configs:

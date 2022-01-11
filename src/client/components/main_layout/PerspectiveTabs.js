@@ -33,11 +33,24 @@ class PerspectiveTabs extends React.Component {
     this.state = { value }
   }
 
+  componentDidMount = () => {
+    const newPath = this.props.routeProps.location.pathname
+    let page = 'statutes'
+    if (newPath.endsWith('cases')) { page = 'cases' }
+    this.props.updateResultType({ resultType: page })
+  }
+
   componentDidUpdate = prevProps => {
     const newPath = this.props.routeProps.location.pathname
     const oldPath = prevProps.routeProps.location.pathname
     if (newPath !== oldPath) {
       this.setState({ value: this.pathnameToValue(newPath) })
+      let page = 'statutes'
+      if (newPath.endsWith('cases')) { page = 'cases' }
+      this.props.updateResultType({ resultType: page })
+      if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation != null) {
+        this.props.fetchSituationResults()
+      }
     }
 
     // Fix tabs indicator not showing on first load
@@ -58,7 +71,7 @@ class PerspectiveTabs extends React.Component {
     return value
   }
 
-  handleChange = (event, value) => {    
+  handleChange = (event, value) => {
     this.setState({ value })
   };
 

@@ -101,7 +101,6 @@ class SituationsCategory extends React.Component {
               value={treeObj.node.uri}
             />
           }
-
           label={this.generateLabel(treeObj.node)}
         />
       )
@@ -121,14 +120,16 @@ class SituationsCategory extends React.Component {
 
     return (
       <>
-        {isFetching ? (
-          <div className={classes.spinnerContainer}>
-            <CircularProgress style={{ color: purple[500] }} thickness={5} />
-          </div>
-        ) : (
-          <>
-            <div className=''>
-              {this.props.selectedSituation !== null &&
+        {isFetching
+          ? (
+            <div className={classes.spinnerContainer}>
+              <CircularProgress style={{ color: purple[500] }} thickness={5} />
+            </div>
+            )
+          : (
+            <>
+              <div className=''>
+                {this.props.selectedSituation !== null &&
                   (
                     <Chip
                       key={this.props.selectedSituation.uri}
@@ -139,26 +140,26 @@ class SituationsCategory extends React.Component {
                       color='primary'
                     />
                   )}
-            </div>
-            {!selectedCategory && (
-              <FormControl>
-                <RadioGroup value={selectedCategory === null ? null : selectedCategory.uri}>
-                  <SortableTree
-                    treeData={treeData}
-                    onChange={treeData => this.setState({ treeData })}
-                    canDrag={false}
-                    rowHeight={30}
-                    onlyExpandSearchedNodes
-                    theme={FileExplorerTheme}
-                    generateNodeProps={this.generateNodeProps}
-                    isVirtualized={false}
-                  />
-                </RadioGroup>
-              </FormControl>
-            )}
-          </>
+              </div>
+              {!selectedCategory && (
+                <FormControl>
+                  <RadioGroup value={selectedCategory === null ? null : selectedCategory.uri}>
+                    <SortableTree
+                      treeData={treeData}
+                      onChange={treeData => this.setState({ treeData })}
+                      canDrag={false}
+                      rowHeight={30}
+                      onlyExpandSearchedNodes
+                      theme={FileExplorerTheme}
+                      generateNodeProps={this.generateNodeProps}
+                      isVirtualized={false}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              )}
+            </>
 
-        )}
+            )}
       </>
     )
   }

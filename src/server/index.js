@@ -16,6 +16,7 @@ import { getFacet } from './sparql/FacetValues'
 import { queryJenaIndex } from './sparql/JenaQuery'
 import { getFederatedResults } from './sparql/FederatedSearch'
 import { fetchGeoJSONLayer } from './wfs/WFSApi'
+import { fetchClassifierResults, fetchClassifierCategories } from './classifier/lawsampo/DocumentClassifier'
 import swaggerUi from 'swagger-ui-express'
 import * as OpenApiValidator from 'express-openapi-validator'
 import yaml from 'js-yaml'
@@ -369,6 +370,31 @@ createBackendSearchConfig().then(backendSearchConfig => {
       })
       res.json(data)
     } catch (error) {
+      next(error)
+    }
+  })
+
+  app.get(`${apiPath}/classifier/categories`, async (req, res, next) => {
+    try {
+      const data = await fetchClassifierCategories()
+      res.json(data)
+    } catch (error) {
+      console.log(error)
+      next(error)
+    }
+  })
+  app.post(`${apiPath}/classifier`, async (req, res, next) => {
+    const { body } = req
+    try {
+      let cat = null
+      if ('selected_category' in body) {
+        cat = body.selected_category
+      }
+      const data = await fetchClassifierResults(body.resultType, body.size, body.query, body.selected_keywords, body.selectedNegativeKeywords, body.selectedPositiveKeywords, cat)
+
+      res.json(data)
+    } catch (error) {
+      console.log(error)
       next(error)
     }
   })
