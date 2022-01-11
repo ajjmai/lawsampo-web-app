@@ -548,3 +548,24 @@ const arrayToObject = (array, keyField) =>
     obj[item[keyField].value] = newItem
     return obj
   }, {})
+
+export const processAbstracts = ({ data }) => {
+  data.forEach(item => {
+    let abstractText
+    if (Array.isArray(item.abstract)) {
+      if (item.abstract[0].id) {
+        const primary = item.abstract.find(abstract => abstract.id === 'abstractPrimary')
+        const secondary = item.abstract.find(abstract => abstract.id === 'abstractSecondary')
+        abstractText = [primary.text, secondary.text]
+      }
+    } else {
+      if (item.abstract.id) {
+        abstractText = item.abstract.text
+      }
+    }
+    if (abstractText) {
+      item.abstract = abstractText
+    }
+  })
+  return data
+}

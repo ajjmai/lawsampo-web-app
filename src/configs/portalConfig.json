@@ -3,7 +3,11 @@
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
-            "statutes"
+            "statutes",
+            "sections",
+            "caselaw",
+            "situations",
+            "caselawfinder"
         ],
         "onlyInstancePages": []
     },
@@ -40,7 +44,7 @@
     "layoutConfig": {
         "colorPalette": {
             "primary": {
-                "main": "#212121"
+                "main": "#263238"
             },
             "secondary": {
                 "main": "#EB1806"
@@ -55,7 +59,7 @@
             "logoTextTransform": "none",
             "showLanguageButton": true,
             "showSearchField": false,
-            "feedbackLink": "https://link.webropolsurveys.com/...",
+            "feedbackLink": "https://link.webropolsurveys.com/S/E4C53B4A2D5D01B4",
             "externalInstructions": false,
             "externalAboutPage": false,
             "reducedHeight": 44,
@@ -109,7 +113,7 @@
         "yasguiParams": {
             "contentTypeConstruct": "text/turtle",
             "contentTypeSelect": "application/sparql-results+json",
-            "endpoint": "https://ldf.fi/mmm/sparql",
+            "endpoint": "https://ldf.fi/lawsampo/sparql",
             "requestMethod": "POST",
             "tabTitle": "Exported query"
         }

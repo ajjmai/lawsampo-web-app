@@ -1,0 +1,155 @@
+{
+    "id": "sections",
+    "endpoint": {
+        "url": "https://ldf.fi/lawsampo/sparql",
+        "useAuth": true,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesLegislation.js",
+    "baseURI": "http://ldf.fi/lawsampo",
+    "URITemplate": "<BASE_URI>/<LOCAL_ID>",
+    "facetClass": "lss:Section",
+    "langTag": "fi",
+    "frontPageImage": "lawsampo/sections_cropped.jpg",
+    "searchMode": "faceted-search",
+    "defaultActiveFacets": [
+        "jenaText"
+    ],
+    "defaultTab": "table",
+    "resultClasses": {
+        "sections": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTable",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "sectionProperties",
+                "pagesize": 20,
+                "sortBy": "statute",
+                "sortDirection": "asc"
+            }
+        },
+        "export": {
+            "tabID": 1,
+            "component": "Export",
+            "tabPath": "export",
+            "tabIcon": "ArrowForward",
+            "resultClass": "sections",
+            "facetClass": "sections"
+        }
+    },
+    "properties": [
+        {
+            "id": "statute",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "uri",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "text",
+            "valueType": "string",
+            "collapsedMaxWords": 6,
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 300
+        },
+        {
+            "id": "statuteEnforcementDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "subjectCategory",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "situationCategory",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "sortByPredicate": "skos:prefLabel"
+        },
+        "jenaText": {
+            "containerClass": "one",
+            "facetType": "text",
+            "filterType": "textFilter"
+        },
+        "statute": {
+            "containerClass": "ten",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
+            "facetType": "hierarchical",
+            "filterType": "uriFilter",
+            "parentProperty": "eli:type_document",
+            "predicate": "lss:statute",
+            "searchField": true,
+            "sortByPredicate": "lss:statute/skos:prefLabel"
+        },
+        "statuteEnforcementDate": {
+            "containerClass": "ten",
+            "facetType": "hierarchical",
+            "filterType": "uriFilter",
+            "parentProperty": "skos:broader",
+            "predicate": "lss:statute_timespan",
+            "searchField": true,
+            "sortByPredicate": "lss:section_statute_date"
+        },
+        "subjectCategory": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "pieChartButton": true,
+            "predicate": "lss:subject_category",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "lss:subject_category/skos:prefLabel",
+            "sortDirection": "desc"
+        },
+        "situationCategory": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "pieChartButton": true,
+            "predicate": "lss:situation_category",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "lss:situation_category/skos:prefLabel",
+            "sortDirection": "desc"
+        }
+    }
+}

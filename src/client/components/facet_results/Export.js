@@ -49,7 +49,7 @@ class Export extends React.Component {
       yasguiUrl = `${yasguiBaseURL}/#query=${encodeURIComponent(sparqlQuery)}&${querystring.stringify(yasguiParams)}`
     }
     return (
-      <Paper square className={classes.root}>
+      <div className={classes.root}>
         <a
           className={classes.link}
           href={yasguiUrl}
@@ -60,7 +60,7 @@ class Export extends React.Component {
             {intl.get('exportToYasgui')}
           </Button>
         </a>
-        {this.props.pageType === 'instancePage' && this.props.sahaButton &&
+        {this.props.pageType === 'instancePage' &&
           <a
             className={classes.link}
             href={this.props.data.instanceTableData.id}
@@ -71,7 +71,7 @@ class Export extends React.Component {
               {intl.get('openInLinkedDataBrowser')}
             </Button>
           </a>}
-      </Paper>
+      </div>
     )
   }
 }

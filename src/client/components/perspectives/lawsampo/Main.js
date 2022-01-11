@@ -4,7 +4,7 @@ import intl from 'react-intl-universal'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import MainCard from '../sampo/MainCard'
+import MainCard from './MainCard'
 import has from 'lodash'
 
 const useStyles = makeStyles(theme => ({
@@ -57,8 +57,8 @@ const useStyles = makeStyles(theme => ({
   layout: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    [theme.breakpoints.up(800 + theme.spacing(6))]: {
-      width: 800,
+    [theme.breakpoints.up(1280 + theme.spacing(6))]: {
+      width: 1280,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -78,6 +78,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center'
+  },
+  selectInternalPerspective: {
+    marginBottom: theme.spacing(1)
+  },
+  selectExternalPerspective: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   }
 }))
 
@@ -86,6 +93,15 @@ const useStyles = makeStyles(theme => ({
  */
 const Main = props => {
   const { perspectives, screenSize } = props
+  const internalPerspectives = []
+  const externalPerspectives = []
+  perspectives.forEach(perspective => {
+    if (perspective.externalUrl) {
+      externalPerspectives.push(perspective)
+    } else {
+      internalPerspectives.push(perspective)
+    }
+  })
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
@@ -139,19 +155,14 @@ const Main = props => {
 
       </div>
       <div className={classes.layout}>
-        <div className={classes.heroContent}>
-          <Typography variant={descriptionVariant} color='textPrimary' paragraph>
-            {intl.getHTML('appDescription')}
-          </Typography>
-          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
-            {intl.get('selectPerspective')}
-          </Typography>
-        </div>
+        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+          {intl.get('selectPerspective')}
+        </Typography>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
         >
-          {perspectives.map(perspective => {
+          {internalPerspectives.map(perspective => {
             const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)
             if (!hideCard) {
               return (
@@ -165,6 +176,21 @@ const Main = props => {
             }
             return null
           })}
+        </Grid>
+        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+          {intl.get('selectPerspectiveExternal')}
+        </Typography>
+        <Grid
+          container spacing={screenSize === 'sm' ? 2 : 1}
+          justify='center'
+        >
+          {externalPerspectives.map(perspective =>
+            <MainCard
+              key={perspective.id}
+              perspective={perspective}
+              cardHeadingVariant='h4'
+              rootUrl={props.rootUrl}
+            />)}
         </Grid>
         <div className={classes.licenceTextContainer}>
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>

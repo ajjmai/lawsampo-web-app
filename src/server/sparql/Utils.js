@@ -3,8 +3,8 @@ import { has } from 'lodash'
 
 // import { backendSearchConfig as oldBackendSearchConfig } from './veterans/BackendSearchConfig'
 
-import { statutesPerspectiveConfig as oldPerspectiveConfig } from './lawsampo/perspective_configs/StatutesPerspectiveConfig'
-import { INITIAL_STATE } from '../../client/reducers/lawsampo/statutesFacets'
+import { caselawPerspectiveConfig as oldPerspectiveConfig } from './lawsampo/perspective_configs/CaselawPerspectiveConfig'
+import { INITIAL_STATE } from '../../client/reducers/lawsampo/caselawFacets'
 
 export const createBackendSearchConfig = async () => {
   const portalConfigJSON = await readFile('src/configs/portalConfig.json')
