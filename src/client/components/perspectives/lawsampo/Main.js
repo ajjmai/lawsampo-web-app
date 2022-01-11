@@ -4,7 +4,8 @@ import intl from 'react-intl-universal'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import MainCard from './MainCard'
+import MainCard from '../sampo/MainCard'
+import has from 'lodash'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
@@ -56,8 +57,8 @@ const useStyles = makeStyles(theme => ({
   layout: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    [theme.breakpoints.up(1280 + theme.spacing(6))]: {
-      width: 1280,
+    [theme.breakpoints.up(800 + theme.spacing(6))]: {
+      width: 800,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -77,28 +78,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center'
-  },
-  selectInternalPerspective: {
-    marginBottom: theme.spacing(1)
-  },
-  selectExternalPerspective: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
   }
 }))
 
+/**
+ * A component for generating a landing page for a semantic portal.
+ */
 const Main = props => {
   const { perspectives, screenSize } = props
-  const internalPerspectives = []
-  const externalPerspectives = []
-  perspectives.map(perspective => {
-    if (perspective.type === 'external') {
-      externalPerspectives.push(perspective)
-    } else {
-      internalPerspectives.push(perspective)
-    }
-  })
-
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
@@ -136,49 +123,48 @@ const Main = props => {
       <div className={classes.banner}>
         <div className={classes.bannerContent}>
           <div className={classes.bannerHeading}>
-            <Typography component='span' variant={headingVariant} align='center'>
+            <Typography component='h1' variant={headingVariant} align='center'>
               {intl.getHTML('appTitle.long')}
             </Typography>
           </div>
           <div className={classes.bannerSubheading}>
             <div>
-              <Typography component='h2' variant={subheadingVariant} align='center'>
+              <Typography component='p' variant={subheadingVariant} align='center'>
                 {intl.getHTML('appTitle.subheading')}
               </Typography>
             </div>
           </div>
+
         </div>
+
       </div>
       <div className={classes.layout}>
-        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
-          {intl.get('selectPerspective')}
-        </Typography>
+        <div className={classes.heroContent}>
+          <Typography variant={descriptionVariant} color='textPrimary' paragraph>
+            {intl.getHTML('appDescription')}
+          </Typography>
+          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+            {intl.get('selectPerspective')}
+          </Typography>
+        </div>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
-          justify='center'
+          justify={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
         >
-          {internalPerspectives.map(perspective =>
-            <MainCard
-              key={perspective.id}
-              perspective={perspective}
-              cardHeadingVariant='h4'
-              rootUrl={props.rootUrl}
-            />)}
-        </Grid>
-        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
-          {intl.get('selectPerspectiveExternal')}
-        </Typography>
-        <Grid
-          container spacing={screenSize === 'sm' ? 2 : 1}
-          justify='center'
-        >
-          {externalPerspectives.map(perspective =>
-            <MainCard
-              key={perspective.id}
-              perspective={perspective}
-              cardHeadingVariant='h4'
-              rootUrl={props.rootUrl}
-            />)}
+          {perspectives.map(perspective => {
+            const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)
+            if (!hideCard) {
+              return (
+                <MainCard
+                  key={perspective.id}
+                  perspective={perspective}
+                  cardHeadingVariant='h4'
+                  rootUrl={props.rootUrl}
+                />
+              )
+            }
+            return null
+          })}
         </Grid>
         <div className={classes.licenceTextContainer}>
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
@@ -189,6 +175,9 @@ const Main = props => {
 }
 
 Main.propTypes = {
+  /**
+   * An array of objects used for configuration. Each object represents a single perspective.
+   */
   perspectives: PropTypes.array.isRequired,
   screenSize: PropTypes.string.isRequired,
   rootUrl: PropTypes.string.isRequired

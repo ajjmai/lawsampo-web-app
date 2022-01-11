@@ -1,37 +1,27 @@
 {
-    "portalID": "sampo",
+    "portalID": "lawsampo",
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
-            "perspective1",
-            "perspective2",
-            "perspective3",
-            "perspective4",
-            "fullTextSearch"
+            "statutes"
         ],
-        "onlyInstancePages": [
-            "manuscripts",
-            "collections",
-            "works",
-            "expressions",
-            "events",
-            "actors",
-            "places"
-        ]
+        "onlyInstancePages": []
     },
     "localeConfig": {
-        "defaultLocale": "en",
+        "defaultLocale": "fi",
         "readTranslationsFromGoogleSheets": "false",
         "availableLocales": [
             {
                 "id": "en",
                 "label": "English",
-                "filename": "localeEN.json"
+                "filename": "localeEN",
+                "format": "js"
             },
             {
                 "id": "fi",
                 "label": "English",
-                "filename": "localeFI.json"
+                "filename": "localeFI",
+                "format": "js"
             }
         ]
     },
@@ -45,7 +35,7 @@
     },
     "knowledgeGraphMetadataConfig": {
         "showTable": false,
-        "perspective": "perspective1" 
+        "perspective": "statutes" 
     },
     "layoutConfig": {
         "colorPalette": {
@@ -62,7 +52,9 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
+            "logoTextTransform": "none",
             "showLanguageButton": true,
+            "showSearchField": false,
             "feedbackLink": "https://link.webropolsurveys.com/...",
             "externalInstructions": false,
             "externalAboutPage": false,
@@ -84,11 +76,11 @@
             ]
         },
         "mainPage": {
-            "bannerImage": "main_page/mmm-banner.jpg",
+            "bannerImage": "lawsampo/lawsampo-banner-3000px.jpg",
             "bannerBackround": "linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(<BANNER_IMAGE_URL)",
             "bannerMobileHeight": 150,
             "bannerReducedHeight": 220,
-            "bannerDefaultHeight": 300
+            "bannerDefaultHeight": 400
         },
         "infoHeader": {
             "default": {
