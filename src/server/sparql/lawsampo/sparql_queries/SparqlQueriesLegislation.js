@@ -248,10 +248,9 @@ export const statutesByYearQuery = `
 export const knowledgeGraphMetadataQuery = `
   SELECT * 
   WHERE {
-    BIND(<http://data.finlex.fi> as ?id)
-    ?id skos:prefLabel ?prefLabel ;
-        dct:modified ?modified ;
-        foaf:page ?page .
-    FILTER(lang(?prefLabel) = '<LANG>')    
+    ?id a sd:Dataset ;
+        dct:source/skos:prefLabel ?prefLabel ;
+        dct:modified ?modified .
+    FILTER(lang(?prefLabel) = '<LANG>')
   }
 `

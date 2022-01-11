@@ -1,14 +1,14 @@
 
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import PerspectiveTabs from '../../../main_layout/PerspectiveTabs'
+import SituationsPerspectiveTabs from './SituationsPerspectiveTabs'
 import SituationsResultTable from './SituationsResultTable'
 
 const Situations = props => {
   const { rootUrl, perspective } = props
   return (
     <>
-      <PerspectiveTabs
+      <SituationsPerspectiveTabs
         routeProps={props.routeProps}
         tabs={perspective.tabs}
         screenSize={props.screenSize}

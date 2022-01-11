@@ -38,7 +38,7 @@
         "sitemapInstancePageQuery": "sitemapInstancePageQuery"
     },
     "knowledgeGraphMetadataConfig": {
-        "showTable": false,
+        "showTable": true,
         "perspective": "statutes" 
     },
     "layoutConfig": {
