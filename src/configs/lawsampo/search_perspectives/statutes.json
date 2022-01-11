@@ -16,7 +16,7 @@
         "jenaText"
     ],
     "defaultTab": "table",
-    "defaultInstancePageTab": "table",
+    "defaultInstancePageTab": "content",
     "resultClasses": {
         "statutes": {
             "paginatedResultsConfig": {
@@ -32,14 +32,20 @@
             "instanceConfig": {
                 "propertiesQueryBlock": "statutePropertiesInstancePage",
                 "instancePageResultClasses": {
-                    "instancePageTable": {
+                    "instancePageContextualContent": {
                         "tabID": 0,
+                        "component": "ContextualContent",
+                        "tabPath": "content",
+                        "tabIcon": "CalendarViewDay"
+                    },
+                    "instancePageTable": {
+                        "tabID": 1,
                         "component": "InstancePageTable",
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
                     },
                     "instancePageExport": {
-                        "tabID": 1,
+                        "tabID": 2,
                         "component": "Export",
                         "tabPath": "export",
                         "tabIcon": "CloudDownload",
@@ -161,17 +167,6 @@
             "onlyOnInstancePage": true,
             "valueType": "wordcloud",
             "wordCloudMaxWords": 40
-        },
-        {
-            "id": "contentHTMLAnnotated",
-            "valueType": "string",
-            "onlyOnInstancePage": true,
-            "renderAsHTML": true,
-            "HTMLParserTask": "addAnnotationTooltips",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false
         }
     ],
     "facets": {

@@ -32,7 +32,7 @@ export default class HTMLParser {
   preprocessNodes (nodes) {
     // Add new divs with ids for each section
     const sectionDivs = findAll((node) => (node.attribs.class === 'section'), nodes)
-    sectionDivs.map(node => {
+    sectionDivs.forEach(node => {
       let chapterNumber
       if (node.parent.attribs.class === 'entry-into-force' && node.parent.parent.attribs.class === 'chapter') {
         chapterNumber = node.parent.parent.children[0].children[0].data
@@ -103,7 +103,7 @@ export default class HTMLParser {
         let uris = linkStr.split(',')
         uris = uris.filter(uri => this.shouldAddAnnotation(uri))
         if (uris.length === 0) { return }
-        uris.map(uri => {
+        uris.forEach(uri => {
           urisJSX.push(this.renderAnnotation(uri))
         })
         tooltipJSX = (

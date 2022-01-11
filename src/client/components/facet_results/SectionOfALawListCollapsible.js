@@ -143,7 +143,7 @@ const SectionOfALawListCollapsible = props => {
     const orphanSections = []
     let hasChapters = false
     // check for mixed chapters and sections
-    firstLevel.map(item => {
+    firstLevel.forEach(item => {
       if (item.section) {
         hasChapters = true
       }
