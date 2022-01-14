@@ -79,11 +79,12 @@ export const fetchSituationResults = (action$, state$) => action$.pipe(
       body: body
     }).pipe(
       map(ajaxResponse => {
-        const { results, suggested_keywords, suggested_categories } = ajaxResponse.response
+        const { response } = ajaxResponse
+        const { results } = response
         return updateSituationResults({
           resultClass: 'situations',
-          suggestedKeywords: suggested_keywords,
-          suggestedCategories: suggested_categories,
+          suggestedKeywords: response.suggested_keywords,
+          suggestedCategories: response.suggested_categories,
           results: results
         })
       }),
