@@ -262,7 +262,9 @@ const ResultClassRoute = props => {
         results: perspectiveState.results,
         fetching: perspectiveState.fetching,
         resultUpdateID: perspectiveState.resultUpdateID,
+        fetchInstanceAnalysis: props.fetchInstanceAnalysis,
         instanceAnalysisDataUpdateID: perspectiveState.instanceAnalysisDataUpdateID,
+        instanceAnalysisData: perspectiveState.instanceAnalysisData,
         facetUpdateID: facetState ? facetState.facetUpdateID : null,
         fetchData: props.fetchResults
       }

@@ -106,7 +106,9 @@ createBackendSearchConfig().then(backendSearchConfig => {
         limit: body.limit,
         optimize: body.optimize,
         fromID: body.fromID,
-        toID: body.toID
+        toID: body.toID,
+        period: body.period,
+        province: body.province
       })
       if (resultFormat === 'csv') {
         res.writeHead(200, {
