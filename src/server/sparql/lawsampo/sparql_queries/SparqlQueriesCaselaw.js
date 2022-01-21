@@ -48,7 +48,7 @@ export const judgementPropertiesInstancePage = `
 
     ?id skos:prefLabel ?prefLabel__id .
     BIND(?prefLabel__id as ?prefLabel__prefLabel)
-    BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
+    # BIND(CONCAT("/caselaw/page/", REPLACE(STR(?id), "http://ldf.fi/lawsampo/", "")) AS ?prefLabel__dataProviderUrl)
     FILTER(LANG(?prefLabel__id) = '<LANG>')
 
     BIND(?id as ?uri__prefLabel)
@@ -74,12 +74,12 @@ export const judgementPropertiesInstancePage = `
     OPTIONAL {
       ?id lss:is_realized_by ?expPrimary .
       ?expPrimary dcterms:language '<LANG>' ;
-                  lss:annotatedHtml ?htmlPrimary .
+                  lss:html ?htmlPrimary .
     }
     OPTIONAL {
       ?id lss:is_realized_by ?expSecondary .
       ?expSecondary dcterms:language '<LANG_SECONDARY>' ;
-                    lss:html ?htmlSecondary  # Swedish HTML's are not annotated
+                    lss:html ?htmlSecondary .
     }
     BIND(COALESCE(?htmlPrimary, ?htmlSecondary) as ?html_)
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
