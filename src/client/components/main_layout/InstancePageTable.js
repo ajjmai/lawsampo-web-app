@@ -105,6 +105,16 @@ class InstancePageTable extends React.Component {
     this.setState({ expandedRows })
   }
 
+  handleExpandRowFromChildComponent = rowId => {
+    const expandedRows = this.state.expandedRows
+    if (expandedRows.has(rowId)) {
+      expandedRows.delete(rowId)
+    } else {
+      expandedRows.add(rowId)
+    }
+    this.setState({ expandedRows })
+  }
+
   hasExpandableContent = ({ data, config }) => {
     let hasExpandableContent = false
     const isArray = Array.isArray(data)
@@ -175,6 +185,7 @@ class InstancePageTable extends React.Component {
                     </TableCell>
                     <ResultTableCell
                       key={id}
+                      rowId={id}
                       columnId={id}
                       data={data[id]}
                       valueType={valueType}
@@ -187,6 +198,7 @@ class InstancePageTable extends React.Component {
                       previewImageHeight={previewImageHeight}
                       container='cell'
                       expanded={expanded}
+                      onExpandClick={this.handleExpandRowFromChildComponent}
                       shortenLabel={false}
                       linkAsButton={linkAsButton}
                       collapsedMaxWords={collapsedMaxWords}
