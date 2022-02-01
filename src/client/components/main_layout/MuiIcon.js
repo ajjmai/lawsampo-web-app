@@ -20,9 +20,10 @@ import {
   PlayArrow,
   MailOutline,
   TrendingDown,
+  Tune,
   ArrowForward,
   Subject
-} from '@material-ui/icons'
+} from '@mui/icons-material'
 import has from 'lodash'
 
 const MuiIcon = props => {
@@ -47,6 +48,7 @@ const MuiIcon = props => {
     PlayArrow: PlayArrow,
     MailOutline: MailOutline,
     TrendingDown: TrendingDown,
+    Tune: Tune,
     ArrowForward: ArrowForward,
     Subject: Subject
   }
