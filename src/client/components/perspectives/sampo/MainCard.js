@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1.5),
     boxSizing: 'border-box',
     color: '#fff',
-    // background: 'grey',
     background: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url(${props.perspective.frontPageImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -76,7 +75,7 @@ const MainCard = props => {
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={3} // optimized for four perspectives
+      item xs={12} sm={6} // optimized for four perspectives
       component={externalPerspective ? 'a' : Link}
       to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
       container={xsScreen}
@@ -112,7 +111,7 @@ const MainCard = props => {
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant='h5' component='h2'>
-                {intl.get(`perspectives.${perspective.id}.mainPageLabel`)}
+                {intl.get(`perspectives.${perspective.id}.label`)}
               </Typography>
               <Typography component='p'>
                 {intl.get(`perspectives.${perspective.id}.shortDescription`)}
