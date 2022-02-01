@@ -136,12 +136,8 @@ const IterativeSearchPerspective = props => {
                   data={props.facetResults}
                   columns={props.facetResults.statutesProperties}
                   results={props.facetResults.statutesResults}
-                  facetUpdateID={props.facetData.facetUpdateID}
                   resultClass='situations'
                   facetClass='situations'
-                  fetchPaginatedResults={props.fetchPaginatedResults}
-                  updatePage={() => {}}
-                  rootUrl={rootUrl}
                 />}
             />
             <Route
@@ -153,13 +149,8 @@ const IterativeSearchPerspective = props => {
                   data={props.facetResults}
                   columns={props.facetResults.caseProperties}
                   results={props.facetResults.casesResults}
-                  facetUpdateID={props.facetData.facetUpdateID}
                   resultClass='situations'
                   facetClass='situations'
-                  fetchPaginatedResults={props.fetchPaginatedResults}
-                  fetchSituationResults={props.fetchSituationResults}
-                  updatePage={() => {}}
-                  rootUrl={rootUrl}
                 />}
             />
           </>
