@@ -12,7 +12,17 @@ import { getSpacing } from '../../../helpers/helpers'
  * A component for generating a front page for a semantic portal.
  */
 const Main = props => {
-  const { perspectives, screenSize } = props
+  const { perspectives, screenSize, layoutConfig } = props
+  const { mainPage } = layoutConfig
+  const internalPerspectives = []
+  const externalPerspectives = []
+  perspectives.forEach(perspective => {
+    if (perspective.externalUrl) {
+      externalPerspectives.push(perspective)
+    } else {
+      internalPerspectives.push(perspective)
+    }
+  })
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
   let descriptionVariant = 'body1'
@@ -47,7 +57,6 @@ const Main = props => {
   return (
     <Box
       sx={theme => {
-        const { layoutConfig } = props
         const defaultHeightReduction = layoutConfig.topBar.defaultHeight +
           layoutConfig.footer.defaultHeight + getSpacing(theme, 2)
         const reducedHeightReduction = layoutConfig.topBar.reducedHeight +
@@ -66,16 +75,16 @@ const Main = props => {
     >
       <Box
         sx={theme => ({
-          background: props.layoutConfig.mainPage.bannerBackround,
+          background: mainPage.bannerBackround,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: props.layoutConfig.mainPage.bannerMobileHeight,
+          // backgroundPosition: 'center',
+          height: mainPage.bannerMobileHeight,
           [theme.breakpoints.up('md')]: {
-            height: props.layoutConfig.mainPage.bannerReducedHeight
+            height: mainPage.bannerReducedHeight
           },
           [theme.breakpoints.up('xl')]: {
-            height: props.layoutConfig.mainPage.bannerDefaultHeight
+            height: mainPage.bannerDefaultHeight
           },
           boxShadow: '0 -15px 15px 0px #bdbdbd inset',
           display: 'flex',
@@ -101,11 +110,13 @@ const Main = props => {
           <Box
             sx={theme => ({
               marginTop: theme.spacing(1.5),
-              [theme.breakpoints.up('md')]: {
-                display: 'flex',
-                '& div': {
-                  flexGrow: 1,
-                  width: 0
+              ...(mainPage.wrapSubheading) && {
+                [theme.breakpoints.up('md')]: {
+                  display: 'flex',
+                  '& div': {
+                    flexGrow: 1,
+                    width: 0
+                  }
                 }
               }
             })}
@@ -122,8 +133,8 @@ const Main = props => {
         sx={theme => ({
           marginLeft: theme.spacing(1),
           marginRight: theme.spacing(1),
-          [theme.breakpoints.up(800 + getSpacing(theme, 6))]: {
-            width: 800,
+          [theme.breakpoints.up(1280 + getSpacing(theme, 6))]: {
+            width: 1280,
             marginLeft: 'auto',
             marginRight: 'auto'
           }
@@ -134,10 +145,10 @@ const Main = props => {
             paddingBottom: theme.spacing(1)
           })}
         >
-          <Typography variant={descriptionVariant} color='textPrimary' paragraph>
+          {/* <Typography variant={descriptionVariant} color='textPrimary' paragraph>
             {intl.getHTML('appDescription')}
-          </Typography>
-          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+          </Typography> */}
+          <Typography variant={descriptionVariant} align='center' color='textPrimary'>
             {intl.get('selectPerspective')}
           </Typography>
         </Box>
@@ -145,7 +156,37 @@ const Main = props => {
           container spacing={screenSize === 'sm' ? 2 : 1}
           justifyContent={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
         >
-          {perspectives.map(perspective => {
+          {internalPerspectives.map(perspective => {
+            const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)
+            if (!hideCard) {
+              return (
+                <MainCard
+                  key={perspective.id}
+                  perspective={perspective}
+                  cardHeadingVariant='h5'
+                  rootUrl={props.rootUrl}
+                />
+              )
+            }
+            return null
+          })}
+        </Grid>
+        <Typography
+          sx={theme => ({
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1)
+          })}
+          variant={descriptionVariant}
+          align='center'
+          color='textPrimary'
+        >
+          {intl.get('selectPerspectiveExternal')}
+        </Typography>
+        <Grid
+          container spacing={screenSize === 'sm' ? 2 : 1}
+          justifyContent='center'
+        >
+          {externalPerspectives.map(perspective => {
             const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)
             if (!hideCard) {
               return (

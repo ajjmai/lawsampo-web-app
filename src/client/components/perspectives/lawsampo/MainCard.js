@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       justifyContent: 'center'
     },
-    height: 228,
+    height: 180,
     [theme.breakpoints.down('md')]: {
       height: 170,
       maxWidth: 300
@@ -75,7 +75,7 @@ const MainCard = props => {
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={6} // optimized for four perspectives
+      item xs={12} sm={3}
       component={externalPerspective ? 'a' : Link}
       to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
       container={xsScreen}
