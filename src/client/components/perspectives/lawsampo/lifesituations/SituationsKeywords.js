@@ -1,26 +1,21 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@mui/styles'
 import intl from 'react-intl-universal'
-import IconButton from '@material-ui/core/IconButton'
-import FormControl from '@material-ui/core/FormControl'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import purple from '@material-ui/core/colors/purple'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
+import IconButton from '@mui/material/IconButton'
+import FormControl from '@mui/material/FormControl'
+import CircularProgress from '@mui/material/CircularProgress'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import { findIndex } from 'lodash'
-// import SortableTree from 'react-sortable-tree'
-// import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
-import Typography from '@material-ui/core/Typography'
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-// import LaunchIcon from '@material-ui/icons/Launch'
-import Chip from '@material-ui/core/Chip'
-import Tooltip from '@material-ui/core/Tooltip'
-import { Button, List, ListItem, ListItemIcon, ListItemText, Radio } from '@material-ui/core'
-import Link from '@material-ui/core/Link'
+import Typography from '@mui/material/Typography'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import Chip from '@mui/material/Chip'
+import Tooltip from '@mui/material/Tooltip'
+import { Button, List, ListItem, ListItemIcon, ListItemText, Radio } from '@mui/material'
+import Link from '@mui/material/Link'
 
 const styles = theme => ({
   headingContainer: {
@@ -189,7 +184,7 @@ class SituationsKeywords extends React.Component {
           <AddIcon classes={{ root: rootClassPositive }} onClick={(event) => this.togglePending(e, index, 1)} />
         </ListItemIcon>
         <ListItemText>
-          <Link href={e.uri} target='_blank' classes={{ root: classes.keywordLink }}>
+          <Link href={e.uri} target='_blank' classes={{ root: classes.keywordLink }} rel='noreferrer'>
             {e.prefLabel}
           </Link>
           <sub>({e.weight.toFixed(2)})</sub>
@@ -271,7 +266,7 @@ class SituationsKeywords extends React.Component {
     // map includes "holes" from the sparse array
     const positiveKeywords = this.props.facetData.selectedPositiveKeywords
     const negativeKeywords = this.props.facetData.selectedNegativeKeywords
-    this.state.itemState.map((i, index) => {
+    this.state.itemState.forEach((i, index) => {
       if (i !== undefined) {
         if (i === 1) {
           positiveKeywords.push(this.state.treeData[index])
@@ -291,79 +286,81 @@ class SituationsKeywords extends React.Component {
     const deletedKeywordsOpen = Boolean(anchorEl)
     return (
       <>
-        {isFetching ? (
-          <div className={classes.spinnerContainer}>
-            <CircularProgress style={{ color: purple[500] }} thickness={5} />
-          </div>
-        ) : (
-          <>
-            <div className={classes.headingContainer}>
-              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.selected`)}:</Typography>
-              {deletedKeywords.length > 0 &&
-                <>
-                  <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
-                    <IconButton
-                      aria-label='test'
-                      aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}
-                      aria-haspopup='true'
-                      onClick={this.handleMenuButtonClick}
+        {isFetching
+          ? (
+            <div className={classes.spinnerContainer}>
+              <CircularProgress />
+            </div>
+            )
+          : (
+            <>
+              <div className={classes.headingContainer}>
+                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.selected`)}:</Typography>
+                {deletedKeywords.length > 0 &&
+                  <>
+                    <Tooltip disableFocusListener title={intl.get(`perspectives.${perspective.id}.removedKeywords`)}>
+                      <IconButton
+                        aria-label='test'
+                        aria-owns={deletedKeywordsOpen ? 'facet-option-menu' : undefined}
+                        aria-haspopup='true'
+                        onClick={this.handleMenuButtonClick}
+                      >
+                        <MoreVertIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      id='facet-option-menu'
+                      anchorEl={anchorEl}
+                      open={deletedKeywordsOpen}
+                      onClose={this.handleMenuClose}
                     >
-                      <MoreVertIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <Menu
-                    id='facet-option-menu'
-                    anchorEl={anchorEl}
-                    open={deletedKeywordsOpen}
-                    onClose={this.handleMenuClose}
-                  >
-                    {this.getDeletedKeywordButtons()}
-                  </Menu>
-                </>}
-            </div>
-            <div>
-              {facetData.selectedPositiveKeywords.map((item, index) => {
-                // const key = item
-                const icon = <AddIcon />
-                return (
-                  <Chip
-                    key={item.uri}
-                    icon={icon}
-                    label={item.prefLabel}
-                    className={classes.chip}
-                    onDelete={() => this.handleDelete(item)}
-                    color='primary'
-                  />
-                )
-              })}
-              {facetData.selectedNegativeKeywords.map((item, index) => {
-                // const key = item
-                const icon = <RemoveIcon />
-                return (
-                  <Chip
-                    key={item.uri}
-                    icon={icon}
-                    label={item.prefLabel}
-                    className={classes.chip}
-                    onDelete={() => this.handleDelete(item)}
-                    color='secondary'
-                  />
-                )
-              })}
-            </div>
-            <div>
-              <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggested`)}:</Typography>
-              <div>
-                {this.getUpdateButton()}
+                      {this.getDeletedKeywordButtons()}
+                    </Menu>
+                  </>}
               </div>
-              <List>
-                {treeData.map((e, index) => {
-                  return this.getKeywordListItem(e, index)
+              <div>
+                {facetData.selectedPositiveKeywords.map((item, index) => {
+                // const key = item
+                  const icon = <AddIcon />
+                  return (
+                    <Chip
+                      key={item.uri}
+                      icon={icon}
+                      label={item.prefLabel}
+                      className={classes.chip}
+                      onDelete={() => this.handleDelete(item)}
+                      color='primary'
+                    />
+                  )
                 })}
-              </List>
-            </div>
-          </>
-        )}
+                {facetData.selectedNegativeKeywords.map((item, index) => {
+                // const key = item
+                  const icon = <RemoveIcon />
+                  return (
+                    <Chip
+                      key={item.uri}
+                      icon={icon}
+                      label={item.prefLabel}
+                      className={classes.chip}
+                      onDelete={() => this.handleDelete(item)}
+                      color='secondary'
+                    />
+                  )
+                })}
+              </div>
+              <div>
+                <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggested`)}:</Typography>
+                <div>
+                  {this.getUpdateButton()}
+                </div>
+                <List>
+                  {treeData.map((e, index) => {
+                    return this.getKeywordListItem(e, index)
+                  })}
+                </List>
+              </div>
+            </>
+            )}
       </>
     )
   }

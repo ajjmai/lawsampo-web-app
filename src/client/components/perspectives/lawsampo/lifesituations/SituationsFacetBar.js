@@ -1,10 +1,10 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@mui/styles'
 import SituationsSearch from './SituationsSearch'
 import SituationsKeywords from './SituationsKeywords'
 import SituationsCategory from './SituationsCategory'
-import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, IconButton, Tooltip, Typography } from '@material-ui/core'
-import InfoIcon from '@material-ui/icons/InfoOutlined'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, IconButton, Tooltip, Typography } from '@mui/material'
+import InfoIcon from '@mui/icons-material/InfoOutlined'
 import clsx from 'clsx'
 import intl from 'react-intl-universal'
 
@@ -72,6 +72,10 @@ class SituationFacetBar extends React.Component {
 
   componentDidMount = () => {
     this.props.fetchSituations()
+    const { pathname } = this.props.location
+    let page = 'statutes'
+    if (pathname.endsWith('cases')) { page = 'cases' }
+    this.props.updateResultType({ resultType: page })
   }
 
   componentDidUpdate = prevProps => {
@@ -86,6 +90,16 @@ class SituationFacetBar extends React.Component {
         keywordsDisabled: initialActive,
         categoriesDisabled: (this.props.facetData.query === '' && this.props.facetData.categories.length === 0)
       })
+    }
+    const newPath = this.props.location.pathname
+    const oldPath = prevProps.location.pathname
+    if (newPath !== oldPath) {
+      let page = 'statutes'
+      if (newPath.endsWith('cases')) { page = 'cases' }
+      this.props.updateResultType({ resultType: page })
+      if (this.props.facetData.query !== '' || this.props.facetData.selectedSituation != null) {
+        this.props.fetchSituationResults()
+      }
     }
   }
 
@@ -256,7 +270,6 @@ class SituationFacetBar extends React.Component {
           >
             <div>
               <div className={classes.facetInfoContainer}>
-
                 <SituationsKeywords
                   perspective={this.props.perspective}
                   isFetching={this.props.facetData.isFetching}

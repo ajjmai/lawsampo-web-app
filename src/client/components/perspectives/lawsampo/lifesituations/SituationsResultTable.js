@@ -1,22 +1,19 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@mui/styles'
 import clsx from 'clsx'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
 import ResultTableCell from '../../../facet_results/ResultTableCell'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import IconButton from '@material-ui/core/IconButton'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import purple from '@material-ui/core/colors/purple'
-// import querystring from 'querystring'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import IconButton from '@mui/material/IconButton'
+import CircularProgress from '@mui/material/CircularProgress'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ResultTableHead from '../../../facet_results/ResultTableHead'
-import TablePagination from '@material-ui/core/TablePagination'
+import TablePagination from '@mui/material/TablePagination'
 import has from 'lodash'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 const styles = theme => ({
   infoContainer: {
@@ -154,6 +151,7 @@ class SituationsResultTable extends React.Component {
           collapsedMaxWords={has(column, 'collapsedMaxWords')
             ? column.collapsedMaxWords
             : null}
+          shortenLabel={false}
           renderAsHTML={has(column, 'renderAsHTML')
             ? column.renderAsHTML
             : null}
@@ -204,17 +202,16 @@ class SituationsResultTable extends React.Component {
           count={pagesize}
           rowsPerPage={pagesize}
           page={0}
-          onChangePage={() => {}}
+          onPageChange={() => {}}
           labelRowsPerPage={intl.get('table.rowsPerPage')}
-          rowsPerPageOptions={[5, 10, 15, 25, 30, 50, 100]}
-          onChangeRowsPerPage={this.handleOnChangeRowsPerPage}
-
+          rowsPerPageOptions={[25]}
+          onRowsPerPageChange={this.handleOnChangeRowsPerPage}
         />
         <div className={classes.tableContainer}>
           {isFetching
             ? (
               <div className={classes.progressContainer}>
-                <CircularProgress style={{ color: purple[500] }} thickness={5} />
+                <CircularProgress />
               </div>
               )
             : (

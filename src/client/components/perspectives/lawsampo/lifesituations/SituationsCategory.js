@@ -1,15 +1,14 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import Chip from '@material-ui/core/Chip'
+import { withStyles } from '@mui/styles'
+import Chip from '@mui/material/Chip'
 // import Tooltip from '@material-ui/core/Tooltip'
-import { Radio, RadioGroup } from '@material-ui/core'
-import FormControl from '@material-ui/core/FormControl'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { Radio, RadioGroup } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import CircularProgress from '@mui/material/CircularProgress'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import SortableTree from '@nosferatu500/react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
-import Typography from '@material-ui/core/Typography'
-import purple from '@material-ui/core/colors/purple'
+import Typography from '@mui/material/Typography'
 
 const styles = (theme) => ({
   facetSearchContainer: {
@@ -123,7 +122,7 @@ class SituationsCategory extends React.Component {
         {isFetching
           ? (
             <div className={classes.spinnerContainer}>
-              <CircularProgress style={{ color: purple[500] }} thickness={5} />
+              <CircularProgress />
             </div>
             )
           : (

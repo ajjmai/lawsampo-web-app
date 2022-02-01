@@ -52,6 +52,18 @@ import * as leafletConfig from '../library_configs/Leaflet/LeafletConfig'
 import * as networkToolsGeneral from '../library_configs/Cytoscape.js/NetworkToolsGeneral'
 import * as networkToolsPortalSpecific from '../library_configs/Cytoscape.js/NetworkToolsPortalSpecific'
 
+import {
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  setSituationKeywords,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType,
+  fetchSituations
+} from '../reducers/lawsampo/situationsFacets'
+
 // ** Generate portal configuration based on JSON configs **
 import portalConfig from '../../configs/portalConfig.json'
 await processPortalConfig(portalConfig)
@@ -83,6 +95,7 @@ const Message = lazy(() => import('../components/main_layout/Message'))
 const FullTextSearch = lazy(() => import('../components/main_layout/FullTextSearch'))
 const FacetedSearchPerspective = lazy(() => import('../components/facet_results/FacetedSearchPerspective'))
 const FederatedSearchPerspective = lazy(() => import('../components/facet_results/FederatedSearchPerspective'))
+const IterativeSearchPerspective = lazy(() => import('../components/perspectives/lawsampo/lifesituations/IterativeSearchPerspective'))
 const InstancePagePerspective = lazy(() => import('../components/main_layout/InstancePagePerspective'))
 const KnowledgeGraphMetadataTable = lazy(() => import('../components/main_layout/KnowledgeGraphMetadataTable'))
 // ** General components end **
@@ -360,6 +373,28 @@ const SemanticPortal = props => {
               />
             </Route>
           )}
+        <Route path={`${rootUrlWithLang}/situations/iterative-search`}>
+          <IterativeSearchPerspective
+            perspective={perspectiveConfig.find(p => p.id === 'situations')}
+            fetchSituations={props.fetchSituations}
+            facetData={props.situationsFacets}
+            facetResults={props.situations}
+            updateSituationQuery={props.updateSituationQuery}
+            updateSituationSelected={props.updateSituationSelected}
+            addSituationKeyword={props.addSituationKeyword}
+            setSituationKeywords={props.setSituationKeywords}
+            removeSituationKeyword={props.removeSituationKeyword}
+            clearAllSituations={props.clearAllSituations}
+            fetchSituationResults={props.fetchSituationResults}
+            portalConfig={portalConfig}
+            layoutConfig={layoutConfig}
+            updateRowsPerPage={props.updateRowsPerPage}
+            updateResultType={props.updateResultType}
+            updatePerspectiveHeaderExpanded={props.updatePerspectiveHeaderExpanded}
+            screenSize={screenSize}
+            rootUrl={rootUrlWithLang}
+          />
+        </Route>
         {/* create routes for top bar info buttons */}
         {!layoutConfig.topBar.externalAboutPage &&
           <Route path={`${rootUrlWithLang}/about`}>
@@ -456,7 +491,16 @@ const mapDispatchToProps = ({
   clientFSSortResults,
   clientFSUpdateQuery,
   clientFSUpdateFacet,
-  fetchKnowledgeGraphMetadata
+  fetchKnowledgeGraphMetadata,
+  updateSituationQuery,
+  updateSituationSelected,
+  addSituationKeyword,
+  setSituationKeywords,
+  removeSituationKeyword,
+  fetchSituationResults,
+  clearAllSituations,
+  updateResultType,
+  fetchSituations
 })
 
 SemanticPortal.propTypes = {
