@@ -204,16 +204,6 @@
             "filterType": "textFilter",
             "textQueryPredicate": "lss:is_realized_by"
         },
-        "referencedStatute": {
-            "containerClass": "ten",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "facetType": "hierarchical",
-            "filterType": "uriFilter",
-            "parentProperty": "eli:type_document",
-            "predicate": "lss:reference_to_statute",
-            "searchField": true,
-            "sortByPredicate": "lss:reference_to_statute/skos:prefLabel"
-        },
         "court": {
             "containerClass": "five",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
