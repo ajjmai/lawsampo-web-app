@@ -6,6 +6,11 @@ import aaltoLogo from '../../../img/logos/Aalto_SCI_EN_13_BLACK_2_cropped.png'
 import hyLogo from '../../../img/logos/university-of-helsinki-logo-transparent-black.png'
 import heldigLogo from '../../../img/logos/heldig-logo-transparent-black.png'
 
+import omLogo from '../../../img/lawsampo/om-logo_eng.png'
+import vmLogo from '../../../img/lawsampo/vmlogo_en.png'
+import anoppiLogo from '../../../img/lawsampo/Anoppi-logo-cropped.jpg'
+import editaLogo from '../../../img/lawsampo/edita-logo-transparent.png'
+
 /**
  * A component for creating a footer. The logos are imported inside this component.
  */
@@ -21,14 +26,17 @@ const Footer = props => {
         flexWrap: 'wrap',
         rowGap: theme.spacing(2),
         columnGap: theme.spacing(3),
+        [theme.breakpoints.down(1150)]: {
+          columnGap: theme.spacing(1)
+        },
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2),
-        [theme.breakpoints.down(496)]: {
+        [theme.breakpoints.down(900)]: {
           paddingTop: theme.spacing(2),
           paddingBottom: theme.spacing(2)
         },
         minHeight: {
-          xs: props.layoutConfig.footer.reducedHeight,
+          xs: props.layoutConfig.footer.reducedHeight * 2,
           hundredPercentHeight: props.layoutConfig.footer.reducedHeight,
           reducedHeight: props.layoutConfig.footer.defaultHeight
         }
@@ -57,6 +65,76 @@ const Footer = props => {
           }}
         />
       </Box>
+
+      <Box
+        component='a'
+        href='https://oikeusministerio.fi/en'
+        target='_blank'
+        rel='noopener noreferrer'
+        sx={theme => ({
+          height: 30,
+          [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+            height: 42
+          }
+        })}
+      >
+        <Box
+          component='img'
+          src={omLogo}
+          alt='Logo'
+          sx={{
+            height: '100%'
+          }}
+        />
+      </Box>
+
+      <Box
+        component='a'
+        href='https://vm.fi/en'
+        target='_blank'
+        rel='noopener noreferrer'
+        sx={theme => ({
+          height: 30,
+          [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+            height: 45
+          }
+        })}
+      >
+        <Box
+          component='img'
+          src={vmLogo}
+          alt='Logo'
+          sx={{
+            height: '100%'
+          }}
+        />
+      </Box>
+
+      <Box
+        component='a'
+        href='https://www.editapublishing.fi'
+        target='_blank'
+        rel='noopener noreferrer'
+        sx={theme => ({
+          height: 30,
+          width: 90,
+          display: 'flex',
+          justifyContent: 'center',
+          [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+            height: 42
+          }
+        })}
+      >
+        <Box
+          component='img'
+          src={editaLogo}
+          alt='Logo'
+          sx={{
+            height: '100%'
+          }}
+        />
+      </Box>
+
       <Box
         component='a'
         href='https://www.helsinki.fi/en'
@@ -80,6 +158,7 @@ const Footer = props => {
           }}
         />
       </Box>
+
       <Box
         component='a'
         href='https://www.helsinki.fi/en/helsinki-centre-for-digital-humanities'
@@ -103,6 +182,29 @@ const Footer = props => {
           }}
         />
       </Box>
+
+      <Box
+        component='a'
+        href='https://seco.cs.aalto.fi/projects/anoppi'
+        target='_blank'
+        rel='noopener noreferrer'
+        sx={theme => ({
+          height: 30,
+          [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+            height: 33
+          }
+        })}
+      >
+        <Box
+          component='img'
+          src={anoppiLogo}
+          alt='Logo'
+          sx={{
+            height: '100%'
+          }}
+        />
+      </Box>
+
     </Paper>
   )
 }
