@@ -45,7 +45,8 @@
             "makeLink": true,
             "externalLink": false,
             "sortValues": false,
-            "numberedList": false
+            "numberedList": false,
+            "minWidth": 190
         },
         {
             "id": "prefLabel",
@@ -80,7 +81,8 @@
             "makeLink": false,
             "externalLink": false,
             "sortValues": false,
-            "numberedList": false
+            "numberedList": false,
+            "minWidth": 160
         },
         {
             "id": "subjectCategory",
