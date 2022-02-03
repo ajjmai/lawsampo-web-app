@@ -117,10 +117,10 @@ export default {
   },
   perspectives: {
     situations: {
-      label: 'Elämäntilanteet',
-      mainPageLabel: 'Elämäntilanteet',
+      label: 'Elämän aihepiirit',
+      mainPageLabel: 'Elämän aihepiirit',
       facetResultsType: '',
-      shortDescription: 'Hae pykäliä ja oikeustapauksia elämäntilanteiden ja aiheiden avulla',
+      shortDescription: 'Hae pykäliä ja oikeustapauksia elämän aihepiirien avulla',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         Elämäntilanteet-näkymä tarjoaa mahdollisuuden etsiä sopivia dokumentteja asteittain tarkentuvan haun avulla.

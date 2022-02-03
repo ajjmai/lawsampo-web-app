@@ -17,7 +17,7 @@ const Main = props => {
   const internalPerspectives = []
   const externalPerspectives = []
   perspectives.forEach(perspective => {
-    if (perspective.externalUrl) {
+    if (perspective.externalUrl || perspective.searchMode === 'iterative-search') {
       externalPerspectives.push(perspective)
     } else {
       internalPerspectives.push(perspective)
@@ -154,7 +154,7 @@ const Main = props => {
         </Box>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
-          justifyContent={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
+          justifyContent='center'
         >
           {internalPerspectives.map(perspective => {
             const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)

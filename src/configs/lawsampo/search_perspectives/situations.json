@@ -1,6 +1,6 @@
 {
     "id": "situations",
-    "frontPageImage": "lawsampo/contextual_search_cropped.jpg",
+    "frontPageImage": null,
     "searchMode": "iterative-search",
     "resultClasses": {
         "statutes": {
