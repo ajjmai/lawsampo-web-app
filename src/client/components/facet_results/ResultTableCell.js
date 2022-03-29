@@ -15,10 +15,12 @@ const ResultTableCell = props => {
     data, tableData, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, minWidth,
     height, container, columnId, expanded, linkAsButton, collapsedMaxWords, showSource,
     sourceExternalLink, renderAsHTML, HTMLParserTask, referencedTerm, previewImageHeight,
-    onExpandClick, rowId, shortenLabel = false, maxWords, hasParts, hasChapters
+    onExpandClick, showExtraCollapseButton, rowId, shortenLabel = false
   } = props
   let cellContent = null
   const cellStyle = {
+    paddingTop: 3,
+    paddingBottom: 3,
     ...(height && { height }),
     ...(minWidth && { minWidth })
   }
@@ -49,8 +51,8 @@ const ResultTableCell = props => {
       cellContent = (
         <SectionOfALawListCollapsible
           data={data}
-          hasParts={hasParts === 'true'}
-          hasChapters={hasChapters === 'true'}
+          hasParts={props.hasParts === 'true'}
+          hasChapters={props.hasChapters === 'true'}
           makeLink={makeLink}
           externalLink={externalLink}
           sortValues={sortValues}
@@ -75,6 +77,7 @@ const ResultTableCell = props => {
           onExpandClick={onExpandClick}
           rowId={rowId}
           collapsedMaxWords={collapsedMaxWords}
+          showExtraCollapseButton={showExtraCollapseButton}
           shortenLabel={shortenLabel}
           renderAsHTML={renderAsHTML}
           HTMLParserTask={HTMLParserTask}
@@ -90,7 +93,7 @@ const ResultTableCell = props => {
       break
     case 'wordcloud':
       cellContent = data && data !== '-'
-        ? <Wordcloud data={data} maxWords={maxWords} />
+        ? <Wordcloud data={data} maxWords={props.maxWords} />
         : '-'
       break
   }
