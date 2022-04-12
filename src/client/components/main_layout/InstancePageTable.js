@@ -152,7 +152,7 @@ class InstancePageTable extends React.Component {
                 const label = intl.get(`perspectives.${perspectiveID}.properties.${row.id}.label`)
                 const description = intl.get(`perspectives.${perspectiveID}.properties.${row.id}.description`)
                 const {
-                  id, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, minWidth,
+                  id, valueType, makeLink, externalLink, sortValues, sortBy, sortByConvertDataTypeTo, numberedList, minWidth,
                   linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask
                 } = row
                 let { previewImageHeight } = row
@@ -198,6 +198,7 @@ class InstancePageTable extends React.Component {
                       externalLink={externalLink}
                       sortValues={sortValues}
                       sortBy={sortBy}
+                      sortByConvertDataTypeTo={sortByConvertDataTypeTo}
                       numberedList={numberedList}
                       minWidth={minWidth}
                       previewImageHeight={previewImageHeight}
