@@ -220,6 +220,7 @@ class SituationsResultTable extends React.Component {
                   ? (
                     <Table size='small'>
                       <ResultTableHead
+                        perspectiveConfig={perspective}
                         resultClass={this.props.resultClass}
                         columns={this.props.columns}
                         onSortBy={() => {}}
