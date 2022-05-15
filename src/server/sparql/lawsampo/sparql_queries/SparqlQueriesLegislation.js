@@ -150,7 +150,7 @@ export const statutePropertiesInstancePage = `
   }
   UNION
   {
-    ?id lss:annotatedHtml ?annotatedHtml_ .
+    ?id lss:annotated_html ?annotatedHtml_ .
     BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
   UNION
@@ -219,7 +219,7 @@ export const sectionProperties = `
   }
   UNION
   {
-    ?id lss:annotatedHtml ?annotatedHtml_ .
+    ?id lss:annotated_html ?annotatedHtml_ .
     BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
   }
   UNION
@@ -246,7 +246,7 @@ export const statutesByYearQuery = `
 
 // https://version.aalto.fi/gitlab/seco/lawsampo-data/-/blob/master/void/lawsampo-void.ttl
 export const knowledgeGraphMetadataQuery = `
-  SELECT * 
+  SELECT *
   WHERE {
     ?id a sd:Dataset ;
         dct:source/skos:prefLabel ?prefLabel ;
