@@ -86,7 +86,7 @@ export const judgementPropertiesInstancePage = `
   }
   UNION
   {
-    ?id lss:referencedTerms/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
+    ?id lss:term_reference/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
     ?referencedTerm__id skos:prefLabel ?prefLabel_ .
     OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
     OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
@@ -135,7 +135,7 @@ export const judgementPropertiesInstancePage = `
   }
    UNION
   {
-    ?id lss:subject_category ?subjectCategory__id .
+    ?id dct:subject ?subjectCategory__id .
     ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
   }
   UNION

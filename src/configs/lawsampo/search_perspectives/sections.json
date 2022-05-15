@@ -134,11 +134,11 @@
             "facetType": "list",
             "filterType": "uriFilter",
             "pieChartButton": true,
-            "predicate": "lss:subject_category",
+            "predicate": "dct:subject",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "lss:subject_category/skos:prefLabel",
+            "sortByPredicate": "dct:subject/skos:prefLabel",
             "sortDirection": "desc"
         },
         "situationCategory": {
