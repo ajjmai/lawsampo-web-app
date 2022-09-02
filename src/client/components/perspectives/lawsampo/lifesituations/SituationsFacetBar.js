@@ -158,7 +158,7 @@ class SituationFacetBar extends React.Component {
             <div className={classes.headingContainer}>
               <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.searchTitle`)}</Typography>
               <Tooltip
-                title='facetDescription'
+                title={intl.get(`perspectives.${perspective.id}.facetBar.searchTitleInfo`)}
                 enterDelay={300}
               >
                 <IconButton>
@@ -205,7 +205,7 @@ class SituationFacetBar extends React.Component {
             <div className={classes.headingContainer}>
               <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggestedCategories`)}</Typography>
               <Tooltip
-                title='facetDescription'
+                title={intl.get(`perspectives.${perspective.id}.facetBar.suggestedCategoriesInfo`)}
                 enterDelay={300}
               >
                 <IconButton>
@@ -247,7 +247,7 @@ class SituationFacetBar extends React.Component {
             <div className={classes.headingContainer}>
               <Typography variant='body1'>{intl.get(`perspectives.${perspective.id}.facetBar.suggestedKeywords`)}</Typography>
               <Tooltip
-                title='facetDescription'
+                title={intl.get(`perspectives.${perspective.id}.facetBar.suggestedKeywordsInfo`)}
                 enterDelay={300}
               >
                 <IconButton>

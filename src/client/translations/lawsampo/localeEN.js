@@ -178,10 +178,13 @@ export default {
       inputPlaceHolder: '',
       facetBar: {
         searchTitle: 'Search',
+        searchTitleInfo: 'Search can be initiated either with a keyword or by selecting a main category.',
         query: 'Text query',
         mainCategory: 'or select a main category:',
         suggestedCategories: 'Suggested categories',
+        suggestedCategoriesInfo: 'These categories are dynamically selected based on the current state of the search.',
         suggestedKeywords: 'Suggested keywords',
+        suggestedKeywordsInfo: 'These keywords are dynamically selected based on the current state of the search. Keywords can be added and removed using plus and minus actions.',
         addToSelected: 'Add to selected',
         selected: 'Selected',
         suggested: 'Suggested',

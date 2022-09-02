@@ -152,10 +152,13 @@ export default {
       inputPlaceHolder: '',
       facetBar: {
         searchTitle: 'Hakuehdot',
+        searchTitleInfo: 'Haku voidaan käynnistää joko avainsanahaulla tai valitsemalla sopiva pääkategoria.',
         query: 'Tekstihaku',
         mainCategory: 'tai valitse pääkategoria:',
         suggestedCategories: 'Suositellut kategoriat',
+        suggestedCategoriesInfo: 'Suositellut kategoriat valitaan dynaamisesti haun sisällön mukaan.',
         suggestedKeywords: 'Asiasanat',
+        suggestedKeywordsInfo: 'Suositellut asiasant valitaan dynaamisesti haun sisällön mukaan.',
         addToSelected: 'Lisää valittuihin',
         selected: 'Valitut',
         suggested: 'Suositellut',
