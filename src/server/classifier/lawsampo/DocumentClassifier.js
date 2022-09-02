@@ -85,5 +85,19 @@ export const fetchClassifierResults = async (resultType, size, query, keywords, 
       console.log('Error', error.message)
     }
     console.log(error.config)
+    const emptyResults = {
+      size: size,
+      query: query,
+      selected_keywords: keywords,
+      selected_category: category,
+      selected_negative_keywords: selectedNegativeKeywords,
+      selected_positive_keywords: selectedPositiveKeywords,
+      suggested_categories: [],
+      suggested_keywords: [],
+      docs: [],
+      results: []            
+    }
+    return emptyResults
+    
   }
 }
