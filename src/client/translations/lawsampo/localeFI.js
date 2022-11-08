@@ -320,7 +320,7 @@ export default {
           `
         },
         situationCategory: {
-          label: 'Elämäntilanne (autom. tunnistettu)',
+          label: 'Elämän aihepiiri (autom. tunnistettu)',
           description: `
             Säädöksen sisällön perusteella automaattisesti tunnistettu säädökseen liittyvä elämäntilanne
           `
