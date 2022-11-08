@@ -639,9 +639,9 @@ export default {
           `
         },
         typeOftheMatter: {
-          label: 'Type of the matter',
+          label: 'Procedural law',
           description: `
-            Type of the matter
+            Procedural law e.g., type of the matter
           `
         },
         subjectCategory: {
