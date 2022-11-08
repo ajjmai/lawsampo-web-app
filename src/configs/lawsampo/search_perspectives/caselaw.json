@@ -240,11 +240,11 @@
             "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "dcterms:subject",
+            "predicate": "lss:procedure",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "dcterms:subject/skos:prefLabel",
+            "sortByPredicate": "lss:procedure/skos:prefLabel",
             "sortDirection": "desc"
         },
         "subjectCategory": {

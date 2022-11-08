@@ -626,9 +626,9 @@ export default {
           `
         },
         typeOftheMatter: {
-          label: 'Oikeustapauksen tyyppi',
+          label: 'Prosessilaji',
           description: `
-            Oikeustapauksen tyyppi
+            Oikeustapauksen tyyppi eli prosessilaji
           `
         },
         subjectCategory: {
