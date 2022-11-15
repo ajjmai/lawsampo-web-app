@@ -460,7 +460,7 @@ export default {
           `
         },
         situationCategory: {
-          label: 'Elämäntilanne (autom. tunnistettu)',
+          label: 'Elämän aihepiiri (autom. tunnistettu)',
           description: `
             Pykälän sisällön perusteella automaattisesti tunnistettu pykälään liittyvä elämäntilanne
           `
@@ -638,7 +638,7 @@ export default {
           `
         },
         situationCategory: {
-          label: 'Elämäntilanne (autom. tunnistettu)',
+          label: 'Elämän aihepiiri (autom. tunnistettu)',
           description: `
             Elämäntilanne
           `

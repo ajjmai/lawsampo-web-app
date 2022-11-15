@@ -14,15 +14,23 @@ export const judgementPropertiesFacetResults = `
   UNION
   {
     ?id lss:is_realized_by ?expP .
-    ?expP dcterms:language '<LANG>' ;
-          dcterms:abstract ?abstract__text .
+    OPTIONAL {
+        ?expP dcterms:language/skos:prefLabel ?lang__prefLabel .
+        FILTER(LANG(?lang__prefLabel) = '<LANG>')
+    }
+    ?expP dcterms:abstract ?abstract__text .
+    FILTER(LANG(?abstract__text) = '<LANG>')
     BIND('abstractPrimary' as ?abstract__id)
   }
   UNION
   {
     ?id lss:is_realized_by ?expS .
-    ?expS dcterms:language '<LANG_SECONDARY>' ;
-          dcterms:abstract ?abstract__text .
+    OPTIONAL {
+    ?expS dcterms:language/skos:prefLabel ?lang_second__prefLabel .
+    FILTER(LANG(?lang_second__prefLabel) = '<LANG_SECONDARY>')
+    }
+    ?expS  dcterms:abstract ?abstract__text .
+    FILTER(LANG(?abstract__text) = '<LANG>')
     BIND('abstractSecondary' as ?abstract__id)
   }
   UNION
@@ -57,15 +65,23 @@ export const judgementPropertiesInstancePage = `
   UNION
   {
     ?id lss:is_realized_by ?expP .
-    ?expP dcterms:language '<LANG>' ;
-          dcterms:abstract ?abstract__text .
+    OPTIONAL {
+    ?expP dcterms:language/skos:prefLabel ?lang__prefLabel .
+    FILTER(LANG(?lang__prefLabel) = '<LANG>')
+    }
+    ?expP dcterms:abstract ?abstract__text .
+    FILTER(LANG(?abstract__text) = '<LANG>')
     BIND('abstractPrimary' as ?abstract__id)
   }
   UNION
   {
     ?id lss:is_realized_by ?expS .
-    ?expS dcterms:language '<LANG_SECONDARY>' ;
-          dcterms:abstract ?abstract__text .
+    OPTIONAL {
+    ?expS dcterms:language/skos:prefLabel ?lang_second__prefLabel .
+    FILTER(LANG(?lang_second__prefLabel) = '<LANG_SECONDARY>')
+    }
+    ?expS dcterms:abstract ?abstract__text .
+    FILTER(LANG(?abstract__text) = '<LANG>')
     BIND('abstractSecondary' as ?abstract__id)
   }
   UNION
@@ -73,13 +89,19 @@ export const judgementPropertiesInstancePage = `
     BIND(<ID> as ?id)
     OPTIONAL {
       ?id lss:is_realized_by ?expPrimary .
-      ?expPrimary dcterms:language '<LANG>' ;
-                  lss:html ?htmlPrimary .
+      OPTIONAL {
+      ?expPrimary dcterms:language/skos:prefLabel ?lang__prefLabel .
+      FILTER(LANG(?lang__prefLabel) = '<LANG>')
+      }
+      ?expPrimary lss:html ?htmlPrimary .
     }
     OPTIONAL {
       ?id lss:is_realized_by ?expSecondary .
-      ?expSecondary dcterms:language '<LANG_SECONDARY>' ;
-                    lss:html ?htmlSecondary .
+      OPTIONAL {
+      ?expSecondary dcterms:language ?lang_second__prefLabel .
+      FILTER(LANG(?lang_second__prefLabel) = '<LANG_SECONDARY>')
+      }
+      ?expSecondary lss:html ?htmlSecondary .
     }
     BIND(COALESCE(?htmlPrimary, ?htmlSecondary) as ?html_)
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)

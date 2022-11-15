@@ -273,8 +273,9 @@
         "language": {
             "containerClass": "three",
             "facetType": "list",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "filterType": "uriFilter",
-            "literal": true,
+            "literal": false,
             "pieChartButton": true,
             "predicate": "lss:is_realized_by/dcterms:language",
             "sortButton": true,
