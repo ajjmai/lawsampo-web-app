@@ -135,8 +135,8 @@ export default {
   },
   perspectives: {
     situations: {
-      label: 'Contextual search',
-      mainPageLabel: 'Contextual Search',
+      label: 'Life Events',
+      mainPageLabel: 'Life Events',
       facetResultsType: '',
       shortDescription: 'For legal documents based on life events and topics',
       longDescription: `
@@ -144,7 +144,7 @@ export default {
       General
       </h3>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Contextual search view providers an iterative search functionality which allows you
+      Life Events view provides an iterative search functionality which allows you
       to focus the search incrementally.
       </p>
       <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
@@ -726,7 +726,7 @@ export default {
       Data sources
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The below table lists the data sources which have been used in creating the LawSampo data service. 
+      The below table lists the data sources which have been used in creating the LawSampo data service.
     </p>
   `,
   instructions: `

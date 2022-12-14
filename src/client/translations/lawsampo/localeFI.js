@@ -228,7 +228,7 @@ export default {
       shortDescription: 'Hae lakeja, asetuksia ja päätöksiä',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön säädöksiä.
+          Tässä näkymässä voit tutkia Suomen ajantasaista lainsäädäntöä ja voimassa olevia alkuperäisiä säädöksiä.
           Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
           Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
         <br />
@@ -389,7 +389,7 @@ export default {
       shortDescription: 'Hae yksittäisiä lainsäädännön pykäliä',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön pykäliä.
+          Tässä näkymässä voit tutkia Suomen ajantasaisen lainsäädännön ja voimassa olevien alkuperäisten säädösten pykäliä.
           Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
           Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
         <br />
@@ -540,7 +540,7 @@ export default {
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         <b>Vuosijakauma -välilehdessä</b> käyttäjä voi tarkastella oikeustapausten jakaumaa antovuoden perusteella. Viemällä hiiren kuvaajan janan päälle,
-        käyttäjä voi saada arvot näkyviin janalla tiettynä ajanhetkenä. 
+        käyttäjä voi saada arvot näkyviin janalla tiettynä ajanhetkenä.
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         <b>Avaa YASGUI-sovelluksessa -välilehdellä</b> voi avata tulokset YASGUI-sovelluksessa klikkaamalla sille tehtyä painiketta. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
@@ -713,7 +713,7 @@ export default {
       Data source
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The below table lists the data sources which have been used in creating the LawSampo data service. 
+      The below table lists the data sources which have been used in creating the LawSampo data service.
     </p>
   `,
   instructions: `
