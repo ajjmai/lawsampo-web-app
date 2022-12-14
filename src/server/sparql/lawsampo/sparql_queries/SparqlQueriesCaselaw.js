@@ -93,7 +93,7 @@ export const judgementPropertiesInstancePage = `
       ?expPrimary dcterms:language/skos:prefLabel ?lang__prefLabel .
       FILTER(LANG(?lang__prefLabel) = '<LANG>')
       }
-      ?expPrimary lss:html ?htmlPrimary .
+      ?expPrimary lss:annotated_html ?htmlPrimary .
     }
     OPTIONAL {
       ?id lss:is_realized_by ?expSecondary .
@@ -101,7 +101,7 @@ export const judgementPropertiesInstancePage = `
       ?expSecondary dcterms:language ?lang_second__prefLabel .
       FILTER(LANG(?lang_second__prefLabel) = '<LANG_SECONDARY>')
       }
-      ?expSecondary lss:html ?htmlSecondary .
+      ?expSecondary lss:annotated_html ?htmlSecondary .
     }
     BIND(COALESCE(?htmlPrimary, ?htmlSecondary) as ?html_)
     BIND(REPLACE(?html_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
