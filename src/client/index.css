@@ -50,7 +50,7 @@ a, a:visited, a:hover, a:active {
 .apexcharts-custom-tooltip {
     /* padding: 8px; */
     font-family: "Roboto", "Helvetica", "Arial";
-} 
+}
 
 .leaflet-popup-content p {
     margin: 0px !important;
@@ -136,4 +136,8 @@ a, a:visited, a:hover, a:active {
     width: 18px !important;
     height: 18px !important;
     padding-top: 0px !important;
+}
+
+.table-of-contents {
+    display: grid;
 }
