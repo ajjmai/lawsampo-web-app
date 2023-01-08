@@ -77,7 +77,7 @@
             }
         },
         "export": {
-            "tabID": 1,
+            "tabID": 2,
             "component": "Export",
             "tabPath": "export",
             "tabIcon": "ArrowForward",

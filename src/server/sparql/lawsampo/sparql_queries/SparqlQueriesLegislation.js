@@ -234,9 +234,9 @@ export const sectionProperties = `
 `
 
 export const statutesByYearQuery = `
-  SELECT ?category (count(?instance) as ?count) WHERE {
+  SELECT ?category (count(?statute) as ?count) WHERE {
     <FILTER>
-    ?instance lss:timespan ?category_ ;
+    ?statute lss:timespan ?category_ ;
        a lss:Statute .
     ?category_ skos:prefLabel ?category .
   }
