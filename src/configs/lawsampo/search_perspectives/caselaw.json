@@ -265,19 +265,6 @@
             "sortBy": "instanceCount",
             "sortByPredicate": "lss:situation_category/skos:prefLabel",
             "sortDirection": "desc"
-        },
-        "language": {
-            "containerClass": "three",
-            "facetType": "list",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "filterType": "uriFilter",
-            "literal": false,
-            "pieChartButton": true,
-            "predicate": "lss:is_realized_by/dcterms:language",
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "lss:is_realized_by/dcterms:language",
-            "sortDirection": "desc"
         }
     }
 }
