@@ -59,17 +59,12 @@
             "showLanguageButton": false,
             "showSearchField": false,
             "feedbackLink": "https://link.webropolsurveys.com/S/E4C53B4A2D5D01B4",
-            "externalInstructions": false,
+            "externalInstructions": true,
             "externalAboutPage": false,
             "reducedHeight": 48,
             "defaultHeight": 64,
             "mobileMenuBreakpoint": 1360,
             "infoDropdown": [
-                {
-                    "id": "about",
-                    "translatedText": "aboutThePortal",
-                    "internalLink": "/about"
-                },
                 {
                     "id": "blog",
                     "externalLink": true,

@@ -28,7 +28,8 @@ export default {
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     searchBarPlaceHolderShort: 'Haku',
-    instructions: 'ohjeet'
+    instructions: 'ohjeet',
+    instructionsUrl: 'https://seco.cs.aalto.fi/projects/lakisampo/lakisammon-ohje.pdf'
   },
   facetBar: {
     results: 'Tulokset',
@@ -698,19 +699,13 @@ export default {
       Tietoa Lakisammosta
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      LawSampo system consists of two components. 1) The LawSampo portal with its different application perspectives
-      is targeted for human end-users for searching and exploring Finnish legislation and case law.
-      2) The portal is based on the Linked Open  Data service Semantic Finlex that publishes data of the national
-      Finlex service of the Ministry of Justice in Finland. The data service can be used freely for
-      application development and is available at the Finnish Linked Data service LDF.fi.
+      <a href="https://seco.cs.aalto.fi/projects/lakisampo/lakisammon-ohje.pdf">Lakisampo-portaalin käyttöohje</a>
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      LawSampo is a living laboratory prototype on the Web. It has been developed by the Semantic Computing Research
-      Group (SeCo) at various research projects with the Ministry of Justice and Edita Publishing Ltd in Aalto University
-      and Helsinki Centre for Digital Humanities (HELDIG) at the University of Helsinki in collaboration.
+      <a href="https://seco.cs.aalto.fi/projects/lakisampo/">Lakisampo-projektin kotisivu</a>
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Data source
+      Lähtödata
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       The below table lists the data sources which have been used in creating the LawSampo data service.
