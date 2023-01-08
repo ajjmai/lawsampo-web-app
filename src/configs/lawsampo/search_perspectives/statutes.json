@@ -54,6 +54,28 @@
                 }
             }
         },
+        "statutesByYear": {
+            "tabID": 1,
+            "component": "ApexCharts",
+            "createChartData": "createSingleLineChartData",
+            "stroke": {
+                "curve": "straight",
+                "width": 2
+            },
+            "xaxisTickAmount": 20,
+            "title": "Säädöksiä vuosittain",
+            "xaxisTitle": "Vuosi",
+            "yaxisTitle": "Säädösten lukumäärä",
+            "tabPath": "by_year",
+            "tabIcon": "ShowChart",
+            "sparqlQuery": "statutesByYearQuery",
+            "facetClass": "statutes",
+            "filterTarget": "statute",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+              "fillEmptyValues": true
+            }
+        },
         "export": {
             "tabID": 1,
             "component": "Export",
