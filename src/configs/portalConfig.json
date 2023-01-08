@@ -31,15 +31,14 @@
     },
     "sitemapConfig": {
         "baseUrl": "https://sampo-ui.demo.seco.cs.aalto.fi",
-        "langPrimary": "en",
-        "langSecondary": "fi",
+        "langPrimary": "fi",
         "outputDir": "./src/server/sitemap_generator",
         "sitemapUrl": "https://sampo-ui.demo.seco.cs.aalto.fi/sitemap",
         "sitemapInstancePageQuery": "sitemapInstancePageQuery"
     },
     "knowledgeGraphMetadataConfig": {
         "showTable": true,
-        "perspective": "statutes" 
+        "perspective": "statutes"
     },
     "layoutConfig": {
         "colorPalette": {
@@ -57,7 +56,7 @@
         "tableFontSize": "0.8rem",
         "topBar": {
             "logoTextTransform": "none",
-            "showLanguageButton": true,
+            "showLanguageButton": false,
             "showSearchField": false,
             "feedbackLink": "https://link.webropolsurveys.com/S/E4C53B4A2D5D01B4",
             "externalInstructions": false,
