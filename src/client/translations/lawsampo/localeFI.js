@@ -363,7 +363,19 @@ export default {
             Linkki säädökseen Säädösmuutosten hakemistossa
           `
         },
-        wordcloud: {
+        heLink: {
+          label: 'Linkki hallituksen esitykseen',
+          description: `
+            Linkki hallituksen esitykseen (eduskunta.fi)
+          `
+        },
+         lakitutkaLink: {
+          label: 'Linkki Lakitutkaan',
+          description: `
+            Linkki hallituksen esitykseen Lakitutkassa
+          `
+        },
+         wordcloud: {
           label: 'Sanapilvi',
           description: `
             Sanapilvi

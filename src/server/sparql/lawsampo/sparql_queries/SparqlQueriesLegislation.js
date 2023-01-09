@@ -139,6 +139,18 @@ export const statutePropertiesInstancePage = `
      BIND(?smurLink__id as ?smurLink__dataProviderUrl)
   }
   UNION
+   {
+     ?id lss:government_proposal_url ?heLink__id .
+     BIND('Hallituksen esitys' as ?heLink__prefLabel)
+     BIND(?heLink__id as ?heLink__dataProviderUrl)
+  }
+  UNION
+  {
+     ?id lss:lakitutka_url ?lakitutkaLink__id .
+     BIND('Lakitutka' as ?lakitutkaLink__prefLabel)
+     BIND(?lakitutkaLink__id as ?lakitutkaLink__dataProviderUrl)
+  }
+  UNION
   {
     ?id lss:situation_category ?situationCategory__id .
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
