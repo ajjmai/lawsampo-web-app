@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /
+Disallow: /caselaw/page/*
+Disallow: /caselawfinder/page/*
+Disallow: /sections/page/*
+Disallow: /situations/page/*
+Disallow: /statutes/page/*
