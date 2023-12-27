@@ -12,6 +12,7 @@ const ApexCharts = lazy(() => import('./ApexCharts'))
 const Network = lazy(() => import('./Network'))
 const VideoPage = lazy(() => import('../main_layout/VideoPage'))
 const ContextualContent = lazy(() => import('../main_layout/ContextualContent'))
+const ContextualContentStatuteHistory = lazy(() => import('../main_layout/ContextualContentStatuteHistory'))
 const WordCloud = lazy(() => import('../main_layout/WordCloud'))
 const TemporalMap = lazy(() => import('./TemporalMap'))
 const BarChartRace = lazy(() => import('./BarChartRace'))
@@ -370,6 +371,27 @@ const ResultClassRoute = props => {
           path={path}
           render={() =>
             <ContextualContent {...ccProps} />}
+        />
+      )
+      break
+    }
+    case 'ContextualContentStatuteHistory': {
+      const { instanceTableData } = perspectiveState
+      const ccProps = {
+        data: instanceTableData.contentHTMLAnnotated,
+        tableOfContents: instanceTableData.firstLevel,
+        tableOfContentsConfig: perspectiveState.properties.find(item => item.id === 'firstLevel'),
+        hasParts: instanceTableData.hasParts,
+        hasChapters: instanceTableData.hasChapters,
+        HTMLParserTask: 'addAnnotationTooltips',
+        referencedTerm: instanceTableData.referencedTerm,
+        layoutConfig
+      }
+      routeComponent = (
+        <Route
+          path={path}
+          render={() =>
+            <ContextualContentStatuteHistory {...ccProps} />}
         />
       )
       break

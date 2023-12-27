@@ -34,7 +34,7 @@
                 "instancePageResultClasses": {
                     "instancePageContextualContent": {
                         "tabID": 0,
-                        "component": "ContextualContent",
+                        "component": "ContextualContentStatuteHistory",
                         "tabPath": "content",
                         "tabIcon": "Subject"
                     },
@@ -122,22 +122,6 @@
             "numberedList": false
         },
         {
-            "id": "firstLevel",
-            "valueType": "sectionOfALaw",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false
-        },
-        {
-            "id": "euDirective",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": false,
-            "numberedList": false
-        },
-        {
             "id": "subjectCategory",
             "onlyOnInstancePage": true,
             "valueType": "object",
@@ -199,13 +183,6 @@
             "externalLink": true,
             "sortValues": false,
             "numberedList": false
-        },
-        {
-            "id": "wordcloud",
-            "dataId": "referencedTerm",
-            "onlyOnInstancePage": true,
-            "valueType": "wordcloud",
-            "wordCloudMaxWords": 40
         }
     ],
     "facets": {
