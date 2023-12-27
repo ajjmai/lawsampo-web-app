@@ -1,0 +1,277 @@
+{
+    "id": "statutesHistory",
+    "endpoint": {
+        "url": "http://localhost:3060/ds/sparql",
+        "useAuth": true,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesLegislationHistory.js",
+    "baseURI": "http://ldf.fi/lawsampo",
+    "URITemplate": "<BASE_URI>/<LOCAL_ID>",
+    "facetClass": "lss:Statute",
+    "langTag": "fi",
+    "frontPageImage": "lawsampo/statutes_cropped.jpg",
+    "searchMode": "faceted-search",
+    "defaultActiveFacets": [
+        "jenaText"
+    ],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "content",
+    "resultClasses": {
+        "statutesHistory": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTable",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "statutePropertiesFacetResults",
+                "pagesize": 20,
+                "sortBy": "prefLabel",
+                "sortDirection": "asc"
+            },
+            "instanceConfig": {
+                "propertiesQueryBlock": "statutePropertiesInstancePage",
+                "instancePageResultClasses": {
+                    "instancePageContextualContent": {
+                        "tabID": 0,
+                        "component": "ContextualContent",
+                        "tabPath": "content",
+                        "tabIcon": "Subject"
+                    },
+                    "instancePageTable": {
+                        "tabID": 1,
+                        "component": "InstancePageTable",
+                        "tabPath": "table",
+                        "tabIcon": "CalendarViewDay"
+                    },
+                    "instancePageExport": {
+                        "tabID": 2,
+                        "component": "Export",
+                        "tabPath": "export",
+                        "tabIcon": "ArrowForward",
+                        "pageType": "instancePage"
+                    }
+                }
+            }
+        },
+        "statutesByYear": {
+            "tabID": 1,
+            "component": "ApexCharts",
+            "createChartData": "createSingleLineChartData",
+            "stroke": {
+                "curve": "straight",
+                "width": 2
+            },
+            "xaxisTickAmount": 20,
+            "title": "Säädöksiä vuosittain",
+            "xaxisTitle": "Vuosi",
+            "yaxisTitle": "Säädösten lukumäärä",
+            "tabPath": "by_year",
+            "tabIcon": "ShowChart",
+            "sparqlQuery": "statutesByYearQuery",
+            "facetClass": "statutesHistory",
+            "filterTarget": "statute",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+              "fillEmptyValues": true
+            }
+        },
+        "export": {
+            "tabID": 2,
+            "component": "Export",
+            "tabPath": "export",
+            "tabIcon": "ArrowForward",
+            "resultClass": "statutesHistory",
+            "facetClass": "statutesHistory"
+        },
+        "knowledgeGraphMetadata": {
+            "sparqlQuery": "knowledgeGraphMetadataQuery"
+        }
+    },
+    "properties": [
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "statuteType",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "identifier",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "enforcementDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "firstLevel",
+            "valueType": "sectionOfALaw",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "euDirective",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "subjectCategory",
+            "onlyOnInstancePage": true,
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "situationCategory",
+            "onlyOnInstancePage": true,
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "finlexLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "smurLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "heLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "lakitutkaLink",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+          {
+            "id": "uri",
+            "valueType": "object",
+            "onlyOnInstancePage": true,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "wordcloud",
+            "dataId": "referencedTerm",
+            "onlyOnInstancePage": true,
+            "valueType": "wordcloud",
+            "wordCloudMaxWords": 40
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "sortByPredicate": "skos:prefLabel"
+        },
+        "jenaText": {
+            "containerClass": "one",
+            "facetType": "text",
+            "filterType": "textFilter"
+        },
+        "statuteType": {
+            "containerClass": "ten",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "pieChartButton": true,
+            "predicate": "eli:type_document",
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "eli:type_document/skos:prefLabel",
+            "sortDirection": "desc"
+        },
+        "enforcementDate": {
+            "containerClass": "ten",
+            "facetType": "hierarchical",
+            "filterType": "uriFilter",
+            "parentProperty": "skos:broader",
+            "predicate": "lss:timespan",
+            "searchField": true,
+            "sortByPredicate": "lss:timespan/skos:prefLabel"
+        },
+        "subjectCategory": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "pieChartButton": true,
+            "predicate": "dct:subject",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "dct:subject/skos:prefLabel",
+            "sortDirection": "desc"
+        },
+        "situationCategory": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "pieChartButton": true,
+            "predicate": "lss:situation_category",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "lss:situation_category/skos:prefLabel",
+            "sortDirection": "desc"
+        },
+        "euDirective": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "eli:transposes",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "eli:transposes/skos:prefLabel",
+            "sortDirection": "desc"
+        }
+    }
+}

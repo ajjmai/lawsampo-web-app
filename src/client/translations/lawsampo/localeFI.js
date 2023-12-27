@@ -395,6 +395,179 @@ export default {
         }
       }
     },
+    statutesHistory: {
+      label: 'Säädöshistoria',
+      mainPageLabel: 'Säädöshistoria',
+      facetResultsType: 'säädöstä',
+      shortDescription: 'Tarkastele säädösten muutoshistoriaa',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa.
+          Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
+          Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
+        <br />
+          Tulosnäkymä voidaan valita näkymän välilehdiltä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+        <li>
+          <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon säädökset taulukkona, jossa yksi rivi vastaa yhtä säädöstä.
+          Säädösten tiedot näkyvät tulostaulukossa sarakkeittain, säädöksen nimen toimiessa linkkinä säädöksen tietosivulle.
+          Säädöksen sisältämät pykälät näkyvät listana Pykälät-sarakkeessa.
+        </li>
+        <li>
+          <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+          tulosjoukon palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille. Avattavaa tulosjoukkoa voi rajata myös tässä näkymässä käyttämällä
+          vasemmalla olevien valikkojen arvoja.
+        </li>
+      </ul>
+      `,
+      instancePage: {
+        label: 'Säädös',
+        description: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tämä sivu näyttää yhden ajantasaisen lainsäädännön säädöksen sisällön ja metatiedot.
+          Säädösten tiedot perustuvat Semanttisen Finlexin aineistoon.
+          Näkymä sisältää kolme välilehteä:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>SISÄLTÖ</STRONG>-välilehti näyttää säädöksen tekstisisällön kontekstuaalisessa
+            lukijassa, joka näyttää käsitteiden selityksiä ja linkkejä viedessäsi
+            kursorin niiden kohdalle.
+          </li>
+          <li>
+            <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot
+            ja linkin säädökseen Finlexissä.
+          </li>
+          <li>
+            <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
+            säädöksen tiedot palauttavan kyselyn avaamiseen YASGUI-sovelluksessa. Tämä välilehti on tarkoitettu sovelluskehittäjille.
+          </li>
+        </ul>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI-tunniste',
+          description: 'Säädöksen Uniform Resource Identifier -tunniste'
+        },
+        prefLabel: {
+          label: 'Säädös',
+          description: `Säädöksen nimi
+          `
+        },
+        statute: {
+          label: 'Laws and acts',
+          description: `
+            Laws and acts
+          `
+        },
+        jenaText: {
+          label: 'Vapaatekstihaku',
+          textFacetInputPlaceholder: 'Hae...',
+          description: `
+            Hae säädöksiä niiden tekstisisältöjen perusteella
+          `
+        },
+        text: {
+          label: 'Teksti',
+          description: `
+            Teksti
+          `
+        },
+        identifier: {
+          label: 'Tunniste',
+          description: `
+            Säädöksen tunniste
+          `
+        },
+        firstLevel: {
+          label: 'Pykälät',
+          description: `
+            Pykälät
+          `
+        },
+        subjectCategory: {
+          label: 'Aihe (autom. tunnistettu)',
+          description: `
+            Säädöksen sisällön perusteella automaattisesti tunnistettu aihe
+          `
+        },
+        situationCategory: {
+          label: 'Elämän aihepiiri (autom. tunnistettu)',
+          description: `
+            Säädöksen sisällön perusteella automaattisesti tunnistettu säädökseen liittyvä elämäntilanne
+          `
+        },
+        documentType: {
+          label: 'Dokumenttiluokka',
+          description: `
+            Dokumenttiluokka
+          `
+        },
+        statuteType: {
+          label: 'Säädöksen tyyppi',
+          description: `
+            Säädöksen tyyppi
+          `
+        },
+        enforcementDate: {
+          label: 'Voimaantulo',
+          description: `
+            Säädöksen uusimman version voimaantulopäivämäärä
+          `
+        },
+        euDirective: {
+          label: 'EU-direktiivi',
+          missingValueLabel: 'ei direktiiviä',
+          description: `
+            Säädöksen viittaama EU-direktiivi
+          `
+        },
+        finlexLink: {
+          label: 'Linkki Finlex-palveluun',
+          description: `
+            Linkki säädökseen Finlex-palvelussa
+          `
+        },
+        smurLink: {
+          label: 'Linkki Säädösmuutosten hakemistoon',
+          description: `
+            Linkki säädökseen Säädösmuutosten hakemistossa
+          `
+        },
+        heLink: {
+          label: 'Linkki hallituksen esitykseen',
+          description: `
+            Linkki hallituksen esitykseen (eduskunta.fi)
+          `
+        },
+         lakitutkaLink: {
+          label: 'Linkki Lakitutkaan',
+          description: `
+            Linkki hallituksen esitykseen Lakitutkassa
+          `
+        },
+         wordcloud: {
+          label: 'Sanapilvi',
+          description: `
+            Sanapilvi
+          `
+        },
+        contentHTML: {
+          label: 'Säädöksen sisältö',
+          description: `
+            Säädöksen sisältö
+          `
+        },
+        contentHTMLAnnotated: {
+          label: 'Säädöksen kontekstuaalinen sisältö',
+          description: `
+            Säädöksen kontekstuaalinen sisältö
+          `
+        }
+      }
+    },
     sections: {
       label: 'Pykälät',
       mainPageLabel: 'Pykälät',
