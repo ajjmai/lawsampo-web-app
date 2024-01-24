@@ -85,163 +85,299 @@ const useStyles = makeStyles(theme => ({
 
 const testData = [
   {
-    id: 'http://ldf.fi/lawsampo/eli/statute/2001/1145/sec/16/original',
-    number: 16,
-    he: 'HE 71/2001',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+71/2001',
-    entryIntoForce: '2002-02-01',
-    versionNumber: '00000000',
-    content: 'Oikeus tietojen saamiseen teleyrityksiltä Rajavartiolaitoksella on oikeus vaaratilanteessa saada salassapitosäännösten estämättä yksityisyyden suojasta televiestinnässä ja teletoiminnan tietoturvasta annetussa laissa (565/1999), jäljempänä televiestinnän tietosuojalaki, tarkoitetulta teleyritykseltä hätäilmoitusta koskevat liittymän tunnistamistiedot ja matkaviestimen sijaintitiedot sekä tiedot liittymän tilaajasta, käyttäjästä ja asennusosoitteesta sen mukaan kuin televiestinnän tietosuojalain 18 §:n 2 ja 3 momentissa tarkemmin säädetään.',
-    passedBy: '1145/2001',
-    passedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2001/20011145',
-    noLongerInForce: ''
-  },
-  {
-    id: 'http://ldf.fi/lawsampo/eli/statute/2001/1145/sec/16/consolidated/20040521',
-    number: 16,
-    he: 'HE 125/2003',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+125/2003',
-    entryIntoForce: '2004-09-01',
-    versionNumber: '20040521',
-    content: 'Oikeus tietojen saamiseen teleyrityksiltä Rajavartiolaitoksella on oikeus vaaratilanteessa saada salassapitosäännösten estämättä <strong>sähköisen viestinnän tietosuojalaissa (516/2004)</strong> tarkoitetulta teleyritykseltä hätäilmoitusta koskevat liittymän tunnistamistiedot ja matkaviestimen sijaintitiedot sekä tiedot liittymän tilaajasta, käyttäjästä ja asennusosoitteesta sen mukaan kuin <strong>sähköisen viestinnän tietosuojalain 35 §:ssä sekä viestintämarkkinalain (393/2003) 97 ja 98 §:ssä</strong> tarkemmin säädetään.',
-    amendedBy: '521/2004',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2004/20040521',
-    noLongerInForce: ''
-  },
-  {
-    id: 'http://ldf.fi/lawsampo/eli/statute/2001/1145/sec/16/consolidated/20190640',
-    number: 16,
-    he: 'HE 241/2018',
-    heUrl: 'https://www.eduskunta.fi/FI/vaski/KasittelytiedotValtiopaivaasia/Sivut/HE_241+2018.aspx',
-    entryIntoForce: '2019-06-01',
-    versionNumber: '20190640',
-    content: '<strong>16 § on kumottu L:lla 10.5.2019/640.</strong>',
-    amendedBy: '640/2019',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2019/20190640',
-    noLongerInForce: '2019-06-01'
-  }
-]
-
-const testData2 = [
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2/original',
-    he: '88/1993',
+    id: '19931501',
+    he: 'HE 88/93',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+88/1993',
     entryIntoForce: '1994-06-01',
-    versionNumber: '00000000',
-    content: 'Velvollinen suorittamaan arvonlisäveroa (verovelvollinen) 1 §:ssä tarkoitetusta myynnistä on tavaran tai palvelun myyjä, ellei 9 §:ssä toisin säädetä.<br/><br/>Velvollisuudesta suorittaa veroa tavaran maahantuonnista säädetään 9 luvussa.',
-    passedBy: '1501/1993',
-    passedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501'
-  },
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2/consolidated/19990940',
-    he: '28/1999',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+28/1999',
-    entryIntoForce: '2000-01-01',
-    versionNumber: '19990940',
-    content: 'Velvollinen suorittamaan arvonlisäveroa (verovelvollinen) 1 §:ssä tarkoitetusta myynnistä on tavaran tai palvelun myyjä, ellei <strong>2 a, 8 a tai</strong> 9 §:ssä toisin säädetä.<br/><br/>Velvollisuudesta suorittaa veroa tavaran maahantuonnista säädetään 9 luvussa <strong>ja tavaran siirrosta varastointimenettelystä 72 m §:ssä.</strong>',
-    amendedBy: '940/1999',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1999/19990940'
-  },
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2/consolidated/20100686',
-    he: '41/2010',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+41/2010',
-    entryIntoForce: '2011-04-01',
-    versionNumber: '20100686',
-    content: 'Velvollinen suorittamaan arvonlisäveroa (verovelvollinen) 1 §:ssä tarkoitetusta myynnistä on tavaran tai palvelun myyjä, ellei 2 a, 8 a<strong>\u20138 c </strong>tai 9 §:ssä toisin säädetä.<br/><br/>Velvollisuudesta suorittaa veroa tavaran maahantuonnista säädetään 9 luvussa ja tavaran siirrosta varastointimenettelystä 72 m §:ssä.',
-    amendedBy: '686/2010',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2011/20100686'
-  },
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2/consolidated/20100687',
-    he: '41/2010',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+41/2010',
-    entryIntoForce: '2010-08-01',
-    versionNumber: '20100687',
-    content: 'Velvollinen suorittamaan arvonlisäveroa (verovelvollinen) 1 §:ssä tarkoitetusta myynnistä on tavaran tai palvelun myyjä, ellei 2 a, 8 a, <strong>8 b</strong> tai 9 §:ssä toisin säädetä.<br/><br/>Velvollisuudesta suorittaa veroa tavaran maahantuonnista säädetään 9 luvussa ja tavaran siirrosta varastointimenettelystä 72 m §:ssä.',
-    amendedBy: '687/2010',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2010/20100687',
-    noLongerInForce: '2011-03-31'
-  },
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/2/consolidated/20140507',
-    he: '31/2014',
-    heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+31/2014',
-    entryIntoForce: '2015-01-01',
-    versionNumber: '20140507',
-    content: 'Velvollinen suorittamaan arvonlisäveroa (verovelvollinen) 1 §:ssä tarkoitetusta myynnistä on tavaran tai palvelun myyjä, ellei 2 a, 8 a<strong>\u20138 d</strong> tai 9 §:ssä toisin säädetä.<br/><br/>Velvollisuudesta suorittaa veroa tavaran maahantuonnista säädetään 9 luvussa ja tavaran siirrosta varastointimenettelystä 72 m §:ssä.',
-    amendedBy: '507/2014',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2014/20140507'
-  }
-]
+    version: 'Original',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0, // intro
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: 'tavaran maahantuonnista.'
+      },
+      {
+        momentti: 2,
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
+      },
+      {
+        momentti: 3,
+        content: 'Henkilökuljetustoiminnan ja yleisradiotoiminnan harjoittamisen katsotaan tapahtuvan liiketoiminnan muodossa silloinkin, kun toiminnan harjoittamiseen saadaan 79 §:ssä tarkoitettuja korvauksia.'
+      }
 
-const testData3 = [
-  {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/original',
-    he: 'HE 88/93',
-    entryIntoForce: '1994-06-01',
-    versionNumber: '00000000',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) tavaran maahantuonnista.<br/><br/>Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.<br/><br/>Henkilökuljetustoiminnan ja yleisradiotoiminnan harjoittamisen katsotaan tapahtuvan liiketoiminnan muodossa silloinkin, kun toiminnan harjoittamiseen saadaan 79 §:ssä tarkoitettuja korvauksia.',
-    passedBy: '1501/1993',
-    passedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501'
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
+    amendedBy: null,
+    amendedByFinlexUrl: null,
+    noLongerInForce: null
   },
   {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/consolidated/19941486',
-    entryIntoForce: '1995-01-01',
-    versionNumber: '19941486',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) <strong>Suomessa tapahtuvasta</strong> tavaran maahantuonnista;.<br/><br/>Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.<br/><br/><strong>3 momentti on kumottu L:lla 29.12.1994/1486.</strong>',
+    id: '19941483',
+    he: null,
+    heUrl: null,
+    entryIntoForce: null,
+    version: 'Consolidated',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0,
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: '<strong>Suomessa tapahtuvasta tavaran maahantuonnista;</strong>'
+      },
+      {
+        momentti: 2,
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
+      },
+      {
+        momentti: 3,
+        content: '<strong>3 momentti on kumottu L:lla 29.12.1994/1486.</strong>'
+      },
+      {
+        momentti: 5,
+        content: '<strong>Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).</strong>'
+      }
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     amendedBy: '1486/1994',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1994/19941486'
+    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1994/19941486',
+    noLongerInForce: null
   },
   {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/consolidated/19951767',
-    entryIntoForce: '1996-01-01',
-    versionNumber: '19951767',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) Suomessa tapahtuvasta tavaran maahantuonnista;<br/><br/><strong>3) Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;<br/><br/>4) Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.</strong><br/><br/>Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.<br/><br/>3 momentti on kumottu L:lla 29.12.1994/1486.',
+    id: '19951767',
+    he: null,
+    heUrl: null,
+    entryIntoForce: null,
+    version: 'Consolidated',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0,
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+      },
+      {
+        momentti: 1,
+        kohta: 3,
+        content: '<strong>Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;</strong>'
+      },
+      {
+        momentti: 1,
+        kohta: 4,
+        content: '<strong>Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.</strong>'
+      },
+      {
+        momentti: 2,
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
+      },
+      {
+        momentti: 3,
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
+      },
+      {
+        momentti: 5,
+        content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).'
+      }
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     amendedBy: '1767/1995',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1995/19951767'
+    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1995/19951767',
+    noLongerInForce: null
   },
   {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/consolidated/19970585',
+    id: '19970585',
     he: 'HE 64/1997',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+64/1997',
     entryIntoForce: '1997-07-01',
-    versionNumber: '19970585',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) Suomessa tapahtuvasta tavaran maahantuonnista;<br/><br/>3) Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;<br/><br/>4) Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.<br/><br/>Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.<br/><br/>3 momentti on kumottu L:lla 29.12.1994/1486.<br/><br/><strong>Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.</strong>',
+    version: 'Consolidated',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0,
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+      },
+      {
+        momentti: 1,
+        kohta: 3,
+        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+      },
+      {
+        momentti: 1,
+        kohta: 4,
+        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+      },
+      {
+        momentti: 2,
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
+      },
+      {
+        momentti: 3,
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
+      },
+      {
+        momentti: 4,
+        content: '<strong>Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.</strong>'
+      },
+      {
+        momentti: 5,
+        content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).'
+      }
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     amendedBy: '585/1997',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585'
+    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585',
+    noLongerInForce: null
   },
   {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/consolidated/20090006',
+    id: '20090006',
     he: 'HE 192/2008',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+192/2008',
     entryIntoForce: '2009-04-01',
-    versionNumber: '20090006',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) Suomessa tapahtuvasta tavaran maahantuonnista;<br/><br/>3) Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;<br/><br/>4) Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.<br/><br/>Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.<br/><br/>3 momentti on kumottu L:lla 29.12.1994/1486.<br/><br/>Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.<br/><br/><strong>5 momentti on kumottu L:lla 9.1.2009/6.</strong>',
+    version: 'Consolidated',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0,
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+      },
+      {
+        momentti: 1,
+        kohta: 3,
+        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+      },
+      {
+        momentti: 1,
+        kohta: 4,
+        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+      },
+      {
+        momentti: 2,
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
+      },
+      {
+        momentti: 3,
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
+      },
+      {
+        momentti: 4,
+        content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.'
+      },
+      {
+        momentti: 5,
+        content: '<strong>5 momentti on kumottu L:lla 9.1.2009/6.</strong>'
+      }
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     amendedBy: '6/2009',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2009/20090006'
+    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2009/20090006',
+    noLongerInForce: null
   },
   {
-    idWork: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
-    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/consolidated/20161064',
+    id: '20161064',
     he: 'HE 110/2016',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+110/2016',
     entryIntoForce: '2017-01-01',
-    versionNumber: '20161064',
-    content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:<br/><br/>1) liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;<br/><br/>2) Suomessa tapahtuvasta tavaran maahantuonnista;<br/><br/>3) Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;<br/><br/>4) Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.<br/><br/><strong>2 momentti on kumottu L:lla 9.12.2016/1064.</strong><br><br/>3 momentti on kumottu L:lla 29.12.1994/1486.<br/><br/>Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.<br/><br/>5 momentti on kumottu L:lla 9.1.2009/6.',
+    version: 'Consolidated',
+    content: [
+      {
+        momentti: 1,
+        kohta: 0,
+        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+      },
+      {
+        momentti: 1,
+        kohta: 1,
+        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+      },
+      {
+        momentti: 1,
+        kohta: 2,
+        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+      },
+      {
+        momentti: 1,
+        kohta: 3,
+        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+      },
+      {
+        momentti: 1,
+        kohta: 4,
+        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+      },
+      {
+        momentti: 2,
+        content: '<strong>2 momentti on kumottu L:lla 9.12.2016/1064.</strong>'
+      },
+      {
+        momentti: 3,
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
+      },
+      {
+        momentti: 4,
+        content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.'
+      },
+      {
+        momentti: 5,
+        content: '5 momentti on kumottu L:lla 9.1.2009/6.'
+      }
+    ],
+    originalStatute: '1501/1993',
+    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     amendedBy: '1064/2016',
-    amendedByUrl: 'https://www.finlex.fi/fi/laki/alkup/2016/20161064'
+    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2016/20161064',
+    noLongerInForce: null
   }
 ]
 
@@ -328,23 +464,29 @@ const ContextualContentStatuteHistory = props => {
             <div className={classes.textInnerContainer}>
               <Typography variant='h6' component='h1'>16 § Tähän pykälä otsikko jos on</Typography>
               <Stack spacing={3}>
-                {testData3.map(item => (
+                {testData.map(item => (
                   <Paper key={item.id} variant='outlined'>
                     <Box className={classes.metaDataContainer}>
                       <Grid container spacing={4}>
                         <Grid item>
-                          {item.passedBy && <Typography variant='body2'>Versio: <Link href={item.passedByUrl} target='_blank' rel='noreferrer'>{item.passedBy}</Link> (ALKUPERÄINEN)</Typography>}
-                          {item.amendedBy && <Typography variant='body2'>Versio: <Link href={item.amendedByUrl} target='_blank' rel='noreferrer'>{item.amendedBy}</Link></Typography>}
+                          {item.amendedBy && <Typography variant='body2'>Versio: <Link href={item.amendedByFinlexUrl} target='_blank' rel='noreferrer'>{item.amendedBy}</Link></Typography>}
+                          {item.version === 'Original' && <Typography variant='body2'>Versio: <Link href={item.originalStatuteFinlexUrl} target='_blank' rel='noreferrer'>{item.originalStatute}</Link> (ALKUPERÄINEN)</Typography>}
                         </Grid>
                         <Grid item>
-                          <Typography variant='body2'>Voimaantulo: <strong>{format(new Date(item.entryIntoForce), 'dd.MM.yyyy')}</strong></Typography>
+                          <Typography variant='body2'>Voimaantulo:
+                            {item.entryIntoForce ? <strong>{format(new Date(item.entryIntoForce), 'dd.MM.yyyy')}</strong> : ''}
+                          </Typography>
                         </Grid>
                         <Grid item>
                           <Typography variant='body2'>Esityöt: <Link href={item.heUrl} target='_blank' rel='noreferrer'>{item.he}</Link></Typography>
                         </Grid>
                       </Grid>
                     </Box>
-                    <Typography variant='body1' className={classes.statuteHistoryItem}>{parser.parseHTML(item.content)}</Typography>
+                    <Typography variant='body1' className={classes.statuteHistoryItem}>
+                      {item.content.map(content => (
+                        <p key={content.momentti}>{content.kohta && content.kohta + ')'} {parser.parseHTML(content.content)}</p>
+                      ))}
+                    </Typography>
                   </Paper>
                 ))}
               </Stack>
