@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import { useLocation } from 'react-router-dom'
 import { format } from 'date-fns'
 import { has } from 'lodash'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Card, CardHeader, Divider, Stack } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Stack } from '@mui/material'
 import Link from '@mui/material/Link'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
@@ -86,35 +86,56 @@ const useStyles = makeStyles(theme => ({
 const testData = [
   {
     id: '19931501',
+    section: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
     he: 'HE 88/93',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+88/1993',
     entryIntoForce: '1994-06-01',
     version: 'Original',
-    content: [
+    versionNumber: 19931501,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0, // intro
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19931501,
+            content: 'tavaran maahantuonnista.'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
-      },
-      {
-        momentti: 1,
-        kohta: 2,
-        content: 'tavaran maahantuonnista.'
-      },
-      {
-        momentti: 2,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
       },
       {
-        momentti: 3,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Henkilökuljetustoiminnan ja yleisradiotoiminnan harjoittamisen katsotaan tapahtuvan liiketoiminnan muodossa silloinkin, kun toiminnan harjoittamiseen saadaan 79 §:ssä tarkoitettuja korvauksia.'
       }
-
     ],
     originalStatute: '1501/1993',
     originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
@@ -128,33 +149,57 @@ const testData = [
     heUrl: null,
     entryIntoForce: null,
     version: 'Consolidated',
-    content: [
+    versionNumber: 19941483,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0,
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19941483,
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
-      },
-      {
-        momentti: 1,
-        kohta: 2,
-        content: '<strong>Suomessa tapahtuvasta tavaran maahantuonnista;</strong>'
-      },
-      {
-        momentti: 2,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
       },
       {
-        momentti: 3,
-        content: '<strong>3 momentti on kumottu L:lla 29.12.1994/1486.</strong>'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19941483,
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
       },
       {
-        momentti: 5,
-        content: '<strong>Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).</strong>'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5',
+        number: 5,
+        type: 'subsection',
+        versionNumber: 19941483,
+        content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).'
       }
     ],
     originalStatute: '1501/1993',
@@ -169,42 +214,70 @@ const testData = [
     heUrl: null,
     entryIntoForce: null,
     version: 'Consolidated',
-    content: [
+    versionNumber: 19951767,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0,
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19941483,
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/3',
+            type: 'paragraph',
+            number: 3,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/4',
+            type: 'paragraph',
+            number: 4,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
-      },
-      {
-        momentti: 1,
-        kohta: 2,
-        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
-      },
-      {
-        momentti: 1,
-        kohta: 3,
-        content: '<strong>Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;</strong>'
-      },
-      {
-        momentti: 1,
-        kohta: 4,
-        content: '<strong>Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.</strong>'
-      },
-      {
-        momentti: 2,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
       },
       {
-        momentti: 3,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
       },
       {
-        momentti: 5,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5',
+        number: 5,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).'
       }
     ],
@@ -220,46 +293,77 @@ const testData = [
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+64/1997',
     entryIntoForce: '1997-07-01',
     version: 'Consolidated',
-    content: [
+    versionNumber: 19970585,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0,
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19941483,
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/3',
+            type: 'paragraph',
+            number: 3,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/4',
+            type: 'paragraph',
+            number: 4,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
-      },
-      {
-        momentti: 1,
-        kohta: 2,
-        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
-      },
-      {
-        momentti: 1,
-        kohta: 3,
-        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
-      },
-      {
-        momentti: 1,
-        kohta: 4,
-        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
-      },
-      {
-        momentti: 2,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
       },
       {
-        momentti: 3,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
       },
       {
-        momentti: 4,
-        content: '<strong>Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.</strong>'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/4',
+        number: 4,
+        type: 'subsection',
+        versionNumber: 19970585,
+        content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.'
       },
       {
-        momentti: 5,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5',
+        number: 5,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).'
       }
     ],
@@ -275,47 +379,78 @@ const testData = [
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+192/2008',
     entryIntoForce: '2009-04-01',
     version: 'Consolidated',
-    content: [
+    versionNumber: 20090006,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0,
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19941483,
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/3',
+            type: 'paragraph',
+            number: 3,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/4',
+            type: 'paragraph',
+            number: 4,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
-      },
-      {
-        momentti: 1,
-        kohta: 2,
-        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
-      },
-      {
-        momentti: 1,
-        kohta: 3,
-        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
-      },
-      {
-        momentti: 1,
-        kohta: 4,
-        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
-      },
-      {
-        momentti: 2,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
         content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.'
       },
       {
-        momentti: 3,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
       },
       {
-        momentti: 4,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/4',
+        number: 4,
+        type: 'subsection',
+        versionNumber: 19970585,
         content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.'
       },
       {
-        momentti: 5,
-        content: '<strong>5 momentti on kumottu L:lla 9.1.2009/6.</strong>'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5',
+        number: 5,
+        type: 'subsection',
+        versionNumber: 20090006,
+        content: '5 momentti on kumottu L:lla 9.1.2009/6.'
       }
     ],
     originalStatute: '1501/1993',
@@ -330,46 +465,77 @@ const testData = [
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+110/2016',
     entryIntoForce: '2017-01-01',
     version: 'Consolidated',
-    content: [
+    versionNumber: 20161064,
+    hasParts: [
       {
-        momentti: 1,
-        kohta: 0,
-        content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1',
+        number: 1,
+        type: 'subsection',
+        versionNumber: 19931501,
+        hasParts: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            number: 0,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            number: 1,
+            versionNumber: 19931501,
+            type: 'paragraph'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2',
+            number: 2,
+            type: 'paragraph',
+            versionNumber: 19941483,
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/3',
+            type: 'paragraph',
+            number: 3,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/4',
+            type: 'paragraph',
+            number: 4,
+            versionNumber: 19951767,
+            content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
+          }
+        ]
       },
       {
-        momentti: 1,
-        kohta: 1,
-        content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;'
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2',
+        number: 2,
+        type: 'subsection',
+        versionNumber: 19931501,
+        content: '2 momentti on kumottu L:lla 9.12.2016/1064.'
       },
       {
-        momentti: 1,
-        kohta: 2,
-        content: 'Suomessa tapahtuvasta tavaran maahantuonnista;'
-      },
-      {
-        momentti: 1,
-        kohta: 3,
-        content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;'
-      },
-      {
-        momentti: 1,
-        kohta: 4,
-        content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.'
-      },
-      {
-        momentti: 2,
-        content: '<strong>2 momentti on kumottu L:lla 9.12.2016/1064.</strong>'
-      },
-      {
-        momentti: 3,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3',
+        number: 3,
+        type: 'subsection',
+        versionNumber: 19941483,
         content: '3 momentti on kumottu L:lla 29.12.1994/1486.'
       },
       {
-        momentti: 4,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/4',
+        number: 4,
+        type: 'subsection',
+        versionNumber: 19970585,
         content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.'
       },
       {
-        momentti: 5,
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5',
+        number: 5,
+        type: 'subsection',
+        versionNumber: 20161064,
         content: '5 momentti on kumottu L:lla 9.1.2009/6.'
       }
     ],
@@ -384,7 +550,7 @@ const testData = [
 const ContextualContentStatuteHistory = props => {
   const classes = useStyles(props)
   let { data } = props
-  const { tableOfContents, hasParts, hasChapters } = props
+  const { tableOfContents, hasPartss, hasChapters } = props
   const {
     makeLink, externalLink, sortValues, sortBy, numberedList, columnId, linkAsButton,
     showSource, sourceExternalLink
@@ -412,6 +578,25 @@ const ContextualContentStatuteHistory = props => {
     }
   }, [location.hash])
 
+  const parseContent = (data, versionNumber) => {
+    return Object.keys(data).reduce((result, key) => {
+      if (typeof data[key] === 'object' && data[key] !== null) {
+        return result + parseContent(data[key], versionNumber)
+      }
+      if (key === 'content') {
+        let content = data.content
+        if (['paragraph', 'subparagraph'].includes(data.type) && data.number !== 0) {
+          content = `${data.number}) ${content}`
+        }
+        if (data.versionNumber === versionNumber) {
+          content = `<strong>${content}</strong>`
+        }
+        return result + `<p>${content}</p>`
+      }
+      return result
+    }, '')
+  }
+
   return (
     <div className={classes.root}>
       <Grid className={classes.mainContainer} container spacing={1}>
@@ -428,7 +613,7 @@ const ContextualContentStatuteHistory = props => {
               <AccordionDetails>
                 <SectionOfALawListCollapsible
                   data={tableOfContents}
-                  hasParts={hasParts === 'true'}
+                  hasPartss={hasPartss === 'true'}
                   hasChapters={hasChapters === 'true'}
                   makeLink={makeLink}
                   externalLink={externalLink}
@@ -483,9 +668,7 @@ const ContextualContentStatuteHistory = props => {
                       </Grid>
                     </Box>
                     <Typography variant='body1' className={classes.statuteHistoryItem}>
-                      {item.content.map(content => (
-                        <p key={content.momentti}>{content.kohta && content.kohta + ')'} {parser.parseHTML(content.content)}</p>
-                      ))}
+                      {parser.parseHTML(parseContent(item.hasParts, item.versionNumber))}
                     </Typography>
                   </Paper>
                 ))}
