@@ -96,7 +96,6 @@ export const statutePropertiesFacetResults = `
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
-  ${sectionBlock}
 `
 
 export const statutePropertiesInstancePage = `
@@ -156,26 +155,131 @@ export const statutePropertiesInstancePage = `
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
   }
   UNION
-  {
-    ?id dct:subject ?subjectCategory__id .
-    ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
+  { 
+    ?laki lss:ls_statute ?id ;
+      eli:id_local ?originalStatute__identifier ;
+      eli:first_date_entry_in_force ?originalStatute__entryIntoForceDate ;
+      lss:finlex_url ?originalStatute__finlexUrl .
+
+      ?laki eli:related_to [
+            eli:title ?originalStatute__he__id ;
+            lss:government_proposal_url ?originalStatute__he__url
+      ] .
   }
   UNION
   {
-    ?id lss:annotated_html ?annotatedHtml_ .
-    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+    ## pykälät ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
+    FILTER EXISTS { ?pykalat__id a sfl:Section }
+    
+    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
+    ?pykalat__pykalat__id eli:version ?pykalat__pykalat__versio ;
+                          eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__content .
+    
+    OPTIONAL {
+      ?pykalat__pykalat__id eli:amended_by/eli:id_local ?pykalat__pykalat__amendedBy .
+      
+      OPTIONAL {
+        ?pykalat__pykalat__id eli:amended_by [ 
+                              eli:first_date_entry_in_force ?pykalat__pykalat__amendedByEntryIntoForce ;
+                              lss:finlex_url ?pykalat__pykalat__amendedByFinlexUrl ;
+                              eli:related_to/eli:title ?pykalat__pykalat__amendedByHe ;
+                              eli:related_to/lss:government_proposal_url ?pykalat__pykalat__amendedByHeUrl ] .
+      }
+    }
   }
   UNION
   {
-    ?id lss:term_reference/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
-    ?referencedTerm__id skos:prefLabel ?prefLabel_ .
-    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
-    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
-    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
-    OPTIONAL { ?referencedTerm__id lss:count ?referencedTerm__count }
-    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
-    BIND(LCASE(?prefLabel_) as ?referencedTerm__prefLabel)
+    ## momentit ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
+    FILTER EXISTS { ?pykalat__id a sfl:Section }
+
+    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
+    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
+
+    ?pykalat__pykalat__momentit__id eli:version ?pykalat__pykalat__momentit__versio ;
+                                    eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__content .
+    
+    OPTIONAL {
+      ?pykalat__pykalat__momentit__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__amendedBy .
+      
+      OPTIONAL {
+        ?pykalat__pykalat__momentit__id  eli:amended_by [ 
+                                         eli:first_date_entry_in_force ?pykalat__pykalat__momentit__amendedByEntryIntoForce ;
+                                         lss:finlex_url ?pykalat__pykalat__momentit__amendedByFinlexUrl ;
+                                         eli:related_to/eli:title ?pykalat__pykalat__momentit__amendedByHe ;
+                                         eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__amendedByHeUrl ] .
+      }
+    }
   }
+  UNION
+  {
+    ## kohdat ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
+    FILTER EXISTS { ?pykalat__id a sfl:Section }
+
+    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
+    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
+    ?pykalat__pykalat__momentit__id eli:has_part ?pykalat__pykalat__momentit__kohdat__id .
+
+    ?pykalat__pykalat__momentit__kohdat__id eli:version ?pykalat__pykalat__momentit__kohdat__versio ;
+                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__kohdat__content .
+
+    OPTIONAL {
+      ?pykalat__pykalat__momentit__kohdat__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__kohdat__amendedBy .
+      
+      OPTIONAL {
+        ?pykalat__pykalat__momentit__kohdat__id  eli:amended_by [ 
+                                                 eli:first_date_entry_in_force ?pykalat__pykalat__momentit__kohdat__amendedByEntryIntoForce ;
+                                                 lss:finlex_url ?pykalat__pykalat__momentit__kohdat__amendedByFinlexUrl ;
+                                                 eli:related_to/eli:title ?pykalat__pykalat__momentit__kohdat__amendedByHe ;
+                                                 eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__kohdat__amendedByHeUrl ] .
+      }
+    }
+  }
+  UNION
+  {
+    ## alakohdat ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part ?pykalat__id ;
+          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
+    FILTER EXISTS { ?pykalat__id a sfl:Section }
+
+    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
+    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
+    ?pykalat__pykalat__momentit__id eli:has_part ?pykalat__pykalat__momentit__kohdat__id .
+    ?pykalat__pykalat__momentit__kohdat__id eli:has_part ?pykalat__pykalat__momentit__kohdat__alakohdat__id .
+
+    ?pykalat__pykalat__momentit__kohdat__alakohdat__id eli:version ?pykalat__pykalat__momentit__kohdat__alakohdat__versio ;
+                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__kohda__alakohdatt__content .
+
+    OPTIONAL {
+      ?pykalat__pykalat__momentit__kohdat__alakohdat__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedBy .
+      
+      OPTIONAL {
+        ?pykalat__pykalat__momentit__kohdat__alakohdat__id  eli:amended_by [ 
+                                                 eli:first_date_entry_in_force ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByEntryIntoForce ;
+                                                 lss:finlex_url ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByFinlexUrl ;
+                                                 eli:related_to/eli:title ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByHe ;
+                                                 eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByHeUrl ] .
+      }
+    }
+  }
+
   ${sectionBlock}
 `
 

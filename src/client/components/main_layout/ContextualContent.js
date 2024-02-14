@@ -92,6 +92,7 @@ const ContextualContent = props => {
   } = props.tableOfContentsConfig || {}
   const location = useLocation()
   const sectionRefs = useRef({})
+  console.log(tableOfContents)
 
   // Fuseki splits long HTML texts, combine them here
   if (Array.isArray(data)) {

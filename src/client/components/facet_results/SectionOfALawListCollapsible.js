@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 const SectionOfALawListCollapsible = props => {
   const classes = useStyles(props)
   const { data, collapsible } = props
+  console.log(data)
 
   const renderItem = ({ collapsed, itemData, isFirstValue = false }) => {
     if (isFirstValue && itemData.prefLabel === '') {

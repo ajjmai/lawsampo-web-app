@@ -40,10 +40,10 @@ export const facetResultSetQuery = `
         <FILTER>
         VALUES ?facetClass { <FACET_CLASS> }
         ?id a ?facetClass .
+        FILTER (STR(?id) IN ("http://ldf.fi/lawsampo/statute_eli_sd_2012_22", "http://ldf.fi/lawsampo/statute_eli_sd_1993_1501"))
         <ORDER_BY_TRIPLE>
       }
       <ORDER_BY>
-      <PAGE>
     }
     FILTER(BOUND(?id))
     <RESULT_SET_PROPERTIES>

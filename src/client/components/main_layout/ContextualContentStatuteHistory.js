@@ -614,23 +614,23 @@ const testData = [
 
 const ContextualContentStatuteHistory = props => {
   const classes = useStyles(props)
-  let { data } = props
-  const { tableOfContents, hasPartss, hasChapters } = props
+  const { data, originalStatute } = props
+  const { tableOfContents, hasParts, hasChapters } = props
   const {
-    makeLink, externalLink, sortValues, sortBy, numberedList, columnId, linkAsButton,
-    showSource, sourceExternalLink
+    sortBy, columnId, linkAsButton, showSource, sourceExternalLink
   } = props.tableOfContentsConfig || {}
   const location = useLocation()
   const sectionRefs = useRef({})
 
   // Fuseki splits long HTML texts, combine them here
-  if (Array.isArray(data)) {
-    data = data.join('')
-    data = false
-  }
+  // if (Array.isArray(data)) {
+  //   data = data.join('')
+  //   data = false
+  // }
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
-  data = parser.parseHTML(data)
+  // data = parser.parseHTML(data)
   console.log(data)
+  console.log(originalStatute)
 
   useEffect(() => {
     if (tableOfContents && location.hash) {
@@ -678,13 +678,13 @@ const ContextualContentStatuteHistory = props => {
               <AccordionDetails>
                 <SectionOfALawListCollapsible
                   data={tableOfContents}
-                  hasPartss={hasPartss === 'true'}
+                  hasParts={hasParts === 'true'}
                   hasChapters={hasChapters === 'true'}
-                  makeLink={makeLink}
-                  externalLink={externalLink}
-                  sortValues={sortValues}
+                  makeLink={false}
+                  externalLink={false}
+                  sortValues={false}
                   sortBy={sortBy}
-                  numberedList={numberedList}
+                  numberedList={false}
                   columnId={columnId}
                   expanded
                   linkAsButton={linkAsButton}
@@ -724,7 +724,7 @@ const ContextualContentStatuteHistory = props => {
                         </Grid>
                         <Grid item>
                           <Typography variant='body2'>Voimaantulo:
-                            {item.entryIntoForce ? <strong>{format(new Date(item.entryIntoForce), 'dd.MM.yyyy')}</strong> : ''}
+                            {item.entryIntoForce ? <strong> {format(new Date(item.entryIntoForce), 'dd.MM.yyyy')}</strong> : ''}
                           </Typography>
                         </Grid>
                         <Grid item>
@@ -732,9 +732,9 @@ const ContextualContentStatuteHistory = props => {
                         </Grid>
                       </Grid>
                     </Box>
-                    <Typography variant='body1' className={classes.statuteHistoryItem}>
+                    <div className={classes.statuteHistoryItem}>
                       {parser.parseHTML(parseContent(item.hasParts, item.versionNumber))}
-                    </Typography>
+                    </div>
                   </Paper>
                 ))}
               </Stack>
