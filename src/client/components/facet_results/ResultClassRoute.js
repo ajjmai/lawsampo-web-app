@@ -378,8 +378,8 @@ const ResultClassRoute = props => {
     case 'ContextualContentStatuteHistory': {
       const { instanceTableData } = perspectiveState
       const ccProps = {
-        data: instanceTableData.pykalat,
-        originalStatute: instanceTableData.originalStatute,
+        data: instanceTableData.sections,
+        statuteVersions: instanceTableData.statuteVersions,
         tableOfContents: instanceTableData.firstLevel,
         tableOfContentsConfig: perspectiveState.properties.find(item => item.id === 'firstLevel'),
         hasParts: instanceTableData.hasParts,

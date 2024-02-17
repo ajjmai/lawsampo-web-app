@@ -157,128 +157,125 @@ export const statutePropertiesInstancePage = `
   UNION
   { 
     ?laki lss:ls_statute ?id ;
-      eli:id_local ?originalStatute__identifier ;
-      eli:first_date_entry_in_force ?originalStatute__entryIntoForceDate ;
-      lss:finlex_url ?originalStatute__finlexUrl .
+      eli:id_local ?statuteVersions__identifier ;
+      eli:first_date_entry_in_force ?statuteVersions__entryIntoForceDate ;
+      lss:finlex_url ?statuteVersions__finlexUrl .
+
+      BIND(REPLACE(STR(?statuteVersions__finlexUrl), "^(.*/)", "") as ?statuteVersions__id)
+      BIND(?statuteVersions__id as ?statuteVersions__versionNumber)
 
       ?laki eli:related_to [
-            eli:title ?originalStatute__he__id ;
-            lss:government_proposal_url ?originalStatute__he__url
+            eli:title ?statuteVersions__he__id ;
+            lss:government_proposal_url ?statuteVersions__he__url
       ] .
+  }
+  UNION
+  {
+    ?laki lss:ls_statute ?id ;
+          eli:has_part/eli:has_member ?ids_with_versions .
+    
+    BIND(REPLACE(STR(?ids_with_versions), "^(.*/)", "") as ?statuteVersions__id)
+    BIND(?statuteVersions__id as ?statuteVersions__versionNumber)
+    
+    ?ids_with_versions eli:version ?version .
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?statuteVersions__version)
+
+
+    OPTIONAL {
+      ?ids_with_versions eli:amended_by/eli:id_local ?statuteVersions__identifier .
+      OPTIONAL {
+      ?ids_with_versions eli:amended_by [ 
+        eli:first_date_entry_in_force ?statuteVersions__entryIntoForceDate ;
+        lss:finlex_url ?statuteVersions__finlexUrl ;
+        eli:related_to/eli:title ?statuteVersions__he__id ;
+        eli:related_to/lss:government_proposal_url ?statuteVersions__he__url ] .
+    }
+  }
   }
   UNION
   {
     ## pykälät ##
 
     ?laki lss:ls_statute ?id ;
-          eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
-    FILTER EXISTS { ?pykalat__id a sfl:Section }
+          eli:has_part ?sections__id .
+    FILTER EXISTS { ?sections__id a sfl:Section }
     
-    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
-    ?pykalat__pykalat__id eli:version ?pykalat__pykalat__versio ;
-                          eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__content .
+    ?sections__id eli:has_member ?sections__sections__id .
+    ?sections__sections__id lss:number ?sections__sections__number ;
+                            eli:version ?version .
+
+    BIND(REPLACE(STR(?sections__sections__id), "^(.*/)", "") as ?sections__sections__versionNumber)
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__version)         
+    BIND("section" as ?sections__sections__level)
     
     OPTIONAL {
-      ?pykalat__pykalat__id eli:amended_by/eli:id_local ?pykalat__pykalat__amendedBy .
-      
-      OPTIONAL {
-        ?pykalat__pykalat__id eli:amended_by [ 
-                              eli:first_date_entry_in_force ?pykalat__pykalat__amendedByEntryIntoForce ;
-                              lss:finlex_url ?pykalat__pykalat__amendedByFinlexUrl ;
-                              eli:related_to/eli:title ?pykalat__pykalat__amendedByHe ;
-                              eli:related_to/lss:government_proposal_url ?pykalat__pykalat__amendedByHeUrl ] .
-      }
+      ?sections__sections__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__content .
     }
   }
   UNION
   {
-    ## momentit ##
+    ## subsections ##
 
     ?laki lss:ls_statute ?id ;
-          eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
-    FILTER EXISTS { ?pykalat__id a sfl:Section }
+          eli:has_part ?sections__id .
+    FILTER EXISTS { ?sections__id a sfl:Section }
 
-    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
-    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
+    ?sections__id eli:has_member ?sections__sections__id .
+    ?sections__sections__id eli:has_part ?sections__sections__subsections__id .
 
-    ?pykalat__pykalat__momentit__id eli:version ?pykalat__pykalat__momentit__versio ;
-                                    eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__content .
+    BIND(REPLACE(STR(?sections__sections__subsections__id), "^(.*/)", "") as ?sections__sections__subsections__versionNumber) 
+    BIND("subsection" as ?sections__sections__subsections__level) 
+
+    ?sections__sections__subsections__id eli:version ?version ;
+                                    lss:number ?sections__sections__subsections__number ;
+                                    eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__content .
+
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__version) 
+  }
+  UNION
+  {
+    ## paragraphs ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?sections__id .
+    FILTER EXISTS { ?sections__id a sfl:Section }
+
+    ?sections__id eli:has_member ?sections__sections__id .
+    ?sections__sections__id eli:has_part ?sections__sections__subsections__id .
+    ?sections__sections__subsections__id eli:has_part ?sections__sections__subsections__paragraphs__id .
+
+    BIND(REPLACE(STR(?sections__sections__subsections__paragraphs__id), "^(.*/)", "") as ?sections__sections__subsections__paragraphs__versionNumber)
+    BIND("paragraph" as ?sections__sections__subsections__paragraphs__level) 
+
+    ?sections__sections__subsections__paragraphs__id eli:version ?version ;
+                                            lss:number ?sections__sections__subsections__paragraphs__number ;
+                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content .
+
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__version) 
+  }
+  UNION
+  {
+    ## subparagraphs ##
+
+    ?laki lss:ls_statute ?id ;
+          eli:has_part ?sections__id .
+    FILTER EXISTS { ?sections__id a sfl:Section }
+
+    ?sections__id eli:has_member ?sections__sections__id .
+    ?sections__sections__id eli:has_part ?sections__sections__subsections__id .
+    ?sections__sections__subsections__id eli:has_part ?sections__sections__subsections__paragraphs__id .
+    ?sections__sections__subsections__paragraphs__id eli:has_part ?sections__sections__subsections__paragraphs__subparagraphs__id .
+
+    BIND(REPLACE(STR(?sections__sections__subsections__paragraphs__subparagraphs__id), "^(.*/)", "") as ?sections__sections__subsections__paragraphs__subparagraphs__versionNumber)
+    BIND("subparagraph" as ?sections__sections__subsections__paragraphs__subparagraphs__level) 
+
+    ?sections__sections__subsections__paragraphs__subparagraphs__id eli:version ?version ;
+                                            lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number ;
+                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__kohda__subparagraphs__content .
     
-    OPTIONAL {
-      ?pykalat__pykalat__momentit__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__amendedBy .
-      
-      OPTIONAL {
-        ?pykalat__pykalat__momentit__id  eli:amended_by [ 
-                                         eli:first_date_entry_in_force ?pykalat__pykalat__momentit__amendedByEntryIntoForce ;
-                                         lss:finlex_url ?pykalat__pykalat__momentit__amendedByFinlexUrl ;
-                                         eli:related_to/eli:title ?pykalat__pykalat__momentit__amendedByHe ;
-                                         eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__amendedByHeUrl ] .
-      }
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__subparagraphs__version) 
+  
     }
-  }
-  UNION
-  {
-    ## kohdat ##
-
-    ?laki lss:ls_statute ?id ;
-          eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
-    FILTER EXISTS { ?pykalat__id a sfl:Section }
-
-    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
-    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
-    ?pykalat__pykalat__momentit__id eli:has_part ?pykalat__pykalat__momentit__kohdat__id .
-
-    ?pykalat__pykalat__momentit__kohdat__id eli:version ?pykalat__pykalat__momentit__kohdat__versio ;
-                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__kohdat__content .
-
-    OPTIONAL {
-      ?pykalat__pykalat__momentit__kohdat__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__kohdat__amendedBy .
-      
-      OPTIONAL {
-        ?pykalat__pykalat__momentit__kohdat__id  eli:amended_by [ 
-                                                 eli:first_date_entry_in_force ?pykalat__pykalat__momentit__kohdat__amendedByEntryIntoForce ;
-                                                 lss:finlex_url ?pykalat__pykalat__momentit__kohdat__amendedByFinlexUrl ;
-                                                 eli:related_to/eli:title ?pykalat__pykalat__momentit__kohdat__amendedByHe ;
-                                                 eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__kohdat__amendedByHeUrl ] .
-      }
-    }
-  }
-  UNION
-  {
-    ## alakohdat ##
-
-    ?laki lss:ls_statute ?id ;
-          eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part ?pykalat__id ;
-          eli:has_part/eli:has_part/eli:has_part ?pykalat__id .
-    FILTER EXISTS { ?pykalat__id a sfl:Section }
-
-    ?pykalat__id eli:has_member ?pykalat__pykalat__id .
-    ?pykalat__pykalat__id eli:has_part ?pykalat__pykalat__momentit__id .
-    ?pykalat__pykalat__momentit__id eli:has_part ?pykalat__pykalat__momentit__kohdat__id .
-    ?pykalat__pykalat__momentit__kohdat__id eli:has_part ?pykalat__pykalat__momentit__kohdat__alakohdat__id .
-
-    ?pykalat__pykalat__momentit__kohdat__alakohdat__id eli:version ?pykalat__pykalat__momentit__kohdat__alakohdat__versio ;
-                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?pykalat__pykalat__momentit__kohda__alakohdatt__content .
-
-    OPTIONAL {
-      ?pykalat__pykalat__momentit__kohdat__alakohdat__id eli:amended_by/eli:id_local ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedBy .
-      
-      OPTIONAL {
-        ?pykalat__pykalat__momentit__kohdat__alakohdat__id  eli:amended_by [ 
-                                                 eli:first_date_entry_in_force ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByEntryIntoForce ;
-                                                 lss:finlex_url ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByFinlexUrl ;
-                                                 eli:related_to/eli:title ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByHe ;
-                                                 eli:related_to/lss:government_proposal_url ?pykalat__pykalat__momentit__kohdat__alakohdat__amendedByHeUrl ] .
-      }
-    }
-  }
 
   ${sectionBlock}
 `

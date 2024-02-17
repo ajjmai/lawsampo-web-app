@@ -612,25 +612,240 @@ const testData = [
   }
 ]
 
+const testData2 = {
+  id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1',
+  sections: {
+    id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/19931501',
+    number: '1',
+    versionNumber: '19931501',
+    version: 'Original',
+    level: 'section',
+    subsections: [
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5/20090006',
+        versionNumber: '20090006',
+        level: 'subsection',
+        number: '5',
+        content: [
+          '5 momentti on kumottu L:lla 9.1.2009/6, joka tulee A:n 60/2009 mukaisesti voimaan 1.4.2009. Aiempi sanamuoto kuuluu:',
+          '5 momentti on kumottu L:lla 9.1.2009/6.'
+        ],
+        version: 'Consolidated'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/4/19970585',
+        versionNumber: '19970585',
+        level: 'subsection',
+        number: '4',
+        content: 'Myynnin ei katsota tapahtuvan liiketoiminnan muodossa, jos siitä saatu vastike on ennakkoperintälain (1118/1996) 13 §:ssä tarkoitettua palkkaa.',
+        version: 'Consolidated'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3/19941486',
+        versionNumber: '19941486',
+        level: 'subsection',
+        number: '3',
+        content: [
+          '3 momentti on kumottu L:lla 29.12.1994/1486.',
+          '3 momentti on kumottu L:lla .'
+        ],
+        version: 'Consolidated'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2/19931501',
+        versionNumber: '19931501',
+        level: 'subsection',
+        number: '2',
+        content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.',
+        version: 'Original'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5/19931501',
+        versionNumber: '19931501',
+        level: 'subsection',
+        number: '5',
+        content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).',
+        version: 'Original'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2/20161064',
+        versionNumber: '20161064',
+        level: 'subsection',
+        number: '2',
+        content: [
+          '2 momentti on kumottu L:lla 9.12.2016/1064.',
+          '2 momentti on kumottu L:lla 9.12.2016/1064, joka tuli voimaan 1.1.2017. Aiempi sanamuoto kuuluu:',
+          '2 momentti on kumottu L:lla 9.12.2016/1064, joka tulee voimaan 1.1.2017. Aiempi sanamuoto kuuluu:'
+        ],
+        version: 'Consolidated'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5/19941483',
+        versionNumber: '19941483',
+        level: 'subsection',
+        number: '5',
+        content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).',
+        version: 'Consolidated'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3/19931501',
+        versionNumber: '19931501',
+        level: 'subsection',
+        number: '3',
+        content: '3 momentti on kumottu L:lla 29.12.1994/1486.',
+        version: 'Original'
+      },
+      {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/19931501',
+        paragraphs: [
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/3/19951767',
+            versionNumber: '19951767',
+            level: 'paragraph',
+            number: '3',
+            content: 'Suomessa tapahtuvasta 26 a §:ssä tarkoitetusta tavaran yhteisöhankinnasta;',
+            version: 'Consolidated'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/4/19951767',
+            versionNumber: '19951767',
+            level: 'paragraph',
+            number: '4',
+            content: 'Suomessa tapahtuvasta 72 l §:ssä tarkoitetusta tavaran siirrosta varastointimenettelystä.',
+            version: 'Consolidated'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/2/19941486',
+            versionNumber: '19941486',
+            level: 'paragraph',
+            number: '2',
+            content: 'Suomessa tapahtuvasta tavaran maahantuonnista;',
+            version: 'Consolidated'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro/19931501',
+            versionNumber: '19931501',
+            level: 'paragraph',
+            number: 'intro',
+            content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+            version: 'Original'
+          },
+          {
+            id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1/19931501',
+            versionNumber: '19931501',
+            level: 'paragraph',
+            number: '1',
+            content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+            version: 'Original'
+          }
+        ]
+      }
+    ]
+  }
+}
+
 const ContextualContentStatuteHistory = props => {
   const classes = useStyles(props)
-  const { data, originalStatute } = props
+  const { data, statuteVersions } = props
   const { tableOfContents, hasParts, hasChapters } = props
   const {
     sortBy, columnId, linkAsButton, showSource, sourceExternalLink
   } = props.tableOfContentsConfig || {}
   const location = useLocation()
   const sectionRefs = useRef({})
-
-  // Fuseki splits long HTML texts, combine them here
-  // if (Array.isArray(data)) {
-  //   data = data.join('')
-  //   data = false
-  // }
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
-  // data = parser.parseHTML(data)
-  console.log(data)
-  console.log(originalStatute)
+
+  // yhden pykälän sisältämät eri versionumerot
+  const getSectionVersionNumbers = (data) => {
+    const versions = []
+
+    if (data.versionNumber) {
+      versions.push(data.versionNumber)
+    }
+    if (Array.isArray(data)) {
+      data.forEach(it => versions.push(...getSectionVersionNumbers(it)))
+    }
+    if (data.sections) {
+      versions.push(...getSectionVersionNumbers(data.sections))
+    }
+    if (data.subsections) {
+      versions.push(...getSectionVersionNumbers(data.subsections))
+    }
+    if (data.paragraphs) {
+      versions.push(...getSectionVersionNumbers(data.paragraphs))
+    }
+    if (data.subparagraphs) {
+      versions.push(...getSectionVersionNumbers(data.subparagraphs))
+    }
+    return [...new Set(versions)].sort()
+  }
+  // console.log(getSectionVersionNumbers(testData2))
+
+  // säädöksen eri versioiden tiedot
+  const statuteVersionsInfo = statuteVersions.reduce((map, it) => {
+    const he = Array.isArray(it.he) ? it.he.find(he => he.id.toLowerCase().includes('he')) : it.he
+    const versionNumber = parseInt(it.versionNumber)
+
+    map[versionNumber] = {
+      id: it.identifier || it.version,
+      he: he ? he.id : null,
+      heUrl: he ? he.url : null,
+      entryIntoForce: it.entryIntoForceDate || null,
+      version: it.version,
+      versionNumber,
+      finlexUrl: it.finlexUrl || null,
+      noLongerInForce: null
+    }
+
+    return map
+  }, {})
+
+  // console.log(statuteVersionsInfo)
+
+  const findPartsByVersionNumber = (data, targetVersionNumber) => {
+    if (!data) {
+      return null
+    }
+    if (data.sections) {
+      const { sections, ...restOfData } = data
+      return { ...restOfData, hasParts: findPartsByVersionNumber(sections, targetVersionNumber) }
+    }
+    if (data.subsections) {
+      const { subsections, ...restOfData } = data
+      return { ...restOfData, hasParts: subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean) }
+    }
+    if (data.paragraphs) {
+      const { paragraphs, ...restOfData } = data
+      return { ...restOfData, hasParts: paragraphs.map(paragraph => findPartsByVersionNumber(paragraph, targetVersionNumber)).filter(Boolean) }
+    }
+    if (data.subparagraphs) {
+      const { subparagraphs, ...restOfData } = data
+      return { ...restOfData, hasParts: subparagraphs.map(subparagraphs => findPartsByVersionNumber(subparagraphs, targetVersionNumber)).filter(Boolean) }
+    }
+    if (parseInt(data.versionNumber) === targetVersionNumber) {
+      return data
+    }
+    return null
+  }
+
+  // console.log(findPartsByVersionNumber(testData2, 19931501))
+  // console.log(findPartsByVersionNumber(testData2, 19941486))
+
+  const parseVersions = (data) => {
+    const sectionVersions = getSectionVersionNumbers(data)
+
+    for (const version of sectionVersions) {
+      const parts = findPartsByVersionNumber(data, version)
+      const versionInfo = statuteVersionsInfo[version]
+      const section = { ...parts, ...versionInfo }
+
+      console.log(section)
+    }
+  }
+
+  console.log(data);
+  // parseVersions(testData2)
+ 
 
   useEffect(() => {
     if (tableOfContents && location.hash) {
