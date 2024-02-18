@@ -1,13 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 // import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
 import Grid from '@mui/material/Grid'
-import SectionOfALawListCollapsible from '../facet_results/SectionOfALawListCollapsible'
+import SectionOfALawListCollapsible from './SectionOfALawListCollapsible'
 import Typography from '@mui/material/Typography'
 import { useLocation } from 'react-router-dom'
-import { has } from 'lodash'
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Paper } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import StatuteHistoryDetails from './StatuteHistoryDetails'
 
@@ -292,7 +291,7 @@ const testData = [
   },
   {
     id: '585/1997',
-    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585', 
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585',
     he: 'HE 64/1997',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+64/1997',
     entryIntoForce: '1997-07-01',
@@ -717,6 +716,41 @@ const testData2 = {
   }
 }
 
+const testData3 = {
+  id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/11',
+  idShort: 'chapter_2_section_11',
+  sections: [
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/11/19931501',
+      number: '11',
+      versionNumber: '19931501',
+      version: 'Original',
+      level: 'section',
+      content: 'Kiinteällä toimipaikalla tarkoitetaan pysyvää liikepaikkaa, josta liiketoimintaa kokonaan tai osaksi harjoitetaan. Rakennus- tai asennustoiminnassa kiinteäksi toimipaikaksi katsotaan urakointikohde tai useat peräkkäiset urakointikohteet, jotka kestävät yli 9 kuukautta.',
+      subsections: {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/11/subsec/1/19931501',
+        versionNumber: '19931501',
+        level: 'subsection',
+        number: '1',
+        content: 'Kiinteällä toimipaikalla tarkoitetaan pysyvää liikepaikkaa, josta liiketoimintaa kokonaan tai osaksi harjoitetaan. Rakennus- tai asennustoiminnassa kiinteäksi toimipaikaksi katsotaan urakointikohde tai useat peräkkäiset urakointikohteet, jotka kestävät yli 9 kuukautta.',
+        version: 'Original'
+      }
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/2/sec/11/20140505',
+      number: '11',
+      versionNumber: '20140505',
+      version: 'Consolidated',
+      level: 'section',
+      content: [
+        '11 § on kumottu L:lla 27.6.2014/505.',
+        '11 § on kumottu L:lla 27.6.2014/505, joka tulee voimaan 1.1.2015. Aiempi sanamuoto kuuluu:',
+        '11 § on kumottu L:lla 27.6.2014/505, joka tuli voimaan 1.1.2015. Aiempi sanamuoto kuuluu:'
+      ]
+    }
+  ]
+}
+
 const ContextualContentStatuteHistory = props => {
   const classes = useStyles(props)
   const { data, statuteVersions } = props
@@ -724,8 +758,6 @@ const ContextualContentStatuteHistory = props => {
   const {
     sortBy, columnId, linkAsButton, showSource, sourceExternalLink
   } = props.tableOfContentsConfig || {}
-  const location = useLocation()
-  const sectionRefs = useRef({})
   const [selectedSection, setSelectedSection] = useState(null)
 
   // yhden pykälän sisältämät eri versionumerot
@@ -752,12 +784,11 @@ const ContextualContentStatuteHistory = props => {
     }
     return [...new Set(versions)].sort()
   }
-  // console.log(getSectionVersionNumbers(testData2))
 
   // säädöksen eri versioiden tiedot
   const statuteVersionsInfo = statuteVersions.reduce((map, it) => {
     const he = Array.isArray(it.he) ? it.he.find(he => he.id.toLowerCase().includes('he')) : it.he
-    const versionNumber = parseInt(it.versionNumber)
+    const versionNumber = it.versionNumber
 
     map[versionNumber] = {
       id: it.identifier || it.version,
@@ -778,48 +809,60 @@ const ContextualContentStatuteHistory = props => {
     if (!data) {
       return null
     }
+
+    // console.log('data:', data)
     if (data.sections) {
       const { sections, ...restOfData } = data
-      return { ...restOfData, hasParts: findPartsByVersionNumber(sections, targetVersionNumber) }
+      const parts = Array.isArray(sections)
+        ? sections.map(sections => findPartsByVersionNumber(sections, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
+        : findPartsByVersionNumber(sections, targetVersionNumber)
+
+      return { ...restOfData, hasParts: parts }
     }
     if (data.subsections) {
       const { subsections, ...restOfData } = data
       const parts = Array.isArray(subsections)
-        ? subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean)
+        ? subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
         : findPartsByVersionNumber(subsections, targetVersionNumber)
 
       return { ...restOfData, hasParts: parts }
     }
     if (data.paragraphs) {
       const { paragraphs, ...restOfData } = data
-      if (Array.isArray(paragraphs)) {
-        return { ...restOfData, hasParts: paragraphs.map(paragraph => findPartsByVersionNumber(paragraph, targetVersionNumber)).filter(Boolean) }
-      } else {
-        return { ...restOfData, hasParts: findPartsByVersionNumber(paragraphs, targetVersionNumber) }
-      }
+      const parts = Array.isArray(paragraphs)
+        ? paragraphs.map(paragraph => findPartsByVersionNumber(paragraph, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
+        : findPartsByVersionNumber(paragraphs, targetVersionNumber)
+
+      return { ...restOfData, hasParts: parts }
     }
     if (data.subparagraphs) {
       const { subparagraphs, ...restOfData } = data
-      if (Array.isArray(subparagraphs)) {
-        return { ...restOfData, hasParts: subparagraphs.map(subparagraphs => findPartsByVersionNumber(subparagraphs, targetVersionNumber)).filter(Boolean) }
-      } else {
-        return { ...restOfData, hasParts: findPartsByVersionNumber(subparagraphs, targetVersionNumber) }
-      }
+
+      const parts = Array.isArray(subparagraphs)
+        ? subparagraphs.map(subparagraph => findPartsByVersionNumber(subparagraph, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
+        : findPartsByVersionNumber(subparagraphs, targetVersionNumber)
+
+      return { ...restOfData, hasParts: parts }
     }
-    if (parseInt(data.versionNumber) === targetVersionNumber) {
-      return data
+    if (data.versionNumber === targetVersionNumber) {
+      const number = data.number === 'intro' ? '0' : data.number
+      const content = Array.isArray(data.content) ? data.content[0] : data.content
+      return { ...data, content, number }
     }
     return null
   }
 
-  // console.log(findPartsByVersionNumber(testData2, 19931501))
+  // console.log(testData3)
+  // console.log('yksi versio:', findPartsByVersionNumber(testData3, 19931501))
 
   // koostetaan yhden pykälän kaikki versiot yhteen ja lisätään säädösversion tiedot
   const parseVersions = (data) => {
     const sectionVersions = getSectionVersionNumbers(data)
+    // console.log(sectionVersions)
     const versions = []
     for (const version of sectionVersions) {
       const parts = findPartsByVersionNumber(data, version)
+      // console.log('parts:', parts)
       const versionInfo = statuteVersionsInfo[version]
       const section = { hasParts: parts, ...versionInfo }
       versions.push(section)
@@ -827,29 +870,23 @@ const ContextualContentStatuteHistory = props => {
     return versions
   }
 
-  console.log(parseVersions(testData2))
+  console.log('yhden pykälän versiot:', parseVersions(testData3))
 
   // käydään läpi kaikki pykälät ja koostetaan niiden sisältämät versiot
   const parseSections = (data) => {
     return data.reduce((map, section) => {
       const versions = parseVersions(section.sections)
+      // console.log(versions)
       map[section.idShort] = versions
       return map
     }, {})
   }
 
-  console.log(parseSections(data))
-
-  useEffect(() => {
-    if (tableOfContents && location.hash) {
-      setTimeout(() => {
-        const ref = sectionRefs.current
-        if (has(ref, location.hash)) {
-          ref[location.hash].scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 500)
-    }
-  }, [location.hash])
+  // console.log(parseSections(data))
+  // console.log(selectedSection)
+  // const sections = {}
+  const sections = parseSections(data)
+  // console.log(sections)
 
   return (
     <div className={classes.root}>
@@ -881,6 +918,7 @@ const ContextualContentStatuteHistory = props => {
                   sourceExternalLink={sourceExternalLink}
                   collapsible={false}
                   onlyHashLinks
+                  setSelectedSection={setSelectedSection}
                 />
               </AccordionDetails>
             </Accordion>}
@@ -898,7 +936,17 @@ const ContextualContentStatuteHistory = props => {
               </AccordionDetails>
             </Accordion>}
         </Grid>
-        <StatuteHistoryDetails sectionNumber={1} testData={testData} layoutConfig={props.layoutConfig} HTMLParserTask={props.HTMLParserTask} />
+        <Grid className={classes.gridItem} item xs={12} sm={12} md={8}>
+          <Paper className={classes.textOuterContainer}>
+            {selectedSection
+              ? <StatuteHistoryDetails sectionNumber={selectedSection} testData={testData} data={sections[selectedSection]} layoutConfig={props.layoutConfig} HTMLParserTask={props.HTMLParserTask} />
+              : (
+                <div className={classes.textInnerContainer}>
+                  <Typography variant='h6' component='p'>Valitse näytettävä pykälä sisällysluettelosta.</Typography>
+                </div>
+              )}
+          </Paper>
+        </Grid>
       </Grid>
     </div>
   )
