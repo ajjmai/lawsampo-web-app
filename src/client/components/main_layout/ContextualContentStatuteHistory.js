@@ -1,18 +1,15 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
 // import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
-import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import SectionOfALawListCollapsible from '../facet_results/SectionOfALawListCollapsible'
-import HTMLParser from '../../helpers/HTMLParser'
 import Typography from '@mui/material/Typography'
 import { useLocation } from 'react-router-dom'
-import { format } from 'date-fns'
 import { has } from 'lodash'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Stack } from '@mui/material'
-import Link from '@mui/material/Link'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import StatuteHistoryDetails from './StatuteHistoryDetails'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -73,9 +70,6 @@ const useStyles = makeStyles(theme => ({
   statuteHistoryItem: {
     padding: theme.spacing(1)
   },
-  divider: {
-    paddingBottom: theme.spacing(1)
-  },
   metaDataContainer: {
     backgroundColor: '#dfdfdf',
     overflow: 'hidden',
@@ -85,7 +79,8 @@ const useStyles = makeStyles(theme => ({
 
 const testData = [
   {
-    id: '19931501',
+    id: '1501/1993',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
     he: 'HE 88/93',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+88/1993',
     entryIntoForce: '1994-06-01',
@@ -142,14 +137,11 @@ const testData = [
         }]
       }
     ],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: null,
-    amendedByFinlexUrl: null,
     noLongerInForce: null
   },
   {
-    id: '19941483',
+    id: '1486/1994',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1994/19941486',
     he: null,
     heUrl: null,
     entryIntoForce: null,
@@ -213,14 +205,11 @@ const testData = [
         }
       ]
     }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '1486/1994',
-    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1994/19941486',
     noLongerInForce: null
   },
   {
-    id: '19951767',
+    id: '1767/1995',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1995/19951767',
     he: null,
     heUrl: null,
     entryIntoForce: null,
@@ -299,14 +288,11 @@ const testData = [
           }
         ]
       }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '1767/1995',
-    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1995/19951767',
     noLongerInForce: null
   },
   {
-    id: '19970585',
+    id: '585/1997',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585', 
     he: 'HE 64/1997',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+64/1997',
     entryIntoForce: '1997-07-01',
@@ -392,14 +378,11 @@ const testData = [
           }
         ]
       }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '585/1997',
-    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1997/19970585',
     noLongerInForce: null
   },
   {
-    id: '20090006',
+    id: '6/2009',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2009/20090006',
     he: 'HE 192/2008',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+192/2008',
     entryIntoForce: '2009-04-01',
@@ -491,14 +474,11 @@ const testData = [
           ]
         }]
     }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '6/2009',
-    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2009/20090006',
     noLongerInForce: null
   },
   {
-    id: '20161064',
+    id: '1064/2016',
+    finlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2016/20161064',
     he: 'HE 110/2016',
     heUrl: 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+110/2016',
     entryIntoForce: '2017-01-01',
@@ -583,14 +563,11 @@ const testData = [
         }
       ]
     }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '1064/2016',
-    amendedByFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/2016/20161064',
     noLongerInForce: null
   },
   {
-    id: '20241234',
+    id: '1234/2024',
+    finlexUrl: null,
     he: 'HE 110/2023',
     heUrl: null,
     entryIntoForce: '2024-01-01',
@@ -604,10 +581,6 @@ const testData = [
       content: '1 pykälä kumottu L:lla 1.1.2024/1234'
 
     }],
-    originalStatute: '1501/1993',
-    originalStatuteFinlexUrl: 'https://www.finlex.fi/fi/laki/alkup/1993/19931501',
-    amendedBy: '1234/2024',
-    amendedByFinlexUrl: null,
     noLongerInForce: '2024-01-01'
   }
 ]
@@ -753,7 +726,7 @@ const ContextualContentStatuteHistory = props => {
   } = props.tableOfContentsConfig || {}
   const location = useLocation()
   const sectionRefs = useRef({})
-  const parser = new HTMLParser({ ...props, classes, sectionRefs })
+  const [selectedSection, setSelectedSection] = useState(null)
 
   // yhden pykälän sisältämät eri versionumerot
   const getSectionVersionNumbers = (data) => {
@@ -800,8 +773,7 @@ const ContextualContentStatuteHistory = props => {
     return map
   }, {})
 
-  // console.log(statuteVersionsInfo)
-
+  // haetaan pykälän sisältä vain yhteen versioon kuuluvat osat
   const findPartsByVersionNumber = (data, targetVersionNumber) => {
     if (!data) {
       return null
@@ -812,15 +784,27 @@ const ContextualContentStatuteHistory = props => {
     }
     if (data.subsections) {
       const { subsections, ...restOfData } = data
-      return { ...restOfData, hasParts: subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean) }
+      const parts = Array.isArray(subsections)
+        ? subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean)
+        : findPartsByVersionNumber(subsections, targetVersionNumber)
+
+      return { ...restOfData, hasParts: parts }
     }
     if (data.paragraphs) {
       const { paragraphs, ...restOfData } = data
-      return { ...restOfData, hasParts: paragraphs.map(paragraph => findPartsByVersionNumber(paragraph, targetVersionNumber)).filter(Boolean) }
+      if (Array.isArray(paragraphs)) {
+        return { ...restOfData, hasParts: paragraphs.map(paragraph => findPartsByVersionNumber(paragraph, targetVersionNumber)).filter(Boolean) }
+      } else {
+        return { ...restOfData, hasParts: findPartsByVersionNumber(paragraphs, targetVersionNumber) }
+      }
     }
     if (data.subparagraphs) {
       const { subparagraphs, ...restOfData } = data
-      return { ...restOfData, hasParts: subparagraphs.map(subparagraphs => findPartsByVersionNumber(subparagraphs, targetVersionNumber)).filter(Boolean) }
+      if (Array.isArray(subparagraphs)) {
+        return { ...restOfData, hasParts: subparagraphs.map(subparagraphs => findPartsByVersionNumber(subparagraphs, targetVersionNumber)).filter(Boolean) }
+      } else {
+        return { ...restOfData, hasParts: findPartsByVersionNumber(subparagraphs, targetVersionNumber) }
+      }
     }
     if (parseInt(data.versionNumber) === targetVersionNumber) {
       return data
@@ -829,23 +813,32 @@ const ContextualContentStatuteHistory = props => {
   }
 
   // console.log(findPartsByVersionNumber(testData2, 19931501))
-  // console.log(findPartsByVersionNumber(testData2, 19941486))
 
+  // koostetaan yhden pykälän kaikki versiot yhteen ja lisätään säädösversion tiedot
   const parseVersions = (data) => {
     const sectionVersions = getSectionVersionNumbers(data)
-
+    const versions = []
     for (const version of sectionVersions) {
       const parts = findPartsByVersionNumber(data, version)
       const versionInfo = statuteVersionsInfo[version]
-      const section = { ...parts, ...versionInfo }
-
-      console.log(section)
+      const section = { hasParts: parts, ...versionInfo }
+      versions.push(section)
     }
+    return versions
   }
 
-  console.log(data);
-  // parseVersions(testData2)
- 
+  console.log(parseVersions(testData2))
+
+  // käydään läpi kaikki pykälät ja koostetaan niiden sisältämät versiot
+  const parseSections = (data) => {
+    return data.reduce((map, section) => {
+      const versions = parseVersions(section.sections)
+      map[section.idShort] = versions
+      return map
+    }, {})
+  }
+
+  console.log(parseSections(data))
 
   useEffect(() => {
     if (tableOfContents && location.hash) {
@@ -857,25 +850,6 @@ const ContextualContentStatuteHistory = props => {
       }, 500)
     }
   }, [location.hash])
-
-  const parseContent = (data, versionNumber) => {
-    return Object.keys(data).reduce((result, key) => {
-      if (typeof data[key] === 'object' && data[key] !== null) {
-        return result + parseContent(data[key], versionNumber)
-      }
-      if (key === 'content') {
-        let content = data.content
-        if (['paragraph', 'subparagraph'].includes(data.type) && data.number !== 0) {
-          content = `${data.number}) ${content}`
-        }
-        if (data.versionNumber === versionNumber) {
-          content = `<strong>${content}</strong>`
-        }
-        return result + `<p>${content}</p>`
-      }
-      return result
-    }, '')
-  }
 
   return (
     <div className={classes.root}>
@@ -924,38 +898,7 @@ const ContextualContentStatuteHistory = props => {
               </AccordionDetails>
             </Accordion>}
         </Grid>
-        <Grid className={classes.gridItem} item xs={12} sm={12} md={8}>
-          <Paper className={classes.textOuterContainer}>
-            <div className={classes.textInnerContainer}>
-              <Typography variant='h6' component='h1'>16 § Tähän pykälä otsikko jos on</Typography>
-              <Stack spacing={3}>
-                {testData.map(item => (
-                  <Paper key={item.id} variant='outlined'>
-                    <Box className={classes.metaDataContainer}>
-                      <Grid container spacing={4}>
-                        <Grid item>
-                          {item.amendedBy && <Typography variant='body2'>Versio: <Link href={item.amendedByFinlexUrl} target='_blank' rel='noreferrer'>{item.amendedBy}</Link></Typography>}
-                          {item.version === 'Original' && <Typography variant='body2'>Versio: <Link href={item.originalStatuteFinlexUrl} target='_blank' rel='noreferrer'>{item.originalStatute}</Link> (ALKUPERÄINEN)</Typography>}
-                        </Grid>
-                        <Grid item>
-                          <Typography variant='body2'>Voimaantulo:
-                            {item.entryIntoForce ? <strong> {format(new Date(item.entryIntoForce), 'dd.MM.yyyy')}</strong> : ''}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography variant='body2'>Esityöt: <Link href={item.heUrl} target='_blank' rel='noreferrer'>{item.he}</Link></Typography>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                    <div className={classes.statuteHistoryItem}>
-                      {parser.parseHTML(parseContent(item.hasParts, item.versionNumber))}
-                    </div>
-                  </Paper>
-                ))}
-              </Stack>
-            </div>
-          </Paper>
-        </Grid>
+        <StatuteHistoryDetails sectionNumber={1} testData={testData} layoutConfig={props.layoutConfig} HTMLParserTask={props.HTMLParserTask} />
       </Grid>
     </div>
   )

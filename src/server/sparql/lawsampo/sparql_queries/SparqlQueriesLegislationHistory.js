@@ -199,6 +199,14 @@ export const statutePropertiesInstancePage = `
     ?laki lss:ls_statute ?id ;
           eli:has_part ?sections__id .
     FILTER EXISTS { ?sections__id a sfl:Section }
+
+    BIND(
+      IF(
+        CONTAINS(STR(?sections__id), "chp"),
+        REPLACE(STR(?sections__id), "^.*chp/([0-9a-zA-Z]+)/sec/([0-9a-zA-Z]+)", "chapter_$1_section_$2"),
+        REPLACE(STR(?sections__id), "^.*sec/([0-9a-zA-Z]+)", "section_$1")
+      ) as ?sections__idShort
+    )
     
     ?sections__id eli:has_member ?sections__sections__id .
     ?sections__sections__id lss:number ?sections__sections__number ;
