@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
 import Collapse from '@mui/material/Collapse'
 import ObjectListItem from '../../../facet_results/ObjectListItem'
-// import { has } from 'lodash'
 import { Button } from '@mui/material'
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 const SectionOfALawListCollapsible = props => {
   const classes = useStyles(props)
   const { data, collapsible, setSelectedSection } = props
-  console.log(data)
 
   const renderItem = ({ collapsed, itemData, isFirstValue = false }) => {
     if (isFirstValue && itemData.prefLabel === '') {
@@ -61,8 +59,14 @@ const SectionOfALawListCollapsible = props => {
 
   const renderSectionLink = ({ section }) => {
     const chapterNumber = section.chapterNumber ? `chapter_${section.chapterNumber}_` : ''
+    const sectionInfo = {
+      key: `${chapterNumber}section_${section.sectionNumber}`,
+      chapterNumber: section.chapterNumber,
+      sectionNumber: section.sectionNumber,
+      prefLabel: section.prefLabel
+    }
     return (
-      <Button className={classes.linkButton} variant='text' onClick={() => setSelectedSection(`${chapterNumber}section_${section.sectionNumber}`)}>
+      <Button className={classes.linkButton} variant='text' onClick={() => setSelectedSection(sectionInfo)}>
         {section.sectionNumber} § {section.prefLabel}
       </Button>
     )

@@ -235,10 +235,14 @@ export const statutePropertiesInstancePage = `
     BIND("subsection" as ?sections__sections__subsections__level) 
 
     ?sections__sections__subsections__id eli:version ?version ;
-                                    lss:number ?sections__sections__subsections__number ;
-                                    eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__content .
+                                    lss:number ?sections__sections__subsections__number .
 
-    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__version) 
+    BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__version)
+    
+    OPTIONAL {
+      ?sections__sections__subsections__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__content .
+    }
+
   }
   UNION
   {
@@ -256,10 +260,13 @@ export const statutePropertiesInstancePage = `
     BIND("paragraph" as ?sections__sections__subsections__paragraphs__level) 
 
     ?sections__sections__subsections__paragraphs__id eli:version ?version ;
-                                            lss:number ?sections__sections__subsections__paragraphs__number ;
-                                            eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content .
+                                            lss:number ?sections__sections__subsections__paragraphs__number .
 
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__version) 
+
+    OPTIONAL {
+      ?sections__sections__subsections__paragraphs__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content .
+    }
   }
   UNION
   {

@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 // import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
 import Grid from '@mui/material/Grid'
 import SectionOfALawListCollapsible from './SectionOfALawListCollapsible'
 import Typography from '@mui/material/Typography'
-import { useLocation } from 'react-router-dom'
 import { Accordion, AccordionDetails, AccordionSummary, Paper } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import StatuteHistoryDetails from './StatuteHistoryDetails'
@@ -751,6 +750,120 @@ const testData3 = {
   ]
 }
 
+const versio1 = {
+  id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/19931501',
+  number: '1',
+  versionNumber: '19931501',
+  version: 'Original',
+  level: 'section',
+  hasParts: [
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/2/19931501',
+      versionNumber: '19931501',
+      level: 'subsection',
+      number: '2',
+      content: 'Veroa suoritetaan 32 §:ssä tarkoitetun kiinteistöhallintapalvelun ottamisesta omaan käyttöön silloinkin, kun se ei tapahdu liiketoiminnan muodossa.',
+      version: 'Original'
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/3/19931501',
+      versionNumber: '19931501',
+      level: 'subsection',
+      number: '3',
+      content: '3 momentti on kumottu L:lla 29.12.1994/1486.',
+      version: 'Original'
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5/19931501',
+      versionNumber: '19931501',
+      level: 'subsection',
+      number: '5',
+      content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).',
+      version: 'Original'
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/19931501',
+      hasParts: [
+        {
+          id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/intro/19931501',
+          versionNumber: '19931501',
+          level: 'paragraph',
+          number: '0',
+          content: 'Arvonlisäveroa suoritetaan valtiolle sen mukaan kuin tässä laissa säädetään:',
+          version: 'Original'
+        },
+        {
+          id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/para/1/19931501',
+          versionNumber: '19931501',
+          level: 'paragraph',
+          number: '1',
+          content: 'liiketoiminnan muodossa Suomessa tapahtuvasta tavaran ja palvelun myynnistä;',
+          version: 'Original'
+        }
+      ]
+    }
+  ]
+}
+
+const versio2 = {
+  id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/19931501',
+  number: '1',
+  versionNumber: '19931501',
+  version: 'Original',
+  level: 'section',
+  hasParts: [
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/5/19941483',
+      versionNumber: '19941483',
+      level: 'subsection',
+      number: '5',
+      content: 'Autoverolle suoritettavasta arvonlisäverosta säädetään erikseen autoverolaissa (1482/94).',
+      version: 'Consolidated'
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/1/sec/1/subsec/1/19931501',
+      hasParts: []
+    }
+  ]
+}
+
+const section17 = {
+  id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17',
+  idShort: 'chapter_3_section_17',
+  sections: [
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17/19931501',
+      number: '17',
+      versionNumber: '19931501',
+      version: 'Original',
+      level: 'section',
+      subsections: {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17/subsec/1/19931501',
+        versionNumber: '19931501',
+        level: 'subsection',
+        number: '1',
+        content: 'Tavaralla tarkoitetaan aineellista esinettä sekä sähköä, kaasua, lämpöä, kylmyyttä ja muuta niihin verrattavaa energiahyödykettä. Palvelulla tarkoitetaan kaikkea muuta, mitä voidaan myydä liiketoiminnan muodossa.',
+        version: 'Original'
+      }
+    },
+    {
+      id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17/20101392',
+      number: '17',
+      versionNumber: '20101392',
+      version: 'Consolidated',
+      level: 'section',
+      subsections: {
+        id: 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17/subsec/1/20101392',
+        versionNumber: '20101392',
+        level: 'subsection',
+        number: '1',
+        content: 'Tavaralla tarkoitetaan aineellista esinettä sekä sähköä, kaasua, lämpö- ja jäähdytysenergiaa ja muuta niihin verrattavaa energiahyödykettä. Palvelulla tarkoitetaan kaikkea muuta, mitä voidaan myydä liiketoiminnan muodossa.',
+        version: 'Consolidated'
+      }
+    }
+  ]
+}
+
 const ContextualContentStatuteHistory = props => {
   const classes = useStyles(props)
   const { data, statuteVersions } = props
@@ -810,11 +923,10 @@ const ContextualContentStatuteHistory = props => {
       return null
     }
 
-    // console.log('data:', data)
     if (data.sections) {
       const { sections, ...restOfData } = data
       const parts = Array.isArray(sections)
-        ? sections.map(sections => findPartsByVersionNumber(sections, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
+        ? sections.map(section => findPartsByVersionNumber(section, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
         : findPartsByVersionNumber(sections, targetVersionNumber)
 
       return { ...restOfData, hasParts: parts }
@@ -822,10 +934,10 @@ const ContextualContentStatuteHistory = props => {
     if (data.subsections) {
       const { subsections, ...restOfData } = data
       const parts = Array.isArray(subsections)
-        ? subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean).sort((a, b) => a.number - b.number)
+        ? subsections.map(subsection => findPartsByVersionNumber(subsection, targetVersionNumber)).filter(Boolean)
         : findPartsByVersionNumber(subsections, targetVersionNumber)
 
-      return { ...restOfData, hasParts: parts }
+      return { ...restOfData, hasParts: Array.isArray(parts) ? parts.sort((a, b) => a.number - b.number) : parts }
     }
     if (data.paragraphs) {
       const { paragraphs, ...restOfData } = data
@@ -852,6 +964,39 @@ const ContextualContentStatuteHistory = props => {
     return null
   }
 
+  function mergeObjects(obj1, obj2) {
+    // Check if both objects are defined
+    if (obj1 && obj2) {
+      // Merge properties at the top level
+      for (const key in obj2) {
+        if (obj2.hasOwnProperty(key)) {
+          // If the property is an array, merge its elements
+          if (Array.isArray(obj2[key])) {
+            // Find matching items based on 'id' and 'versionNumber'
+            let mergedItems = obj1[key].map(item1 => {
+              const matchingItem = obj2[key].find(item2 => item2.id === item1.id)
+              return matchingItem ? mergeObjects(item1, matchingItem) : item1
+            })
+
+            // Add non-matching items from obj2
+            mergedItems = mergedItems.concat(obj2[key].filter(item2 =>
+              !obj1[key].some(item1 => item1.id === item2.id)
+            ))
+
+            obj1[key] = mergedItems
+          } else if (typeof obj2[key] === 'object' && obj2[key] !== null) {
+            // If the property is an object, recursively merge it
+            obj1[key] = mergeObjects(obj1[key], obj2[key])
+          } else {
+            // Otherwise, just update the property
+            obj1[key] = obj2[key]
+          }
+        }
+      }
+    }
+    return obj1
+  }
+
   // console.log(testData3)
   // console.log('yksi versio:', findPartsByVersionNumber(testData3, 19931501))
 
@@ -860,23 +1005,34 @@ const ContextualContentStatuteHistory = props => {
     const sectionVersions = getSectionVersionNumbers(data)
     // console.log(sectionVersions)
     const versions = []
+    // let previousVersion = null
+
     for (const version of sectionVersions) {
       const parts = findPartsByVersionNumber(data, version)
       // console.log('parts:', parts)
+      // console.log('previousVersion:', previousVersion)
+      // const mergedParts = mergeObjects(parts, previousVersion)
       const versionInfo = statuteVersionsInfo[version]
-      const section = { hasParts: parts, ...versionInfo }
+      const section = { ...versionInfo, hasParts: parts }
+      // previousVersion = parts
       versions.push(section)
+      // console.log(section)
     }
     return versions
   }
 
-  console.log('yhden pykälän versiot:', parseVersions(testData3))
+  // console.log('yhden pykälän versiot:', parseVersions(section17))
 
   // käydään läpi kaikki pykälät ja koostetaan niiden sisältämät versiot
   const parseSections = (data) => {
     return data.reduce((map, section) => {
-      const versions = parseVersions(section.sections)
-      // console.log(versions)
+      // console.log('================================')
+      // console.log('parseSections - section', section)
+
+      const versions = parseVersions(section)
+
+      // console.log('parseSections - versions', versions)
+      // console.log('================================')
       map[section.idShort] = versions
       return map
     }, {})
@@ -885,6 +1041,7 @@ const ContextualContentStatuteHistory = props => {
   // console.log(parseSections(data))
   // console.log(selectedSection)
   // const sections = {}
+  // const sections = parseSections([data.find(it => it.id === 'http://ldf.fi/lawsampo/eli/statute/1993/1501/part/1/chp/3/sec/17')])
   const sections = parseSections(data)
   // console.log(sections)
 
@@ -922,29 +1079,16 @@ const ContextualContentStatuteHistory = props => {
                 />
               </AccordionDetails>
             </Accordion>}
-          {tableOfContents &&
-            <Accordion defaultExpanded>
-              <AccordionSummary
-                expandIcon={<ArrowDropDownIcon />}
-                aria-controls='panel1-content'
-                id='panel1-header'
-              >
-                <Typography variant='h6' component='h2'>Lain nimi</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                Tähän lain ajantasainen versio näkyviin.
-              </AccordionDetails>
-            </Accordion>}
         </Grid>
         <Grid className={classes.gridItem} item xs={12} sm={12} md={8}>
           <Paper className={classes.textOuterContainer}>
             {selectedSection
-              ? <StatuteHistoryDetails sectionNumber={selectedSection} testData={testData} data={sections[selectedSection]} layoutConfig={props.layoutConfig} HTMLParserTask={props.HTMLParserTask} />
+              ? <StatuteHistoryDetails sectionInfo={selectedSection} data={sections[selectedSection.key]} layoutConfig={props.layoutConfig} HTMLParserTask={props.HTMLParserTask} />
               : (
                 <div className={classes.textInnerContainer}>
                   <Typography variant='h6' component='p'>Valitse näytettävä pykälä sisällysluettelosta.</Typography>
                 </div>
-              )}
+                )}
           </Paper>
         </Grid>
       </Grid>

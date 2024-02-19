@@ -33,15 +33,11 @@ const useStyles = makeStyles(theme => ({
 
 const StatuteHistoryDetails = props => {
   const classes = useStyles(props)
-  const { testData } = props
+  const { data, sectionInfo } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
 
-  const data = props.data
-  // const data = testData
-
   const parseContent = (data, versionNumber) => {
-    if (!data) return ''
     return Object.keys(data).reduce((result, key) => {
       if (typeof data[key] === 'object' && data[key] !== null) {
         return result + parseContent(data[key], versionNumber)
@@ -60,11 +56,23 @@ const StatuteHistoryDetails = props => {
     }, '')
   }
 
+  const chapter = sectionInfo.chapterNumber ? `${sectionInfo.chapterNumber} luvun ` : ''
+  const sectionTitle = `${chapter} ${sectionInfo.sectionNumber} § ${sectionInfo.prefLabel}`
+
+  if (!data) {
+    // TODO tämä voisi palauttaa jonkun varoitusviestin
+    return (
+      <div className={classes.textInnerContainer}>
+        <Typography variant='h6' component='h1'>Pykälän tietoja ei löytynyt</Typography>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.textInnerContainer}>
-      <Typography variant='h6' component='h1'>{props.sectionNumber} §</Typography>
+      <Typography variant='h6' component='h1'>{sectionTitle}</Typography>
       <Stack spacing={3}>
-        {data.map(item => (
+        {data && data.map(item => (
           <Paper key={item.id} variant='outlined'>
             <Box className={classes.metaDataContainer}>
               <Grid container spacing={4}>
