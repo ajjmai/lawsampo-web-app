@@ -259,14 +259,13 @@ export const statutePropertiesInstancePage = `
     BIND(REPLACE(STR(?sections__sections__subsections__paragraphs__id), "^(.*/)", "") as ?sections__sections__subsections__paragraphs__versionNumber)
     BIND("paragraph" as ?sections__sections__subsections__paragraphs__level) 
 
-    ?sections__sections__subsections__paragraphs__id eli:version ?version .
+    ?sections__sections__subsections__paragraphs__id eli:version ?version ;
+                                                     lss:number ?sections__sections__subsections__paragraphs__number .
                                             
-
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__version) 
 
     OPTIONAL {
-      ?sections__sections__subsections__paragraphs__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content ;
-                                                       lss:number ?sections__sections__subsections__paragraphs__number .
+      ?sections__sections__subsections__paragraphs__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content .
     }
   }
   UNION
@@ -287,10 +286,8 @@ export const statutePropertiesInstancePage = `
 
     ?sections__sections__subsections__paragraphs__subparagraphs__id eli:version ?version ;
                                             eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__subparagraphs__content .
-
-    OPTIONAL {
-      ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number ;
-    }
+                                            
+    ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number ;
     
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__subparagraphs__version) 
   
