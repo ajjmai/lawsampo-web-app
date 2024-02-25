@@ -249,6 +249,13 @@
             "sortBy": "instanceCount",
             "sortByPredicate": "eli:transposes/skos:prefLabel",
             "sortDirection": "desc"
+        },
+        "statuteHistory":{
+            "containerClass": "ten",
+            "filterType": "uriFilter",
+            "predicate": "lss:ls_statute",
+            "facetType": "list",
+            "facetLabelFilter": "FILTER (STR(?id) IN ('http://ldf.fi/lawsampo/statute_eli_sd_2012_22', 'http://ldf.fi/lawsampo/statute_eli_sd_1993_1501'))"
         }
     }
 }

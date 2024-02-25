@@ -524,6 +524,12 @@ export default {
             Säädöksen viittaama EU-direktiivi
           `
         },
+        statuteHistory: {
+          label: 'Säädöshistoria',
+          description: `
+            Näytä vain säädökset, joille on saatavissa historiatiedot
+          `
+        },
         finlexLink: {
           label: 'Linkki Finlex-palveluun',
           description: `
