@@ -36,6 +36,7 @@ const StatuteHistoryDetails = props => {
   const { data, sectionInfo } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
+  console.log(data);
 
   const parseContent = (data, versionNumber) => {
     return Object.keys(data).reduce((result, key) => {
@@ -44,6 +45,9 @@ const StatuteHistoryDetails = props => {
       }
       if (key === 'content') {
         let content = data.content
+        // if (['section'].includes(data.level) && data.title) {
+        //   content = `<h3>${data.title}</h3>`
+        // }
         if (['paragraph', 'subparagraph'].includes(data.level) && data.number !== '0') {
           content = `${data.number}) ${content}`
         }
@@ -57,7 +61,7 @@ const StatuteHistoryDetails = props => {
   }
 
   const chapter = sectionInfo.chapterNumber ? `${sectionInfo.chapterNumber} luvun ` : ''
-  const sectionTitle = `${chapter} ${sectionInfo.sectionNumber} § ${sectionInfo.prefLabel}`
+  const sectionTitle = `${chapter} ${sectionInfo.sectionNumber} §`
 
   if (!data) {
     // TODO tämä voisi palauttaa jonkun varoitusviestin

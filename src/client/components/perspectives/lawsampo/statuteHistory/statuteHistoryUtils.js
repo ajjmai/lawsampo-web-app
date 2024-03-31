@@ -83,7 +83,9 @@ const findPartsByVersionNumber = (data, targetVersionNumber) => {
     return partsArray?.[0] ? { ...restOfData, subparagraphs: partsArray } : null
   }
 
-  if (data.content && data.versionNumber === targetVersionNumber) {
+  const versionsArray = isArray(data.partOfVersions) ? data.partOfVersions : [data.partOfVersions]
+
+  if (data.content && (data.versionNumber === targetVersionNumber)) {
     const number = data.number === 'intro' ? '0' : data.number
     const content = isArray(data.content) ? data.content[0] : data.content
     return { ...data, content, number }

@@ -252,10 +252,12 @@
         },
         "statuteHistory":{
             "containerClass": "ten",
-            "filterType": "uriFilter",
-            "predicate": "lss:ls_statute",
             "facetType": "list",
-            "facetLabelFilter": "FILTER (STR(?id) IN ('http://ldf.fi/lawsampo/statute_eli_sd_2012_22', 'http://ldf.fi/lawsampo/statute_eli_sd_1993_1501'))"
+            "filterType": "uriFilter",
+            "predicate": "^lss:ls_statute",
+            "sortButton": false,
+            "sortByPredicate": "^lss:ls_statute/skos:prefLabel",
+            "sortDirection": "desc"
         }
     }
 }

@@ -210,6 +210,7 @@ export const statutePropertiesInstancePage = `
     
     ?sections__id eli:has_member ?sections__sections__id .
     ?sections__sections__id lss:number ?sections__sections__number ;
+                            lss:part_of_version ?sections__sections__partOfVersions ;
                             eli:version ?version .
 
     BIND(REPLACE(STR(?sections__sections__id), "^(.*/)", "") as ?sections__sections__versionNumber)
@@ -218,6 +219,9 @@ export const statutePropertiesInstancePage = `
     
     OPTIONAL {
       ?sections__sections__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__content .
+    }
+    OPTIONAL {
+      ?sections__sections__id eli:is_realized_by/eli:title ?sections__sections__title .
     }
   }
   UNION
@@ -235,6 +239,7 @@ export const statutePropertiesInstancePage = `
     BIND("subsection" as ?sections__sections__subsections__level) 
 
     ?sections__sections__subsections__id eli:version ?version ;
+                                    lss:part_of_version ?sections__sections__subsections__partOfVersions ;
                                     lss:number ?sections__sections__subsections__number .
 
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__version)
@@ -260,6 +265,7 @@ export const statutePropertiesInstancePage = `
     BIND("paragraph" as ?sections__sections__subsections__paragraphs__level) 
 
     ?sections__sections__subsections__paragraphs__id eli:version ?version ;
+                                                     lss:part_of_version ?sections__sections__subsections__paragraphs__partOfVersions ;
                                                      lss:number ?sections__sections__subsections__paragraphs__number .
                                             
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__version) 
@@ -285,6 +291,7 @@ export const statutePropertiesInstancePage = `
     BIND("subparagraph" as ?sections__sections__subsections__paragraphs__subparagraphs__level) 
 
     ?sections__sections__subsections__paragraphs__subparagraphs__id eli:version ?version ;
+                                            lss:part_of_version ?sections__sections__subsections__paragraphs__subparagraphs__partOfVersions ;
                                             eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__subparagraphs__content .
                                             
     ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number ;
