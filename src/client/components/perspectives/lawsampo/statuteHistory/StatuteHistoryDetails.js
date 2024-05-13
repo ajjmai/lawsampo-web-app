@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const StatuteHistoryDetails = props => {
   const classes = useStyles(props)
-  const { data, sectionInfo } = props
+  const { data } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
   console.log(data);
@@ -43,25 +43,22 @@ const StatuteHistoryDetails = props => {
       if (typeof data[key] === 'object' && data[key] !== null) {
         return result + parseContent(data[key], versionNumber)
       }
+      if (key === 'title') {
+        return `<h4>${data.number} § ${data.title}</h4>`
+      }
       if (key === 'content') {
         let content = data.content
-        // if (['section'].includes(data.level) && data.title) {
-        //   content = `<h3>${data.title}</h3>`
-        // }
         if (['paragraph', 'subparagraph'].includes(data.level) && data.number !== '0') {
           content = `${data.number}) ${content}`
         }
-        if (data.versionNumber === versionNumber) {
-          content = `<strong>${content}</strong>`
+        if (data.version !== 'Original' && data.versionNumber === versionNumber) {
+          content = `<mark>${content}</mark>`
         }
         return result + `<p>${content}</p>`
       }
       return result
     }, '')
   }
-
-  const chapter = sectionInfo.chapterNumber ? `${sectionInfo.chapterNumber} luvun ` : ''
-  const sectionTitle = `${chapter} ${sectionInfo.sectionNumber} §`
 
   if (!data) {
     // TODO tämä voisi palauttaa jonkun varoitusviestin
@@ -74,7 +71,7 @@ const StatuteHistoryDetails = props => {
 
   return (
     <div className={classes.textInnerContainer}>
-      <Typography variant='h6' component='h1'>{sectionTitle}</Typography>
+      {/* <Typography className={classes.heading} variant='h6' component='h1'>{sectionTitle}</Typography> */}
       <Stack spacing={3}>
         {data && data.map(item => (
           <Paper key={item.id} variant='outlined'>

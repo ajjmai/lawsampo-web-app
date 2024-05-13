@@ -110,6 +110,7 @@ const ContextualContentStatuteHistory = props => {
                   sourceExternalLink={sourceExternalLink}
                   collapsible={false}
                   onlyHashLinks
+                  selectedSection={selectedSection}
                   setSelectedSection={setSelectedSection}
                 />
               </>

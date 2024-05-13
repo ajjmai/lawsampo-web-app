@@ -29,14 +29,15 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     margin: 0,
     fontWeight: 'normal',
-    justifyContent: 'flex-start',
+    whiteSpace: 'nowrap',
+    minWidth: 'auto',
     textTransform: 'none'
   }
 }))
 
 const SectionOfALawListCollapsible = props => {
   const classes = useStyles(props)
-  const { data, collapsible, setSelectedSection } = props
+  const { data, collapsible, selectedSection, setSelectedSection } = props
 
   const renderItem = ({ collapsed, itemData, isFirstValue = false }) => {
     if (isFirstValue && itemData.prefLabel === '') {
@@ -65,8 +66,11 @@ const SectionOfALawListCollapsible = props => {
       sectionNumber: section.sectionNumber,
       prefLabel: section.prefLabel
     }
+
+    const color = selectedSection && selectedSection.key === sectionInfo.key ? 'secondary' : 'inherit'
+
     return (
-      <Button className={classes.linkButton} variant='text' onClick={() => setSelectedSection(sectionInfo)}>
+      <Button className={classes.linkButton} variant='text' color={color} onClick={() => setSelectedSection(sectionInfo)}>
         {section.sectionNumber} § {section.prefLabel}
       </Button>
     )
