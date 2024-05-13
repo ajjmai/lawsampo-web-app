@@ -36,7 +36,7 @@ const StatuteHistoryDetails = props => {
   const { data } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
-  console.log(data);
+  // console.log(data);
 
   const parseContent = (data, versionNumber) => {
     return Object.keys(data).reduce((result, key) => {

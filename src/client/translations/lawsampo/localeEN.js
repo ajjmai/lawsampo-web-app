@@ -83,7 +83,8 @@ export default {
     network: 'network',
     export: 'export',
     statutes: 'Statutes',
-    cases: 'Case Law'
+    cases: 'Case Law',
+    history: 'history'
   },
   table: {
     rowsPerPage: 'Rows per page',

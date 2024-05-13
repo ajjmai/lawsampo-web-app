@@ -84,7 +84,8 @@ export default {
     network: 'verkosto',
     export: 'avaa yasgui-sovelluksessa',
     statutes: 'Lainsäädäntö',
-    cases: 'Oikeustapaukset'
+    cases: 'Oikeustapaukset',
+    history: 'historia'
   },
   table: {
     rowsPerPage: 'Riviä sivulla',

@@ -34,18 +34,24 @@
                 "instancePageResultClasses": {
                     "instancePageContextualContent": {
                         "tabID": 0,
-                        "component": "ContextualContentStatuteHistory",
+                        "component": "ContextualContent",
                         "tabPath": "content",
                         "tabIcon": "Subject"
                     },
-                    "instancePageTable": {
+                    "instancePageContextualContentStatuteHistory": {
                         "tabID": 1,
+                        "component": "ContextualContentStatuteHistory",
+                        "tabPath": "history",
+                        "tabIcon": "History"
+                    },
+                    "instancePageTable": {
+                        "tabID": 2,
                         "component": "InstancePageTable",
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
                     },
                     "instancePageExport": {
-                        "tabID": 2,
+                        "tabID": 3,
                         "component": "Export",
                         "tabPath": "export",
                         "tabIcon": "ArrowForward",
