@@ -1,6 +1,7 @@
 import { concat, groupBy, isArray, isEmpty } from 'lodash'
 
 // yhden pykälän sisältämät eri versionumerot
+// Hakee pykälän osista kaikki uniikit versionumerot, joita pykälässä on. Tämän avulla selviää, kuinka monta eri versiota pykälästä on.
 const getSectionVersionNumbers = (data) => {
   const versions = []
 
@@ -26,6 +27,8 @@ const getSectionVersionNumbers = (data) => {
 }
 
 // haetaan pykälän sisältä vain yhteen versioon kuuluvat osat
+// Etsii pykälän osista vain ne osat, joilla on sama versionumero.
+// Tämä ei vielä tuota pykälän lopullisia versioita, koska yhdessä versiossa voi olla osia, joilla on eri versionumero.
 const findPartsByVersionNumber = (data, targetVersionNumber) => {
   if (!data) {
     return null
@@ -83,8 +86,6 @@ const findPartsByVersionNumber = (data, targetVersionNumber) => {
     return partsArray?.[0] ? { ...restOfData, subparagraphs: partsArray } : null
   }
 
-  const versionsArray = isArray(data.partOfVersions) ? data.partOfVersions : [data.partOfVersions]
-
   if (data.content && (data.versionNumber === targetVersionNumber)) {
     const number = data.number === 'intro' ? '0' : data.number
     const content = isArray(data.content) ? data.content[0] : data.content
@@ -93,7 +94,7 @@ const findPartsByVersionNumber = (data, targetVersionNumber) => {
   return null
 }
 
-// säädöksen eri versioiden tiedot
+// säädöksen eri versioiden metatiedot
 const getStatuteVersionsInfo = (statuteVersions) => (
   statuteVersions.reduce((map, it) => {
     const he = isArray(it.he) ? it.he.find(he => he.id.toLowerCase().includes('he')) : it.he
@@ -114,7 +115,9 @@ const getStatuteVersionsInfo = (statuteVersions) => (
   }, {}))
 
 // yhdistetään vanha ja uusi versio
-const mergeVersions = (oldVersion, newVersion) => {
+// Yhdistää vanhan ja uuden version niin, että mikäli uudessa versiossa on sama osa kuin vanhassa versiossa, käytetään uuden version osaa.
+// Vanhasta versiosta säilytetään ne osat, joita uudessa versiossa ei ole muutettu.
+const mergeVersions = (oldVersion, newVersion, versionNumber) => {
   if (oldVersion === null) return newVersion
 
   if (oldVersion && newVersion) {
@@ -124,7 +127,7 @@ const mergeVersions = (oldVersion, newVersion) => {
     let mergedSections = null
     // molemmissa pitäisi lähtökohtaisesti olla sections, mutta tarkistetaan silti
     if (newVersion.sections && oldVersion.sections) {
-      const mergedSubsections = mergeSubsections(oldVersion.sections.subsections, newVersion.sections.subsections)
+      const mergedSubsections = mergeSubsections(oldVersion.sections.subsections, newVersion.sections.subsections, versionNumber)
 
       if (newVersion.sections.content && !newVersion.sections.subsections) {
         mergedSections = { ...newVersion.sections }
@@ -142,7 +145,7 @@ const mergeVersions = (oldVersion, newVersion) => {
   return oldVersion
 }
 
-const mergeSubsections = (oldVersions, newVersions) => {
+const mergeSubsections = (oldVersions, newVersions, versionNumber) => {
   if (!oldVersions && !newVersions) return null
   if (!oldVersions) return newVersions
   if (!newVersions) return oldVersions
@@ -159,7 +162,7 @@ const mergeSubsections = (oldVersions, newVersions) => {
       if (newVersion.content && !newVersion.paragraphs) {
         merged.push({ ...newVersion })
       } else if (oldVersion.paragraphs && newVersion.paragraphs) {
-        const mergedParagraphs = mergeParagraphs(oldVersion.paragraphs, newVersion.paragraphs)
+        const mergedParagraphs = mergeParagraphs(oldVersion.paragraphs, newVersion.paragraphs, versionNumber)
         merged.push({ ...newVersion, paragraphs: mergedParagraphs.sort((a, b) => a.number - b.number) })
       } else {
         merged.push({ ...newVersion })
@@ -171,7 +174,7 @@ const mergeSubsections = (oldVersions, newVersions) => {
   return merged
 }
 
-const mergeParagraphs = (oldVersions, newVersions) => {
+const mergeParagraphs = (oldVersions, newVersions, versionNumber) => {
   if (!oldVersions && !newVersions) return null
   if (!oldVersions) return newVersions
   if (!newVersions) return oldVersions
@@ -188,19 +191,19 @@ const mergeParagraphs = (oldVersions, newVersions) => {
       if (newVersion.content && !newVersion.subparagraphs) {
         merged.push({ ...newVersion })
       } else if (oldVersion.subparagraphs && newVersion.subparagraphs) {
-        const mergedSubParagraphs = mergeSubParagraphs(oldVersion.subparagraphs, newVersion.subparagraphs)
+        const mergedSubParagraphs = mergeSubParagraphs(oldVersion.subparagraphs, newVersion.subparagraphs, versionNumber)
         merged.push({ ...newVersion, subparagraphs: mergedSubParagraphs.sort((a, b) => a.number - b.number) })
       } else {
         merged.push({ ...newVersion })
       }
-    } else {
+    } else if (item.partOfVersions?.includes(versionNumber)) {
       merged.push(...item)
     }
   }
   return merged
 }
 
-const mergeSubParagraphs = (oldVersions, newVersions) => {
+const mergeSubParagraphs = (oldVersions, newVersions, versionNumber) => {
   if (!oldVersions && !newVersions) return null
   if (!oldVersions) return newVersions
   if (!newVersions) return oldVersions
@@ -213,24 +216,24 @@ const mergeSubParagraphs = (oldVersions, newVersions) => {
       const sorted = item.sort((a, b) => a.versionNumber - b.versionNumber)
       const newVersion = sorted[1]
       merged.push({ ...newVersion })
-    } else {
+    } else if (item.partOfVersions?.includes(versionNumber)) {
       merged.push(...item)
     }
   }
   return merged
 }
 
-// koostetaan yhden pykälän kaikki versiot yhteen ja lisätään säädösversion tiedot
+// koostetaan yhden pykälän kaikki versiot yhteen ja lisätään säädösversion metatiedot
 const parseVersions = (data, statuteVersions) => {
   const sectionVersions = getSectionVersionNumbers(data)
   const versions = []
   let previousVersion = null
 
-  for (const version of sectionVersions) {
-    const parts = findPartsByVersionNumber(data, version)
-    const mergedParts = mergeVersions(previousVersion, parts)
+  for (const versionNumber of sectionVersions) {
+    const parts = findPartsByVersionNumber(data, versionNumber)
+    const mergedParts = mergeVersions(previousVersion, parts, versionNumber)
     const statuteVersionsInfo = getStatuteVersionsInfo(statuteVersions)
-    const versionInfo = statuteVersionsInfo[version]
+    const versionInfo = statuteVersionsInfo[versionNumber]
     previousVersion = mergedParts
 
     if (mergedParts != null) {

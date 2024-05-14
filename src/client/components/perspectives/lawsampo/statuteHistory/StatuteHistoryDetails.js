@@ -36,15 +36,15 @@ const StatuteHistoryDetails = props => {
   const { data } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
-  // console.log(data);
+  console.log(data);
 
   const parseContent = (data, versionNumber) => {
     return Object.keys(data).reduce((result, key) => {
       if (typeof data[key] === 'object' && data[key] !== null) {
         return result + parseContent(data[key], versionNumber)
       }
-      if (key === 'title') {
-        return `<h4>${data.number} § ${data.title}</h4>`
+      if (key === 'title' || (data.level === 'section' && key === 'number')) {
+        return `<h4>${data.number} § ${data.title !== undefined ? data.title : ''}</h4>`
       }
       if (key === 'content') {
         let content = data.content
@@ -71,7 +71,6 @@ const StatuteHistoryDetails = props => {
 
   return (
     <div className={classes.textInnerContainer}>
-      {/* <Typography className={classes.heading} variant='h6' component='h1'>{sectionTitle}</Typography> */}
       <Stack spacing={3}>
         {data && data.map(item => (
           <Paper key={item.id} variant='outlined'>

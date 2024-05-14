@@ -186,7 +186,10 @@ export const statutePropertiesInstancePage = `
       OPTIONAL {
       ?ids_with_versions eli:amended_by [ 
         eli:first_date_entry_in_force ?statuteVersions__entryIntoForceDate ;
-        lss:finlex_url ?statuteVersions__finlexUrl ;
+        lss:finlex_url ?statuteVersions__finlexUrl ] .
+    }
+    OPTIONAL {
+      ?ids_with_versions eli:amended_by [
         eli:related_to/eli:title ?statuteVersions__he__id ;
         eli:related_to/lss:government_proposal_url ?statuteVersions__he__url ] .
     }

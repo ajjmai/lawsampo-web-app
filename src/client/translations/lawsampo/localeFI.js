@@ -437,6 +437,9 @@ export default {
             kursorin niiden kohdalle.
           </li>
           <li>
+          <strong>HISTORIA</STRONG>-välilehti näyttää säädöksen muutoshistorian pykäläkohtaisesti.
+        </li>
+          <li>
             <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot
             ja linkin säädökseen Finlexissä.
           </li>
