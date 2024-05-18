@@ -167,7 +167,7 @@ const mergeSubsections = (oldVersions, newVersions, versionNumber) => {
       } else {
         merged.push({ ...newVersion })
       }
-    } else {
+    } else if (versionNumber < '20050000' || item[0].partOfVersions.includes(versionNumber) || item[0].partOfVersions === versionNumber) {
       merged.push(...item)
     }
   }
@@ -196,7 +196,7 @@ const mergeParagraphs = (oldVersions, newVersions, versionNumber) => {
       } else {
         merged.push({ ...newVersion })
       }
-    } else if (item.partOfVersions?.includes(versionNumber)) {
+    } else if (versionNumber < '20050000' || item[0].partOfVersions.includes(versionNumber) || item[0].partOfVersions === versionNumber) {
       merged.push(...item)
     }
   }
@@ -216,7 +216,7 @@ const mergeSubParagraphs = (oldVersions, newVersions, versionNumber) => {
       const sorted = item.sort((a, b) => a.versionNumber - b.versionNumber)
       const newVersion = sorted[1]
       merged.push({ ...newVersion })
-    } else if (item.partOfVersions?.includes(versionNumber)) {
+    } else if (versionNumber < '20050000' || item[0].partOfVersions.includes(versionNumber) || item[0].partOfVersions === versionNumber) {
       merged.push(...item)
     }
   }
