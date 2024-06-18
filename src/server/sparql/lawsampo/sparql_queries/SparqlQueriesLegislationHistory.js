@@ -166,7 +166,9 @@ export const statutePropertiesInstancePage = `
 
       ?laki eli:related_to [
             eli:title ?statuteVersions__he__id ;
-            lss:government_proposal_url ?statuteVersions__he__url
+            eli:id_local ?statuteVersions__he__number ;
+            sfl:year ?statuteVersions__he__year ;
+            lss:type ?statuteVersions__he__type
       ] .
   }
   UNION
@@ -189,9 +191,12 @@ export const statutePropertiesInstancePage = `
         lss:finlex_url ?statuteVersions__finlexUrl ] .
     }
     OPTIONAL {
-      ?ids_with_versions eli:amended_by [
-        eli:related_to/eli:title ?statuteVersions__he__id ;
-        eli:related_to/lss:government_proposal_url ?statuteVersions__he__url ] .
+      ?ids_with_versions eli:amended_by/eli:related_to [
+        eli:title ?statuteVersions__he__id ;
+        eli:id_local ?statuteVersions__he__number ;
+        sfl:year ?statuteVersions__he__year ;
+        lss:type ?statuteVersions__he__type
+       ] .
     }
   }
   }
@@ -245,6 +250,10 @@ export const statutePropertiesInstancePage = `
                                     lss:part_of_version ?sections__sections__subsections__partOfVersions ;
                                     lss:number ?sections__sections__subsections__number .
 
+    OPTIONAL {
+      ?sections__sections__subsections__id lss:number_text ?sections__sections__subsections__numberStr
+    }
+
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__version)
     
     OPTIONAL {
@@ -276,6 +285,10 @@ export const statutePropertiesInstancePage = `
     OPTIONAL {
       ?sections__sections__subsections__paragraphs__id eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__content .
     }
+
+    OPTIONAL {
+      ?sections__sections__subsections__paragraphs__id lss:number_text ?sections__sections__subsections__paragraphs__numberStr
+    }
   }
   UNION
   {
@@ -297,7 +310,8 @@ export const statutePropertiesInstancePage = `
                                             lss:part_of_version ?sections__sections__subsections__paragraphs__subparagraphs__partOfVersions ;
                                             eli:is_realized_by/eli:is_embodied_by/sfl:text ?sections__sections__subsections__paragraphs__subparagraphs__content .
                                             
-    ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number ;
+    ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number ?sections__sections__subsections__paragraphs__subparagraphs__number .
+    ?sections__sections__subsections__paragraphs__subparagraphs__id  lss:number_text ?sections__sections__subsections__paragraphs__subparagraphs__numberStr .
     
     BIND(REPLACE(STR(?version), "http://data.finlex.fi/schema/sfl/", "") as ?sections__sections__subsections__paragraphs__subparagraphs__version) 
   

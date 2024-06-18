@@ -36,7 +36,6 @@ const StatuteHistoryDetails = props => {
   const { data } = props
   const sectionRefs = useRef({})
   const parser = new HTMLParser({ ...props, classes, sectionRefs })
-  console.log(data);
 
   const parseContent = (data, versionNumber) => {
     return Object.keys(data).reduce((result, key) => {
@@ -48,8 +47,8 @@ const StatuteHistoryDetails = props => {
       }
       if (key === 'content') {
         let content = data.content
-        if (['paragraph', 'subparagraph'].includes(data.level) && data.number !== '0') {
-          content = `${data.number}) ${content}`
+        if (['paragraph', 'subparagraph', 'subsection'].includes(data.level) && data.numberStr) {
+          content = `${data.numberStr} ${content}`
         }
         if (data.version !== 'Original' && data.versionNumber === versionNumber) {
           content = `<mark>${content}</mark>`
@@ -69,6 +68,11 @@ const StatuteHistoryDetails = props => {
     )
   }
 
+  const heUrl = 'https://www.eduskunta.fi/valtiopaivaasiakirjat/HE+'
+
+  const preliminaryWorkUrl1 = 'https://www.eduskunta.fi/FI/Vaski/sivut/trip.aspx?triptype=ValtiopaivaAsiat&docid=he+'
+  const preliminaryWorkUrl2 = 'https://www.eduskunta.fi/FI/vaski/KasittelytiedotValtiopaivaasia/Sivut/HE_'
+
   return (
     <div className={classes.textInnerContainer}>
       <Stack spacing={3}>
@@ -85,7 +89,12 @@ const StatuteHistoryDetails = props => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant='body2'>Esityöt: {item.he ? <Link href={item.heUrl} target='_blank' rel='noreferrer'>{item.he}</Link> : '-'}</Typography>
+                  <Typography variant='body2'>Hallituksen esitys: {item.he ? <Link href={heUrl + item.heNumber + '/' + item.heYear} target='_blank' rel='noreferrer'>{item.he}</Link> : '-'}</Typography>
+                </Grid>
+                <Grid item>
+                  {(item.heYear < 2015)
+                    ? <Typography variant='body2'>{item.he ? <Link href={preliminaryWorkUrl1 + item.heNumber + '/' + item.heYear} target='_blank' rel='noreferrer'>Asian käsittelytiedot</Link> : ''}</Typography>
+                    : <Typography variant='body2'>{item.he ? <Link href={preliminaryWorkUrl2 + item.heNumber + '+' + item.heYear + '.aspx'} target='_blank' rel='noreferrer'>Asian käsittelytiedot</Link> : ''}</Typography>}
                 </Grid>
               </Grid>
             </Box>

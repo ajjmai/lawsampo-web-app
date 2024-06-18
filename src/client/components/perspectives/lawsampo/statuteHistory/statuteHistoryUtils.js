@@ -89,7 +89,7 @@ const findPartsByVersionNumber = (data, targetVersionNumber) => {
   if (data.content && (data.versionNumber === targetVersionNumber)) {
     const number = data.number === 'intro' ? '0' : data.number
     const content = isArray(data.content) ? data.content[0] : data.content
-    return { ...data, content, number }
+    return { ...data, content: content.replace('Aiempi sanamuoto kuuluu:', ''), number }
   }
   return null
 }
@@ -103,7 +103,9 @@ const getStatuteVersionsInfo = (statuteVersions) => (
     map[versionNumber] = {
       id: it.identifier || it.version,
       he: he ? he.id : null,
-      heUrl: he ? he.url : null,
+      heYear: he ? he.year : null,
+      heNumber: he ? he.number : null,
+      heType: he ? he.type : null,
       entryIntoForce: it.entryIntoForceDate || null,
       version: it.version,
       versionNumber,
