@@ -32,17 +32,17 @@
             "instanceConfig": {
                 "propertiesQueryBlock": "statutePropertiesInstancePage",
                 "instancePageResultClasses": {
-                    "instancePageContextualContent": {
-                        "tabID": 0,
-                        "component": "ContextualContent",
-                        "tabPath": "content",
-                        "tabIcon": "Subject"
-                    },
                     "instancePageContextualContentStatuteHistory": {
-                        "tabID": 1,
+                        "tabID": 0,
                         "component": "ContextualContentStatuteHistory",
                         "tabPath": "history",
                         "tabIcon": "History"
+                    },
+                    "instancePageContextualContent": {
+                        "tabID": 1,
+                        "component": "ContextualContent",
+                        "tabPath": "current",
+                        "tabIcon": "Subject"
                     },
                     "instancePageTable": {
                         "tabID": 2,
