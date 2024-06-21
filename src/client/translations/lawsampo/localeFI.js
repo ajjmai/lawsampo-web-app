@@ -85,7 +85,8 @@ export default {
     export: 'avaa yasgui-sovelluksessa',
     statutes: 'Lainsäädäntö',
     cases: 'Oikeustapaukset',
-    history: 'historia'
+    history: 'historia',
+    current: 'ajantasainen versio'
   },
   table: {
     rowsPerPage: 'Riviä sivulla',
@@ -370,13 +371,13 @@ export default {
             Linkki hallituksen esitykseen (eduskunta.fi)
           `
         },
-         lakitutkaLink: {
+        lakitutkaLink: {
           label: 'Linkki Lakitutkaan',
           description: `
             Linkki hallituksen esitykseen Lakitutkassa
           `
         },
-         wordcloud: {
+        wordcloud: {
           label: 'Sanapilvi',
           description: `
             Sanapilvi
@@ -400,12 +401,15 @@ export default {
       label: 'Säädöshistoria',
       mainPageLabel: 'Säädöshistoria',
       facetResultsType: 'säädöstä',
-      shortDescription: 'Tarkastele säädösten muutoshistoriaa',
+      shortDescription: 'Tarkastele säädösten muutoshistoriaa\n (HUOM! Saatavissa toistaiseksi vain muutamalle säädökselle)',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa.
+          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa. Säädöshistoria on toistaiseksi saatavilla vain muutamalle säädökselle. 
+        </p>
+        <p>
           Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
           Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
+          'Säädöshistoria' -suodattimesta näät säädökset, joille säädöshistoria on saatavilla.
         <br />
           Tulosnäkymä voidaan valita näkymän välilehdiltä:
         </p>
@@ -426,19 +430,16 @@ export default {
         label: 'Säädös',
         description: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tämä sivu näyttää yhden ajantasaisen lainsäädännön säädöksen sisällön ja metatiedot.
-          Säädösten tiedot perustuvat Semanttisen Finlexin aineistoon.
+          Tämä sivu näyttää yhden säädöksen pykäläkohtaisen versiohistorian, säädöksen ajantasaisen sisällön ja metatiedot.
           Näkymä sisältää kolme välilehteä:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>SISÄLTÖ</STRONG>-välilehti näyttää säädöksen tekstisisällön kontekstuaalisessa
-            lukijassa, joka näyttää käsitteiden selityksiä ja linkkejä viedessäsi
-            kursorin niiden kohdalle.
+            <strong>HISTORIA</STRONG>-välilehti näyttää säädöksen muutoshistorian pykäläkohtaisesti.
           </li>
           <li>
-          <strong>HISTORIA</STRONG>-välilehti näyttää säädöksen muutoshistorian pykäläkohtaisesti.
-        </li>
+            <strong>AJANTASAINEN VERSIO</STRONG>-välilehti näyttää säädöksen ajantasaisen version tekstin.
+          </li>
           <li>
             <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot
             ja linkin säädökseen Finlexissä.
@@ -531,7 +532,7 @@ export default {
         statuteHistory: {
           label: 'Säädöshistoria',
           description: `
-            Näytä vain säädökset, joille on saatavissa historiatiedot
+            Säädökset, joille on saatavissa historiatiedot
           `
         },
         finlexLink: {
@@ -552,13 +553,13 @@ export default {
             Linkki hallituksen esitykseen (eduskunta.fi)
           `
         },
-         lakitutkaLink: {
+        lakitutkaLink: {
           label: 'Linkki Lakitutkaan',
           description: `
             Linkki hallituksen esitykseen Lakitutkassa
           `
         },
-         wordcloud: {
+        wordcloud: {
           label: 'Sanapilvi',
           description: `
             Sanapilvi
