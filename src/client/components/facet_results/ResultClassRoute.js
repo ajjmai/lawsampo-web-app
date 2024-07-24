@@ -4,6 +4,7 @@ import { Route, useLocation } from 'react-router-dom'
 import { has } from 'lodash'
 // import LineChartSotasurmat from '../perspectives/sotasurmat/LineChartSotasurmat'
 const ResultTable = lazy(() => import('./ResultTable'))
+const ResultTableStatuteHistory = lazy(() => import('../perspectives/lawsampo/statuteHistory/ResultTableStatuteHistory'))
 const InstancePageTable = lazy(() => import('../main_layout/InstancePageTable'))
 const ReactVirtualizedList = lazy(() => import('./ReactVirtualizedList'))
 const LeafletMap = lazy(() => import('./LeafletMap'))
@@ -55,6 +56,25 @@ const ResultClassRoute = props => {
     case 'ResultTable':
       routeComponent = (
         <ResultTable
+          portalConfig={portalConfig}
+          perspectiveConfig={perspective}
+          data={perspectiveState}
+          facetUpdateID={facetState.facetUpdateID}
+          resultClass={resultClass}
+          facetClass={facetClass}
+          fetchPaginatedResults={props.fetchPaginatedResults}
+          updatePage={props.updatePage}
+          updateRowsPerPage={props.updateRowsPerPage}
+          sortResults={props.sortResults}
+          rootUrl={rootUrl}
+          layoutConfig={layoutConfig}
+          location={useLocation()}
+        />
+      )
+      break
+    case 'ResultTableStatuteHistory':
+      routeComponent = (
+        <ResultTableStatuteHistory
           portalConfig={portalConfig}
           perspectiveConfig={perspective}
           data={perspectiveState}

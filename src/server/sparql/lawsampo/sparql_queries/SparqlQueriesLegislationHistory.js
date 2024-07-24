@@ -96,6 +96,7 @@ export const statutePropertiesFacetResults = `
      ?euDirective__id skos:prefLabel ?euDirective__prefLabel .
      BIND(?euDirective__id as ?euDirective__dataProviderUrl)
   }
+  ${sectionBlock}
 `
 
 export const statutePropertiesInstancePage = `
@@ -153,6 +154,27 @@ export const statutePropertiesInstancePage = `
   {
     ?id lss:situation_category ?situationCategory__id .
     ?situationCategory__id skos:prefLabel ?situationCategory__prefLabel .
+  }
+  UNION
+  {
+    ?id dct:subject ?subjectCategory__id .
+    ?subjectCategory__id skos:prefLabel ?subjectCategory__prefLabel .
+  }
+  UNION
+  {
+    ?id lss:annotated_html ?annotatedHtml_ .
+    BIND(REPLACE(?annotatedHtml_, "<html>|</html>|<head />|<body>|</body>", "") as ?contentHTMLAnnotated)
+  }
+  UNION
+  {
+    ?id lss:term_reference/skos:relatedMatch? ?referencedTerm__id . # select both directly linked terms and related matches
+    ?referencedTerm__id skos:prefLabel ?prefLabel_ .
+    OPTIONAL { ?referencedTerm__id dcterms:abstract ?referencedTerm__abstract }
+    OPTIONAL { ?referencedTerm__id rdfs:comment ?referencedTerm__description }
+    OPTIONAL { ?referencedTerm__id dcterms:hasFormat ?referencedTerm__externalLink }
+    OPTIONAL { ?referencedTerm__id lss:count ?referencedTerm__count }
+    BIND(?referencedTerm__id as ?referencedTerm__dataProviderUrl)
+    BIND(LCASE(?prefLabel_) as ?referencedTerm__prefLabel)
   }
   UNION
   { 
