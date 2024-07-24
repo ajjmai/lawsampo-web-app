@@ -401,23 +401,24 @@ export default {
       label: 'Säädöshistoria',
       mainPageLabel: 'Säädöshistoria',
       facetResultsType: 'säädöstä',
-      shortDescription: 'Tarkastele säädösten muutoshistoriaa\n (HUOM! Saatavissa toistaiseksi vain muutamalle säädökselle)',
+      shortDescription: 'Tarkastele säädösten muutoshistoriaa\n (HUOM! Keskeneräinen ominaisuus, nähtävissä vain muutamalle säädökselle)',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa. Säädöshistoria on toistaiseksi saatavilla vain muutamalle säädökselle. 
+          Tässä näkymässä voit tarkastella Suomen lainsäädännön muutoshistoriaa.
         </p>
         <p>
-          Vasemmalla olevien suodattimien avulla voit rajoittaa oikealla puolella näkyvää tulosjoukkoa.
-          Ohjeet suodattimien käyttöön löytyy <a href="/instructions">ohjeet</a>-sivulta.
-          'Säädöshistoria' -suodattimesta näät säädökset, joille säädöshistoria on saatavilla.
-        <br />
+        HUOM!
+         Ominaisuus on vielä keskeneräinen ja säädöshistoria on toistaiseksi saatavilla vain muutamalle säädökselle. 
+         Tämän sivun tuloslistassa näytetään vain ne säädökset, joille säädöshistoria on saatavilla. 
+         Tulosten suodattamiseen ei toistaiseksi voi käyttää suodattimia. Myöskään vuosinäkymä-välilehti ei ole käytössä.
+        </p>
+        <p>
           Tulosnäkymä voidaan valita näkymän välilehdiltä:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
         <li>
           <strong>TIEDOT</STRONG>-välilehti näyttää kaikki tulosjoukon säädökset taulukkona, jossa yksi rivi vastaa yhtä säädöstä.
           Säädösten tiedot näkyvät tulostaulukossa sarakkeittain, säädöksen nimen toimiessa linkkinä säädöksen tietosivulle.
-          Säädöksen sisältämät pykälät näkyvät listana Pykälät-sarakkeessa.
         </li>
         <li>
           <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
@@ -430,8 +431,13 @@ export default {
         label: 'Säädös',
         description: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tämä sivu näyttää yhden säädöksen pykäläkohtaisen versiohistorian, säädöksen ajantasaisen sisällön ja metatiedot.
-          Näkymä sisältää kolme välilehteä:
+          Tämä sivu näyttää yhden säädöksen pykäläkohtaisen versiohistorian, säädöksen ajantasaisen sisällön sekä säädöksen metatiedot.
+          </p>
+          <p>
+          <strong>HUOM! Ominaisuus on keskeneräinen ja säädöksen muutoshistoriassa saattaa olla virheitä ja puutteita.</strong>
+          </p>
+          <p>
+          Näkymä sisältää neljä välilehteä:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
@@ -441,8 +447,7 @@ export default {
             <strong>AJANTASAINEN VERSIO</STRONG>-välilehti näyttää säädöksen ajantasaisen version tekstin.
           </li>
           <li>
-            <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot
-            ja linkin säädökseen Finlexissä.
+            <strong>TIEDOT</STRONG>-välilehti näyttää säädöksen metatiedot.
           </li>
           <li>
             <strong>AVAA YASGUI-SOVELLUKSESSA</strong>-välilehti sisältää linkin
