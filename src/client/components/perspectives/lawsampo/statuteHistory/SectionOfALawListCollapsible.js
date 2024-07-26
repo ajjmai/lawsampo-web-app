@@ -211,10 +211,6 @@ const SectionOfALawListCollapsible = props => {
 
 SectionOfALawListCollapsible.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
-  makeLink: PropTypes.bool.isRequired,
-  externalLink: PropTypes.bool.isRequired,
-  sortValues: PropTypes.bool.isRequired,
-  numberedList: PropTypes.bool.isRequired,
   expanded: PropTypes.bool.isRequired,
   columnId: PropTypes.string,
   linkAsButton: PropTypes.bool,

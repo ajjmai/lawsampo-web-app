@@ -98,11 +98,7 @@ const ContextualContentStatuteHistory = props => {
                   data={tableOfContents}
                   hasParts={hasParts === 'true'}
                   hasChapters={hasChapters === 'true'}
-                  makeLink={false}
-                  externalLink={false}
-                  sortValues={false}
                   sortBy={sortBy}
-                  numberedList={false}
                   columnId={columnId}
                   expanded
                   linkAsButton={linkAsButton}

@@ -106,6 +106,14 @@
             "numberedList": false
         },
         {
+            "id": "firstLevel",
+            "valueType": "sectionOfALaw",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
             "id": "subjectCategory",
             "onlyOnInstancePage": true,
             "valueType": "object",
